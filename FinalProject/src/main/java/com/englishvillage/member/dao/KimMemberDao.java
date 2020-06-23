@@ -7,7 +7,7 @@ import com.englishvillage.member.model.MemberDto;
 import com.englishvillage.member.model.MemberFileDto;
 
 
-public interface MemberDao {
+public interface KimMemberDao {
 
 	public List<MemberFileDto> memberSelectList(String searchOption, 
 			String keyword, int start, int end);

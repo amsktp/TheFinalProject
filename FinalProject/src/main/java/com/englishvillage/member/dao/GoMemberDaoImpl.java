@@ -13,7 +13,7 @@ import com.englishvillage.member.model.MemberFileDto;
 
 
 @Repository
-public class MemberDaoImpl implements MemberDao{
+public class GoMemberDaoImpl implements LiMemberDao{
 
 	@Autowired
 	SqlSessionTemplate sqlSession;

@@ -18,17 +18,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.member.model.MemberDto;
 import com.englishvillage.member.model.MemberFileDto;
-import com.englishvillage.member.service.MemberService;
+import com.englishvillage.member.service.LiMemberService;
 import com.englishvillage.util.Paging;
 
 @Controller
-public class MemberController {
+public class LiMemberController {
 
 	private static final Logger log = 
-		LoggerFactory.getLogger(MemberController.class);
+		LoggerFactory.getLogger(LiMemberController.class);
 	
 	@Autowired
-	private MemberService memberService;
+	private LiMemberService memberService;
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, Model model) {

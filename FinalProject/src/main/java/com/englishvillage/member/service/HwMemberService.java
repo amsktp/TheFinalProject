@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.englishvillage.member.model.MemberDto;
 import com.englishvillage.member.model.MemberFileDto;
 
-public interface MemberService {
+public interface HwMemberService {
 
 	public List<MemberFileDto> memberSelectList(String searchOption, 
 			String keyword, int start, int end);

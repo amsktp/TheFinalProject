@@ -14,19 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.englishvillage.member.dao.MemberDao;
+import com.englishvillage.member.dao.LiMemberDao;
 import com.englishvillage.member.model.MemberDto;
 import com.englishvillage.member.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class KimMemberServiceImpl implements LiMemberService{
 
 	private static final Logger log = 
-			LoggerFactory.getLogger(MemberServiceImpl.class);
+			LoggerFactory.getLogger(KimMemberServiceImpl.class);
 	
 	@Autowired
-	public MemberDao memberDao;
+	public LiMemberDao memberDao;
 	
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
