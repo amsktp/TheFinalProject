@@ -10,12 +10,12 @@ public class MemberFileDto {
 	private Date createdDate;
 	private Date modifiedDate;
 	
-	private int 			idx;
-	private int 			parentSeq;        
-	private String 			originalFileName;
-    private String 			storedFileName;  
-	private int 			fileSize; 
-	private Date 			creDate;
+	private int idx;
+	private int parentSeq;        
+	private String originalFileName;
+    private String storedFileName;  
+	private int fileSize; 
+	private Date creDate;
 	
 	public MemberFileDto() {
 		super();
