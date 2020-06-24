@@ -26,7 +26,7 @@ public class AuthController {
 	public String  login(HttpSession session, Model model) {
 		log.info("*****Welcome Login!*****");
 		
-		return "auth/Login";
+		return "auth/login";
 	}
 	
 	@RequestMapping(value="/loginCtr.do", method = RequestMethod.POST)
