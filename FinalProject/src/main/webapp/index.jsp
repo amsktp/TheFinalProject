@@ -26,7 +26,7 @@
 	}
 	
 	var tutorListMoveFnc = function() {
-		location.href = '/englishvillage/tutorList.do'
+		location.href = '/englishvillage/home.do'
 	}
 	
 	var tutorIntroduceMoveFnc = function() {

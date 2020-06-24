@@ -52,10 +52,11 @@
 </head>
 
 <body>
-<%--    <jsp:include page="/WEB-INF/views/Header.jsp" /> --%>
-<div style="height: 1000px;">
 
-</div>
+<%--    <jsp:include page="/WEB-INF/views/Header.jsp" /> --%>
+<!-- <div style="height: 1000px;"> -->
+
+<!-- </div> -->
    <div id='wrap'>
       <h1 id='headerTxt'>Hello Spring Projects..</h1>
 
