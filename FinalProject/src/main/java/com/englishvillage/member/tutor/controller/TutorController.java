@@ -20,14 +20,11 @@ public class TutorController {
 	
 	@Autowired
 	private TutorService tutorService;
-
 	
-	@RequestMapping(value = "/home.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String main(HttpSession session, Model model) {
-		log.info("home 입니다.");
+		log.info("home 입니다. GET");
 		
-		tutorService.tutorList();
-		
-		return "";
+		return "home/tutorList";
 	}
 }

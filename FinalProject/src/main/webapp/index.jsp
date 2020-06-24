@@ -8,7 +8,7 @@
 <title>Hello Spring</title>
 
 <style type="text/css">
-	div{
+	#menuList > div {
 		border: 1px solid black; width: 200px;
 		background-color: orange;
 		margin: 20px;
@@ -26,7 +26,7 @@
 	}
 	
 	var tutorListMoveFnc = function() {
-		location.href = '/englishvillage/tutorList.do'
+		location.href = '/englishvillage/home.do'
 	}
 	
 	var tutorIntroduceMoveFnc = function() {
@@ -42,6 +42,7 @@
 
 <body>
 
+<div id="menuList">
 	<div onclick="loginMoveFnc();" >
 		로그인 버튼
 	</div>
@@ -65,6 +66,7 @@
 	<div onclick="adminMoveFnc();" >
 		관리자 페이지
 	</div>
+</div>
 	
 </body>
 

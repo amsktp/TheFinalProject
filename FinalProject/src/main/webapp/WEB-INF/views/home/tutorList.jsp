@@ -1,87 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>Spring Home</title>
+<title>Hello Spring</title>
 
 <style type="text/css">
-#wrap {
-   width: 1000px;
-   height: 1000px;
-   border: 3px solid #87CEFA;
-   border-radius: 50px;
-   background-color: #E0FFFF;
-   margin: auto;
-   text-align: center;
-}
-
-#headerTxt {
-   color: #00BFFF;
-}
-
-.headerTxt {
-   color: #FFB6C1;
-}
-
-.pageBtn {
-   width: 200px;
-   height: 50px;
-   border: 2px solid #F0E68C;
-   border-radius: 10px;
-   background-color: #FFFFE0;
-   color: #F0E68C;
-   font-size: 16px;
-   cursor: pointer;
-   outline: none;
-}
-
-.pageBtn:hover {
-   background-color: #F0E68C;
-   color: #fff;
-}
+	#menuList > div {
+		border: 1px solid black; width: 200px;
+		background-color: orange;
+		margin: 20px;
+	}
 </style>
 
 <script type="text/javascript">
-   var loginMove = function() {
-      location.href = './login.do'
-   }
+
+	var loginMoveFnc = function(){
+		location.href = '/englishvillage/login.do';
+	}
+	
+	var myPageMoveFnc = function() {
+		location.href = '/englishvillage/myPage.do'
+	}
+	
+	var tutorListMoveFnc = function() {
+		location.href = '/englishvillage/home.do'
+	}
+	
+	var tutorIntroduceMoveFnc = function() {
+		location.href = '/englishvillage/tutorIntroduce.do'
+	}
+	
+	var adminMoveFnc = function() {
+		location.href = '/englishvillage/admin.do'
+	}
+	
 </script>
 
-</head>
 
 <body>
-<%--    <jsp:include page="/WEB-INF/views/Header.jsp" /> --%>
-<div style="height: 1000px;">
+
+	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	
+<img id="mainImg" src="/englishvillage/resources/imgs/sl2.png">
+
+<div id="searchBox">
+
+	<div id="searchOptBox">
+		<span class="seachFont">검색조건</span> <select name='Nation'>
+			<option value='' selected>국적</option>
+			<option value='USA'>미국</option>
+			<option value='Germany'>독일</option>
+			<option value='Canada'>캐나다</option>
+			<option value='Philippines'>필리핀</option>
+		</select> <select name='Age'>
+			<option value='' selected>나이</option>
+			<option value='20'>20대</option>
+			<option value='30'>30대</option>
+			<option value='40'>40대</option>
+		</select> <select name='Sex'>
+			<option value='' selected>성별</option>
+			<option value='Men'>남자</option>
+			<option value='Worman'>여자</option>
+		</select>
+
+	</div>
+	<div id="searchKeyBox">
+		<input id="keyWordBox" type="text" placeholder="키워드를 입력해주세요">
+		<input id="seachBtn" type="button" value="검색">
+
+
+
+	</div>
 
 </div>
-   <div id='wrap'>
-      <h1 id='headerTxt'>Hello Spring Projects..</h1>
-
-      <div class='btnArea'>
-         <h2 class='headerTxt'>Get-Post</h2>
-         <form action="./home.do" method="post">
-            <input class='pageBtn' type="button" value='Get페이지 이동'
-               onclick="location.href='./home.do'" />
-               <input class='pageBtn' type="submit" value='Post페이지 이동' />
-         </form>
-      </div>
-
-      <div class='btnArea'>
-         <h2 class='headerTxt'>MemberListView</h2>
-         <input class='pageBtn' type="button" value='Get페이지 이동'
-            onclick="location.href='./member/list.do'" />
-      </div>
-
-      <div class='btnArea'>
-         <h2 class='headerTxt'>Login Page</h2>
-         <input class='pageBtn' type="button" value='로그인 페이지 이동'
-            onclick="loginMove();" />
-      </div>
-   </div>
-
-<%--    <jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
-
+<div id="menuList">
+	<div onclick="loginMoveFnc();" >
+		로그인 버튼
+	</div>
+	
+	<div onclick="mainMoveFnc();" >
+		메인페이지
+	</div>
+	
+	<div onclick="myPageMoveFnc();" >
+		마이페이지
+	</div>
+	
+	<div onclick="tutorListMoveFnc();" >
+		튜터 목록
+	</div>
+	
+	<div onclick="tutorIntroduceMoveFnc();" >
+		튜터 소개 페이지
+	</div>
+	
+	<div onclick="adminMoveFnc();" >
+		관리자 페이지
+	</div>
+</div>
+	
 </body>
+
 </html>
