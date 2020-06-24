@@ -2,7 +2,9 @@ package com.englishvillage.member.admin.dao;
 
 import java.util.List;
 
-import com.englishvillage.member.model.MemberFileDto;
+import com.englishvillage.member.admin.model.MemberFileDto;
+
+
 
 public interface AdminDao {
 	

@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.englishvillage.member.admin.model.MemberFileDto;
 import com.englishvillage.member.admin.service.AdminService;
-import com.englishvillage.member.model.MemberFileDto;
+
 import com.englishvillage.util.Paging;
 
 @Controller

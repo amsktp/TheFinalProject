@@ -9,6 +9,11 @@ public class MemberFileDto {
 	private String password;
 	private Date createdDate;
 	private Date modifiedDate;
+	private Date birthDate;
+	private String country;
+	private String gender;
+	private String grade;
+	private int point;
 	
 	private int idx;
 	private int parentSeq;        

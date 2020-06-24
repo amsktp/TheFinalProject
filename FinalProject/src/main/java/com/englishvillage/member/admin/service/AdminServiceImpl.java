@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.member.admin.dao.AdminDao;
-import com.englishvillage.member.model.MemberFileDto;
+import com.englishvillage.member.admin.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
 
 @Service
