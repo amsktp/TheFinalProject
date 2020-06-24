@@ -9,7 +9,7 @@
  </settings>
  
  <typeAliases>
- 	<typeAlias type="com.englishvillage.member.model.MemberDto" alias="memberDto"/>
+ 	<typeAlias type="com.englishvillage.temp.model.MemberDto" alias="memberDto"/>
  </typeAliases>
   
 </configuration>

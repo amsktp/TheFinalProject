@@ -20,7 +20,7 @@
         </choose>
 	</sql>
 
-	<resultMap type="com.englishvillage.member.model.MemberDto" 
+	<resultMap type="com.englishvillage.temp.model.MemberFileDto" 
 		id="memberResultMap">
 		<id column="MNO" property="no"/>
 		<result column="MNAME" property="name"/>
@@ -32,7 +32,7 @@
 			javaType="java.util.Date"/>
 	</resultMap>
 	
-	<resultMap type="com.englishvillage.member.model.MemberFileDto" 
+	<resultMap type="com.englishvillage.temp.model.MemberFileDto" 
 		id="memberFileResultMap">
 		<result column="MNO" property="no"/>
 		<result column="MNAME" property="name"/>
