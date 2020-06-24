@@ -26,6 +26,8 @@ public class TutorController {
 	public String main(HttpSession session, Model model) {
 		log.info("home 입니다.");
 		
+		tutorService.tutorList();
+		
 		return "";
 	}
 }
