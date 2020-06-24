@@ -11,7 +11,7 @@ public class TutorDto {
 	private String memberName;
 	private Date memberCreateDate;
 	private Date memberModifyDate;
-	private String member
+	private String member;
 	
 	
 	
