@@ -8,7 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.englishvillage.member.admin.model.MemberFileDto;
+import com.englishvillage.member.admin.model.MemberListDto;
+
+
 
 
 @Repository
@@ -17,22 +19,26 @@ public class AdminDaoImpl implements AdminDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	String namespace = "com.edu.member.admin.";
+	String namespace = "com.englishvillage.member.admin.";
 	
 	//학생
 	@Override
-	public List<MemberFileDto> studentSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> studentSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("여긴 오는지 dao 1");
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
-		
-		List<MemberFileDto> memberList = 
+		System.out.println("확인용: " + start + ", " + end);
+		List<MemberListDto> memberList = 
 				sqlSession.selectList(namespace + "studentSelectList"
 				, map);
+		
+	
 		
 		return memberList;
 	}
@@ -50,7 +56,7 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int studentSelectCurPage(String searchOption, String keyword, int no) {
+	public int memberSelectCurPage(String searchOption, String keyword, int no) {
 		// TODO Auto-generated method stub
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
@@ -58,12 +64,13 @@ public class AdminDaoImpl implements AdminDao{
 		paramMap.put("keyword", keyword);
 		paramMap.put("no", no);
 		
+		
 		return sqlSession.selectOne(namespace + "studentSelectCurPage", paramMap);
 	}
 	
 	//튜터
 	@Override
-	public List<MemberFileDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchOption", searchOption);
@@ -71,7 +78,7 @@ public class AdminDaoImpl implements AdminDao{
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<MemberFileDto> memberList = 
+		List<MemberListDto> memberList = 
 				sqlSession.selectList(namespace + "tutorSelectList"
 				, map);
 		
@@ -104,7 +111,7 @@ public class AdminDaoImpl implements AdminDao{
 	
 	//문의
 	@Override
-	public List<MemberFileDto> questionSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> questionSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map = new HashMap<>();
@@ -113,7 +120,7 @@ public class AdminDaoImpl implements AdminDao{
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<MemberFileDto> memberList = 
+		List<MemberListDto> memberList = 
 				sqlSession.selectList(namespace + "questionSelectList"
 				, map);
 		

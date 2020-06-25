@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.member.admin.dao.AdminDao;
-import com.englishvillage.member.admin.model.MemberFileDto;
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.util.FileUtils;
 
 @Service
@@ -27,11 +27,13 @@ public class AdminServiceImpl implements AdminService{
 	
 	//학생
 	@Override
-	public List<MemberFileDto> studentSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> studentSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		List<MemberFileDto> memberList = 
+		System.out.println("여긴 오는지 service 1");
+		List<MemberListDto> memberList = 
 				adminDao.studentSelectList(searchOption, keyword
 					, start, end);
+		
 		
 		return memberList;
 	}
@@ -44,16 +46,16 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int studentSelectCurPage(String searchOption, String keyword, int no) {
+	public int memberSelectCurPage(String searchOption, String keyword, int no) {
 		// TODO Auto-generated method stub
-		return adminDao.studentSelectCurPage(searchOption, keyword, no);
+		return adminDao.memberSelectCurPage(searchOption, keyword, no);
 	}
 	
 	//튜터
 	@Override
-	public List<MemberFileDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		List<MemberFileDto> memberList = 
+		List<MemberListDto> memberList = 
 				adminDao.tutorSelectList(searchOption, keyword
 					, start, end);
 		
@@ -75,9 +77,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	//문의
 	@Override
-	public List<MemberFileDto> questionSelectList(String searchOption, String keyword, int start, int end) {
+	public List<MemberListDto> questionSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		List<MemberFileDto> memberList = 
+		List<MemberListDto> memberList = 
 				adminDao.questionSelectList(searchOption, keyword
 					, start, end);
 		
