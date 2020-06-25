@@ -1,6 +1,4 @@
-package com.englishvillage.member.tutor.service;
-
-import java.util.List;
+package com.englishvillage.auth.service;
 
 import javax.annotation.Resource;
 
@@ -9,31 +7,29 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.englishvillage.member.tutor.dao.TutorDao;
-import com.englishvillage.member.tutor.model.TutorDto;
+import com.englishvillage.auth.dao.AuthDao;
+import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.util.FileUtils;
 
 @Service
-public class TutorServiceImpl implements TutorService{
+public class AuthServiceImpl implements AuthService{
 
 	private static final Logger log = 
-			LoggerFactory.getLogger(TutorServiceImpl.class);
+			LoggerFactory.getLogger(AuthServiceImpl.class);
 	
 	@Autowired
-	public TutorDao tutorDao;
+	public AuthDao authDao;
 	
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
-
+	
 	@Override
-	public List<TutorDto> getTutorList() {
+	public MemberDto memberExist(String email, String password) {
 		// TODO Auto-generated method stub
 		
+		MemberDto memberDto = authDao.memberExist(email, password);
 		
-		List<TutorDto> tutorDtoList = tutorDao.getTutorList();
-		
-		
-		return tutorDtoList;
+		return memberDto;
 	}
 	
 	

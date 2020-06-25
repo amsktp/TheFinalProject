@@ -3,9 +3,70 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  
+  
+  
+  
 <mapper namespace="com.englishvillage.member.tutor">
-
 	
+	
+	<resultMap type="com.englishvillage.member.tutor.model.TutorDto" 
+		id="tutorResultMap">
+		
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_GRADE" property="memberGrade"/>
+		<result column="MEMBER_EMAIL" property="memberEmail"/>
+		<result column="MEMBER_PASSWORD" property="memberPassword"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_CREATE_DATE" property="memberCreateDate"
+			javaType="java.util.Date"/>
+		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate"
+			javaType="java.util.Date"/>
+		<result column="MEMBER_COUNTRY" property="memberCountry"	/>
+		<result column="MEMBER_GENDER" property="memberGender"	/>
+		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate"
+			javaType="java.util.Date"/>
+		<result column="MEMBER_POINT" property="memberPoint"	/>
+		
+		<result column="TUTOR_INTRODUCE" property="tutorIntroduce"	/>
+		<result column="YOUTUBE_URL" property="youtubeUrl"/>	
+		<result column="STUDY_NAME" property="studyName"/>	
+		<result column="PRICE" property="price"/>	
+		<result column="STATUS_CHECK" property="statusCheck"/>	
+	
+	</resultMap>
+	
+	
+	
+	<select id="getTutorList" resultMap="tutorResultMap">
+		
+		SELECT MF.RNUM
+           ,MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME, MF.MEMBER_CREATE_DATE, MF.MEMBER_POINT, MF.MEMBER_COUNTRY
+           ,MF.GRADE_NAME
+           ,MF.PRICE, MF.STUDY_NAME
+           ,MF.ORIGINAL_FILE_NAME
+   		FROM (
+      		SELECT ROWNUM RNUM
+                ,M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
+                ,M.GRADE_NAME
+                ,M.PRICE, M.STUDY_NAME
+                ,M.ORIGINAL_FILE_NAME
+       		FROM(
+		     	SELECT M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
+	                ,G.GRADE_NAME
+	                ,T.PRICE, T.STUDY_NAME
+	                ,F.ORIGINAL_FILE_NAME
+		        FROM MEMBER M, TUTOR_INFO T, FILE_PROFILE_IMAGE F, MEMBER_GRADE G
+		            WHERE M.MEMBER_NO = T.TUTOR_NO
+		            AND T.TUTOR_NO = F.TUTOR_NO
+		            AND M.MEMBER_GRADE = G.MEMBER_GRADE
+		            ORDER BY T.STATUS_CHECK ASC, M.MEMBER_NO DESC
+           		) M
+        ) MF
+        
+<!--         WHERE MF.RNUM BETWEEN #{start} AND #{end} -->
+
+	</select>
 	
 	
 </mapper>

@@ -1,5 +1,8 @@
 package com.englishvillage.member.tutor.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 
 @Controller
@@ -24,6 +28,10 @@ public class TutorController {
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String main(HttpSession session, Model model) {
 		log.info("home 입니다. GET");
+		
+		List<TutorDto> tutorDtoList = tutorService.getTutorList();
+		
+		model.addAttribute("tutorDtoList", tutorDtoList);
 		
 		return "home/tutorList";
 	}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,37 @@
 		border: 1px solid black; width: 200px;
 		background-color: orange;
 		margin: 20px;
+		
+	}
+	
+	#tutorList > div {
+	
+	}
+	
+	.tutorInfoDiv {
+		border: 1px solid black;
+		width: 340px;
+		height: 317px;
+		float: left;
+		margin : 10px;
+	}
+	.tutorImgDiv {
+		width : 340px;
+		height : 200px;
+	}
+	#mainImg1 {
+		width : 340px;
+		height : 200px;
+	}
+	.studyTitle {
+		width: 172px;
+		height: 40px;
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	.tutorName {
+		width: 50px;
+		height: 20px;
 	}
 </style>
 
@@ -70,36 +103,38 @@
 	<div id="searchKeyBox">
 		<input id="keyWordBox" type="text" placeholder="키워드를 입력해주세요">
 		<input id="seachBtn" type="button" value="검색">
-
-
-
 	</div>
-
-</div>
-<div id="menuList">
-	<div onclick="loginMoveFnc();" >
-		로그인 버튼
+	<div id="tutorList">
+		<c:forEach var="tutorDto" items="${tutorDtoList}">
+		<div class="tutorInfoDiv">
+			<div class="tutorImgDiv">
+				<img id="mainImg1" src="/englishvillage/resources/imgs/sl2.png">
+			</div>
+			<hr>
+			<div class="studyTitle">
+				${tutorDto.studyName}
+			</div>
+			<div class="tutorName">
+				${tutorDto.memberName}
+			</div>
+			<div>
+				${tutorDto.price}
+			</div>
+			<div>
+				★★★★★ (30)
+			</div>
+			<div>
+				${tutorDto.memberCountry}
+			</div>
+		</div>
+		
+<%-- 		<c:if test="${i eq 4 }"> --%>
+<!-- 		<div style="clear: left;"></div> -->
+<%-- 		</c:if> --%>
+		
+		</c:forEach>
 	</div>
 	
-	<div onclick="mainMoveFnc();" >
-		메인페이지
-	</div>
-	
-	<div onclick="myPageMoveFnc();" >
-		마이페이지
-	</div>
-	
-	<div onclick="tutorListMoveFnc();" >
-		튜터 목록
-	</div>
-	
-	<div onclick="tutorIntroduceMoveFnc();" >
-		튜터 소개 페이지
-	</div>
-	
-	<div onclick="adminMoveFnc();" >
-		관리자 페이지
-	</div>
 </div>
 	
 </body>

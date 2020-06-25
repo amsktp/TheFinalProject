@@ -3,7 +3,7 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.englishvillage.member">
+<mapper namespace="com.englishvillage.temp">
 
 	<sql id="search">
 		<choose>
