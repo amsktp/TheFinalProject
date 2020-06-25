@@ -2,6 +2,8 @@ package com.englishvillage.member.tutor.model;
 
 import java.util.Date;
 
+
+
 public class TutorDto {
 	
 	private int memberNo;

@@ -3,11 +3,30 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  
-  
-  
-  
 <mapper namespace="com.englishvillage.member.tutor">
+	
+<!-- 	<sql id="search"> -->
+<!-- 		<choose> -->
+<!--         	검색옵션이 전체 검색일 경우  -->
+<!--         	<when test="countrySearch != 'all'"> -->
+<!--         		AND member_country = #{countrySearch} -->
+<!--         	</when> -->
+        	
+<!--         	<when test="ageSearch != 'all'"> -->
+<!--         		AND (ceil((sysdate-member_birth_date)/360) >= #{ageSearch} -->
+<!--             	AND ceil((sysdate-member_birth_date)/360) < #{ageSearch + 10}) -->
+<!--         	</when> -->
+        	
+<!--         	<when test="genderSearch != 'all'"> -->
+<!--         		AND member_gender = #{genderSearch} -->
+<!--         	</when> -->
+        	
+<!--         	전체 검색이 아닐 경우 -->
+<!--         	<otherwise> -->
+<!--         		AND member_name LIKE '%' || #{keyword} || '%' -->
+<!--         	</otherwise> -->
+<!--         </choose> -->
+<!-- 	</sql> -->
 	
 	
 	<resultMap type="com.englishvillage.member.tutor.model.TutorDto" 
@@ -44,22 +63,24 @@
            ,MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME, MF.MEMBER_CREATE_DATE, MF.MEMBER_POINT, MF.MEMBER_COUNTRY
            ,MF.GRADE_NAME
            ,MF.PRICE, MF.STUDY_NAME
-           ,MF.ORIGINAL_FILE_NAME
+           ,MF.STORE_FILE_NAME
    		FROM (
       		SELECT ROWNUM RNUM
                 ,M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
                 ,M.GRADE_NAME
                 ,M.PRICE, M.STUDY_NAME
-                ,M.ORIGINAL_FILE_NAME
+                ,M.STORE_FILE_NAME
        		FROM(
 		     	SELECT M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
 	                ,G.GRADE_NAME
 	                ,T.PRICE, T.STUDY_NAME
-	                ,F.ORIGINAL_FILE_NAME
+	                ,F.STORE_FILE_NAME
 		        FROM MEMBER M, TUTOR_INFO T, FILE_PROFILE_IMAGE F, MEMBER_GRADE G
 		            WHERE M.MEMBER_NO = T.TUTOR_NO
 		            AND T.TUTOR_NO = F.TUTOR_NO
 		            AND M.MEMBER_GRADE = G.MEMBER_GRADE
+		            
+		            
 		            ORDER BY T.STATUS_CHECK ASC, M.MEMBER_NO DESC
            		) M
         ) MF
@@ -67,6 +88,14 @@
 <!--         WHERE MF.RNUM BETWEEN #{start} AND #{end} -->
 
 	</select>
+	
+<!-- 	<select id="tutorSelectTotalCount" parameterMap="map" -->
+<!-- 	resultType="int"> -->
+		
+<!-- 		select count(*) -->
+<!-- 		from member -->
+		
+<!-- 	</select> -->
 	
 	
 </mapper>
