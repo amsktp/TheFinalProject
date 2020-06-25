@@ -57,7 +57,7 @@
 	</div>
 
 	<div class="bottomHeader">
-		<span class="logo" onclick="location.href='/springHome'">English Village</span>
+		<span class="logo" onclick="location.href='home.do'">English Village</span>
 		<p class="logoRight">24시간 1:1 화상 스터디</p>
 
 		<div id="overLine">
@@ -67,7 +67,7 @@
 				<li>수강권</li>
 			</ul>
 
-			<input id="myPage" type="button" value="마이 페이지" onclick="location.href='./home.do'">
+			<input id="myPage" type="button" value="마이 페이지" onclick="location.href='./myPage.do'">
 		</div>
 
 	</div>

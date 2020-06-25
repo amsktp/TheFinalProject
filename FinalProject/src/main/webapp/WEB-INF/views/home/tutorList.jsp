@@ -76,7 +76,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	<jsp:include page="/WEB-INF/views/Header3.jsp" />
 	
 <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png">
 
@@ -133,6 +133,7 @@
 			</div>
 			<div>
 				${tutorDto.memberCountry}
+				${tutorDto}
 			</div>
 		</div>
 		
