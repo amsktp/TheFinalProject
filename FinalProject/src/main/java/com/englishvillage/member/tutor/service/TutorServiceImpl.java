@@ -35,6 +35,15 @@ public class TutorServiceImpl implements TutorService{
 		
 		return tutorDtoList;
 	}
+
+	@Override
+	public int tutorSelectTotalCount(String countrySearch, String ageSearch, String genderSearch, String keyword) {
+		// TODO Auto-generated method stub
+		
+		int result = tutorDao.tutorSelectTotalCount(countrySearch, ageSearch, genderSearch, keyword);
+				
+		return result;
+	}
 	
 	
 }

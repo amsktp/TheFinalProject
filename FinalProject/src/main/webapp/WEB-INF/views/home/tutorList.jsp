@@ -26,7 +26,8 @@
 		width: 340px;
 		height: 317px;
 		float: left;
-		margin : 10px;
+		margin-top : 10px;
+		margin-right : 10px;
 	}
 	.tutorImgDiv {
 		width : 340px;
@@ -82,28 +83,35 @@
 <div id="searchBox">
 
 	<div id="searchOptBox">
-		<span class="seachFont">검색조건</span> <select name='Nation'>
-			<option value='' selected>국적</option>
-			<option value='USA'>미국</option>
-			<option value='Germany'>독일</option>
-			<option value='Canada'>캐나다</option>
-			<option value='Philippines'>필리핀</option>
-		</select> <select name='Age'>
-			<option value='' selected>나이</option>
-			<option value='20'>20대</option>
-			<option value='30'>30대</option>
-			<option value='40'>40대</option>
-		</select> <select name='Sex'>
-			<option value='' selected>성별</option>
-			<option value='Men'>남자</option>
-			<option value='Worman'>여자</option>
-		</select>
-
+		<form action="./home.do" method="post">
+			<span class="seachFont">검색조건</span> 
+			<select name='countrySearch'>
+				<option value='all' selected>국적</option>
+				<option value='Usa'>미국</option>
+				<option value='Ireland'>아일랜드</option>
+				<option value='Canada'>캐나다</option>
+				<option value='England'>영국</option>
+				<option value='KOREA'>한국</option>
+			</select> 
+			<select name='ageSearch'>
+				<option value='all' selected>나이</option>
+				<option value='20'>20대</option>
+				<option value='30'>30대</option>
+				<option value='40'>40대이상</option>
+			</select> 
+			<select name='genderSearch'>
+				<option value='all' selected>성별</option>
+				<option value='Man'>남자</option>
+				<option value='Woman'>여자</option>
+			</select>
+	
+			<div id="searchKeyBox">
+				<input id="keyWordBox" type="text" placeholder="키워드를 입력해주세요">
+				<input id="seachBtn" type="button" value="검색">
+			</div>
+		</form>
 	</div>
-	<div id="searchKeyBox">
-		<input id="keyWordBox" type="text" placeholder="키워드를 입력해주세요">
-		<input id="seachBtn" type="button" value="검색">
-	</div>
+	
 	<div id="tutorList">
 		<c:forEach var="tutorDto" items="${tutorDtoList}">
 		<div class="tutorInfoDiv">
@@ -128,7 +136,7 @@
 			</div>
 		</div>
 		
-<%-- 		<c:if test="${i eq 4 }"> --%>
+<%-- 		<c:if test="${i eq 8 }"> --%>
 <!-- 		<div style="clear: left;"></div> -->
 <%-- 		</c:if> --%>
 		

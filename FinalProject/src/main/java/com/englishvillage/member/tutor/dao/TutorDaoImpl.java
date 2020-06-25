@@ -1,5 +1,6 @@
 package com.englishvillage.member.tutor.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,6 +25,23 @@ public class TutorDaoImpl implements TutorDao{
 		List<TutorDto> tutorDtoList = sqlSession.selectList(namespace + "getTutorList");
 		
 		return tutorDtoList;
+	}
+
+	@Override
+	public int tutorSelectTotalCount(String countrySearch, String ageSearch, String genderSearch, String keyword) {
+		// TODO Auto-generated method stub
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("countrySearch", countrySearch);
+		map.put("ageSearch", ageSearch);
+		map.put("genderSearch", genderSearch);
+		map.put("keyword", keyword);
+		
+		int result = sqlSession.selectOne(namespace + "tutorSelectTotalCount", map);
+		
+		return result;
 	}
 	
 
