@@ -25,12 +25,17 @@ public class AuthDaoImpl implements AuthDao{
 		map.put("memberEmail", memberEmail);
 		map.put("memberPassword", memberPassword);
 		
-		System.out.println("다오 안");
-		MemberDto memberDto = 
-			sqlSession.selectOne(namespace + "memberExist", map);
-		System.out.println("다오 밖");
+		MemberDto memberDto = sqlSession.selectOne(namespace + "memberExist", map);
 		
 		return memberDto;
+	}
+
+	@Override
+	public void memberInsertOne(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		
+		sqlSession.insert(namespace + "memberInsertOne", memberDto);
+		
 	}
 
 }

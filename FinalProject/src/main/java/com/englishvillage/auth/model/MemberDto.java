@@ -1,5 +1,7 @@
 package com.englishvillage.auth.model;
 
+import java.util.Date;
+
 public class MemberDto {
 	
 	private int memberNo;
@@ -7,7 +9,12 @@ public class MemberDto {
 	private String memberEmail;
 	private String memberPassword;
 	private String memberGrade;
-
+	private int memberPoint;
+	private String memberCountry;
+	private String memberGender;
+	private Date memberBirthDate;
+	
+	
 	public MemberDto() {
 		super();
 	}
@@ -55,6 +62,30 @@ public class MemberDto {
 		this.memberName = memberName;
 	}
 
+	public int getMemberPoint() {
+		return memberPoint;
+	}
+	public void setMemberPoint(int memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+	public String getMemberCountry() {
+		return memberCountry;
+	}
+	public void setMemberCountry(String memberCountry) {
+		this.memberCountry = memberCountry;
+	}
+	public String getMemberGender() {
+		return memberGender;
+	}
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
+	public Date getMemberBirthDate() {
+		return memberBirthDate;
+	}
+	public void setMemberBirthDate(Date memberBirthDate) {
+		this.memberBirthDate = memberBirthDate;
+	}
 	public String getMemberEmail() {
 		return memberEmail;
 	}
