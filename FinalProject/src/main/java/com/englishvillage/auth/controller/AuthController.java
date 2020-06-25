@@ -23,7 +23,7 @@ public class AuthController {
 	private AuthService authService;
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-	public String  login(HttpSession session, Model model) {
+	public String login() {
 		log.info("*****Welcome Login!*****");
 		
 		return "auth/login";
@@ -35,14 +35,14 @@ public class AuthController {
 		
 		String viewUrl = "";
 		
-		MemberDto memberDto = authService.memberExist(email, password);
+		MemberDto memberDto = authService.memberExist(email, password);//넘겨주고 값을 받아서 memberDto에 저장한다.
 		
 		if(memberDto != null) {
-			session.setAttribute("member", memberDto);
+			session.setAttribute("member", memberDto);//memberDto를 member변수로 담는다.
 			
-//			viewUrl = "redirect:/"
+			viewUrl = "redirect:/home.do";
 		} else {
-//			viewUrl = "/auth/LoginFail";
+//			viewUrl = "/auth/LoginFail";// 패일하면 세션에 안들어가고 로그인이 성공하면 세션에 들어가서 로그아웃할때까지가 세션이 유지되는 구간
 		}
 		
 		return viewUrl;

@@ -19,10 +19,7 @@ public class AuthServiceImpl implements AuthService{
 	
 	@Autowired
 	public AuthDao authDao;
-	
-	@Resource(name="fileUtils")
-	private FileUtils fileUtils;
-	
+		
 	@Override
 	public MemberDto memberExist(String email, String password) {
 		// TODO Auto-generated method stub

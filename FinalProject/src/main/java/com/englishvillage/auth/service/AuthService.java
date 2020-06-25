@@ -4,7 +4,7 @@ import com.englishvillage.auth.model.MemberDto;
 
 public interface AuthService {
 
-	MemberDto memberExist(String email, String password);
+	public MemberDto memberExist(String email, String password);
 
 
 }

@@ -15,7 +15,7 @@ public class AuthDaoImpl implements AuthDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	String namespace = "com.edu.member.";
+	String namespace = "com.englishvillage.member.auth.";
 	
 	@Override
 	public MemberDto memberExist(String email, String password) {
@@ -23,7 +23,7 @@ public class AuthDaoImpl implements AuthDao{
 		
 		HashMap<String, Object> paramMap = new HashMap<>();
 		paramMap.put("email", email);
-		paramMap.put("pwd", password);
+		paramMap.put("password", password);
 		
 		MemberDto memberDto = 
 			sqlSession.selectOne(namespace + "memberExist", paramMap);

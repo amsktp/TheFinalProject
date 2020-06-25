@@ -6,9 +6,29 @@ public class MemberDto {
 	private String memberName;
 	private String memberEmail;
 	private String memberPassword;
-	
+	private String memberGrade;
+
 	public MemberDto() {
 		super();
+	}
+	public MemberDto(int memberNo, String memberName, String memberEmail, String memberPassword, String memberGrade) {
+		super();
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberGrade = memberGrade;
+	}
+
+	
+	
+	
+	public String getMemberGrade() {
+		return memberGrade;
+	}
+
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
 	}
 
 	public MemberDto(int memberNo, String memberName, String memberEmail, String memberPassword) {
