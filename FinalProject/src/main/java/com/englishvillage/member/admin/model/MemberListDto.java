@@ -2,7 +2,7 @@ package com.englishvillage.member.admin.model;
 
 import java.util.Date;
 
-public class MemberFileDto {
+public class MemberListDto {
 	private int no;
 	private String name;
 	private String email;
@@ -15,6 +15,9 @@ public class MemberFileDto {
 	private String grade;
 	private int point;
 	
+
+	
+
 	private int idx;
 	private int parentSeq;        
 	private String originalFileName;
@@ -22,11 +25,34 @@ public class MemberFileDto {
 	private int fileSize; 
 	private Date creDate;
 	
-	public MemberFileDto() {
+	public MemberListDto() {
 		super();
 	}
-
-	public MemberFileDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
+	
+	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
+			Date birthDate, String country, String gender, String grade, int point, int idx, int parentSeq,
+			String originalFileName, String storedFileName, int fileSize, Date creDate) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.createdDate = createdDate;
+		this.modifiedDate = modifiedDate;
+		this.birthDate = birthDate;
+		this.country = country;
+		this.gender = gender;
+		this.grade = grade;
+		this.point = point;
+		this.idx = idx;
+		this.parentSeq = parentSeq;
+		this.originalFileName = originalFileName;
+		this.storedFileName = storedFileName;
+		this.fileSize = fileSize;
+		this.creDate = creDate;
+	}
+	
+	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize, Date creDate) {
 		super();
 		this.no = no;
@@ -139,9 +165,50 @@ public class MemberFileDto {
 		this.creDate = creDate;
 	}
 
+	
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	
 	@Override
 	public String toString() {
-		return "MemberFileDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
+		return "MemberListDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", idx=" + idx + ", parentSeq="
 				+ parentSeq + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
 				+ ", fileSize=" + fileSize + ", creDate=" + creDate + "]";

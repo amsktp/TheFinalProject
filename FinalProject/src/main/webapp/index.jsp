@@ -34,7 +34,7 @@
 	}
 	
 	var adminMoveFnc = function() {
-		location.href = '/englishvillage/admin.do'
+		location.href = '/englishvillage/admin/studentlist.do'
 	}
 	
 </script>

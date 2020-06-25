@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.englishvillage.member.admin.model.MemberFileDto;
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.service.AdminService;
 
 import com.englishvillage.util.Paging;
@@ -38,24 +38,30 @@ public class AdminController {
 			, Model model) {
 		log.info("Welcome MemberList! " + curPage + " : " 
 			+ searchOption + " : " + keyword);
+		System.out.println("여긴 오는지 1");
+		
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 		if("name".equals(searchOption)) {
-			searchOption = "mname";
+			searchOption = "member_name";
+		}
+
+		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
+		if("email".equals(searchOption)) {
+			searchOption = "member_email";
 		}
 	
 		
 		// 페이징을 위한 전체 회원목록 갯수
 		int totalCount = 
 			adminService.studentSelectTotalCount(
-				searchOption, keyword
-			);
+				searchOption, keyword);
 		
-		
+		log.info(" " + totalCount);
 //		이전 체이지로 회원으이 번호가 명확하게 나온경우
 //		자신의 curPage 찾는 로직
 		if(no != 0) {
 			curPage
-				= adminService.studentSelectCurPage(searchOption, keyword, no);
+				= adminService.memberSelectCurPage(searchOption, keyword, no);
 		}
 		
 		
@@ -63,13 +69,23 @@ public class AdminController {
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
-		List<MemberFileDto> memberList = 
+		log.info(" " + memberPaging, start, end);
+		
+		System.out.println("여긴 오는지 1.5");
+
+		List<MemberListDto> memberList = 
 				adminService.studentSelectList(searchOption, keyword
 				, start, end);
-
+		
+		System.out.println("여긴 오는지 2");
 		// 화면의 form의 이름을 맞추기 위한 작업
-		if("mname".equals(searchOption)) {
+		
+		if("member_name".equals(searchOption)) {
 			searchOption = "name";
+		}
+
+		if("member_email".equals(searchOption)) {
+			searchOption = "email";
 		}
 		
 		// 검색
@@ -78,20 +94,25 @@ public class AdminController {
 		searchMap.put("searchOption", searchOption);
 		searchMap.put("keyword", keyword);
 		
+		System.out.println("2.3");
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
-
+		System.out.println("2.4");
+		
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("pagingMap", pagingMap);
+		System.out.println(pagingMap);
 		model.addAttribute("searchMap", searchMap);
+		System.out.println(searchMap);
 		
 		System.out.println("@@@@@@@#################" + keyword);
 		System.out.println("@@@@@@@#################" + searchOption);
-		
-		return "member/MemberListView";
+		System.out.println("여긴 오는지 3");
+		return "admin/student/adminStudentList";
 	}
+	
 	//튜터 리스트
 	@RequestMapping(value = "/admin/tutorlist.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
@@ -120,7 +141,7 @@ public class AdminController {
 //		자신의 curPage 찾는 로직
 		if(no != 0) {
 			curPage
-				= adminService.tutorSelectCurPage(searchOption, keyword, no);
+				= adminService.memberSelectCurPage(searchOption, keyword, no);
 		}
 		
 		
@@ -128,7 +149,7 @@ public class AdminController {
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
-		List<MemberFileDto> memberList = 
+		List<MemberListDto> memberList = 
 				adminService.tutorSelectList(searchOption, keyword
 				, start, end);
 
