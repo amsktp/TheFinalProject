@@ -30,19 +30,22 @@ public class AuthController {
 	}
 	
 	@RequestMapping(value="/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String email, String password, HttpSession session, Model model) {
-		log.info("*****Welcome LoginCtr!*****" + email + "," + password);
+	public String loginCtr(String memberEmail, String memberPassword, HttpSession session, Model model) {
+		log.info("*****Welcome LoginCtr!*****" + memberEmail + "," + memberPassword);
 		
 		String viewUrl = "";
-		
-		MemberDto memberDto = authService.memberExist(email, password);//넘겨주고 값을 받아서 memberDto에 저장한다.
+		System.out.println("로그인 메서드 전");
+		System.out.println(memberEmail + "      " + memberPassword);
+		MemberDto memberDto = authService.memberExist(memberEmail, memberPassword);//넘겨주고 값을 받아서 memberDto에 저장한다.
+		System.out.println("로그인 메서드 후");
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);//memberDto를 member변수로 담는다.
 			
 			viewUrl = "redirect:/home.do";
 		} else {
-//			viewUrl = "/auth/LoginFail";// 패일하면 세션에 안들어가고 로그인이 성공하면 세션에 들어가서 로그아웃할때까지가 세션이 유지되는 구간
+			viewUrl = "redirect:/login.do";
+			// 패일하면 세션에 안들어가고 로그인이 성공하면 세션에 들어가서 로그아웃할때까지가 세션이 유지되는 구간
 		}
 		
 		return viewUrl;

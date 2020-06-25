@@ -21,10 +21,11 @@ public class AuthServiceImpl implements AuthService{
 	public AuthDao authDao;
 		
 	@Override
-	public MemberDto memberExist(String email, String password) {
+	public MemberDto memberExist(String memberEmail, String memberPassword) {
 		// TODO Auto-generated method stub
 		
-		MemberDto memberDto = authDao.memberExist(email, password);
+		System.out.println("서비스 안");
+		MemberDto memberDto = authDao.memberExist(memberEmail, memberPassword);
 		
 		return memberDto;
 	}

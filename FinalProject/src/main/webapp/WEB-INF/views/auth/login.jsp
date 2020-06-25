@@ -62,13 +62,13 @@
 					이메일
 				</div>
 				<div>
-					<input class="emailPwdBox" type="email" placeholder="이메일을 입력하세요">
+					<input class="emailPwdBox" type="email" name="memberEmail" placeholder="이메일을 입력하세요">
 				</div>
 				<div>
 					비밀번호
 				</div>
 				<div style="margin-bottom: 40px;">
-					<input class="emailPwdBox" type="password" placeholder="비밀번호를 입력하세요">
+					<input class="emailPwdBox" type="password" name="memberPassword" placeholder="비밀번호를 입력하세요">
 				</div>
 			</div>
 			

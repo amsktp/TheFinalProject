@@ -15,18 +15,20 @@ public class AuthDaoImpl implements AuthDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	String namespace = "com.englishvillage.member.auth.";
+	String namespace = "com.englishvillage.auth.";
 	
 	@Override
-	public MemberDto memberExist(String email, String password) {
+	public MemberDto memberExist(String memberEmail, String memberPassword) {
 		// TODO Auto-generated method stub
 		
-		HashMap<String, Object> paramMap = new HashMap<>();
-		paramMap.put("email", email);
-		paramMap.put("password", password);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		map.put("memberPassword", memberPassword);
 		
+		System.out.println("다오 안");
 		MemberDto memberDto = 
-			sqlSession.selectOne(namespace + "memberExist", paramMap);
+			sqlSession.selectOne(namespace + "memberExist", map);
+		System.out.println("다오 밖");
 		
 		return memberDto;
 	}
