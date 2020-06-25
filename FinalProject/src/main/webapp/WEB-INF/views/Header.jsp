@@ -46,10 +46,10 @@
 
 <div id="header">
 	<div id="topHeader">
-		<c:if test="${member.email ne null}">
+		<c:if test="${member.memberEmail ne null}">
 			<ul id="topHeaderUl">
 				
-				<li><a href="./home.do"><strong>${member.name} 회원님 환영합니다.</strong></a></li>
+				<li><a href="./home.do"><strong>${member.memberName} 회원님 환영합니다.</strong></a></li>
 				<li><a href=""><strong>보유포인트 5,000점</strong></a></li>
 				<li><a href="<%=request.getContextPath()%>/logout.do"><strong>로그아웃</strong></a></li>
 			</ul>
