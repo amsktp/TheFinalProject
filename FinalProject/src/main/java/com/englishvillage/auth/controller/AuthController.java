@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -29,35 +30,51 @@ public class AuthController {
 		return "auth/login";
 	}
 	
-	@RequestMapping(value="/loginCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginCtr.do", method = RequestMethod.POST)
 	public String loginCtr(String memberEmail, String memberPassword, HttpSession session, Model model) {
 		log.info("*****Welcome LoginCtr!*****" + memberEmail + "," + memberPassword);
 		
 		String viewUrl = "";
-		System.out.println("로그인 메서드 전");
-		System.out.println(memberEmail + "      " + memberPassword);
-		MemberDto memberDto = authService.memberExist(memberEmail, memberPassword);//넘겨주고 값을 받아서 memberDto에 저장한다.
-		System.out.println("로그인 메서드 후");
+		MemberDto memberDto = authService.memberExist(memberEmail, memberPassword);
+		// 이메일과 비밀번호의 변수를 넘겨주고 값을 받아와서 memberDto에 저장한다.
 		
 		if(memberDto != null) {
-			session.setAttribute("member", memberDto);//memberDto를 member변수로 담는다.
-			
+			session.setAttribute("member", memberDto);
+			// memberDto를 member변수로 담는다.
 			viewUrl = "redirect:/home.do";
 		} else {
 			viewUrl = "redirect:/login.do";
-			// 패일하면 세션에 안들어가고 로그인이 성공하면 세션에 들어가서 로그아웃할때까지가 세션이 유지되는 구간
+			// 로그인 실패하면 세션에 들어가지 못하고, 로그인 성공하면 세션에 들어가서 로그아웃할때까지 세션이 유지됨
 		}
-		
 		return viewUrl;
 	}
 
-	@RequestMapping(value="logout.do", method=RequestMethod.GET)
+	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model){
-		log.info("Welcome logout");
+		log.info("*****Welcome Logout!*****");
 		
 		session.invalidate();
 		
 		return "redirect:/login.do";
 	}
+	
+	@RequestMapping(value = "/auth/commonRegister.do")
+	public String commonRegister(Model model) {
+		log.info("*****Welcome Register!");
+		
+		return "commonRegister";
+	}
+	 
+	@RequestMapping(value = "/auth/commonRegisterCtr.do", method = {RequestMethod.POST})
+	public String commonRegister(MemberDto memberDto, Model model) {
+		log.info("call commonRegister_ctr! {}", memberDto);
+		
+		authService.memberInsertOne(memberDto);
+		
+		return "redirect:/commonRegisterComplete.do";
+	} 
+	
+	
+	
 	
 }
