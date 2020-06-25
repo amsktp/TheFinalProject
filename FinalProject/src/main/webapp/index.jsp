@@ -37,6 +37,14 @@
 		location.href = '/englishvillage/admin/studentlist.do'
 	}
 	
+	var adminMove1Fnc = function() {
+		location.href = '/englishvillage/admin/tutorlist.do'
+	}
+	
+	var adminMove2Fnc = function() {
+		location.href = '/englishvillage/admin/questionlist.do'
+	}
+	
 </script>
 
 
@@ -64,7 +72,15 @@
 	</div>
 	
 	<div onclick="adminMoveFnc();" >
-		관리자 페이지
+		관리자 학생 페이지
+	</div>
+	
+	<div onclick="adminMove1Fnc();" >
+		관리자 튜터 페이지
+	</div>
+	
+	<div onclick="adminMove2Fnc();" >
+		관리자 문의 페이지
 	</div>
 </div>
 	

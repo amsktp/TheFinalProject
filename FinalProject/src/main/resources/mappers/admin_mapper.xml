@@ -5,12 +5,27 @@
   
 <mapper namespace="com.englishvillage.member.admin">
 
-	<sql id="search">
+	<sql id="memberSearch">
 		<choose>
          	<!-- 검색옵션이 전체 검색일 경우 -->
          	<when test="searchOption == 'all'">
-         		WHERE MEMBER_NAME LIKE '%' || #{keyword} || '%'
-        	 	OR	  MEMBER_EMAIL LIKE '%' || #{keyword} || '%'
+         		WHERE (MEMBER_NAME LIKE '%' || #{keyword} || '%'
+        	 	 OR MEMBER_EMAIL LIKE '%' || #{keyword} || '%')
+         	</when>
+         	
+         	<!-- 전체 검색이 아닐 경우 -->
+         	<otherwise>
+         		WHERE ${searchOption} LIKE '%' || #{keyword} || '%'
+         	</otherwise>
+         </choose>
+	</sql>
+	
+	<sql id="quetionSearch">
+		<choose>
+         	<!-- 검색옵션이 전체 검색일 경우 -->
+         	<when test="searchOption == 'all'">
+         		where (TITLE LIKE '%'||#{keyword}||'%'
+					OR CONTENT LIKE '%'||#{keyword}||'%')
          	</when>
          	
          	<!-- 전체 검색이 아닐 경우 -->
@@ -43,7 +58,20 @@
       <result column="STORED_FILE_NAME"     property="storedFileName"   />
       <result column="FILE_SIZE"            property="fileSize"   />
       <result column="CRE_DATE"             property="creDate"
-         javaType="java.util.Date"/>   
+         javaType="java.util.Date"/>
+        
+   </resultMap>
+   
+   <resultMap type="com.englishvillage.member.admin.model.QuestionBoardDto" 
+      id="questionListResultMap">
+      	<result column="IDX" property="idx"/>   
+   		<result column="MEMBER_NO" property="no"/>   
+      	<result column="TITLE" property="title"/>   
+      	<result column="CONTENT" property="content"/>   
+      	<result column="BOARD_CREATE_DATE" property="boardCreateDate"/>   
+      	<result column="BOARD_MODIFY_DATE" property="boardModDate"/>   
+      	<result column="ANSWER_STATUS" property="answerStatus"/>   
+      	<result column="MEMBER_GRADE" property="grade"/> 
    </resultMap>
 	
 	
@@ -61,35 +89,110 @@
                     SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
                     ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
                      FROM MEMBER
-                     <include refid="search"></include>
+                     <include refid="memberSearch"></include>
                      AND MEMBER_GRADE = 'N'
                      ORDER BY MEMBER_NO DESC
                  ) M
         ) MF
-        WHERE MF.RNUM BETWEEN #{start} AND #{end}                             
+        WHERE MF.RNUM BETWEEN #{start} AND #{end}                
+  
    </select>
    
    <select id="studentSelectTotalCount" resultType="int" parameterType="map">
       SELECT COUNT(*)
       FROM MEMBER
-      <include refid="search"></include>
+      <include refid="memberSearch"></include>
       AND MEMBER_GRADE = 'N'
    </select>
 	
 	
 	<select id="memberSelectCurPage" parameterType="map" resultType="int">
-		SELECT FLOOR((RNUM-1) / 10)+1 NO
+		SELECT FLOOR((RNUM-1) / 10)+1 no
 		FROM (SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
                , M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
                , M.MEMBER_COUNTRY, M.MEMBER_GENDER, M.MEMBER_POINT, M.MEMBER_BIRTH_DATE, M.MEMBER_GRADE
 		FROM ( SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
                     ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
                      FROM MEMBER
-		<include refid="search"/>
+		<include refid="memberSearch"/>
 		ORDER BY MEMBER_NO DESC )
 		M )
-		WHERE MEMBER_NO = #{NO};
+		WHERE MEMBER_NO = #{no};
    </select>
+   
+   
+   <select id="tutorSelectList" parameterType="map"
+      resultMap="memberListResultMap">
+      
+      SELECT MF.RNUM, MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME
+         , MF.MEMBER_CREATE_DATE, MF.MEMBER_MODIFY_DATE, MF.MEMBER_COUNTRY
+         , MF.MEMBER_BIRTH_DATE ,MF.MEMBER_GENDER, MF.MEMBER_POINT, MF.MEMBER_GRADE
+         FROM (
+               SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
+                  , M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
+                  , M.MEMBER_COUNTRY, M.MEMBER_GENDER, M.MEMBER_POINT, M.MEMBER_BIRTH_DATE, M.MEMBER_GRADE
+                FROM(
+                    SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
+                    ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
+                     FROM MEMBER
+                     <include refid="memberSearch"></include>
+                     AND MEMBER_GRADE = 'Y'
+                     ORDER BY MEMBER_NO DESC
+                 ) M
+        ) MF
+        WHERE MF.RNUM BETWEEN #{start} AND #{end}                             
+   </select>
+   
+   <select id="tutorSelectTotalCount" resultType="int" parameterType="map">
+      SELECT COUNT(*)
+      FROM MEMBER
+      <include refid="memberSearch"></include>
+      AND MEMBER_GRADE = 'Y'
+   </select>
+   
+   <select id="questionSelectList" parameterType="map"
+      resultMap="questionListResultMap">
+
+	SELECT MQ.RNUM, MQ.IDX, MQ.MEMBER_NO, MQ.TITLE, MQ.CONTENT,
+	MQ.BOARD_CREATE_DATE, MQ.BOARD_MODIFY_DATE, MQ.ANSWER_STATUS,
+	MQ.MEMBER_GRADE
+		FROM (
+			SELECT ROWNUM RNUM, Q.IDX, Q.MEMBER_NO, Q.TITLE, Q.CONTENT,
+			Q.BOARD_CREATE_DATE, Q.BOARD_MODIFY_DATE,
+			Q.ANSWER_STATUS,Q.MEMBER_GRADE
+			FROM (SELECT QUESTION_BOARD.IDX, QUESTION_BOARD.MEMBER_NO,
+				QUESTION_BOARD.TITLE,
+				QUESTION_BOARD.CONTENT, QUESTION_BOARD.BOARD_CREATE_DATE, QUESTION_BOARD.BOARD_MODIFY_DATE,
+				QUESTION_BOARD.ANSWER_STATUS,
+				MEMBER.MEMBER_GRADE
+				FROM MEMBER LEFT OUTER JOIN QUESTION_BOARD
+				ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
+				<include refid="quetionSearch"></include>
+			ORDER BY IDX DESC) Q
+		) MQ
+	WHERE MQ.RNUM BETWEEN #{start} AND #{end}                         
+   </select>
+   
+   <select id="questionSelectTotalCount" resultType="int" parameterType="map">
+      SELECT COUNT(*)
+      FROM QUESTION_BOARD
+      <include refid="quetionSearch"></include>
+   </select>
+   
+   <select id="questionSelectCurPage" parameterType="map" resultType="int">
+	SELECT FLOOR((RNUM-1) / 10)+1 no
+		FROM ( SELECT ROWNUM RNUM, Q.IDX, Q.MEMBER_NO, Q.TITLE,
+				Q.CONTENT, Q.BOARD_CREATE_DATE,
+				Q.BOARD_MODIFY_DATE, Q.ANSWER_STATUS
+				FROM ( SELECT IDX, MEMBER_NO, TITLE, CONTENT, BOARD_CREATE_DATE,
+						BOARD_MODIFY_DATE,
+						ANSWER_STATUS
+						FROM QUESTION_BOARD
+						ORDER BY IDX DESC )
+				Q )
+				WHERE IDX = #{no}
+   </select>
+   
    
 </mapper>
 

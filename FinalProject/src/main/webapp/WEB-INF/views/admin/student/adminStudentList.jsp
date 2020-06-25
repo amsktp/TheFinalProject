@@ -97,15 +97,13 @@
 
 	<table>
 		<tr>
-			<th>번호</th>
-			<th>회원이름</th>
+			<th>회원번호</th>
+			<th>이름</th>
+			<th>국가</th>
 			<th>이메일</th>
-			<th>국적</th>
-			<th>생일</th>
-			<th>포인트</th>
 			<th>등급</th>
-			<th>성별</th>
-			<th>만든 날짜</th>
+			<th>생성일</th>
+			<th>포인트</th>
 			
 		</tr>
 	
@@ -124,15 +122,16 @@
 					${memberDto.name}
 				</a>
 			</td>
-			<td>${memberDto.email}</td>
 			<td>${memberDto.country}</td>
-			<td>${memberDto.birthDate}</td>
-			<td>${memberDto.point}</td>
+			
+			<td>${memberDto.email}</td>
+			
 			<td>${memberDto.grade}</td>
-			<td>${memberDto.gender}</td>
+			
 			<td>
-				<fmt:formatDate value="${memberDto.createdDate}" pattern="yyyy년MM월dd일 hh시mm분"/> 
+				<fmt:formatDate value="${memberDto.createdDate}" pattern="yyyy-MM-dd"/> 
 			</td>
+			<td>${memberDto.point}</td>
 
 <%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
 <!-- 				<td>첨부파일 없음</td> -->

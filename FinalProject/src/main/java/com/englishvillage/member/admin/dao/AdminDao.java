@@ -3,6 +3,7 @@ package com.englishvillage.member.admin.dao;
 import java.util.List;
 
 import com.englishvillage.member.admin.model.MemberListDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 
 
 
@@ -23,7 +24,7 @@ public interface AdminDao {
 	public int tutorSelectCurPage(String searchOption, String keyword, int no);
 	
 	//문의 목록
-	public List<MemberListDto> questionSelectList(String searchOption, 
+	public List<QuestionBoardDto> questionSelectList(String searchOption, 
 			String keyword, int start, int end);
 	public int questionSelectTotalCount(String searchOption
 			, String keyword);
