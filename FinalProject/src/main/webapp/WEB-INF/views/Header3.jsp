@@ -30,6 +30,11 @@ a.navbar-brand.active {
     color: white;
 }
 
+.dropdown-menu {
+min-width: 172px;
+
+}
+
 </style>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -52,11 +57,11 @@ a.navbar-brand.active {
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="myPage.do">마이 페이지</a></li>
-                <li><a href="#">회원정보 수정</a></li>
-                <li><a href="#">포인트:${member.memberPoint}</a></li>
+                <li><a href="myInfo.do">회원정보 수정</a></li>
+                <li><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
                 <li class="divider"></li>
 <!--                 <li class="dropdown-header">----</li> -->
-                <li><a href="#">문의내역</a></li>
+                <li><a href="myQNA.do">문의내역</a></li>
                 <li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
               </ul>
             </li>

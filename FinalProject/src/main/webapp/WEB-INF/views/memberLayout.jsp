@@ -1,60 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/student.css?ver=1.2">
 <script type="text/javascript">
-	function myPageBtnFnc() {
-		for (var i = 0; i < 4; i++) {
-			var colorUpdate = document.getElementsByClassName("listContents");
 
-			colorUpdate[0].style.backgroundColor = "rgb(146,163,92)";
-			colorUpdate[1].style.backgroundColor = "black";
-			colorUpdate[2].style.backgroundColor = "black";
-			colorUpdate[3].style.backgroundColor = "black";
-		}
-	}
+var loginMoveFnc = function(){
+	location.href = '/englishvillage/login.do';
+}
 
-	function myInfoFnc() {
-		for (var i = 0; i < 4; i++) {
-			var colorUpdate = document.getElementsByClassName("listContents");
+var myPageMoveFnc = function() {
+	location.href = '/englishvillage/myPage.do'
+}
 
-			colorUpdate[0].style.backgroundColor = "black";
-			colorUpdate[1].style.backgroundColor = "rgb(146,163,92)";
-			colorUpdate[2].style.backgroundColor = "black";
-			colorUpdate[3].style.backgroundColor = "black";
-		}
-	}
+var myInfoMoveFnc = function() {
+	location.href = '/englishvillage/myInfo.do'
+}
 
-	function myLectureFnc() {
-		for (var i = 0; i < 4; i++) {
-			var colorUpdate = document.getElementsByClassName("listContents");
+var tutorListMoveFnc = function() {
+	location.href = '/englishvillage/home.do'
+}
 
-			colorUpdate[0].style.backgroundColor = "black";
-			colorUpdate[1].style.backgroundColor = "black";
-			colorUpdate[2].style.backgroundColor = "rgb(146,163,92)";
-			colorUpdate[3].style.backgroundColor = "black";
-		}
-	}
+var tutorIntroduceMoveFnc = function() {
+	location.href = '/englishvillage/tutorIntroduce.do'
+}
 
-	function myQnaFnc() {
-		for (var i = 0; i < 4; i++) {
-			var colorUpdate = document.getElementsByClassName("listContents");
+var adminMoveFnc = function() {
+	location.href = '/englishvillage/admin/studentlist.do'
+}
 
-			colorUpdate[0].style.backgroundColor = "black";
-			colorUpdate[1].style.backgroundColor = "black";
-			colorUpdate[2].style.backgroundColor = "black";
-			colorUpdate[3].style.backgroundColor = "rgb(146,163,92)";
-		}
-	}
+var adminMove1Fnc = function() {
+	location.href = '/englishvillage/admin/tutorlist.do'
+}
+
+var adminMove2Fnc = function() {
+	location.href = '/englishvillage/admin/questionlist.do'
+}
+
 </script>
 
 <style type="text/css">
+
 dl, ul, ol, menu, li {
 	list-style: none;
 }
 
 #mainBox {
-	width: 300px;
-	height: 670px;
+    position: fixed;
 	box-sizing: border-box;
 	background-color: black;
 	border-radius: 30px;
@@ -69,32 +60,38 @@ dl, ul, ol, menu, li {
 	padding-bottom: 70px;
 }
 
-#layoutUl {
+.layoutUl {
 	padding: 0px;
 }
 
-#layoutUl>li {
-	width: 160px;
-	height: 40px;
-	margin-bottom: 40px;
-	border-radius: 30px;
-	text-align: center;
-	margin: auto;
-	margin-bottom: 40px;
+.layoutUl li {
+ 	width: 160px; 
+ 	height: 40px; 
+ 	margin-bottom: 40px; 
+ 	border-radius: 30px; 
+ 	text-align: center; 
+ 	margin: auto; 
+ 	margin-bottom: 40px; 
 }
 
-#layoutUl>li:hover {
-	margin-bottom: 40px;
-	width: 160px;
-	height: 40px;
-	background-color: #778F44;
-	border-radius: 30px;
-	text-align: center;
-	margin: auto;
-	margin-bottom: 40px;
+.layoutUl li.on {
+ 	margin-bottom: 40px; 
+ 	width: 160px; 
+ 	height: 40px; 
+  	background-color: #778F44; 
+ 	border-radius: 30px; 
+ 	text-align: center; 
+ 	margin: auto; 
+ 	margin-bottom: 40px; 
+
 }
 
-#layoutUl>li>a {
+.layoutUl li a:hover {
+
+ 	color: #d9edf7;
+}
+
+.layoutUl>li>a {
 	color: white;
 	text-decoration: none;
 	font-size: 18px;
@@ -108,15 +105,15 @@ dl, ul, ol, menu, li {
 <div id="mainBox">
 
 
-	<div id="memberName">${member.memberName}회원님</div>
+	<div id="memberName">${member.memberName} 회원님</div>
 
 
-	<ul id="layoutUl">
+	<ul class="layoutUl">
 
-		<li><a href="">마이 페이지</a></li>
-		<li><a href="">내 정보</a></li>
-		<li><a href="">수강내역</a></li>
-		<li><a href="">문의내역</a></li>
+		<li><a href="myPage.do">마이 페이지</a></li>
+		<li><a href="myInfo.do">내 정보</a></li>
+		<li><a href="myStudy.do">수강내역</a></li>
+		<li><a href="myQNA.do">문의내역</a></li>
 
 	</ul>
 

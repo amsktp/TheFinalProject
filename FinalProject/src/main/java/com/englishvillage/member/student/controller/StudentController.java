@@ -22,9 +22,28 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@RequestMapping(value="myPage.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String home(Locale locale, Model model) {
+	public String myPage(Locale locale, Model model) {
 		
 		return "/member/student/info/studentMainPage";
+	}
+	
+	@RequestMapping(value="myInfo.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String infoPage(Locale locale, Model model) {
+		
+		return "/member/student/info/studentPrivateInfo";
+	}
+	
+	@RequestMapping(value="myStudy.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String studyPage(Locale locale, Model model) {
+		
+		return "/member/student/info/studentStudyInfo";
+	}
+
+	
+	@RequestMapping(value="myQNA.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String qnaPage(Locale locale, Model model) {
+		
+		return "/member/student/qna/studentQnABoard";
 	}
 
 }

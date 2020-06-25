@@ -1,24 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
-<title>내 정보</title>
+<title>학생페이지</title>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
 
 // #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
 
 });
 </script>
 
+
 <style type="text/css">
+
+
+#layoutBox {
+
+
+}
+
+#profileBox {
+
+
+}
+
+#profileImg {
+
+}
 
 </style>
 </head>
@@ -37,13 +52,12 @@ $(document).ready(function(){
 	</div>
 	
 	
-	
-	
-	
-	
-	
-	
 	</div>
-</body>
 
+
+
+
+
+
+</body>
 </html>
