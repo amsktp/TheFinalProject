@@ -1,8 +1,9 @@
 #pageSize {
 	width: 1900px;
-	height: 1200px;
-	padding: 135px 200px;
+	height: 920px;
+	padding: 150px 0px 0px 200px;
 	box-sizing: border-box;
+	padding-bottom: 0px;
 }
 
 #myPageBox {
@@ -16,7 +17,7 @@
 	font-size: 40px;
 	font-weight: bold;
 	border-bottom: 3px solid #EBEDED;
-	    margin-bottom: 70px;
+	margin-bottom: 70px;
 }
 
 #mainLeft {
@@ -35,32 +36,45 @@
 	font-size: 40px;
 	color: #FA6980;
 	font-weight: bold;
-	
 }
 
 #myPageBox div {
-	
-padding: 30px;
+	padding: 10px;
 }
 
 #myPageBox div h1 {
-	
-margin-bottom: 40px;	
+	margin-bottom: 40px;
 }
 
 #myPageBox div p {
-	
 	margin-left: 40px;
-	
 }
 
-.chargeBtn {
-	
+.blackBtn {
 	width: 140px;
 	height: 40px;
 	border-radius: 13px;
 	color: white;
 	font-weight: bold;
-	background-color: black; 
-	margin-left: 40px;
+	background-color: black;
+	margin-left: 64px;
+}
+
+.pwdInputBox {
+	width: 360px;
+	height: 40px;
+	border: 2px solid #C4C3C3;
+	margin: 60px;
+}
+
+#pwdCheckBox {
+	width: 500px;
+	height: 300px;
+	border: 1px solid #707070;
+	border-radius: 32px;
+	margin: auto;
+}
+
+input:read-only {
+       background-color: #F5F5F5;
 }

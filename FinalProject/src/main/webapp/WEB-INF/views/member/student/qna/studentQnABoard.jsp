@@ -29,7 +29,7 @@ $(document).ready(function(){
 	<div id="myPageBox">
 	
 	<input type="text">
-	
+	<h1 class="infoFont">문의내역</h1>
 	</div>
 	
 	

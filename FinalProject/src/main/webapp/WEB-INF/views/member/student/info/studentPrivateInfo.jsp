@@ -12,7 +12,8 @@
 
 $(document).ready(function(){
     $('.layoutUl').children().eq(1).addClass('on');
-
+    $('td>input').css('border', 'none')
+	$('td>input:hover').css('border', 'none')
 // #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
 
 });
@@ -32,15 +33,31 @@ $(document).ready(function(){
 
 	<div id="myPageBox">
 	
-	<input type="text">
-	
+	<div id="pageName">내 정보</div>
+	<table id="tableObj">
+				<tr>
+					<td>이름</td><td>${member.memberName}</td>
+				</tr>
+				<tr>
+					<td>이메일</td><td>${member.memberEmail}</td>
+				</tr>
+				<tr>
+					<td>비밀번호</td><td><input type="password" value="${member.memberPassword}" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td>성별</td><td>${member.memberGender}</td>
+				</tr>
+				<tr>
+					<td>생년월일</td><td>${member.memberBirthDate}</td>
+				</tr>
+				<tr>
+					<td>국적</td><td>${member.memberCountry}</td>
+				</tr>
+				
+			</table>
+			<input type='button' value='수정하기' onClick='memberCheckMoveFnc();'>
 	</div>
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	</div>

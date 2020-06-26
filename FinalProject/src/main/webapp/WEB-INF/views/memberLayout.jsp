@@ -16,6 +16,19 @@ var myInfoMoveFnc = function() {
 	location.href = '/englishvillage/myInfo.do'
 }
 
+var memberCheckMoveFnc = function() {
+	location.href = '/englishvillage/studentCheck.do'
+}
+
+function updateMoveFnc(no) {
+	location.href = "/englishvillage/update.do?no=" + no; 
+}
+
+function pageMoveDeleteFnc(no){
+	var url = "/englishvillage/deleteCtr.do?no=" + no;
+	location.href = url;
+}
+
 var tutorListMoveFnc = function() {
 	location.href = '/englishvillage/home.do'
 }
@@ -114,7 +127,6 @@ dl, ul, ol, menu, li {
 		<li><a href="myInfo.do">내 정보</a></li>
 		<li><a href="myStudy.do">수강내역</a></li>
 		<li><a href="myQNA.do">문의내역</a></li>
-
 	</ul>
 
 

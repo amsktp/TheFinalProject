@@ -21,7 +21,7 @@
 	</sql>
 
 	<resultMap
-		type="com.englishvillage.member.model.MemberFileDto"
+		type="com.englishvillage.member.student.model.MemberFileDto"
 		id="memberResultMap">
 		<result column="MEMBER_NO" property="no" />
 		<result column="MEMBER_EMAIL" property="email" />
@@ -74,6 +74,12 @@
 
 	</select>
 
+	<select id="memberSelect" parameterType="int" 
+      resultMap="memberResultMap">
+      SELECT *
+      FROM MEMBER
+      WHERE MEMBER_NO = #{no}
+   </select>
 
 
 

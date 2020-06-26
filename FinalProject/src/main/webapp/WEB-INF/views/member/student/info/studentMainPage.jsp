@@ -40,7 +40,7 @@ $(document).ready(function(){
 	<h1 class="infoFont">보유 포인트</h1>
 	<p>${member.memberPoint} 포인트</p>
 	
-	<input class="chargeBtn" type="button" value="충전하기">
+	<input class="blackBtn" type="button" value="충전하기">
 	</div>
 	
 	
