@@ -50,7 +50,7 @@
 			<ul id="topHeaderUl">
 				
 				<li><a href="./home.do"><strong>${member.memberName} 회원님 환영합니다.</strong></a></li>
-				<li><a href=""><strong>보유포인트 5,000점</strong></a></li>
+				<li><a href=""><strong>보유포인트 ${member.memberPoint}점</strong></a></li>
 				<li><a href="<%=request.getContextPath()%>/logout.do"><strong>로그아웃</strong></a></li>
 			</ul>
 		</c:if>

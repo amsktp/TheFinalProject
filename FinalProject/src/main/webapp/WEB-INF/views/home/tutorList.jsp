@@ -28,6 +28,7 @@
 		float: left;
 		margin-top : 10px;
 		margin-right : 10px;
+		margin-bottom: 30px;
 	}
 	.tutorImgDiv {
 		width : 340px;
@@ -87,27 +88,27 @@
 			<span class="seachFont">검색조건</span> 
 			<select name='countrySearch'>
 				<option value='all' selected>국적</option>
-				<option value='Usa'>미국</option>
+				<option value='USA'>미국</option>
 				<option value='Ireland'>아일랜드</option>
 				<option value='Canada'>캐나다</option>
 				<option value='England'>영국</option>
 				<option value='KOREA'>한국</option>
 			</select> 
 			<select name='ageSearch'>
-				<option value='all' selected>나이</option>
+				<option value='0' selected>나이</option>
 				<option value='20'>20대</option>
 				<option value='30'>30대</option>
 				<option value='40'>40대이상</option>
 			</select> 
 			<select name='genderSearch'>
 				<option value='all' selected>성별</option>
-				<option value='Man'>남자</option>
-				<option value='Woman'>여자</option>
+				<option value='M'>남자</option>
+				<option value='F'>여자</option>
 			</select>
 	
 			<div id="searchKeyBox">
-				<input id="keyWordBox" type="text" placeholder="키워드를 입력해주세요">
-				<input id="seachBtn" type="button" value="검색">
+				<input id="keyWordBox" type="text" name="keyword" placeholder="키워드를 입력해주세요">
+				<input id="seachBtn" type="submit" value="검색">
 			</div>
 		</form>
 	</div>
@@ -133,6 +134,9 @@
 			</div>
 			<div>
 				${tutorDto.memberCountry}
+			</div>
+			<div>
+				${tutorDto.memberGender}
 			</div>
 		</div>
 		

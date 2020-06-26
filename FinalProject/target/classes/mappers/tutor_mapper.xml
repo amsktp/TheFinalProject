@@ -5,28 +5,28 @@
   
 <mapper namespace="com.englishvillage.member.tutor">
 	
-<!-- 	<sql id="search"> -->
-<!-- 		<choose> -->
-<!--         	검색옵션이 전체 검색일 경우  -->
-<!--         	<when test="countrySearch != 'all'"> -->
-<!--         		AND member_country = #{countrySearch} -->
-<!--         	</when> -->
+	<sql id="search">
+		<choose>
+        	<when test="countrySearch != 'all'">
+        		AND MEMBER_COUNTRY = #{countrySearch}
+        	</when>
         	
-<!--         	<when test="ageSearch != 'all'"> -->
-<!--         		AND (ceil((sysdate-member_birth_date)/360) >= #{ageSearch} -->
-<!--             	AND ceil((sysdate-member_birth_date)/360) < #{ageSearch + 10}) -->
-<!--         	</when> -->
+        	<when test="ageSearch != 0">
+	        	<![CDATA[
+ 	        		AND (CEIL((SYSDATE-MEMBER_BIRTH_DATE)/360) >= #{ageSearch} 
+ 	            	AND CEIL((SYSDATE-MEMBER_BIRTH_DATE)/360) < #{ageSearch}  + 10) 
+	            ]]>
+        	</when>
         	
-<!--         	<when test="genderSearch != 'all'"> -->
-<!--         		AND member_gender = #{genderSearch} -->
-<!--         	</when> -->
+        	<when test="genderSearch != 'all'">
+        		AND MEMBER_GENDER = #{genderSearch}
+        	</when>
         	
-<!--         	전체 검색이 아닐 경우 -->
-<!--         	<otherwise> -->
-<!--         		AND member_name LIKE '%' || #{keyword} || '%' -->
-<!--         	</otherwise> -->
-<!--         </choose> -->
-<!-- 	</sql> -->
+        	<when test="keyword != ''">
+        		AND MEMBER_NAME LIKE '%' || #{keyword} || '%'
+        	</when>
+        </choose>
+	</sql>
 	
 	
 	<resultMap type="com.englishvillage.member.tutor.model.TutorDto" 
@@ -52,50 +52,91 @@
 		<result column="STUDY_NAME" property="studyName"/>	
 		<result column="PRICE" property="price"/>	
 		<result column="STATUS_CHECK" property="statusCheck"/>	
+		<result column="SCORE_AVG" property="score"/>	
 	
 	</resultMap>
 	
 	
 	
-	<select id="getTutorList" resultMap="tutorResultMap">
+	<select id="getTutorList" parameterType="map" resultMap ="tutorResultMap">
 		
 		SELECT MF.RNUM
-           ,MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME, MF.MEMBER_CREATE_DATE, MF.MEMBER_POINT, MF.MEMBER_COUNTRY
-           ,MF.GRADE_NAME
-           ,MF.PRICE, MF.STUDY_NAME
-           ,MF.STORE_FILE_NAME
-   		FROM (
-      		SELECT ROWNUM RNUM
-                ,M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
-                ,M.GRADE_NAME
-                ,M.PRICE, M.STUDY_NAME
-                ,M.STORE_FILE_NAME
-       		FROM(
-		     	SELECT M.MEMBER_NO, M.MEMBER_EMAIL, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_POINT, M.MEMBER_COUNTRY
-	                ,G.GRADE_NAME
-	                ,T.PRICE, T.STUDY_NAME
-	                ,F.STORE_FILE_NAME
-		        FROM MEMBER M, TUTOR_INFO T, FILE_PROFILE_IMAGE F, MEMBER_GRADE G
-		            WHERE M.MEMBER_NO = T.TUTOR_NO
-		            AND T.TUTOR_NO = F.TUTOR_NO
-		            AND M.MEMBER_GRADE = G.MEMBER_GRADE
-		            
-		            
-		            ORDER BY T.STATUS_CHECK ASC, M.MEMBER_NO DESC
-           		) M
-        ) MF
-        
-<!--         WHERE MF.RNUM BETWEEN #{start} AND #{end} -->
+		       ,MF.member_no, MF.member_email, MF.member_name, MF.member_create_date, MF.member_point, MF.member_country
+		       ,MF.member_gender
+		       ,MF.grade_name
+		       ,MF.price, MF.study_name
+		       ,MF.original_file_name
+		       ,MF.score_avg
+		FROM (
+		        SELECT ROWNUM RNUM
+		                ,M.member_no, M.member_email, M.member_name, M.member_create_date, M.member_point, M.member_country, 						M.member_gender
+		                ,M.grade_name
+		                ,M.price, M.study_name
+		                ,M.original_file_name
+		                ,M.score_avg
+		        FROM(
+			            select m.member_no, m.member_email, m.member_name, m.member_create_date, m.member_point, m.member_country, 								m.member_gender
+			                ,g.grade_name
+			                ,t.price, t.study_name
+			                ,f.original_file_name
+			                ,s.score_avg
+			            from member m, tutor_info t, file_profile_image f, member_grade g
+			                ,(select t.tutor_no, floor(avg(nvl(e.score,0))) score_avg
+			                  from tutor_info t left join EVALUATION e
+			                  on t.tutor_no = e.tutor_no
+			                  group by t.tutor_no) s
+			            where m.member_no = t.tutor_no
+			            and t.tutor_no = f.tutor_no
+			            and m.member_grade = g.member_grade
+			            and s.tutor_no = t.tutor_no
+		            	<include refid="search"></include>
+		            order by t.status_check asc, m.member_no desc
+		          ) M
+			) MF
+		    WHERE MF.RNUM BETWEEN #{start} AND #{end}
 
 	</select>
 	
-<!-- 	<select id="tutorSelectTotalCount" parameterMap="map" -->
-<!-- 	resultType="int"> -->
+	<select id="tutorSelectTotalCount" parameterType ="map"
+		resultType="Integer">
 		
-<!-- 		select count(*) -->
-<!-- 		from member -->
+		select count(*)
+		from member
 		
-<!-- 	</select> -->
+	</select>
+
+	<select id="tutorSelectCurPage" parameterType ="map"
+		resultType="Integer">
+		
+		SELECT floor((rnum-1)/10)+1
+        FROM (  SELECT ROWNUM RNUM
+		                ,M.member_no, M.member_email, M.member_name, M.member_create_date, M.member_point, M.member_country
+		                ,M.grade_name
+		                ,M.price, M.study_name
+		                ,M.original_file_name
+		                ,M.score_avg
+		        FROM(
+			            select m.member_no, m.member_email, m.member_name, m.member_create_date, m.member_point, m.member_country
+			                ,g.grade_name
+			                ,t.price, t.study_name
+			                ,f.original_file_name
+			                ,s.score_avg
+			            from member m, tutor_info t, file_profile_image f, member_grade g
+			                ,(select t.tutor_no, floor(avg(nvl(e.score,0))) score_avg
+			                  from tutor_info t left join EVALUATION e
+			                  on t.tutor_no = e.tutor_no
+			                  group by t.tutor_no) s
+			            where m.member_no = t.tutor_no
+			            and t.tutor_no = f.tutor_no
+			            and m.member_grade = g.member_grade
+			            and s.tutor_no = t.tutor_no
+		            <include refid="search"></include>
+		            order by t.status_check asc, m.member_no desc
+		          ) M
+			)
+        where member_no = #{no}
+		
+	</select>
 	
 	
 </mapper>

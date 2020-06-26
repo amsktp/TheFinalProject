@@ -177,7 +177,6 @@
       where mno = #{no}
 		
 		
-		englishvillage
 	</select>
 	
 	
