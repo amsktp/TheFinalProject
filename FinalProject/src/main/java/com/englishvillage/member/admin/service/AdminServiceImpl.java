@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.englishvillage.member.admin.dao.AdminDao;
 import com.englishvillage.member.admin.model.MemberListDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.util.FileUtils;
 
 @Service
@@ -77,13 +78,13 @@ public class AdminServiceImpl implements AdminService{
 	
 	//문의
 	@Override
-	public List<MemberListDto> questionSelectList(String searchOption, String keyword, int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
-		List<MemberListDto> memberList = 
+		List<QuestionBoardDto> qusetionList = 
 				adminDao.questionSelectList(searchOption, keyword
 					, start, end);
 		
-		return memberList;
+		return qusetionList;
 	}
 
 	@Override

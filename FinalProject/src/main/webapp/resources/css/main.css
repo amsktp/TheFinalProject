@@ -21,7 +21,7 @@ dl, ul, ol, menu, li {
 
 #header {
 	position: fixed;
-	width: 1920px;
+	width: 100%;
 	height: 140px;
 	color: #fff;
 	/* div 태그 배경색 설정이 노란색으로 설정 */
@@ -30,7 +30,7 @@ dl, ul, ol, menu, li {
 }
 
 #topHeader {
-	width: 1920px;
+	width: 100%;
 	height: 40px;
 	background-color: #202020;
 	color: white;
@@ -50,7 +50,7 @@ margin-right: 30px;
 }
 
 .bottomHeader {
-	width: 1920px;
+	width: 100%;
 	height: 100px;
 	display: inline-flex;
 }
@@ -99,6 +99,7 @@ margin-right: 30px;
 
 #mainImg {
 	margin-bottom: 30px;
+	width: 100%;
 }
 
 #searchOptBox {

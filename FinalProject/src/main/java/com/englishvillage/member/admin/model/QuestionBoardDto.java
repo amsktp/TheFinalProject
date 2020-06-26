@@ -5,28 +5,40 @@ import java.util.Date;
 public class QuestionBoardDto {
 	
 	private int idx;
-	private int memberNo;
+	private int no;
 	private String title;
 	private String content;
 	private Date boardCreateDate;
 	private Date boardModDate;
 	private String answerStatus;
+	private String grade;
 	
 	public QuestionBoardDto() {
 		super();
 	}
 
-	public QuestionBoardDto(int idx, int memberNo, String title, String content, Date boardCreateDate,
-			Date boardModDate, String answerStatus) {
+	
+
+	public QuestionBoardDto(int idx, int no, String title, String content, Date boardCreateDate,
+			Date boardModDate, String answerStatus, String grade) {
 		super();
 		this.idx = idx;
-		this.memberNo = memberNo;
+		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.boardCreateDate = boardCreateDate;
 		this.boardModDate = boardModDate;
 		this.answerStatus = answerStatus;
+		this.grade = grade;
 	}
+	
+	
+
+
+
+	
+
+
 
 	public int getIdx() {
 		return idx;
@@ -36,12 +48,12 @@ public class QuestionBoardDto {
 		this.idx = idx;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public int getno() {
+		return no;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setno(int no) {
+		this.no = no;
 	}
 
 	public String getTitle() {
@@ -84,5 +96,13 @@ public class QuestionBoardDto {
 		this.answerStatus = answerStatus;
 	}
 	
+	public String getgrade() {
+		return grade;
+	}
+
+
+	public void setgrade(String grade) {
+		this.grade = grade;
+	}
 	
 }

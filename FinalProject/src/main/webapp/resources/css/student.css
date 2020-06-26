@@ -1,0 +1,66 @@
+#pageSize {
+	width: 1900px;
+	height: 1200px;
+	padding: 135px 200px;
+	box-sizing: border-box;
+}
+
+#myPageBox {
+	width: 1000px;
+	height: 690px;
+	margin-left: 300px;
+	padding: 30px 50px;
+}
+
+#pageName {
+	font-size: 40px;
+	font-weight: bold;
+	border-bottom: 3px solid #EBEDED;
+	    margin-bottom: 70px;
+}
+
+#mainLeft {
+	width: 400px;
+	height: 260px;
+	float: left;
+}
+
+#mainRight {
+	width: 400px;
+	height: 260px;
+	float: right;
+}
+
+.infoFont {
+	font-size: 40px;
+	color: #FA6980;
+	font-weight: bold;
+	
+}
+
+#myPageBox div {
+	
+padding: 30px;
+}
+
+#myPageBox div h1 {
+	
+margin-bottom: 40px;	
+}
+
+#myPageBox div p {
+	
+	margin-left: 40px;
+	
+}
+
+.chargeBtn {
+	
+	width: 140px;
+	height: 40px;
+	border-radius: 13px;
+	color: white;
+	font-weight: bold;
+	background-color: black; 
+	margin-left: 40px;
+}

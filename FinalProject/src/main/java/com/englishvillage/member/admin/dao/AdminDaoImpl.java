@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.englishvillage.member.admin.model.MemberListDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 
 
 
@@ -111,7 +112,7 @@ public class AdminDaoImpl implements AdminDao{
 	
 	//문의
 	@Override
-	public List<MemberListDto> questionSelectList(String searchOption, String keyword, int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		
 		Map<String, Object> map = new HashMap<>();
@@ -120,11 +121,11 @@ public class AdminDaoImpl implements AdminDao{
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<MemberListDto> memberList = 
+		List<QuestionBoardDto> qusetionList = 
 				sqlSession.selectList(namespace + "questionSelectList"
 				, map);
 		
-		return memberList;
+		return qusetionList;
 	}
 
 	@Override
