@@ -1,5 +1,9 @@
 package com.englishvillage.auth.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -23,14 +26,14 @@ public class AuthController {
 	@Autowired
 	private AuthService authService;
 	
-	@RequestMapping(value="/login.do", method = RequestMethod.GET)
+	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String login() {
 		log.info("*****Welcome Login!*****");
 		
 		return "auth/login";
 	}
 	
-	@RequestMapping(value = "/loginCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value="/loginCtr.do", method=RequestMethod.POST)
 	public String loginCtr(String memberEmail, String memberPassword, HttpSession session, Model model) {
 		log.info("*****Welcome LoginCtr!*****" + memberEmail + "," + memberPassword);
 		
@@ -49,7 +52,7 @@ public class AuthController {
 		return viewUrl;
 	}
 
-	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
+	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session, Model model){
 		log.info("*****Welcome Logout!*****");
 		
@@ -58,23 +61,25 @@ public class AuthController {
 		return "redirect:/login.do";
 	}
 	
-	@RequestMapping(value = "/auth/commonRegister.do")
+	@RequestMapping(value="commonRegister.do")
 	public String commonRegister(Model model) {
-		log.info("*****Welcome Register!");
+		log.info("*****Welcome Register!*****");
 		
-		return "commonRegister";
+		return "auth/commonRegister";
 	}
 	 
-	@RequestMapping(value = "/auth/commonRegisterCtr.do", method = {RequestMethod.POST})
-	public String commonRegister(MemberDto memberDto, Model model) {
-		log.info("call commonRegister_ctr! {}", memberDto);
+	@RequestMapping(value="commonRegisterCtr.do", method={RequestMethod.POST, RequestMethod.GET})
+	public String commonRegisterCtr(MemberDto memberDto, String birthDate, Model model) throws ParseException {
+		log.info("*****commonRegister_ctr!*****"+ memberDto); 
 		
-		authService.memberInsertOne(memberDto);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date parseDate = sdf.parse(birthDate);
+		memberDto.setMemberBirthDate(parseDate);
+		
+		log.info("*****commonRegister_ctr!*****"+ memberDto); 
+//		int resultNum = authService.memberInsertOne(memberDto);
 		
 		return "redirect:/commonRegisterComplete.do";
 	} 
-	
-	
-	
 	
 }
