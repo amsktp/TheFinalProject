@@ -6,7 +6,7 @@ public interface AuthService {
 
 	public MemberDto memberExist(String memberEmail, String memberPassword);
 
-	public void memberInsertOne(MemberDto memberDto);
+	public int memberInsertOne(MemberDto memberDto);
 
 
 }

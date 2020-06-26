@@ -27,12 +27,13 @@ public class AuthServiceImpl implements AuthService{
 	}
 
 	@Override
-	public void memberInsertOne(MemberDto memberDto) {
+	public int memberInsertOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
 	
 		authDao.memberInsertOne(memberDto);
 		
 		int memberNo = memberDto.getMemberNo();
+		return memberNo;
 		
 	}
 	

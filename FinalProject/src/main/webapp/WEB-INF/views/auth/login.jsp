@@ -10,7 +10,7 @@
 	
 	#mainBox {
 		border: 1px solid red;
-		height: 500px;
+		height: 600px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;
@@ -36,7 +36,6 @@
 		width: 300px;
 		height: 30px;
 		margin-bottom: 20px;
-		font-weight: bold;
 	}
 	
 	#loginBtn {
@@ -48,15 +47,22 @@
 	}
 
 	.findPwdAndRegister {
-		width: 141px;
-		height: 35px;
+		width: 146px;
+		height: 40px;
 		margin-right: 10px;
- 		float: left; 
- 		text-align: center;
  		font-weight: bold; 
 	}
 
 </style>
+<script type="text/javascript">
+	function moveCommonRegister() {
+		location.href = "./commonRegister.do";
+	}
+
+
+</script>
+
+
 
 </head>
 <body>
@@ -84,7 +90,6 @@
 							placeholder="비밀번호를 입력하세요" value="test2">
 					</div>
 				</div>
-				
 				<!-- 로그인 버튼, 비밀번호찾기 버튼, 회원가입 버튼  -->
 				<div>		
 					<div id="loginBtn">
@@ -93,11 +98,8 @@
 				</div>
 				<div>
 					<div>
-						<input class="findPwdAndRegister" value="비밀번호찾기">
-						<input class="findPwdAndRegister" value="회원가입">
-					</div>
-					<div>
-					
+						<input class="findPwdAndRegister" type="button" value="비밀번호찾기">
+						<input class="findPwdAndRegister" type="button" value="회원가입" onclick="moveCommonRegister();">
 					</div>
 				</div>
 			</form>

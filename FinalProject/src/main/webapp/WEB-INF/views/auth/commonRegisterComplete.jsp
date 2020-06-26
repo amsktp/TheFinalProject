@@ -10,20 +10,20 @@
 	
 	#mainBox {
 		border: 1px solid red;
-		height: 500px;
-		width: 400px; 
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		height: 600px;
+		width: 400px;
+ 		position: absolute; 
+ 		top: 50%;
+ 		left: 50%;
+ 		transform: translate(-50%, -50%);
 	}
 	
 	#titleBox {
 		font-size: 40px;
 		font-weight: bold;
-		text-align: center;
 		margin-bottom: 50px;
 		border: 1px dotted blue;
+		text-align: center;
 	}
 	
 	#loginBtn {
@@ -33,6 +33,12 @@
 	}
 
 </style>
+<script type="text/javascript">
+	function moveLoginBtn() {
+		location.href = "login.do";
+	}
+
+</script>
 
 </head>
 <body>
@@ -47,7 +53,7 @@
 			</div>
 			<div>		
 				<div id="loginBtn">
-					<input id="loginBtn" type="submit" value="로그인 페이지로 이동">
+					<input id="loginBtn" type="button" value="로그인 페이지로 이동" onclick="moveLoginBtn();">
 				</div>
 			</div>
 	</div>

@@ -31,10 +31,10 @@ public class AuthDaoImpl implements AuthDao{
 	}
 
 	@Override
-	public void memberInsertOne(MemberDto memberDto) {
+	public int memberInsertOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
 		
-		sqlSession.insert(namespace + "memberInsertOne", memberDto);
+		return sqlSession.insert(namespace + "memberInsertOne", memberDto);
 		
 	}
 

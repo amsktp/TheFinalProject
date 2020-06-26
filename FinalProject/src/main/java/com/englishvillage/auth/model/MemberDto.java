@@ -101,11 +101,14 @@ public class MemberDto {
 	public void setMemberPassword(String memberPassword) {
 		this.memberPassword = memberPassword;
 	}
-
 	@Override
 	public String toString() {
 		return "MemberDto [memberNo=" + memberNo + ", memberName=" + memberName + ", memberEmail=" + memberEmail
-				+ ", memberPassword=" + memberPassword + "]";
+				+ ", memberPassword=" + memberPassword + ", memberGrade=" + memberGrade + ", memberPoint=" + memberPoint
+				+ ", memberCountry=" + memberCountry + ", memberGender=" + memberGender + ", memberBirthDate="
+				+ memberBirthDate + "]";
 	}
+
+
 	
 }
