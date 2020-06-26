@@ -95,45 +95,24 @@
 				</div>
 				<div>
 					<div>
-						<input class="twoBarInputBox" value="뒤로가기">
+						<input class="twoBarInputBox" type="text" placeholder="년">
 					</div>
 					<div>
-						<input class="twoBarInputBox" value="가입하기">
+						<input class="twoBarInputBox" type="text" placeholder="월">
 					</div>
 					<div>
-						<input class="twoBarInputBox" value="가입하기">
+						<input class="twoBarInputBox" type="text" placeholder="일">
 					</div>
 				</div>
 			</div>
 			<div>
 				<div>
 					<div>
-						<input class="twoBarInputBox" value="뒤로가기">
-					</div>
-				</div>
-				<div>
-					<div>
-						<input class="twoBarInputBox" value="뒤로가기">
+						<input class="threeBarInputBox" value="뒤로가기">
 					</div>
 					<div>
-						<input class="twoBarInputBox" value="가입하기">
+						<input class="threeBarInputBox" value="가입하기">
 					</div>
-				</div>
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			<div>
-				<div>
-					<input class="findPwdAndRegister" value="뒤로가기">
-				</div>
-				<div>
-					<input class="findPwdAndRegister" value="가입하기">
 				</div>
 			</div>
 		</form>

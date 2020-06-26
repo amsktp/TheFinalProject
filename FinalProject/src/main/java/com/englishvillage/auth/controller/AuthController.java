@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -60,7 +59,7 @@ public class AuthController {
 	
 	@RequestMapping(value = "/auth/commonRegister.do")
 	public String commonRegister(Model model) {
-		log.info("*****Welcome Register!");
+		log.info("*****Welcome Register!*****");
 		
 		return "commonRegister";
 	}

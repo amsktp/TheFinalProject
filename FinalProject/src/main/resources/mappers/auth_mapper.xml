@@ -29,6 +29,21 @@
 		
 	</select>
 	
+		<insert id="memberInsertOne" parameterType="memberDto" useGeneratedKeys="true" keyProperty="no">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT MEMBER_MNO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO MEMBER
+		VALUE(MNO
+			, EMAIL, PWD, MNAME
+			, CRE_DATE, MOD_DATE)
+		VALUES(#{no}
+			, #{email}, #{password}, #{name}
+			, SYSDATE, SYSDATE)
+	</insert>
+	
+	
 </mapper>
 
 
