@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,27 +36,24 @@ $(document).ready(function(){
 	<div id="myPageBox">
 	
 	<div id="pageName">내 정보</div>
-	<table id="tableObj">
-				<tr>
-					<td>이름</td><td>${member.memberName}</td>
-				</tr>
-				<tr>
-					<td>이메일</td><td>${member.memberEmail}</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td><td><input type="password" value="${member.memberPassword}" readonly="readonly"></td>
-				</tr>
-				<tr>
-					<td>성별</td><td>${member.memberGender}</td>
-				</tr>
-				<tr>
-					<td>생년월일</td><td>${member.memberBirthDate}</td>
-				</tr>
-				<tr>
-					<td>국적</td><td>${member.memberCountry}</td>
-				</tr>
-				
-			</table>
+	
+		<div><span>이름: </span><span>${member.memberName}</span></div>
+		<div><span>이메일: </span><span>${member.memberEmail}</span></div>
+		<div><span>비밀번호: </span><span>${member.memberPassword}</span></div>
+		<div>
+			<span>성별: </span>
+			<span>
+				<c:if test="${member.memberGender == 'M'}">
+								남자
+				</c:if>
+				<c:if test="${member.memberGender == 'F'}">
+								여자
+				</c:if>
+			</span>
+		</div>
+		<div><span>생년월일: </span><span><fmt:formatDate value="${member.memberBirthDate}" pattern="yyyy-MM-dd"/></span></div>
+		<div><span>국적: </span><span>${member.memberCountry}</span></div>
+	
 			<input type='button' value='수정하기' onClick='memberCheckMoveFnc();'>
 	</div>
 		

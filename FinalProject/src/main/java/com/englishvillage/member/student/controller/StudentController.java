@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.englishvillage.member.student.model.MemberFileDto;
+import com.englishvillage.member.student.model.MemberDto;
 import com.englishvillage.member.student.service.StudentService;
 
 @Controller
@@ -45,20 +45,60 @@ public class StudentController {
 
 		return "/member/student/info/studentCheckPassword";
 	}
-	
-	@RequestMapping(value="update.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "update.do", method = RequestMethod.GET)
 	public String memberUpdate(int no, Model model) {
-		
+
 		log.info("call studentUpdate! ", no);
-		
+
 		Map<String, Object> map = studentService.memberSelect(no);
-		log.info("call studentUpdatestudentUpdate 통과! ", no);
-		MemberFileDto MemberFileDto = (MemberFileDto)map.get("MemberFileDto");
-		log.info("call MemberFileDto에 값넣기 성공! ", no);
-		model.addAttribute("MemberFileDto", MemberFileDto);
-		log.info("call 가버려ㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕㅕ! ", no);
+		MemberDto memberDto = (MemberDto) map.get("MemberDto");
+		model.addAttribute("MemberDto", memberDto);
 		return "/member/student/info/studentInfoRevise";
 	}
+	
+//	// 회원수정
+//	@RequestMapping(value = "updateCtr.do", method = RequestMethod.POST)
+//	public String memberUpdateCtr(HttpSession session, MemberFileDto memberFileDto, Model model) {
+//		log.info("call memberUpdateCtr! {} :: {}", memberFileDto);
+//		
+//		int resultNum = 0;
+//		
+//		resultNum = studentService.memberUpdateOne(memberFileDto);
+//		
+//		if(resultNum != 0) {
+//			MemberDto sessionMemberDto 
+//				= (MemberDto)session.getAttribute("member");
+//			System.out.println("sessionMemberDto값은"+sessionMemberDto);
+//			if(sessionMemberDto != null) {
+//				System.out.println("일단 널값아님");
+//				System.out.println("앞"+sessionMemberDto.getMemberEmail()+"뒤"+memberFileDto.getEmail());
+//				if(sessionMemberDto.getMemberEmail().equals(memberFileDto.getEmail())) {
+//					System.out.println("세션 이메일 같음");
+////					MemberDto newMemberDto = 
+////						new MemberDto(memberDto.getNo()
+////								, memberDto.getName()
+////								, memberDto.getEmail());
+//					MemberFileDto newMemberDto = 
+//							new MemberFileDto(memberFileDto.getName(), memberFileDto.getEmail(), memberFileDto.getPassword(), memberFileDto.getGender(), memberFileDto.getCountry(), memberFileDto.get);
+////					MemberDto newMemberDto = new MemberDto(MemberDto.get)
+//					System.out.println("newMemberDto"+newMemberDto);
+//					System.out.println("삭제전"+session.getAttribute("member"));
+//					session.removeAttribute("member");
+//					System.out.println("삭제후"+session.getAttribute("member"));
+//					
+//					session.setAttribute("member", newMemberDto);
+//					System.out.println("추가후"+session.getAttribute("member"));
+//				}
+//				
+//			}
+//		}
+//		
+////		return "redirect:/member/student/info/studentPrivateInfo";
+//		return "redirect:/member/student/info/studentInfoRevise";
+//	}
+
+
 
 	@RequestMapping(value = "myStudy.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studyPage(Locale locale, Model model) {

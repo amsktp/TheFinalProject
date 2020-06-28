@@ -3,14 +3,15 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.englishvillage.member.student">
+<mapper namespace="com.englishvillage">
 
 	<sql id="search">
 		<choose>
 			<!-- 검색옵션이 전체 검색일 경우 -->
 			<when test="searchOption == 'all'">
 				WHERE MEMBER_NAME LIKE '%' || #{keyword} || '%'
-				OR MEMBER_EMAIL LIKE '%' || #{keyword} || '%'
+				OR
+				MEMBER_EMAIL LIKE '%' || #{keyword} || '%'
 			</when>
 
 			<!-- 전체 검색이 아닐 경우 -->
@@ -47,43 +48,54 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
+	<resultMap
+		type="com.englishvillage.member.student.model.MemberDto"
+		id="memberMap">
+		<result column="MEMBER_NO" property="no" />
+		<result column="MEMBER_EMAIL" property="email" />
+		<result column="MEMBER_PASSWORD" property="password" />
+		<result column="MEMBER_NAME" property="name" />
+		<result column="MEMBER_CREATE_DATE" property="createdDate"
+			javaType="java.util.Date" />
+		<result column="MEMBER_MODIFY_DATE" property="modifiedDate"
+			javaType="java.util.Date" />
+		<result column="MEMBER_COUNTRY" property="country" />
+		<result column="MEMBER_GENDER" property="gender" />
+		<result column="MEMBER_BIRTH_DATE" property="birthDate"
+			javaType="java.util.Date" />
+		<result column="MEMBER_POINT" property="point" />
+		<result column="MEMBER_GRADE" property="grade" />
 
-	<select id="studentSelectList" parameterType="map"
-		resultMap="memberResultMap">
+	</resultMap>
 
-		SELECT MF.RNUM, MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME
-		, MF.MEMBER_CREATE_DATE, MF.MEMBER_MODIFY_DATE, MF.MEMBER_COUNTRY
-		, MF.MEMBER_BIRTH_DATE ,MF.MEMBER_GENDER, MF.MEMBER_POINT,
-		MF.MEMBER_GRADE
-		FROM (
-		SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
-		, M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
-		, M.MEMBER_COUNTRY, M.MEMBER_GENDER, M.MEMBER_POINT,
-		M.MEMBER_BIRTH_DATE, M.MEMBER_GRADE
-		FROM(
-		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME,
-		MEMBER_MODIFY_DATE
-		,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
+	<select id="memberSelect" parameterType="int"
+		resultMap="memberMap">
+		SELECT *
 		FROM MEMBER
-		<include refid="search"></include>
-		AND MEMBER_GRADE = 'N'
-		ORDER BY MEMBER_NO DESC
-		) M
-		) MF
-		WHERE MF.RNUM BETWEEN #{start} AND #{end}
-
+		WHERE MEMBER_NO = #{no}
 	</select>
 
-	<select id="memberSelect" parameterType="int" 
-      resultMap="memberResultMap">
-      SELECT *
-      FROM MEMBER
-      WHERE MEMBER_NO = #{no}
-   </select>
+	<update id="memberUpdateOne" parameterType="memberFileDto">
+		<!-- UPDATE MEMBER -->
+		<!-- <set> -->
+		<!-- <if test="email != ''">EMAIL = #{email},</if> -->
+		<!-- <if test="name != ''">MNAME = #{name},</if> -->
+		<!-- <if test="password != ''">MEMBER_PASSWORD = #{password},</if> -->
+		<!-- MEMBER_MODIFY_DATE = SYSDATE -->
+		<!-- </set> -->
+		<!-- WHERE MEMBER_NO = #{no} -->
+
+		UPDATE MEMBER
+		SET MEMBER_PASSWORD = #{password},
+		MEMBER_MODIFY_DATE =
+		SYSDATE
+		WHERE MEMBER_EMAIL = #{email}
+	</update>
 
 
 
 </mapper>
+
 
 
 

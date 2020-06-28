@@ -29,6 +29,29 @@ public class MemberFileDto {
 		super();
 	}
 	
+	
+	public MemberFileDto(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
+	
+	
+	public MemberFileDto(int no, String name, String email, String password, Date birthDate, String country,
+			String gender) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.birthDate = birthDate;
+		this.country = country;
+		this.gender = gender;
+	}
+
+
 	public MemberFileDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			Date birthDate, String country, String gender, String grade, int point, int idx, int parentSeq,
 			String originalFileName, String storedFileName, int fileSize, Date creDate) {

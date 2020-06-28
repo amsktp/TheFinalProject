@@ -11,20 +11,22 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+	$('.layoutUl').children().eq(1).addClass('on');
+ 
+    $('#editBtn').click(function() {
 
+    	var password = $('input[type=password]').val();
+        var passwordCheck = '${member.memberPassword}';
+        if(password == passwordCheck){
+         location.href = "/englishvillage/update.do?no=" + ${member.memberNo}; 
+            }else{
+            	alert("비밀번호가 일치하지 않습니다.");
+            }
+    });
 });
 
-function isSame(){
-    var password = $('input[type=password]').val();
-    var passwordCheck = ${member.memberPassword}
-    if(password == passwordCheck){
-    $('#editBtn').disabled()('비밀번호가 일치합니다.').css('color', 'blue');  
-    }else{
-         $('#pwdValue').text('비밀번호가 일치하지 않습니다.').css('color', 'red');  
-    }
-}$('.button_joinus').attr('disabled', true);
 
+// onClick='updateMoveFnc(${member.memberNo});'
 </script>
 </head>
 
@@ -40,9 +42,10 @@ function isSame(){
 			<div id="pwdCheckBox" style="padding-top: 25px;">
 				<h4 style="font-weight: bold; text-align: center;">개인정보 변경을 위해 비밀번호를 입력해주세요</h4>
 
-				<input class="pwdInputBox" type="password" placeholder=" 비밀번호"> 
+				<input class="pwdInputBox" type="password" placeholder=" 비밀번호" value="${member.memberPassword}"> 
+				
 				<input class="blackBtn" type='button' value='뒤로가기' onClick='myInfoMoveFnc();'>
-				<input id="editBtn" class="blackBtn" type='button' value='수정하기' onClick='updateMoveFnc(${member.memberNo});' disabled="disabled"> 
+				<input id="editBtn" class="blackBtn" type='button' value='수정하기'> 
 
 			</div>
 

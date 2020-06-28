@@ -10,8 +10,9 @@
  
  <typeAliases>
  	<typeAlias type="com.englishvillage.member.admin.model.MemberListDto" alias="memberDto"/>
+ 	<typeAlias type="com.englishvillage.member.student.model.MemberFileDto" alias="memberFileDto"/>
+ 	
  </typeAliases>
- 
  
   
 </configuration>

@@ -33,6 +33,7 @@ FROM TB_FILE;
 
 delete from TB_FILE;
 
+select * from member;
 
 
 

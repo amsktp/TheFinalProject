@@ -60,6 +60,16 @@
 	margin-left: 64px;
 }
 
+.disabledBtn {
+	width: 140px;
+	height: 40px;
+	border-radius: 13px;
+	color: white;
+	font-weight: bold;
+	background-color: grey;
+	margin-left: 64px;
+}
+
 .pwdInputBox {
 	width: 360px;
 	height: 40px;
