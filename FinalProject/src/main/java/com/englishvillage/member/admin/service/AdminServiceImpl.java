@@ -1,6 +1,8 @@
 package com.englishvillage.member.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.englishvillage.member.admin.dao.AdminDao;
 import com.englishvillage.member.admin.model.MemberListDto;
@@ -47,9 +50,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int memberSelectCurPage(String searchOption, String keyword, int no) {
+	public int studentSelectCurPage(String searchOption, String keyword, int no) {
 		// TODO Auto-generated method stub
-		return adminDao.memberSelectCurPage(searchOption, keyword, no);
+		return adminDao.studentSelectCurPage(searchOption, keyword, no);
 	}
 	
 	//튜터
@@ -98,6 +101,39 @@ public class AdminServiceImpl implements AdminService{
 	public int questionSelectCurPage(String searchOption, String keyword, int no) {
 		// TODO Auto-generated method stub
 		return adminDao.questionSelectCurPage(searchOption, keyword, no);
+	}
+
+	@Override
+	public Map<String, Object> memberStudentSelectOne(int no) {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		MemberListDto memberListDto = adminDao.memberStudentSelectOne(no);
+		
+		resultMap.put("memberListDto", memberListDto);
+		
+		
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> memberTutorSelectOne(int no) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		MemberListDto memberListDto = adminDao.memberTutorSelectOne(no);
+		
+		resultMap.put("memberListDto", memberListDto);
+		
+		
+		return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> questionSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

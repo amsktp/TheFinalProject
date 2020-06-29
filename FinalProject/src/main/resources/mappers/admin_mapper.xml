@@ -20,6 +20,21 @@
          </choose>
 	</sql>
 	
+	<sql id="tutorSearch">
+		<choose>
+         	<!-- 검색옵션이 전체 검색일 경우 -->
+         	<when test="searchOption == 'all'">
+         		AND (MEMBER_NAME LIKE '%' || #{keyword} || '%'
+        	 	 OR MEMBER_EMAIL LIKE '%' || #{keyword} || '%')
+         	</when>
+         	
+         	<!-- 전체 검색이 아닐 경우 -->
+         	<otherwise>
+         		AND ${searchOption} LIKE '%' || #{keyword} || '%'
+         	</otherwise>
+         </choose>
+	</sql>
+	
 	<sql id="quetionSearch">
 		<choose>
          	<!-- 검색옵션이 전체 검색일 경우 -->
@@ -51,6 +66,10 @@
          javaType="java.util.Date"/>
       <result column="MEMBER_POINT" property="point"/>
       <result column="MEMBER_GRADE" property="grade"/>
+      <result column="YOUTUBE_URL" property="url"/>
+      <result column="PRICE" property="price"/>
+      <result column="TUTOR_NO" property="tutorNo"/>
+      <result column="SCORE" property="score"/>
      
       
       <result column="IDX"                property="idx"   />
@@ -59,11 +78,14 @@
       <result column="FILE_SIZE"            property="fileSize"   />
       <result column="CRE_DATE"             property="creDate"
          javaType="java.util.Date"/>
+      
         
    </resultMap>
    
    <resultMap type="com.englishvillage.member.admin.model.QuestionBoardDto" 
       id="questionListResultMap">
+      	
+      
       	<result column="IDX" property="idx"/>   
    		<result column="MEMBER_NO" property="no"/>   
       	<result column="TITLE" property="title"/>   
@@ -106,7 +128,8 @@
    </select>
 	
 	
-	<select id="memberSelectCurPage" parameterType="map" resultType="int">
+	
+	<select id="studentSelectCurPage" parameterType="map" resultType="int">
 		SELECT FLOOR((RNUM-1) / 10)+1 no
 		FROM (SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
                , M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
@@ -115,11 +138,19 @@
                     ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
                      FROM MEMBER
 		<include refid="memberSearch"/>
+		AND MEMBER_GRADE = 'N'
 		ORDER BY MEMBER_NO DESC )
 		M )
-		WHERE MEMBER_NO = #{no};
+		WHERE MEMBER_NO = #{no}
    </select>
    
+   <select id="memberStudentSelectOne" parameterType="int"
+      resultMap="memberListResultMap">
+      SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
+             ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
+      FROM MEMBER
+      WHERE MEMBER_NO = #{no}   
+   </select>
    
    <select id="tutorSelectList" parameterType="map"
       resultMap="memberListResultMap">
@@ -127,20 +158,39 @@
       SELECT MF.RNUM, MF.MEMBER_NO, MF.MEMBER_EMAIL, MF.MEMBER_NAME
          , MF.MEMBER_CREATE_DATE, MF.MEMBER_MODIFY_DATE, MF.MEMBER_COUNTRY
          , MF.MEMBER_BIRTH_DATE ,MF.MEMBER_GENDER, MF.MEMBER_POINT, MF.MEMBER_GRADE
+         , MF.ORIGINAL_FILE_NAME
          FROM (
                SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
                   , M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
                   , M.MEMBER_COUNTRY, M.MEMBER_GENDER, M.MEMBER_POINT, M.MEMBER_BIRTH_DATE, M.MEMBER_GRADE
+                  , M.ORIGINAL_FILE_NAME	
                 FROM(
                     SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
                     ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
-                     FROM MEMBER
+                    , FILE_PROFILE_IMAGE.ORIGINAL_FILE_NAME
+                     FROM MEMBER LEFT OUTER JOIN FILE_PROFILE_IMAGE
+                     ON MEMBER.MEMBER_NO = FILE_PROFILE_IMAGE.TUTOR_NO
                      <include refid="memberSearch"></include>
                      AND MEMBER_GRADE = 'Y'
                      ORDER BY MEMBER_NO DESC
                  ) M
         ) MF
-        WHERE MF.RNUM BETWEEN #{start} AND #{end}                             
+        WHERE MF.RNUM BETWEEN #{start} AND #{end}                       
+   </select>
+   
+   <select id="tutorSelectCurPage" parameterType="map" resultType="int">
+		SELECT FLOOR((RNUM-1) / 10)+1 no
+		FROM (SELECT ROWNUM RNUM, M.MEMBER_NO, M.MEMBER_EMAIL
+               , M.MEMBER_NAME, M.MEMBER_CREATE_DATE, M.MEMBER_MODIFY_DATE
+               , M.MEMBER_COUNTRY, M.MEMBER_GENDER, M.MEMBER_POINT, M.MEMBER_BIRTH_DATE, M.MEMBER_GRADE
+		FROM ( SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
+                    ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
+                     FROM MEMBER
+		<include refid="memberSearch"/>
+		AND MEMBER_GRADE = 'Y'
+		ORDER BY MEMBER_NO DESC )
+		M )
+		WHERE MEMBER_NO = #{no}
    </select>
    
    <select id="tutorSelectTotalCount" resultType="int" parameterType="map">
@@ -148,6 +198,29 @@
       FROM MEMBER
       <include refid="memberSearch"></include>
       AND MEMBER_GRADE = 'Y'
+   </select>
+   
+   <select id="memberTutorSelectOne" parameterType="int"
+      resultMap="memberListResultMap">
+     SELECT F.MEMBER_NO, F.MEMBER_EMAIL
+                  , F.MEMBER_NAME, F.MEMBER_CREATE_DATE, F.MEMBER_MODIFY_DATE
+                  , F.MEMBER_COUNTRY, F.MEMBER_GENDER, F.MEMBER_POINT, F.MEMBER_BIRTH_DATE, F.MEMBER_GRADE
+                  , F.ORIGINAL_FILE_NAME, E.TUTOR_NO, E.SCORE, E.PRICE, E.YOUTUBE_URL
+        FROM (SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
+        ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT,
+        FILE_PROFILE_IMAGE.ORIGINAL_FILE_NAME
+        FROM MEMBER LEFT OUTER JOIN FILE_PROFILE_IMAGE 
+        ON MEMBER.MEMBER_NO = FILE_PROFILE_IMAGE.TUTOR_NO) F
+    , (SELECT T.TUTOR_NO, T.TUTOR_INTRODUCE, T.YOUTUBE_URL, T.STUDY_NAME, T.PRICE, T.STATUS_CHECK
+              , A.SCORE
+        FROM TUTOR_INFO T, 
+            (SELECT TUTOR_NO, NVL(AVG(SCORE),0) SCORE
+            FROM EVALUATION
+            GROUP BY TUTOR_NO) A
+            WHERE T.TUTOR_NO = A.TUTOR_NO(+)) E
+	WHERE F.MEMBER_NO = E.TUTOR_NO
+	AND F.MEMBER_NO = #{no}
+	ORDER BY MEMBER_NO DESC
    </select>
    
    <select id="questionSelectList" parameterType="map"

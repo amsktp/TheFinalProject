@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
@@ -62,7 +63,7 @@ public class AdminController {
 //		자신의 curPage 찾는 로직
 		if(no != 0) {
 			curPage
-				= adminService.memberSelectCurPage(searchOption, keyword, no);
+				= adminService.studentSelectCurPage(searchOption, keyword, no);
 		}
 		
 		
@@ -95,23 +96,42 @@ public class AdminController {
 		searchMap.put("searchOption", searchOption);
 		searchMap.put("keyword", keyword);
 		
-		System.out.println("2.3");
+		
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
-		System.out.println("2.4");
+		
 		
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("pagingMap", pagingMap);
-		System.out.println(pagingMap);
+		
 		model.addAttribute("searchMap", searchMap);
-		System.out.println(searchMap);
+		
 		
 		System.out.println("@@@@@@@#################" + keyword);
 		System.out.println("@@@@@@@#################" + searchOption);
-		System.out.println("여긴 오는지 3");
+		
 		return "admin/student/adminStudentList";
+	}
+	
+	@RequestMapping(value = "/admin/studentlistOne.do", method = RequestMethod.GET)
+	public String studentListOne(int no, String searchOption, String keyword, Model model) {
+		log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		
+		Map<String, Object> map = adminService.memberStudentSelectOne(no);
+		
+		MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+		
+
+		
+		model.addAttribute("memberListDto", memberListDto);
+
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("keyword", keyword);
+
+		
+		return "admin/student/adminStudentInfo";
 	}
 	
 	//튜터 리스트
@@ -149,7 +169,7 @@ public class AdminController {
 //		자신의 curPage 찾는 로직
 		if(no != 0) {
 			curPage
-				= adminService.memberSelectCurPage(searchOption, keyword, no);
+				= adminService.tutorSelectCurPage(searchOption, keyword, no);
 		}
 		
 		
@@ -190,7 +210,26 @@ public class AdminController {
 		return "admin/tutor/adminTutorList";
 	}
 	
-	//목록 리스트
+	@RequestMapping(value = "/admin/tutorlistOne.do", method = RequestMethod.GET)
+	public String tutorListOne(int no, String searchOption, String keyword, Model model) {
+		log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		
+		Map<String, Object> map = adminService.memberTutorSelectOne(no);
+		
+		MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+		
+//		List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+		
+		model.addAttribute("memberListDto", memberListDto);
+//		model.addAttribute("fileList", fileList);
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("keyword", keyword);
+		
+		
+		return "admin/tutor/adminTutorInfo";
+	}
+	
+	//문의 리스트
 		@RequestMapping(value = "/admin/questionlist.do"
 				, method = {RequestMethod.GET, RequestMethod.POST})
 		public String QuestionList(@RequestParam(defaultValue = "1") 
