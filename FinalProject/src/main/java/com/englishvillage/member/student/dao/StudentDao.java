@@ -11,6 +11,9 @@ public interface StudentDao {
 
 	public int memberDeleteOne(int no);
 
+//	public void memberDeleteOne(String userEmail);
+
+
 
 
 	

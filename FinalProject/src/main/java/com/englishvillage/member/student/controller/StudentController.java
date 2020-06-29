@@ -1,5 +1,7 @@
 package com.englishvillage.member.student.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -12,10 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.service.StudentService;
+import com.englishvillage.util.Paging;
 
 @Controller
 public class StudentController {
@@ -104,61 +109,56 @@ public class StudentController {
 		System.out.println("업데이트 결과값"+resultNum);
 		
 		System.out.println("업데이트 완료 세션값"+session.getAttribute("member"));
-//		if(resultNum != 0) {
-//			MemberDto sessionMemberDto 
-//				= (MemberDto)session.getAttribute("member");
-//			System.out.println("@@@@@@@@@sessionMemberDto값은@@@@@@@@@@"+sessionMemberDto);
-//			if(sessionMemberDto != null) {
-//
-//				if(sessionMemberDto.getMemberEmail().equals(memberFileDto.getMemberEmail())) {
-//					System.out.println("세션 이메일 같음");
-//
-////					MemberFileDto newMemberFileDto = 
-////							new MemberFileDto(memberFileDto.getMemberNo(), memberFileDto.getMemberName(), 
-////									memberFileDto.getMemberEmail(), memberFileDto.getMemberPassword(), 
-////									memberFileDto.getMemberGrade(), memberFileDto.getMemberPoint(), 
-////									memberFileDto.getMemberCountry(), memberFileDto.getMemberGender(), 
-////									memberFileDto.getMemberBirthDate());
-//					
-//					MemberDto newMemberDto = 
-//							new MemberDto(MemberDto.getMemberNo(), MemberDto.getMemberName(), 
-//									MemberDto.getMemberEmail(), MemberDto.getMemberPassword(), 
-//									MemberDto.getMemberGrade(), MemberDto.getMemberPoint(), 
-//									MemberDto.getMemberCountry(), MemberDto.getMemberGender(), 
-//									MemberDto.getMemberBirthDate());
-//
-//					System.out.println("newMemberFileDto다"+newMemberFileDto);
-//					System.out.println("삭제전"+session.getAttribute("member"));
-//					
-//					session.removeAttribute("member");
-//					
-//					System.out.println("삭제후"+session.getAttribute("member"));
-//					
-//					session.setAttribute("member", newMemberFileDto);
-//					
-//					System.out.println("추가후"+session.getAttribute("member"));
-//				}
-//				
-//			}
-//		}
-		
-//		return "redirect:/member/student/info/studentPrivateInfo";
-//		return "redirect:/member/student/info/studentInfoRevise";
-//		return "redirect:/myPage.do";
+
 		return "redirect:/myInfo.do";
 		
 	}
-
+	
+	// 회원탈퇴 확인
+	@RequestMapping(value="delete.do", method = RequestMethod.GET)
+	public String memberDelete(Model model) {
+		
+		log.info("call memberdelete!");
+		
+		
+//		return "redirect:/member/list.do";
+//		return "/member/student/info/delete";
+		return "/member/student/info/studentWithdraw";
+	}
+	
+//	// 회원 삭제
+//	@RequestMapping(value="deleteCtr.do", method = RequestMethod.GET)
+//	public String memberDeleteCtr(int no, Model model) {
+//		
+//		log.info("call memberDeleteCtr! " + no);
+//		
+//		studentService.memberDeleteOne(no);
+//		
+////		return "redirect:/member/list.do";
+//		return "/member/student/info/delete";
+//	}
+	
 	// 회원 삭제
 	@RequestMapping(value="deleteCtr.do", method = RequestMethod.GET)
-	public String memberDeleteCtr(int no, Model model) {
+	public String memberDeleteCtr(HttpSession session, Model model) {
 		
-		log.info("call memberDeleteCtr! " + no);
+		log.info("call memberDeleteCtr! " + session.getAttribute("member"));
+		
+		MemberDto sessionMemberDto 
+		= (MemberDto)session.getAttribute("member");
+		
+		System.out.println("탈퇴전 세션 만들기 성공"+sessionMemberDto);
+		int no = sessionMemberDto.getMemberNo();
 		
 		studentService.memberDeleteOne(no);
 		
+//		session.removeAttribute("member");
+//		session.invalidate();
+		
+//		return "/member/student/info/studentPrivateInfo";
 //		return "redirect:/member/list.do";
-		return "/member/student/info/delete";
+//		return "redirect:/login.do";
+		return "redirect:/member/student/info/delete";
 	}
 	
 
@@ -174,5 +174,33 @@ public class StudentController {
 
 		return "/member/student/qna/studentQnABoard";
 	}
+	
+	//문의 리스트
+	@RequestMapping(value = "/admin/questionlist.do"
+			, method = {RequestMethod.GET, RequestMethod.POST})
+	public String QuestionList(HttpSession session, Model model) {
+		log.info("Welcome QuestionList! ");
 
+		List<QuestionBoardDto> qusetionList = 
+				adminService.questionSelectList(searchOption, keyword
+				, start, end);
+
+
+		model.addAttribute("qusetionList", qusetionList);
+		
+		System.out.println("@@@@@@@#################" + keyword);
+		System.out.println("@@@@@@@#################" + searchOption);
+		
+		return "admin/qna/adminQnAList";
+	}
+
+	
+	
+	// 테스트 페이지
+	@RequestMapping(value="test.do", method = RequestMethod.GET)
+	public String test(HttpSession session, Model model) {
+		
+		return "/member/student/info/delete";
+	}
+	
 }

@@ -28,6 +28,18 @@ public class StudentDaoImpl implements StudentDao{
 		return sqlSession.update(namespace + "memberUpdateOne", memberDto);
 	}
 
+//	@Override
+//	public int memberDeleteOne(int no) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.delete(namespace + "memberDeleteOne", no);
+//	}
+
+//	@Override
+//	public void memberDeleteOne(String userEmail) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.delete(namespace + "memberDeleteOne", userEmail);
+//	}
+
 	@Override
 	public int memberDeleteOne(int no) {
 		// TODO Auto-generated method stub

@@ -64,7 +64,7 @@
 
 	</resultMap>
 
-	<select id="SelectOne" parameterType="string"
+	<select id="SelectOne" parameterType="String"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, MEMBER_GRADE,
 		MEMBER_POINT
@@ -74,15 +74,6 @@
 	</select>
 
 	<update id="memberUpdateOne" parameterType="MemberDto">
-		<!-- UPDATE MEMBER -->
-		<!-- <set> -->
-		<!-- <if test="email != ''">EMAIL = #{email},</if> -->
-		<!-- <if test="name != ''">MNAME = #{name},</if> -->
-		<!-- <if test="password != ''">MEMBER_PASSWORD = #{password},</if> -->
-		<!-- MEMBER_MODIFY_DATE = SYSDATE -->
-		<!-- </set> -->                            
-		<!-- WHERE MEMBER_NO = #{no} -->
-
 		UPDATE MEMBER
 		SET MEMBER_PASSWORD = #{memberPassword},
 		MEMBER_MODIFY_DATE =
@@ -90,9 +81,9 @@
 		WHERE MEMBER_EMAIL = #{memberEmail}
 	</update>
 	
-	<delete id="memberDeleteOne" parameterType="java.lang.Integer">
+	<delete id="memberDeleteOne" parameterType="int" >
 		DELETE FROM MEMBER
-		WHERE MEMBER_NO = #{no}
+		WHERE MEMBER_NO = #{memberNo}
 	</delete>
 
 </mapper>

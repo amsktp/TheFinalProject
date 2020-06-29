@@ -43,9 +43,7 @@ $(document).ready(function(){
 	<input class="blackBtn" type="button" value="충전하기">
 	</div>
 	
-	
-	
-	
+	<button onclick="location.href = 'test.do'" style="width: 200px; height: 200px;">회원탈퇴</button>
 	
 	</div>
 	

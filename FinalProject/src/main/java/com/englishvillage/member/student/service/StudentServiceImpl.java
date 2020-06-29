@@ -49,10 +49,18 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 
+//	@Override
+//	public void memberDeleteOne(String userEmail) {
+//		// TODO Auto-generated method stub
+//		studentDao.memberDeleteOne(userEmail);
+//	}
+
+
 	@Override
 	public int memberDeleteOne(int no) {
-		// TODO Auto-generated method stub
 		return studentDao.memberDeleteOne(no);
 	}
+
+
 
 }

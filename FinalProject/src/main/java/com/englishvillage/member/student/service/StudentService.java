@@ -13,5 +13,8 @@ public interface StudentService {
 
 	public int memberDeleteOne(int no);
 
+//	public void memberDeleteOne(String userEmail);
+
+
 
 }

@@ -87,9 +87,7 @@ $(document).ready(function(){
 			<input class='blackBtn' type='submit' value='수정하기'>
 			</form>
 				<input class='blackBtn' type='button' value='회원탈퇴' 
-					onclick='pageMoveDeleteFnc(5);'>
-<!-- 				<input class='blackBtn' type='button' value='회원탈퇴'  -->
-<%-- 					onclick='pageMoveDeleteFnc(${memberDto.memberNo});'> --%>
+					onclick="location.href='/englishvillage/delete.do'">
 				<input class='blackBtn' type='button' value='돌아가기' onClick='myInfoMoveFnc();'>
 		</div>
 	</div>
