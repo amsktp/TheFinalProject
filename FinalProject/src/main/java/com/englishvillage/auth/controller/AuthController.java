@@ -72,14 +72,22 @@ public class AuthController {
 	public String commonRegisterCtr(MemberDto memberDto, String birthDate, Model model) throws ParseException {
 		log.info("*****commonRegister_ctr!*****"+ memberDto); 
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date parseDate = sdf.parse(birthDate);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date parseDate = simpleDateFormat.parse(birthDate);
 		memberDto.setMemberBirthDate(parseDate);
 		
-		log.info("*****commonRegister_ctr!*****"+ memberDto); 
-//		int resultNum = authService.memberInsertOne(memberDto);
+		authService.memberInsertOne(memberDto);
 		
 		return "redirect:/commonRegisterComplete.do";
 	} 
+	
+	@RequestMapping(value="/commonRegisterComplete.do", method=RequestMethod.GET)
+	public String commonRegisterComplete() {
+		log.info("*****Welcome CommonRegisterComplete!*****");
+		
+		return "auth/commonRegisterComplete"; // jsp페이지로 이동할 경우
+	} 
+	
+	
 	
 }

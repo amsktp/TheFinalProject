@@ -66,9 +66,16 @@
 		text-align: center;
 	}
 	
-	
+	#selectCountry {
+		width: 180px;
+		height: 35px;
+		margin-right: 10px;
+	}
 
-
+	#selectGender {
+		width: 118px;
+		height: 35px;
+	}
 
 </style>
 <script type="text/javascript">
@@ -145,20 +152,25 @@
 					</div>
 					<div class="wrapInputBox">
 						<div>
-							<div>국적</div>
-							<input class="twoBarInputBox" type="text" name="memberCountry" placeholder="국적을 입력하세요">
+							<div>
+								국적
+							</div>
+							<select id="selectCountry" name="memberCountry">
+    							<option value="KOREA">한국</option>
+    							<option value="USA">미국</option>
+    							<option value="Ireland">아일랜드</option>
+    							<option value="England">영국</option>
+    							<option value="Canada">캐나다</option>
+  							</select>
 						</div>
 						<div>
-						
-							<select name="fruit" id="fruit" class="fruit">
-    							<option value="apple">사과</option>
-    							<option value="orange">오렌지</option>
-							    <option value="banana">바나나</option>
+							<div>
+								성별
+							</div>
+							<select id="selectGender" name="memberGender" >
+    							<option value="M">남</option>
+    							<option value="F">여</option>
   							</select>
-						
-							<div>성별</div>
-							여자<input class="twoBarInputBox" type="radio" name="memberGender" value="F" >
-							남자<input class="twoBarInputBox" type="radio" name="memberGender" value="M" >
 						</div>
 					</div>
 					<div class="wrapInputBox">
