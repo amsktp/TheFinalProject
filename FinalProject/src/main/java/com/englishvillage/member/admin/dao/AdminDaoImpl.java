@@ -57,7 +57,7 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int memberSelectCurPage(String searchOption, String keyword, int no) {
+	public int studentSelectCurPage(String searchOption, String keyword, int no) {
 		// TODO Auto-generated method stub
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
@@ -67,6 +67,13 @@ public class AdminDaoImpl implements AdminDao{
 		
 		
 		return sqlSession.selectOne(namespace + "studentSelectCurPage", paramMap);
+	}
+	
+	@Override
+	public MemberListDto memberStudentSelectOne(int no) {
+		// TODO Auto-generated method stub
+		 return sqlSession.selectOne(namespace + "memberStudentSelectOne"
+		            , no);
 	}
 	
 	//튜터
@@ -110,6 +117,13 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlSession.selectOne(namespace + "tutorSelectCurPage", paramMap);
 	}
 	
+	@Override
+	public MemberListDto memberTutorSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberTutorSelectOne"
+	            , no);
+	}
+	
 	//문의
 	@Override
 	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
@@ -150,6 +164,14 @@ public class AdminDaoImpl implements AdminDao{
 		paramMap.put("no", no);
 		
 		return sqlSession.selectOne(namespace + "questionSelectCurPage", paramMap);
+	}
+	
+
+	@Override
+	public MemberListDto questionSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "questionSelectOne"
+	            , no);
 	}
 	
 

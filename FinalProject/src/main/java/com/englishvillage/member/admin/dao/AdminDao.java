@@ -1,6 +1,7 @@
 package com.englishvillage.member.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
@@ -14,7 +15,8 @@ public interface AdminDao {
 			String keyword, int start, int end);
 	public int studentSelectTotalCount(String searchOption
 			, String keyword);
-	public int memberSelectCurPage(String searchOption, String keyword, int no);
+	public int studentSelectCurPage(String searchOption, String keyword, int no);
+	public MemberListDto memberStudentSelectOne(int no);
 	
 	//튜터 목록
 	public List<MemberListDto> tutorSelectList(String searchOption, 
@@ -22,6 +24,7 @@ public interface AdminDao {
 	public int tutorSelectTotalCount(String searchOption
 			, String keyword);
 	public int tutorSelectCurPage(String searchOption, String keyword, int no);
+	public MemberListDto memberTutorSelectOne(int no);
 	
 	//문의 목록
 	public List<QuestionBoardDto> questionSelectList(String searchOption, 
@@ -29,5 +32,6 @@ public interface AdminDao {
 	public int questionSelectTotalCount(String searchOption
 			, String keyword);
 	public int questionSelectCurPage(String searchOption, String keyword, int no);
+	public MemberListDto questionSelectOne(int no);
 }
 

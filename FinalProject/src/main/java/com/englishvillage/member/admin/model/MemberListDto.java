@@ -14,6 +14,10 @@ public class MemberListDto {
 	private String gender;
 	private String grade;
 	private int point;
+	private int score;
+	private int tutorNo;
+	private String url;
+	private int Price;
 	
 
 	
@@ -29,9 +33,12 @@ public class MemberListDto {
 		super();
 	}
 	
+
+
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			Date birthDate, String country, String gender, String grade, int point, int idx, int parentSeq,
-			String originalFileName, String storedFileName, int fileSize, Date creDate) {
+			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
+			int price, int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize,
+			Date creDate) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -44,6 +51,10 @@ public class MemberListDto {
 		this.gender = gender;
 		this.grade = grade;
 		this.point = point;
+		this.score = score;
+		this.tutorNo = tutorNo;
+		url = url;
+		Price = price;
 		this.idx = idx;
 		this.parentSeq = parentSeq;
 		this.originalFileName = originalFileName;
@@ -51,7 +62,8 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
-	
+
+
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize, Date creDate) {
 		super();
@@ -206,6 +218,51 @@ public class MemberListDto {
 		this.point = point;
 	}
 	
+
+	
+	public int getScore() {
+		return score;
+	}
+
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+
+	public int getTutorNo() {
+		return tutorNo;
+	}
+
+	public void setTutorNo(int tutorNo) {
+		this.tutorNo = tutorNo;
+	}
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+
+	public int getPrice() {
+		return Price;
+	}
+
+
+
+	public void setPrice(int price) {
+		Price = price;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "MemberListDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
