@@ -3,20 +3,19 @@ package com.englishvillage.member.student.model;
 import java.util.Date;
 
 public class MemberFileDto {
-	private int no;
-	private String name;
-	private String email;
-	private String password;
-	private Date createdDate;
-	private Date modifiedDate;
-	private Date birthDate;
-	private String country;
-	private String gender;
-	private String grade;
-	private int point;
-	
 
+	private int memberNo;
+	private String memberName;
+	private String memberEmail;
+	private String memberPassword;
+	private String memberGrade;
+	private int memberPoint;
+	private String memberCountry;
+	private String memberGender;
+	private Date memberBirthDate;
 	
+	private Date memberCreatedDate;
+	private Date memberModifiedDate;
 
 	private int idx;
 	private int parentSeq;        
@@ -27,63 +26,37 @@ public class MemberFileDto {
 	
 	public MemberFileDto() {
 		super();
-	}
+	}	
 	
-	
-	public MemberFileDto(String name, String email, String password) {
+	public MemberFileDto(int memberNo, String memberName, String memberEmail, String memberPassword, String memberGrade,
+			int memberPoint, String memberCountry, String memberGender, Date memberBirthDate) {
 		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberGrade = memberGrade;
+		this.memberPoint = memberPoint;
+		this.memberCountry = memberCountry;
+		this.memberGender = memberGender;
+		this.memberBirthDate = memberBirthDate;
 	}
-
-	
-	
-	public MemberFileDto(int no, String name, String email, String password, Date birthDate, String country,
-			String gender) {
+	public MemberFileDto(int memberNo, String memberName, String memberEmail, String memberPassword, String memberGrade,
+			int memberPoint, String memberCountry, String memberGender, Date memberBirthDate, Date memberCreatedDate,
+			Date memberModifiedDate, int idx, int parentSeq, String originalFileName, String storedFileName,
+			int fileSize, Date creDate) {
 		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.birthDate = birthDate;
-		this.country = country;
-		this.gender = gender;
-	}
-
-
-	public MemberFileDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			Date birthDate, String country, String gender, String grade, int point, int idx, int parentSeq,
-			String originalFileName, String storedFileName, int fileSize, Date creDate) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.createdDate = createdDate;
-		this.modifiedDate = modifiedDate;
-		this.birthDate = birthDate;
-		this.country = country;
-		this.gender = gender;
-		this.grade = grade;
-		this.point = point;
-		this.idx = idx;
-		this.parentSeq = parentSeq;
-		this.originalFileName = originalFileName;
-		this.storedFileName = storedFileName;
-		this.fileSize = fileSize;
-		this.creDate = creDate;
-	}
-	
-	public MemberFileDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize, Date creDate) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.createdDate = createdDate;
-		this.modifiedDate = modifiedDate;
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberGrade = memberGrade;
+		this.memberPoint = memberPoint;
+		this.memberCountry = memberCountry;
+		this.memberGender = memberGender;
+		this.memberBirthDate = memberBirthDate;
+		this.memberCreatedDate = memberCreatedDate;
+		this.memberModifiedDate = memberModifiedDate;
 		this.idx = idx;
 		this.parentSeq = parentSeq;
 		this.originalFileName = originalFileName;
@@ -92,52 +65,92 @@ public class MemberFileDto {
 		this.creDate = creDate;
 	}
 
-	public int getNo() {
-		return no;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public String getName() {
-		return name;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMemberPassword() {
+		return memberPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public String getMemberGrade() {
+		return memberGrade;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
 	}
 
-	public Date getModifiedDate() {
-		return modifiedDate;
+	public int getMemberPoint() {
+		return memberPoint;
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
+	public void setMemberPoint(int memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+
+	public String getMemberCountry() {
+		return memberCountry;
+	}
+
+	public void setMemberCountry(String memberCountry) {
+		this.memberCountry = memberCountry;
+	}
+
+	public String getMemberGender() {
+		return memberGender;
+	}
+
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
+
+	public Date getMemberBirthDate() {
+		return memberBirthDate;
+	}
+
+	public void setMemberBirthDate(Date memberBirthDate) {
+		this.memberBirthDate = memberBirthDate;
+	}
+
+	public Date getMemberCreatedDate() {
+		return memberCreatedDate;
+	}
+
+	public void setMemberCreatedDate(Date memberCreatedDate) {
+		this.memberCreatedDate = memberCreatedDate;
+	}
+
+	public Date getMemberModifiedDate() {
+		return memberModifiedDate;
+	}
+
+	public void setMemberModifiedDate(Date memberModifiedDate) {
+		this.memberModifiedDate = memberModifiedDate;
 	}
 
 	public int getIdx() {
@@ -188,53 +201,15 @@ public class MemberFileDto {
 		this.creDate = creDate;
 	}
 
-	
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-	
 	@Override
 	public String toString() {
-		return "MemberFileDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", idx=" + idx + ", parentSeq="
-				+ parentSeq + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
-				+ ", fileSize=" + fileSize + ", creDate=" + creDate + "]";
+		return "MemberFileDto [memberNo=" + memberNo + ", memberName=" + memberName + ", memberEmail=" + memberEmail
+				+ ", memberPassword=" + memberPassword + ", memberGrade=" + memberGrade + ", memberPoint=" + memberPoint
+				+ ", memberCountry=" + memberCountry + ", memberGender=" + memberGender + ", memberBirthDate="
+				+ memberBirthDate + ", memberCreatedDate=" + memberCreatedDate + ", memberModifiedDate="
+				+ memberModifiedDate + ", idx=" + idx + ", parentSeq=" + parentSeq + ", originalFileName="
+				+ originalFileName + ", storedFileName=" + storedFileName + ", fileSize=" + fileSize + ", creDate="
+				+ creDate + "]";
 	}
-
+	
 }

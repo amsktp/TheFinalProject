@@ -4,135 +4,111 @@ import java.util.Date;
 
 public class MemberDto {
 	
-	private int no;
-	private String name;
-	private String email;
-	private String password;
-	private Date createdDate;
-	private Date modifiedDate;
-	private Date birthDate;
-	private String country;
-	private String gender;
-	private String grade;
-	private int point;
+	private int memberNo;
+	private String memberName;
+	private String memberEmail;
+	private String memberPassword;
+	private String memberGrade;
+	private int memberPoint;
+	private String memberCountry;
+	private String memberGender;
+	private Date memberBirthDate;
+	
 	
 	public MemberDto() {
 		super();
 	}
-
-	public MemberDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			Date birthDate, String country, String gender, String grade, int point) {
+	public MemberDto(int memberNo, String memberName, String memberEmail, String memberPassword, String memberGrade) {
 		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.createdDate = createdDate;
-		this.modifiedDate = modifiedDate;
-		this.birthDate = birthDate;
-		this.country = country;
-		this.gender = gender;
-		this.grade = grade;
-		this.point = point;
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
+		this.memberGrade = memberGrade;
 	}
 
-	public int getNo() {
-		return no;
+	
+	
+	
+	public String getMemberGrade() {
+		return memberGrade;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
 	}
 
-	public String getName() {
-		return name;
+	public MemberDto(int memberNo, String memberName, String memberEmail, String memberPassword) {
+		super();
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPassword = memberPassword;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public int getMemberPoint() {
+		return memberPoint;
+	}
+	public void setMemberPoint(int memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+	public String getMemberCountry() {
+		return memberCountry;
+	}
+	public void setMemberCountry(String memberCountry) {
+		this.memberCountry = memberCountry;
+	}
+	public String getMemberGender() {
+		return memberGender;
+	}
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
+	public Date getMemberBirthDate() {
+		return memberBirthDate;
+	}
+	public void setMemberBirthDate(Date memberBirthDate) {
+		this.memberBirthDate = memberBirthDate;
+	}
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public String getMemberPassword() {
+		return memberPassword;
 	}
 
-	public Date getModifiedDate() {
-		return modifiedDate;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
 	@Override
 	public String toString() {
-		return "MemberDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", birthDate=" + birthDate
-				+ ", country=" + country + ", gender=" + gender + ", grade=" + grade + ", point=" + point + "]";
+		return "MemberDto [memberNo=" + memberNo + ", memberName=" + memberName + ", memberEmail=" + memberEmail
+				+ ", memberPassword=" + memberPassword + ", memberGrade=" + memberGrade + ", memberPoint=" + memberPoint
+				+ ", memberCountry=" + memberCountry + ", memberGender=" + memberGender + ", memberBirthDate="
+				+ memberBirthDate + "]";
 	}
-	
-	
-	
+
 
 	
 }

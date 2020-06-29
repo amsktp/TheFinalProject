@@ -18,7 +18,7 @@ $(document).ready(function(){
     	var password = $('input[type=password]').val();
         var passwordCheck = '${member.memberPassword}';
         if(password == passwordCheck){
-         location.href = "/englishvillage/update.do?no=" + ${member.memberNo}; 
+         location.href = "/englishvillage/update.do"
             }else{
             	alert("비밀번호가 일치하지 않습니다.");
             }
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 				<input class="pwdInputBox" type="password" placeholder=" 비밀번호" value="${member.memberPassword}"> 
 				
-				<input class="blackBtn" type='button' value='뒤로가기' onClick='myInfoMoveFnc();'>
+				<input class="blackBtn" type='button' value='뒤로가기' onClick="location.href='/englishvillage/myInfo.do'">
 				<input id="editBtn" class="blackBtn" type='button' value='수정하기'> 
 
 			</div>

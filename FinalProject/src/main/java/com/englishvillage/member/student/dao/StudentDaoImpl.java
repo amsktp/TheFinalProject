@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.englishvillage.member.student.model.MemberDto;
+import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 
 
@@ -17,16 +17,23 @@ public class StudentDaoImpl implements StudentDao{
 	String namespace = "com.englishvillage.";
 
 	@Override
-	public MemberDto memberSelect(int no) {
+	public MemberFileDto SelectOne(String userEmail) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "memberSelect", no);
+		return sqlSession.selectOne(namespace + "SelectOne", userEmail);
 	}
 
 	@Override
-	public int memberUpdateOne(MemberFileDto memberFileDto) {
+	public int memberUpdateOne(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + "memberUpdateOne", memberFileDto);
+		return sqlSession.update(namespace + "memberUpdateOne", memberDto);
 	}
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "memberDeleteOne", no);
+	}
+
 
 
 

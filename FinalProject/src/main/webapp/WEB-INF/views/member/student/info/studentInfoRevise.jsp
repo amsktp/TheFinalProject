@@ -39,21 +39,21 @@ $(document).ready(function(){
 			<div>
 				<span>이름: </span>
 				<span>
-					<input type="text" name='name' value="${memberFileDto.name}" readonly="readonly">
+					<input type="text" name='memberName' value="${memberFileDto.memberName}" readonly="readonly">
 <%-- 						${memberFileDto.name} --%>
 				</span>
 			</div>
 			<div>
 				<span>이메일: </span>
 				<span>
-					<input type="text" name='email' value="${memberFileDto.email}" readonly="readonly">
+					<input type="text" name='memberEmail' value="${memberFileDto.memberEmail}" readonly="readonly">
 <%-- 						${memberFileDto.email} --%>
 				</span>
 			</div>
 			<div>
 				<span>비밀번호: </span>
 				<span>
-					<input type="text" name='password' value="${memberFileDto.password}">
+					<input type="text" name='memberPassword' value="${memberFileDto.memberPassword}">
 				</span>
 			</div>
 <!-- 			<div> -->
@@ -65,10 +65,10 @@ $(document).ready(function(){
 			<div>
 				<span>성별: </span>
 				<span>
-				<c:if test="${memberFileDto.gender == 'M'}">
+				<c:if test="${memberFileDto.memberGender == 'M'}">
 								남자
 				</c:if>
-				<c:if test="${memberFileDto.gender == 'F'}">
+				<c:if test="${memberFileDto.memberGender == 'F'}">
 								여자
 				</c:if>
 				</span>
@@ -76,15 +76,21 @@ $(document).ready(function(){
 			<div>
 				<span>생년월일: </span>
 				<span>
-					<fmt:formatDate value="${memberFileDto.birthDate}" pattern="yyyy-MM-dd"/>
+					<fmt:formatDate value="${memberFileDto.memberBirthDate}" pattern="yyyy-MM-dd"/>
 				</span>
 			</div>
+			
+			<input type="hidden" name="memberNo" value="${memberFileDto.memberNo}">
+			<input type="hidden" name="memberNo" value="${memberFileDto.memberNo}">
+			<input type="hidden" name="memberNo" value="${memberFileDto.memberNo}">
 				
 			<input class='blackBtn' type='submit' value='수정하기'>
-				<input class='blackBtn' type='button' value='회원탈퇴' 
-					onclick='pageMoveDeleteFnc(${memberFileDto.no});'>
-				<input class='blackBtn' type='button' value='돌아가기' onClick='myInfoMoveFnc();'>
 			</form>
+				<input class='blackBtn' type='button' value='회원탈퇴' 
+					onclick='pageMoveDeleteFnc(5);'>
+<!-- 				<input class='blackBtn' type='button' value='회원탈퇴'  -->
+<%-- 					onclick='pageMoveDeleteFnc(${memberDto.memberNo});'> --%>
+				<input class='blackBtn' type='button' value='돌아가기' onClick='myInfoMoveFnc();'>
 		</div>
 	</div>
 </body>

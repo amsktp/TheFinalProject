@@ -37,24 +37,24 @@ $(document).ready(function(){
 	
 	<div id="pageName">내 정보</div>
 	
-		<div><span>이름: </span><span>${member.memberName}</span></div>
-		<div><span>이메일: </span><span>${member.memberEmail}</span></div>
-		<div><span>비밀번호: </span><span>${member.memberPassword}</span></div>
+		<div><span>이름: </span><span>${memberFileDto.memberName}</span></div>
+		<div><span>이메일: </span><span>${memberFileDto.memberEmail}</span></div>
+		<div><span>비밀번호: </span><span>${memberFileDto.memberPassword}</span></div>
 		<div>
 			<span>성별: </span>
 			<span>
-				<c:if test="${member.memberGender == 'M'}">
+				<c:if test="${memberFileDto.memberGender == 'M'}">
 								남자
 				</c:if>
-				<c:if test="${member.memberGender == 'F'}">
+				<c:if test="${memberFileDto.memberGender == 'F'}">
 								여자
 				</c:if>
 			</span>
 		</div>
-		<div><span>생년월일: </span><span><fmt:formatDate value="${member.memberBirthDate}" pattern="yyyy-MM-dd"/></span></div>
-		<div><span>국적: </span><span>${member.memberCountry}</span></div>
-	
-			<input type='button' value='수정하기' onClick='memberCheckMoveFnc();'>
+		<div><span>생년월일: </span><span><fmt:formatDate value="${memberFileDto.memberBirthDate}" pattern="yyyy-MM-dd"/></span></div>
+		<div><span>국적: </span><span>${memberFileDto.memberCountry}</span></div>
+		<input type="button" value="수정하기" onClick="location.href='/englishvillage/studentCheck.do'">
+
 	</div>
 		
 	

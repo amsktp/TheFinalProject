@@ -9,10 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.student.dao.StudentDao;
-import com.englishvillage.member.student.model.MemberDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
 
@@ -28,29 +27,32 @@ public class StudentServiceImpl implements StudentService {
 	private FileUtils fileUtils;
 
 	@Override
-	public Map<String, Object> memberSelect(int no) {
+	public Map<String, Object> SelectOne(String userEmail) {
 		// TODO Auto-generated method stub
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-
-		MemberDto memberDto = studentDao.memberSelect(no);
-
-		resultMap.put("MemberDto", memberDto);
-
+		
+		MemberFileDto memberFileDto = studentDao.SelectOne(userEmail);
+		
+		resultMap.put("MemberFileDto", memberFileDto);
+		
 		return resultMap;
 	}
 
+
 	@Override
-	public int memberUpdateOne(MemberFileDto memberFileDto) {
+	public int memberUpdateOne(MemberDto sessionMemberDto) {
+		// TODO Auto-generated method stub
 		int resultNum = 0;
-
-		try {
-			resultNum = studentDao.memberUpdateOne(memberFileDto);
-System.out.println("데이터베이스 빠져나옴"+resultNum);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-		}
-
+		resultNum= studentDao.memberUpdateOne(sessionMemberDto);
+		System.out.println("데이터베이스 빠져나옴"+resultNum);
 		return resultNum;
 	}
+
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return studentDao.memberDeleteOne(no);
+	}
+
 }
