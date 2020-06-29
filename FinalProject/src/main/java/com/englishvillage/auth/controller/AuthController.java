@@ -88,6 +88,19 @@ public class AuthController {
 		return "auth/commonRegisterComplete"; // jsp페이지로 이동할 경우
 	} 
 	
+	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
+	public String findPasswordComplete() {
+		log.info("*****Welcome findPasswordComplete!*****");
+		
+		return "auth/commonRegisterComplete";
+	} 
+	
+	@RequestMapping(value="/findPasswordCompleteCtr.do", method=RequestMethod.POST)
+	public String findPasswordCompleteCtr() {
+		log.info("*****Welcome findPasswordCompleteCtr!*****");
+		
+		return "redirect:/findPasswordComplete.do"; 
+	} 
 	
 	
 }

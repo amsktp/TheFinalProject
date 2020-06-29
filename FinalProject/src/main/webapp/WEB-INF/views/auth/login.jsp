@@ -59,7 +59,12 @@
 		location.href = "./commonRegister.do";
 	}
 
+	function moveFindPwd() {
+// 		location.href = "./.do";
+	}
 
+	
+	
 </script>
 
 
@@ -98,7 +103,7 @@
 				</div>
 				<div>
 					<div>
-						<input class="findPwdAndRegister" type="button" value="비밀번호찾기">
+						<input class="findPwdAndRegister" type="button" value="비밀번호찾기" onclick="moveFindPwd();">
 						<input class="findPwdAndRegister" type="button" value="회원가입" onclick="moveCommonRegister();">
 					</div>
 				</div>
