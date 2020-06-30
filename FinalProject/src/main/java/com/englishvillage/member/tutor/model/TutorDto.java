@@ -17,20 +17,24 @@ public class TutorDto {
 	private String memberGender;
 	private String memberBirthDate;
 	private String memberPoint;
-	
+	private int age;
 //	private int tutorNo;
 	private String tutorIntroduce;
 	private String youtubeUrl;
 	private String studyName;
 	private String price;
 	private String statusCheck;
+	private int score;
+	private String evaluationCount;
+	
+	
 	public TutorDto() {
 		super();
 	}
 	public TutorDto(int memberNo, String memberGrade, String memberEmail, String memberPassword, String memberName,
 			Date memberCreateDate, Date memberModifyDate, String memberCountry, String memberGender,
 			String memberBirthDate, String memberPoint, String tutorIntroduce, String youtubeUrl, String studyName,
-			String price, String statusCheck) {
+			String price, String statusCheck, int Age, int age, int score) {
 		super();
 		this.memberNo = memberNo;
 		this.memberGrade = memberGrade;
@@ -48,6 +52,16 @@ public class TutorDto {
 		this.studyName = studyName;
 		this.price = price;
 		this.statusCheck = statusCheck;
+		this.age = age;
+		this.score = score;
+	}
+
+
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 	public int getMemberNo() {
 		return memberNo;
@@ -145,14 +159,22 @@ public class TutorDto {
 	public void setStatusCheck(String statusCheck) {
 		this.statusCheck = statusCheck;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 	@Override
 	public String toString() {
 		return "TutorDto [memberNo=" + memberNo + ", memberGrade=" + memberGrade + ", memberEmail=" + memberEmail
 				+ ", memberPassword=" + memberPassword + ", memberName=" + memberName + ", memberCreateDate="
 				+ memberCreateDate + ", memberModifyDate=" + memberModifyDate + ", memberCountry=" + memberCountry
 				+ ", memberGender=" + memberGender + ", memberBirthDate=" + memberBirthDate + ", memberPoint="
-				+ memberPoint + ", tutorIntroduce=" + tutorIntroduce + ", youtubeUrl=" + youtubeUrl + ", studyName="
-				+ studyName + ", price=" + price + ", statusCheck=" + statusCheck + "]";
+				+ memberPoint + ", age=" + age + ", tutorIntroduce=" + tutorIntroduce + ", youtubeUrl=" + youtubeUrl
+				+ ", studyName=" + studyName + ", price=" + price + ", statusCheck=" + statusCheck + ", score=" + score
+				+ "]";
 	}
 	
 	

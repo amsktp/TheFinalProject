@@ -43,6 +43,22 @@ public class TutorDaoImpl implements TutorDao{
 		
 		return result;
 	}
-	
 
+	@Override
+	public TutorDto getTutorInfo(int no) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = sqlSession.selectOne(namespace + "getTutorInfo", no);
+				
+		return tutorDto;
+	}
+	
+	@Override
+	public TutorDto getTutorGrade(int no) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = sqlSession.selectOne(namespace + "getTutorGrade", no);
+				
+		return tutorDto;
+	}
 }

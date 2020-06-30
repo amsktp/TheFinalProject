@@ -29,31 +29,33 @@
 <!-- 	</sql> -->
 	
 	
-	<resultMap type="com.englishvillage.member.tutor.model.TutorDto" 
-		id="tutorResultMap">
-		
-		<result column="MEMBER_NO" property="memberNo"/>
-		<result column="MEMBER_GRADE" property="memberGrade"/>
-		<result column="MEMBER_EMAIL" property="memberEmail"/>
-		<result column="MEMBER_PASSWORD" property="memberPassword"/>
-		<result column="MEMBER_NAME" property="memberName"/>
-		<result column="MEMBER_CREATE_DATE" property="memberCreateDate"
-			javaType="java.util.Date"/>
-		<result column="MEMBER_MODIFY_DATE" property="memberModifyDate"
-			javaType="java.util.Date"/>
-		<result column="MEMBER_COUNTRY" property="memberCountry"	/>
-		<result column="MEMBER_GENDER" property="memberGender"	/>
-		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate"
-			javaType="java.util.Date"/>
-		<result column="MEMBER_POINT" property="memberPoint"	/>
-		
-		<result column="TUTOR_INTRODUCE" property="tutorIntroduce"	/>
-		<result column="YOUTUBE_URL" property="youtubeUrl"/>	
-		<result column="STUDY_NAME" property="studyName"/>	
-		<result column="PRICE" property="price"/>	
-		<result column="STATUS_CHECK" property="statusCheck"/>	
-	
-	</resultMap>
+		<resultMap type="com.englishvillage.member.tutor.model.TutorDto" 
+			id="tutorResultMap">
+  
+			<result column="MEMBER_NO" property="memberNo"/>
+			<result column="MEMBER_GRADE" property="memberGrade"/>
+			<result column="MEMBER_EMAIL" property="memberEmail"/>
+			<result column="MEMBER_PASSWORD" property="memberPassword"/>
+			<result column="MEMBER_NAME" property="memberName"/>
+			<result column="MEMBER_CREATE_DATE" property="memberCreateDate"
+			   javaType="java.util.Date"/>
+			<result column="MEMBER_MODIFY_DATE" property="memberModifyDate"
+			   javaType="java.util.Date"/>
+			<result column="MEMBER_COUNTRY" property="memberCountry"   />
+			<result column="MEMBER_GENDER" property="memberGender"   />
+			<result column="MEMBER_BIRTH_DATE" property="memberBirthDate"
+			   javaType="java.util.Date"/>
+			<result column="MEMBER_POINT" property="memberPoint"   />
+			
+			<result column="TUTOR_INTRODUCE" property="tutorIntroduce"   />
+			<result column="YOUTUBE_URL" property="youtubeUrl"/>   
+			<result column="STUDY_NAME" property="studyName"/>   
+			<result column="PRICE" property="price"/>   
+			<result column="STATUS_CHECK" property="statusCheck"/>   
+			<result column="SCORE_AVG" property="score"/>   
+			<result column="EVALUATION_COUNT" property="evaluationCount"	/>   
+   
+ 		</resultMap>
 	
 	
 	
@@ -96,7 +98,29 @@
 <!-- 		from member -->
 		
 <!-- 	</select> -->
+
+	<select id="getTutorInfo" parameterType="int"
+	resultMap="tutorResultMap">
+		
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_POINT, PRICE, 
+		FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE,
+		M.MEMBER_GRADE, M.MEMBER_COUNTRY
+		FROM MEMBER M, TUTOR_INFO T
+		WHERE M.MEMBER_NO = T.TUTOR_NO 
+		AND M.MEMBER_NO = #{no}
+		
+		
+	</select>
 	
+	<select id="getTutorGrade" parameterType="int"
+	resultMap="tutorResultMap">
+	
+		SELECT TUTOR_NO, AVG(SCORE) SCORE_AVG
+		FROM EVALUATION 
+		WHERE TUTOR_NO = #{no}
+		GROUP BY TUTOR_NO
+		
+	</select>
 	
 </mapper>
 

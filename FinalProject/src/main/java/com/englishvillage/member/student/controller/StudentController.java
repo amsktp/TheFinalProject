@@ -175,24 +175,24 @@ public class StudentController {
 		return "/member/student/qna/studentQnABoard";
 	}
 	
-	//문의 리스트
-	@RequestMapping(value = "/admin/questionlist.do"
-			, method = {RequestMethod.GET, RequestMethod.POST})
-	public String QuestionList(HttpSession session, Model model) {
-		log.info("Welcome QuestionList! ");
-
-		List<QuestionBoardDto> qusetionList = 
-				adminService.questionSelectList(searchOption, keyword
-				, start, end);
-
-
-		model.addAttribute("qusetionList", qusetionList);
-		
-		System.out.println("@@@@@@@#################" + keyword);
-		System.out.println("@@@@@@@#################" + searchOption);
-		
-		return "admin/qna/adminQnAList";
-	}
+//	//문의 리스트
+//	@RequestMapping(value = "/admin/questionlist.do"
+//			, method = {RequestMethod.GET, RequestMethod.POST})
+//	public String QuestionList(HttpSession session, Model model) {
+//		log.info("Welcome QuestionList! ");
+//
+//		List<QuestionBoardDto> qusetionList = 
+//				adminService.questionSelectList(searchOption, keyword
+//				, start, end);
+//
+//
+//		model.addAttribute("qusetionList", qusetionList);
+//		
+//		System.out.println("@@@@@@@#################" + keyword);
+//		System.out.println("@@@@@@@#################" + searchOption);
+//		
+//		return "admin/qna/adminQnAList";
+//	}
 
 	
 	

@@ -10,5 +10,9 @@ public interface TutorService {
 
 	public int tutorSelectTotalCount(String countrySearch, String ageSearch, String genderSearch, String keyword);
 
+	public TutorDto getTutorInfo(int no);
+
+	public TutorDto getTutorGrade(int no);
+
 
 }
