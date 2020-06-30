@@ -51,7 +51,7 @@ min-width: 172px;
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="naviUl" class="nav navbar-nav">
             <li><a href="#">튜터목록</a></li>
-            <li><a href="#">튜터신청</a></li>
+            <li><a href="tutorRegister.do">튜터신청</a></li>
             <li><a href="#">수강권</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>

@@ -45,24 +45,20 @@
 		font-size: 17px;
 		font-weight: bold;
 	}
-
 	.findPwdAndRegister {
 		width: 146px;
 		height: 40px;
 		margin-right: 10px;
  		font-weight: bold; 
 	}
-
 </style>
 <script type="text/javascript">
 	function moveCommonRegister() {
 		location.href = "./commonRegister.do";
 	}
-
 	function moveFindPwd() {
 // 		location.href = "./.do";
 	}
-
 	
 	
 </script>

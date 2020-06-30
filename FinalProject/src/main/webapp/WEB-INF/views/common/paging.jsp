@@ -85,8 +85,17 @@ nav > ul > li > a:hover {
 						<c:out value="${num}"/>
 					</a>
 				</li>
-				
 			</c:forEach>
+
+
+			<c:if test="${pagingMap.memberPaging.blockBegin eq 1 && pagingMap.memberPaging.blockEnd eq 0}">
+				<li id='pageButton1'>
+					<a href="#"
+						onclick="goPageFnc(1);">
+						<span>1</span>
+					</a>
+				</li>
+			</c:if>
 
 			<li>
 				<a href="#"
@@ -97,6 +106,3 @@ nav > ul > li > a:hover {
 		</ul>
 	</nav>
 
-	
-	
-	

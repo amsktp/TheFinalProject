@@ -1,5 +1,5 @@
-package com.englishvillage.member.tutor.model;
 
+package com.englishvillage.member.tutor.model;
 import java.util.Date;
 
 
@@ -25,9 +25,10 @@ public class TutorDto {
 	private String price;
 	private String statusCheck;
 	private int score;
-	private String evaluationCount;
 	
+	private int evaluationCount;
 	
+
 	public TutorDto() {
 		super();
 	}
@@ -56,13 +57,20 @@ public class TutorDto {
 		this.score = score;
 	}
 
-
+	
+	public int getEvaluationCount() {
+		return evaluationCount;
+	}
+	public void setEvaluationCount(int evaluationCount) {
+		this.evaluationCount = evaluationCount;
+	}
 	public int getScore() {
 		return score;
 	}
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
 	public int getMemberNo() {
 		return memberNo;
 	}

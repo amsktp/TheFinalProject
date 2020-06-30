@@ -28,7 +28,7 @@ public class TutorDaoImpl implements TutorDao{
 	}
 
 	@Override
-	public int tutorSelectTotalCount(String countrySearch, String ageSearch, String genderSearch, String keyword) {
+	public int tutorSelectTotalCount(String countrySearch, int ageSearch, String genderSearch, String keyword) {
 		// TODO Auto-generated method stub
 		
 		
@@ -43,6 +43,58 @@ public class TutorDaoImpl implements TutorDao{
 		
 		return result;
 	}
+
+	@Override
+	public List<TutorDto> getTutorList(String countrySearch, int ageSearch, String genderSearch, String keyword,
+			int start, int end) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("countrySearch", countrySearch);
+		map.put("ageSearch", ageSearch);
+		map.put("genderSearch", genderSearch);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<TutorDto> tutorDtoList = sqlSession.selectList(namespace + "getTutorList", map);
+		
+		return tutorDtoList;
+		
+	}
+
+	@Override
+	public int tutorSelectCurPage(String countrySearch, int ageSearch, String genderSearch, String keyword,
+			int no) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("countrySearch", countrySearch);
+		map.put("ageSearch", ageSearch);
+		map.put("genderSearch", genderSearch);
+		map.put("keyword", keyword);
+		map.put("no", no);
+		
+		return sqlSession.selectOne(namespace + "tutorSelectCurPage", map);
+	}
+
+	@Override
+	public int tutorRegister(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + "tutorRegister", tutorDto);
+	}
+
+	@Override
+	public int tutorUpdateGrade(int memberNo) {
+		// TODO Auto-generated method stub
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		
+		return sqlSession.update(namespace + "tutorUpdateGrade", map);
+		
+	}
+	
 
 	@Override
 	public TutorDto getTutorInfo(int no) {
@@ -61,4 +113,5 @@ public class TutorDaoImpl implements TutorDao{
 				
 		return tutorDto;
 	}
+
 }
