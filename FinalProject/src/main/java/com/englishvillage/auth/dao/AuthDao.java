@@ -7,5 +7,7 @@ public interface AuthDao {
 	public MemberDto memberExist(String memberEmail, String memberPassword);
 
 	public int memberInsertOne(MemberDto memberDto);
+
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate);
 }
 

@@ -34,10 +34,6 @@
 		margin-top: 30px;
 	}
 
-	span {
-
-	}
-
 </style>
 <script type="text/javascript">
 	function moveLoginBtn() {
