@@ -1,6 +1,5 @@
 package com.englishvillage.member.student.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -62,7 +61,19 @@ public class StudentController {
 		return "/member/student/info/studentCheckPassword";
 	}
 
-
+//	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+//	public String memberUpdate(int no, Model model) {
+//
+//		log.info("call studentUpdate! ", no);
+//
+//		Map<String, Object> map = studentService.memberSelect(no);
+//		System.out.println("맵이다" + map);
+//		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+//		System.out.println("memberFileDto다" + memberFileDto);
+//		model.addAttribute("MemberFileDto", memberFileDto);
+//		
+//		return "/member/student/info/studentInfoRevise";
+//	}
 	
 	@RequestMapping(value = "update.do", method = RequestMethod.GET)
 	public String memberUpdate(HttpSession session, Model model) {
@@ -114,7 +125,17 @@ public class StudentController {
 		return "/member/student/info/studentWithdraw";
 	}
 	
-
+//	// 회원 삭제
+//	@RequestMapping(value="deleteCtr.do", method = RequestMethod.GET)
+//	public String memberDeleteCtr(int no, Model model) {
+//		
+//		log.info("call memberDeleteCtr! " + no);
+//		
+//		studentService.memberDeleteOne(no);
+//		
+////		return "redirect:/member/list.do";
+//		return "/member/student/info/delete";
+//	}
 	
 	// 회원 삭제
 	@RequestMapping(value="deleteCtr.do", method = RequestMethod.GET)
@@ -141,19 +162,13 @@ public class StudentController {
 	
 
 
-	@RequestMapping(value = "myStudy.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studyPage(Locale locale, Model model) {
 
-		return "/member/student/info/studentStudyInfo";
-	}
-
-	@RequestMapping(value = "myQNA.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String qnaPage(Locale locale, Model model) {
-
-		return "/member/student/qna/studentQnABoard";
+		return "/member/student/qna/studentQnARead";
 	}
 	
-	//문의 리스트
+//	//문의 리스트
 //	@RequestMapping(value = "/admin/questionlist.do"
 //			, method = {RequestMethod.GET, RequestMethod.POST})
 //	public String QuestionList(HttpSession session, Model model) {
@@ -171,7 +186,69 @@ public class StudentController {
 //		
 //		return "admin/qna/adminQnAList";
 //	}
+	
+	//문의 상세읽기
+			@RequestMapping(value = "QuestionSelect.do", method = {RequestMethod.GET, RequestMethod.POST})
+			public String QuestionList(int idx, HttpSession session, Model model) {
+				log.info("Welcome MemberList! " + idx);
+				System.out.println("뭔데에ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ");
+				System.out.println("뭔데 뭔데"+idx);
 
+				Map<String, Object> map = studentService.QuestionSelect(idx);
+				System.out.println("여긴 맵이야2"+map);
+				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
+				System.out.println("넣을값2"+ questionBoardDto);
+				model.addAttribute("questionBoardDto", questionBoardDto);
+				
+				return "/member/student/qna/studentQnARead";
+			}
+			
+			
+			@RequestMapping(value = "QuestionList.do", method = {RequestMethod.GET, RequestMethod.POST})
+			public String QuestionList(@RequestParam(defaultValue = "1") 
+					int curPage
+					, @RequestParam(defaultValue = "0") int no
+					, HttpSession session, Model model) {
+				log.info("Welcome MemberList! " + curPage);
+				// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
+				System.out.println("no는 도대체 무슨값일까??"+no);
+				// 페이징을 위한 전체 회원목록 갯수
+				int totalCount = 0;
+				MemberDto sessionMemberDto 
+				= (MemberDto)session.getAttribute("member");
+				no = sessionMemberDto.getMemberNo();
+				
+				System.out.println("세션으로 변경된 넘버는??"+no);
+				
+				totalCount = studentService.studentQuestionCount(no);
+				System.out.println("totalCount는 도대체 무슨값일까??"+totalCount);
+				
+				
+//				이전 체이지로 회원으이 번호가 명확하게 나온경우
+//				자신의 curPage 찾는 로직
+//				if(no != 0) {
+//					curPage
+//						= studentService.questionSelectCurPage(no, idx);
+//				}
+//				
+//				
+//				Paging memberPaging = new Paging(totalCount, curPage);
+//				int start = memberPaging.getPageBegin();
+//				int end = memberPaging.getPageEnd();
+////				
+				List<QuestionBoardDto> qusetionList = 
+						studentService.questionSelectList(1, 5);
+//						
+//				// 페이징
+//				Map<String, Object> pagingMap = new HashMap<>();
+//				pagingMap.put("totalCount", totalCount);
+//				pagingMap.put("memberPaging", memberPaging);
+//
+				model.addAttribute("qusetionList", qusetionList);
+//				model.addAttribute("pagingMap", pagingMap);
+				
+				return "/member/student/qna/studentQnABoard";
+			}
 	
 	
 	// 테스트 페이지

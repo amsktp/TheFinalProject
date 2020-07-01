@@ -64,28 +64,127 @@
 
 	</resultMap>
 
+	<resultMap
+		type="com.englishvillage.member.admin.model.QuestionBoardDto"
+		id="questionListResultMap">
+
+
+		<result column="IDX" property="idx" />
+		<result column="MEMBER_NO" property="no" />
+		<result column="MEMBER_NAME" property="name" />
+		<result column="TITLE" property="title" />
+		<result column="CONTENT" property="content" />
+		<result column="BOARD_CREATE_DATE" property="boardCreateDate" />
+		<result column="BOARD_MODIFY_DATE" property="boardModDate" />
+		<result column="ANSWER_STATUS" property="answerStatus" />
+		<result column="MEMBER_GRADE" property="grade" />
+	</resultMap>
+
 	<select id="SelectOne" parameterType="String"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, MEMBER_GRADE,
 		MEMBER_POINT
-		, MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_PASSWORD, MEMBER_BIRTH_DATE
+		, MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_PASSWORD,
+		MEMBER_BIRTH_DATE
 		FROM MEMBER
 		WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
 
 	<update id="memberUpdateOne" parameterType="MemberDto">
 		UPDATE MEMBER
-		SET MEMBER_PASSWORD = #{memberPassword},
+		SET
+		MEMBER_PASSWORD = #{memberPassword},
 		MEMBER_MODIFY_DATE =
 		SYSDATE
-		WHERE MEMBER_EMAIL = #{memberEmail}
+		WHERE
+		MEMBER_EMAIL = #{memberEmail}
 	</update>
-	
-	<delete id="memberDeleteOne" parameterType="int" >
-		DELETE FROM MEMBER
+
+	<delete id="memberDeleteOne" parameterType="int">
+		DELETE FROM
+		MEMBER
 		WHERE MEMBER_NO = #{memberNo}
 	</delete>
 
+	<!-- <select id="studentQuestionCount" resultMap="questionListResultMap" -->
+	<!-- parameterType="map"> -->
+	<!-- SELECT COUNT(*) -->
+	<!-- FROM QUESTION_BOARD -->
+	<!-- WHERE MEMBER_NO = -->
+	<!-- #{no} -->
+	<!-- </select> -->
+
+	<select id="studentQuestionCount" parameterType="int"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM QUESTION_BOARD
+		WHERE MEMBER_NO =
+		#{no}
+	</select>
+
+	<select id="memberSelectCurPage" parameterType="map"
+		resultType="int">
+		SELECT FLOOR((RNUM-1) / 10)+1 no
+		FROM ( SELECT ROWNUM RNUM,
+		MEMBER_NO, IDX
+		FROM ( SELECT M.MEMBER_NO MEMBER_NO, Q.IDX IDX
+		FROM
+		MEMBER M INNER JOIN QUESTION_BOARD Q
+		ON M.MEMBER_NO = Q.MEMBER_NO
+		ORDER
+		BY IDX DESC) H)
+		WHERE MEMBER_NO = #{no}
+		AND IDX = #{idx}
+	</select>
+
+	<select id="questionSelectList" parameterType="map"
+		resultMap="questionListResultMap">
+
+		SELECT MQ.RNUM, MQ.IDX, MQ.MEMBER_NO, MQ.MEMBER_NAME, MQ.TITLE, MQ.CONTENT,
+		MQ.BOARD_CREATE_DATE, MQ.BOARD_MODIFY_DATE, MQ.ANSWER_STATUS,
+		MQ.MEMBER_GRADE
+		FROM (
+		SELECT ROWNUM RNUM, Q.IDX, Q.MEMBER_NO,
+		Q.MEMBER_NAME, Q.TITLE, Q.CONTENT,
+		Q.BOARD_CREATE_DATE,
+		Q.BOARD_MODIFY_DATE,
+		Q.ANSWER_STATUS,Q.MEMBER_GRADE
+		FROM (SELECT
+		QUESTION_BOARD.IDX, QUESTION_BOARD.MEMBER_NO, MEMBER.MEMBER_NAME,
+		QUESTION_BOARD.TITLE,
+		QUESTION_BOARD.CONTENT,
+		QUESTION_BOARD.BOARD_CREATE_DATE, QUESTION_BOARD.BOARD_MODIFY_DATE,
+		QUESTION_BOARD.ANSWER_STATUS,
+		MEMBER.MEMBER_GRADE
+		FROM MEMBER LEFT OUTER
+		JOIN QUESTION_BOARD
+		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
+		WHERE MEMBER.MEMBER_NO = 2
+		ORDER BY IDX DESC) Q
+		) MQ
+		WHERE MQ.RNUM
+		BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="QuestionSelect" parameterType="java.lang.Integer"
+		resultMap="questionListResultMap">
+        SELECT QUESTION_BOARD.IDX, QUESTION_BOARD.MEMBER_NO, MEMBER.MEMBER_NAME,
+		QUESTION_BOARD.TITLE,
+		QUESTION_BOARD.CONTENT, QUESTION_BOARD.BOARD_CREATE_DATE, QUESTION_BOARD.BOARD_MODIFY_DATE,
+		QUESTION_BOARD.ANSWER_STATUS,
+		MEMBER.MEMBER_GRADE, member.member_name
+		FROM MEMBER LEFT OUTER JOIN QUESTION_BOARD
+		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
+        WHERE IDX = #{idx}
+	</select>
+
+
+
+
+
+
+
+	
 </mapper>
 
 

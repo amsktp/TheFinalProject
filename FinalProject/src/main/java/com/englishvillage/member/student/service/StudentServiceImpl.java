@@ -1,6 +1,7 @@
 package com.englishvillage.member.student.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.student.dao.StudentDao;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
@@ -34,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
 		MemberFileDto memberFileDto = studentDao.SelectOne(userEmail);
 		
 		resultMap.put("MemberFileDto", memberFileDto);
-		
 		return resultMap;
 	}
 
@@ -59,6 +60,49 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public int memberDeleteOne(int no) {
 		return studentDao.memberDeleteOne(no);
+	}
+
+
+	@Override
+	public int studentQuestionCount(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentQuestionCount! {}", no);
+		System.out.println("dddddddddddddddddddddddddddddddddddd");
+		return studentDao.studentQuestionCount(no);
+	}
+
+
+	@Override
+	public int questionSelectCurPage(int no) {
+		// TODO Auto-generated method stub
+		return studentDao.questionSelectCurPage(no);
+	}
+
+
+	@Override
+	public List<QuestionBoardDto> questionSelectList(int start, int end) {
+		// TODO Auto-generated method stub
+		
+		List<QuestionBoardDto> qusetionList = 
+				studentDao.questionSelectList(start, end);
+		
+		return qusetionList;
+	}
+
+
+	@Override
+	public Map<String, Object> QuestionSelect(int idx) {
+		// TODO Auto-generated method stub
+		System.out.println("asdddddddddddddddddddddddddddddddd");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		System.out.println(resultMap);
+		QuestionBoardDto questionBoardDto = studentDao.QuestionSelect(idx);
+		System.out.println("questionBoardDto는는ㅁㅇㅁㄴㅇㅁㄴㅇㅁ서비스ㄴㅇ"+questionBoardDto);
+		resultMap.put("QuestionBoardDto", questionBoardDto);
+		System.out.println("resultMap는는ㅁㅇㅁㄴㅇㅁㄴㅇㅁ리설트맵서비스ㄴㅇ"+resultMap.get("QuestionBoardDto"));
+		
+		return resultMap;
 	}
 
 
