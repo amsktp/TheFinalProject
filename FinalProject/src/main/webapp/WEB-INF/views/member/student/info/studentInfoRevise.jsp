@@ -25,10 +25,10 @@ $(document).ready(function(){
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
-	
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
+
 	<div id="pageSize">
-	<jsp:include page="/WEB-INF/views/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
 	
 
 	<div id="myPageBox">

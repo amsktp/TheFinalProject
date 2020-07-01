@@ -65,7 +65,7 @@
 	</resultMap>
 
 	<resultMap
-		type="com.englishvillage.member.admin.model.QuestionBoardDto"
+		type="com.englishvillage.member.student.model.QuestionBoardDto"
 		id="questionListResultMap">
 
 
@@ -78,6 +78,9 @@
 		<result column="BOARD_MODIFY_DATE" property="boardModDate" />
 		<result column="ANSWER_STATUS" property="answerStatus" />
 		<result column="MEMBER_GRADE" property="grade" />
+		<result column="COMMENT_CREATE_DATE"
+			property="commentCreateDate" />
+		<result column="REPLY" property="reply" />
 	</resultMap>
 
 	<select id="SelectOne" parameterType="String"
@@ -140,11 +143,14 @@
 	<select id="questionSelectList" parameterType="map"
 		resultMap="questionListResultMap">
 
-		SELECT MQ.RNUM, MQ.IDX, MQ.MEMBER_NO, MQ.MEMBER_NAME, MQ.TITLE, MQ.CONTENT,
-		MQ.BOARD_CREATE_DATE, MQ.BOARD_MODIFY_DATE, MQ.ANSWER_STATUS,
+		SELECT MQ.RNUM, MQ.IDX, MQ.MEMBER_NO, MQ.MEMBER_NAME,
+		MQ.TITLE, MQ.CONTENT,
+		MQ.BOARD_CREATE_DATE, MQ.BOARD_MODIFY_DATE,
+		MQ.ANSWER_STATUS,
 		MQ.MEMBER_GRADE
 		FROM (
-		SELECT ROWNUM RNUM, Q.IDX, Q.MEMBER_NO,
+		SELECT ROWNUM RNUM, Q.IDX,
+		Q.MEMBER_NO,
 		Q.MEMBER_NAME, Q.TITLE, Q.CONTENT,
 		Q.BOARD_CREATE_DATE,
 		Q.BOARD_MODIFY_DATE,
@@ -168,23 +174,31 @@
 
 	<select id="QuestionSelect" parameterType="java.lang.Integer"
 		resultMap="questionListResultMap">
-        SELECT QUESTION_BOARD.IDX, QUESTION_BOARD.MEMBER_NO, MEMBER.MEMBER_NAME,
-		QUESTION_BOARD.TITLE,
-		QUESTION_BOARD.CONTENT, QUESTION_BOARD.BOARD_CREATE_DATE, QUESTION_BOARD.BOARD_MODIFY_DATE,
-		QUESTION_BOARD.ANSWER_STATUS,
-		MEMBER.MEMBER_GRADE, member.member_name
-		FROM MEMBER LEFT OUTER JOIN QUESTION_BOARD
-		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
-        WHERE IDX = #{idx}
+		SELECT *
+		FROM MEMBER M
+		LEFT OUTER JOIN QUESTION_BOARD Q ON
+		M.MEMBER_NO = q.member_no
+		LEFT OUTER JOIN question_board_comment C ON
+		Q.IDX = C.IDX
+		WHERE Q.IDX = #{idx}
 	</select>
 
+	<update id="QuestionRevise" parameterType="MemberDto">
+		UPDATE QUESTION_BOARD
+		SET
+		TITLE = #{title},
+        CONTENT = #{content},
+		BOARD_MODIFY_DATE =
+		SYSDATE
+		WHERE
+		IDX = #{idx}
+	</update>
 
 
 
 
 
 
-	
 </mapper>
 
 

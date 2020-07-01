@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.dao.StudentDao;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
@@ -93,14 +93,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Map<String, Object> QuestionSelect(int idx) {
 		// TODO Auto-generated method stub
-		System.out.println("asdddddddddddddddddddddddddddddddd");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		System.out.println(resultMap);
 		QuestionBoardDto questionBoardDto = studentDao.QuestionSelect(idx);
-		System.out.println("questionBoardDto는는ㅁㅇㅁㄴㅇㅁㄴㅇㅁ서비스ㄴㅇ"+questionBoardDto);
 		resultMap.put("QuestionBoardDto", questionBoardDto);
-		System.out.println("resultMap는는ㅁㅇㅁㄴㅇㅁㄴㅇㅁ리설트맵서비스ㄴㅇ"+resultMap.get("QuestionBoardDto"));
 		
 		return resultMap;
 	}

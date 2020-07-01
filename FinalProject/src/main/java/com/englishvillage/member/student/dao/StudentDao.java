@@ -3,7 +3,7 @@ package com.englishvillage.member.student.dao;
 import java.util.List;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 
 public interface StudentDao {

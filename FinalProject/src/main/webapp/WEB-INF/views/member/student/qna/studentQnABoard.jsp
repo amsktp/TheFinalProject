@@ -73,13 +73,16 @@ table, tr, td, th {
 		return false;
 	}
 	
-	function QnAReadFnc(){
-		var idxObj = $('#idxVal');
+	function QnAReadFnc(obj){
+		var aTagObj = $(obj);
 		
 		var url = '';
+		var memberNoObj = '';
 		
+		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0).children();
+
 		url += './QuestionSelect.do?';
-		url += 'idx=' + parseInt(idxObj.html());
+		url += 'idx=' + memberNoObj.html();
 		
 		location.href = url;
 	}
@@ -87,10 +90,10 @@ table, tr, td, th {
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
 
 		<div id="myPageBox">
 
@@ -110,7 +113,7 @@ table, tr, td, th {
 					<tr>
 						<td><div id="idxVal" class="td_status">${questionDto.idx}</div></td>
 						<td><div class="td_status">
-								<a href="#" onclick="QnAReadFnc();"
+								<a href="#" onclick="QnAReadFnc(this);"
 									style="color: black;"> ${questionDto.title} </a>
 							</div></td>
 

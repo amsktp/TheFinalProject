@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 
 

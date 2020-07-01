@@ -18,10 +18,9 @@ table, tr, td, th {
 }
 
 #qnaReadBox {
-
-width: 1100px;
-height: 600px;
-border: 1px solid #707070;
+	width: 1100px;
+	height: 600px;
+	border: 1px solid #707070;
 }
 </style>
 
@@ -33,22 +32,18 @@ border: 1px solid #707070;
 	$(document).ready(function() {
 		$('.layoutUl').children().eq(3).addClass('on');
 
-
 	});
-	
 </script>
-	
-<style type="text/css">
-	
 
+<style type="text/css">
 </style>
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
 
 
 		<div id="myPageBox">
@@ -57,69 +52,77 @@ border: 1px solid #707070;
 
 			<div id="qnaReadBox">
 
-<table summary="나의문의하기 답변">
-				<caption>나의문의하기 답변</caption>
-						<tr>
-							<th scope="row">문의번호</th>
-							<td><div>${questionBoardDto.idx}</div></td>
-							<th scope="row">문의일</th>
-							<td><div>${questionBoardDto.boardCreateDate}</div></td>
-						</tr>
-						<tr>
-							<th scope="row">문의 주제</th>
-							<td colspan="3">
-								<div>${questionBoardDto.title}</div>
-							</td>
-						</tr>
-						<tr>
+				<table summary="나의문의하기 답변">
+					<caption>나의문의하기 답변</caption>
+
+					<tr>
+						<th scope="row">문의번호</th>
+						<td><div>${questionBoardDto.idx}</div></td>
+						<th scope="row">문의일</th>
+						<td><div>
+								<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
+									pattern="yyyy-MM-dd a hh:mm:ss" />
+							</div></td>
+					</tr>
+
+					<tr>
+						<th scope="row">제목</th>
+						<td colspan="3">
+							<div>${questionBoardDto.title}</div>
+
+						</td>
+					</tr>
+					<tr>
 						<th>내용</th>
 						<td colspan="3">
 							<div>${questionBoardDto.content}</div>
+							<div>
+								<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
+									pattern="yyyy-MM-dd a hh:mm:ss" />
+							</div>
 						</td>
-						
+					</tr>
+					<c:choose>
+						<c:when test="${not empty questionBoardDto.reply}">
+							<tr>
+								<th>답변</th>
+								<td colspan="3">
+									<div>${questionBoardDto.reply}</div>
+									<div>
+										<fmt:formatDate value="${questionBoardDto.commentCreateDate}"
+											pattern="yyyy-MM-dd a hh:mm:ss" />
+									</div>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+
+						</c:otherwise>
+					</c:choose>
 				</table>
 
-</div>
+				<c:choose>
 
-<!-- 			<table> -->
-<!-- 				<tr> -->
-<!-- 					<th class='thCenter'>문의번호</th> -->
-<!-- 					<th class='thCenter'>내용</th> -->
-<!-- 					<th class='thCenter'>문의일</th> -->
-<!-- 					<th class='thCenter'>답변상태</th> -->
+					<c:when test="${empty questionBoardDto.reply}">
+
+					</c:when>
+				</c:choose>
 
 
-<!-- 				</tr> -->
+				<form action="QuestionRevise.do" method="post">
+					<input type="hidden" name="idx" value="${questionBoardDto.idx}">
+					<input type="hidden" name="title" value="${questionBoardDto.title}">
+					<input type="hidden" name="content"
+						value="${questionBoardDto.content}"> <input type="hidden"
+						name="boardModDate" value="${questionBoardDto.boardModDate}">
+						
+						<input type="button" onClick="location.href='/englishvillage/QuestionRevise.do?idx=3'">
+					<input type="submit" value="수정하기"> <input type="button"
+						value="목록"
+						onClick="location.href='/englishvillage/QuestionList.do'">
 
-<%-- 				<c:forEach var="questionDto" items="${qusetionList}"> --%>
-<!-- 					<tr> -->
-<%-- 						<td><div class="td_status">${questionDto.idx}</div></td> --%>
-<!-- 						<td><div class="td_status"> -->
-<!-- 								<a href="#" onclick="listOnePageFnc(this, event);" -->
-<%-- 									style="color: black;"> ${questionDto.title} </a> --%>
-<!-- 							</div></td> -->
-
-
-<!-- 						<td><div class="td_status"> -->
-<%-- 								<fmt:formatDate value="${questionDto.boardCreateDate}" --%>
-<%-- 									pattern="yyyy-MM-dd" /> --%>
-<!-- 							</div></td> -->
-
-<!-- 						<td> -->
-<!-- 							<div class="td_status"> -->
-<%-- 								<c:if test="${questionDto.answerStatus == 'Y'}"> --%>
-<!-- 									답변완료 -->
-<%-- 								</c:if> --%>
-<%-- 								<c:if test="${questionDto.answerStatus == 'N'}"> --%>
-<!-- 									답변대기중 -->
-<%-- 								</c:if> --%>
-<!-- 							</div> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- 				</c:forEach> --%>
-
-<!-- 			</table> -->
-
+				</form>
+			</div>
 		</div>
 	</div>
 

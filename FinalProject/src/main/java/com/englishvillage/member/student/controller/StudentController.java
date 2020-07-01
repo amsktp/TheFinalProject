@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.service.StudentService;
 import com.englishvillage.util.Paging;
@@ -165,7 +165,7 @@ public class StudentController {
 	@RequestMapping(value = "studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studyPage(Locale locale, Model model) {
 
-		return "/member/student/qna/studentQnARead";
+		return "/member/student/qna/studentStudyInfo";
 	}
 	
 //	//문의 리스트
@@ -186,23 +186,6 @@ public class StudentController {
 //		
 //		return "admin/qna/adminQnAList";
 //	}
-	
-	//문의 상세읽기
-			@RequestMapping(value = "QuestionSelect.do", method = {RequestMethod.GET, RequestMethod.POST})
-			public String QuestionList(int idx, HttpSession session, Model model) {
-				log.info("Welcome MemberList! " + idx);
-				System.out.println("뭔데에ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ");
-				System.out.println("뭔데 뭔데"+idx);
-
-				Map<String, Object> map = studentService.QuestionSelect(idx);
-				System.out.println("여긴 맵이야2"+map);
-				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
-				System.out.println("넣을값2"+ questionBoardDto);
-				model.addAttribute("questionBoardDto", questionBoardDto);
-				
-				return "/member/student/qna/studentQnARead";
-			}
-			
 			
 			@RequestMapping(value = "QuestionList.do", method = {RequestMethod.GET, RequestMethod.POST})
 			public String QuestionList(@RequestParam(defaultValue = "1") 
@@ -250,6 +233,46 @@ public class StudentController {
 				return "/member/student/qna/studentQnABoard";
 			}
 	
+			//문의 상세읽기
+			@RequestMapping(value = "QuestionSelect.do", method = {RequestMethod.GET, RequestMethod.POST})
+			public String QuestionList(int idx, HttpSession session, Model model) {
+				log.info("Welcome MemberList! " + idx);
+
+				Map<String, Object> map = studentService.QuestionSelect(idx);
+				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
+				model.addAttribute("questionBoardDto", questionBoardDto);
+				
+				return "/member/student/qna/studentQnARead";
+			}
+			
+			//문의 수정
+			@RequestMapping(value = "QuestionRevise.do", method = {RequestMethod.GET, RequestMethod.POST})
+			public String QuestionRevise(QuestionBoardDto questionBoardDto, int idx, HttpSession session, Model model) {
+				log.info("Welcome QuestionRevise.do! ");
+				System.out.println("뭐야 왜 암것도 안나와");
+				System.out.println(questionBoardDto);
+				System.out.println(idx);
+				
+
+//				int resultNum = 0;
+//				MemberDto sessionMemberDto 
+//				= (MemberDto)session.getAttribute("member");
+//				sessionMemberDto.setMemberPassword(memberPassword);
+//				System.out.println("업데이트에서 세션 만들기 성공"+sessionMemberDto);
+//				
+//				resultNum = studentService.memberUpdateOne(sessionMemberDto);
+//				
+//				System.out.println("업데이트 결과값"+resultNum);
+//				
+//				System.out.println("업데이트 완료 세션값"+session.getAttribute("member"));
+//				
+//				
+//				Map<String, Object> map = studentService.QuestionRevise(idx);
+//				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
+//				model.addAttribute("questionBoardDto", questionBoardDto);
+				
+				return "redirect:/member/student/qna/studentQnABoard";
+			}
 	
 	// 테스트 페이지
 	@RequestMapping(value="test.do", method = RequestMethod.GET)

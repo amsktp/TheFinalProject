@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 
 public interface StudentService {
 
