@@ -38,4 +38,10 @@ public class AuthDaoImpl implements AuthDao{
 		
 	}
 
+	@Override
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -36,5 +36,15 @@ public class AuthServiceImpl implements AuthService{
 		return memberNo;
 		
 	}
+
+	@Override
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) {
+		// TODO Auto-generated method stub
+		
+		MemberDto memberDto = authDao.memberFindPassword(memberName, memberEmail, memberBirthDate);
+		
+		return memberDto;
+		
+	}
 	
 }

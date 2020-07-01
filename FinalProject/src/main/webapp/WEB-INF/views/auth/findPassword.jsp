@@ -28,16 +28,15 @@
 		font-size: 40px;
 		font-weight: bold;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-bottom: 60px;
 		border: 1px dotted blue;
 	}
 	
-	#subTitleBox {
-		font-size: 40px;
+	#secondTitleBox {
+		font-size: 25px;
 		font-weight: bold;
-		text-align: center;
-		margin-bottom: 20px;
-		border: 1px dotted blue;
+		padding-left: 37px;
+		margin-bottom: 20px;		
 	}
 	
 	.oneBarInputBox {
@@ -48,8 +47,7 @@
 	
 	.wrapInputBox {
 		display: flex; 
-		justify-content: flex-start;
-		margin-bottom: 10px;
+		justify-content: flex-start;		
 	}
 	
 	.twoBarInputBoxBtn {
@@ -109,7 +107,7 @@
 					<div>
 						생년월일
 					</div>
-					<div>
+					<div style="margin-bottom: 20px;">
 						<input class="oneBarInputBox" type="date" name="birthDate" placeholder="생년월일을 입력하세요">
 					</div>
 					<div class="wrapInputBox">

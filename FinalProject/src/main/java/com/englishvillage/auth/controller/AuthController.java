@@ -85,7 +85,7 @@ public class AuthController {
 	public String commonRegisterComplete() {
 		log.info("*****Welcome CommonRegisterComplete!*****");
 		
-		return "auth/commonRegisterComplete"; // jsp페이지로 이동할 경우
+		return "auth/commonRegisterComplete"; // jsp 페이지로 이동
 	} 
 	
 	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
@@ -96,11 +96,21 @@ public class AuthController {
 	} 
 	
 	@RequestMapping(value="/findPasswordCompleteCtr.do", method=RequestMethod.POST)
-	public String findPasswordCompleteCtr() {
+	public String findPasswordCompleteCtr(String memberName, String memberEmail, 
+			String memberBirthDate, HttpSession session, Model model) {
 		log.info("*****Welcome findPasswordCompleteCtr!*****");
 		
-		return "redirect:/findPasswordComplete.do"; 
+		String viewUrl = "";
+		MemberDto memberDto = authService.memberFindPassword(memberName, memberEmail, memberBirthDate);
+		
+		if(memberDto != null) {
+			session.setAttribute("member", memberDto); //memberDto를 member변수로 담는다.
+			viewUrl = "redirect:/login.do";
+		} else {
+			viewUrl = "redirect:/findPasswordComplete.do";
+		}
+		return viewUrl;
+		 
 	} 
-	
 	
 }

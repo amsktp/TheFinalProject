@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>회원가입 성공</title>
+<title>비밀번호 찾기 성공</title>
 <style type="text/css">
 	
 	#mainBox {
