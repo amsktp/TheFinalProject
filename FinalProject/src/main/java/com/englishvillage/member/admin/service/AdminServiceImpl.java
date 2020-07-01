@@ -10,7 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.member.admin.dao.AdminDao;
 import com.englishvillage.member.admin.model.MemberListDto;
@@ -54,6 +55,57 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return adminDao.studentSelectCurPage(searchOption, keyword, no);
 	}
+	
+	@Override
+	public int memberStudentUpdateOne(MemberListDto memberListDto,
+			MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx) throws Exception {
+		// TODO Auto-generated method stub
+				int resultNum = 0;
+				
+				try {
+					
+//					int parentSeq = memberListDto.getNo();
+					//if문을 위한것(2번째 if문)
+					
+//					Map<String, Object> tempFileMap = 
+//							adminDao.fileSelectStoredFileName(parentSeq);
+					
+					//for문을 위한것
+//					List<Map<String, Object>> list = 
+//							fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+					
+					// 오로지 하나만 관리 수정
+//					if (list.isEmpty() == false) {
+//						
+//						for (Map<String, Object> map : list) {
+//							adminDao.insertFile(map);
+//						}
+//						
+//						if (tempFileMap != null) {
+//							adminDao.fileDelete(parentSeq);
+//							fileUtils.parseUpdateFileInfo(tempFileMap);
+//						}
+//						
+//					}else if (fileIdx == -1) {
+//						if (tempFileMap != null) {
+//							adminDao.fileDelete(parentSeq);
+//							fileUtils.parseUpdateFileInfo(tempFileMap);
+//						}
+//					}
+					
+					//부모를 바꾸기 전에 자식을 바꾸는 형태(참조무결성 제약조건을 생각해야 하는 부분이다)
+					
+					
+					resultNum = adminDao.memberStudentUpdateOne(memberListDto);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+//					TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+					System.out.println("오류");
+				}
+				
+				return resultNum;
+			}
 	
 	//튜터
 	@Override
@@ -135,6 +187,9 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	
 	
 	
 }

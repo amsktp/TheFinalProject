@@ -147,10 +147,24 @@
    <select id="memberStudentSelectOne" parameterType="int"
       resultMap="memberListResultMap">
       SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
-             ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT
+             ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT,MEMBER_PASSWORD
       FROM MEMBER
       WHERE MEMBER_NO = #{no}   
    </select>
+   
+   <update id="memberStudentUpdateOne" parameterType="com.englishvillage.member.admin.model.MemberListDto">
+      UPDATE MEMBER SET 
+
+         MEMBER_EMAIL = #{email},
+         MEMBER_NAME = #{name},
+         MEMBER_PASSWORD = #{password},
+         MEMBER_GENDER = #{gender},
+         MEMBER_COUNTRY = #{country},
+         MEMBER_BIRTH_DATE = #{birthDate},
+         MEMBER_MODIFY_DATE = SYSDATE
+  
+      WHERE MEMBER_NO = #{no}
+   </update>
    
    <select id="tutorSelectList" parameterType="map"
       resultMap="memberListResultMap">

@@ -34,6 +34,23 @@ public class MemberListDto {
 	}
 	
 
+	
+
+	public MemberListDto(int no, String name, String email, String password, Date modifiedDate, Date birthDate,
+			String country, String gender) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.modifiedDate = modifiedDate;
+		this.birthDate = birthDate;
+		this.country = country;
+		this.gender = gender;
+	}
+
+
+
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
@@ -53,8 +70,8 @@ public class MemberListDto {
 		this.point = point;
 		this.score = score;
 		this.tutorNo = tutorNo;
-		url = url;
-		Price = price;
+		this.url = url;
+		this.Price = price;
 		this.idx = idx;
 		this.parentSeq = parentSeq;
 		this.originalFileName = originalFileName;
@@ -62,6 +79,8 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
+	
+	
 
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
@@ -266,9 +285,15 @@ public class MemberListDto {
 	@Override
 	public String toString() {
 		return "MemberListDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", idx=" + idx + ", parentSeq="
+				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", birthDate=" + birthDate
+				+ ", country=" + country + ", gender=" + gender + ", grade=" + grade + ", point=" + point + ", score="
+				+ score + ", tutorNo=" + tutorNo + ", url=" + url + ", Price=" + Price + ", idx=" + idx + ", parentSeq="
 				+ parentSeq + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
 				+ ", fileSize=" + fileSize + ", creDate=" + creDate + "]";
 	}
+
+
+
+	
 
 }

@@ -42,27 +42,29 @@
 	
 	<h1>회원정보 상세조회</h1>
 	
-	<form action='./update.do' method='get' style="margin-top: 200px;">
-		번호: ${memberListDto.no}<br>
-		이메일: ${memberListDto.email}<br>
-		비밀번호: ${memberListDto.password}<br>
-		성별: ${memberListDto.gender}<br>
-		생년월일: ${memberListDto.birthDate}<br>
-<%-- 		언어: ${memberListDto.password}<br> --%>
-		국적: ${memberListDto.country}<br>
-<%-- 		시간대: ${memberListDto.password}<br> --%>
-		
-		<div>
-			<input type="hidden" id='no' name="no" value="${memberListDto.no}">
-			<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
-			<input type="hidden" id='keyword' name="keyword" value="${keyword}">
-		</div>
+		<form action='./StudentUpdate.do' method='get' style="margin-top: 200px;">
+			성명: ${memberListDto.name}<br>
+<%-- 			번호: ${memberListDto.no}<br> --%>
+			Email: ${memberListDto.email}<br>
+			비밀번호: ${memberListDto.password}<br>
+			성별: ${memberListDto.gender}<br>
+			생년월일: <fmt:formatDate value="${memberListDto.birthDate}" pattern="yyyy-MM-dd"/><br>
+	<%-- 		언어: ${memberListDto.password}<br> --%>
+			국적: ${memberListDto.country}<br>
+	<%-- 		시간대: ${memberListDto.password}<br> --%>
+			
+			<div>
+				<input type="hidden" id='no' name="no" value="${memberListDto.no}">
+				<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
+				<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+			</div>
+	
+			<div>
+				<input type='submit' value='수정하기 페이지'>
+				<input type='button' value='이전 페이지' onClick='pageMoveListFnc();'>	
+			</div>
+		</form>
 
-		<div>
-			<input type='submit' value='수정하기 페이지'>
-			<input type='button' value='이전 페이지' onClick='pageMoveListFnc();'>	
-		</div>
-	</form>
 	
 <%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>

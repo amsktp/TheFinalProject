@@ -1,8 +1,13 @@
 package com.englishvillage.member.admin.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
@@ -133,6 +138,82 @@ public class AdminController {
 		
 		return "admin/student/adminStudentInfo";
 	}
+	
+	//회원 수정 화면으로
+		@RequestMapping(value = "/admin/StudentUpdate.do", method = RequestMethod.GET)
+		public String memberUpdate(int no, Model model) {
+			
+			log.info("call memberUpdate! {}", no);
+			System.out.println("왔다!");
+			
+			Map<String, Object> map = adminService.memberStudentSelectOne(no);
+			
+			MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+			
+//			List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+			
+			model.addAttribute("memberListDto", memberListDto);
+			
+//			model.addAttribute("fileList", fileList);
+			
+			return "admin/student/adminStudentInfoRevise";
+		}
+		
+		//회원수정
+		@RequestMapping(value = "/admin/studentUpdateCtr.do", method = RequestMethod.POST)
+		public String memberUpdateCtr(HttpSession session, MemberListDto memberListDto,
+									String birthDateText,
+									  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
+									  ,MultipartHttpServletRequest multipartHttpServletRequest
+									  , Model model) throws ParseException {
+			
+			log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+			
+			System.out.println(memberListDto.getNo());
+			System.out.println(memberListDto.getEmail());
+			System.out.println(memberListDto.getName());
+			System.out.println(memberListDto.getGender());
+			System.out.println(memberListDto.getPassword());
+			System.out.println(memberListDto.getCountry());
+			System.out.println(memberListDto.getBirthDate());
+			System.out.println(memberListDto.getModifiedDate());
+			
+			int resultNum = 0;
+			
+			try {
+				// 설명하지 
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date parseDate = simpleDateFormat.parse(birthDateText);
+				memberListDto.setBirthDate(parseDate);
+				System.out.println("updateone에 들어오나");
+				resultNum = adminService.memberStudentUpdateOne(memberListDto
+						, multipartHttpServletRequest, fileIdx);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("updateone에 예외처리되나");
+				e.printStackTrace();
+			}
+			
+			if (resultNum != 0) {
+				MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+				
+				if (sessionMemberListDto != null) {
+					
+					if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+						MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getName()
+								,memberListDto.getEmail(),memberListDto.getPassword(), memberListDto.getModifiedDate()
+								,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
+						
+						session.removeAttribute("member");
+						
+						session.setAttribute("member", newMemberListDto);
+					}
+					
+				}
+			}
+			
+			return "redirect:./studentlist.do";
+		}
 	
 	//튜터 리스트
 	@RequestMapping(value = "/admin/tutorlist.do"

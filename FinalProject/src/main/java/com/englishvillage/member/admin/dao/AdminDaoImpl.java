@@ -76,6 +76,22 @@ public class AdminDaoImpl implements AdminDao{
 		            , no);
 	}
 	
+	@Override
+	public int memberStudentUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(memberListDto.getNo());
+		System.out.println(memberListDto.getEmail());
+		System.out.println(memberListDto.getName());
+		System.out.println(memberListDto.getGender());
+		System.out.println(memberListDto.getPassword());
+		System.out.println(memberListDto.getCountry());
+		System.out.println(memberListDto.getBirthDate());
+		System.out.println(memberListDto.getModifiedDate());
+		return sqlSession.update(namespace + "memberStudentUpdateOne", memberListDto);
+	}
+	
+	
 	//튜터
 	@Override
 	public List<MemberListDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
@@ -173,6 +189,33 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlSession.selectOne(namespace + "questionSelectOne"
 	            , no);
 	}
+	
+	//파일관리
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + "insertFile", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> fileSelectList(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "fileSelectList", no);
+	}
+
+	@Override
+	public Map<String, Object> fileSelectStoredFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "fileSelectStoredFileName", no);
+	}
+
+	@Override
+	public int fileDelete(int parentSeq) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "fileDelete",parentSeq);
+	}
+
+
 	
 
 }

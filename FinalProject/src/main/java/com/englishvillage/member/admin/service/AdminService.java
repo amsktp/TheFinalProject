@@ -3,6 +3,8 @@ package com.englishvillage.member.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 
@@ -15,6 +17,8 @@ public interface AdminService {
 			, String keyword);
 	public int studentSelectCurPage(String searchOption, String keyword, int no);
 	public Map<String, Object> memberStudentSelectOne(int no);
+	public int memberStudentUpdateOne(MemberListDto memberListDto,
+			MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx) throws Exception;
 	
 	
 	//튜터 목록
@@ -32,5 +36,6 @@ public interface AdminService {
 				, String keyword);
 	public int questionSelectCurPage(String searchOption, String keyword, int no);
 	public Map<String, Object> questionSelectOne(int no);
+	
 	
 }
