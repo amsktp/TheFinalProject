@@ -116,13 +116,14 @@ table, tr, td, th {
 						value="${questionBoardDto.content}"> <input type="hidden"
 						name="boardModDate" value="${questionBoardDto.boardModDate}">
 						
-						<input type="button" onClick="location.href='/englishvillage/QuestionRevise.do?idx=3'">
+						<input type="button" onClick="location.href='/englishvillage/QuestionRevise.do'">
 					<input type="submit" value="수정하기"> <input type="button"
 						value="목록"
 						onClick="location.href='/englishvillage/QuestionList.do'">
 
 				</form>
 			</div>
+			
 		</div>
 	</div>
 

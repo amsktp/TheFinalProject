@@ -220,7 +220,7 @@ public class StudentController {
 //				int end = memberPaging.getPageEnd();
 ////				
 				List<QuestionBoardDto> qusetionList = 
-						studentService.questionSelectList(1, 5);
+						studentService.questionSelectList(1, 30);
 //						
 //				// 페이징
 //				Map<String, Object> pagingMap = new HashMap<>();
@@ -241,17 +241,18 @@ public class StudentController {
 				Map<String, Object> map = studentService.QuestionSelect(idx);
 				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
 				model.addAttribute("questionBoardDto", questionBoardDto);
+				System.out.println(questionBoardDto);
 				
 				return "/member/student/qna/studentQnARead";
 			}
 			
 			//문의 수정
 			@RequestMapping(value = "QuestionRevise.do", method = {RequestMethod.GET, RequestMethod.POST})
-			public String QuestionRevise(QuestionBoardDto questionBoardDto, int idx, HttpSession session, Model model) {
+			public String QuestionRevise(HttpSession session, Model model) {
 				log.info("Welcome QuestionRevise.do! ");
 				System.out.println("뭐야 왜 암것도 안나와");
-				System.out.println(questionBoardDto);
-				System.out.println(idx);
+//				System.out.println(questionBoardDto);
+//				System.out.println(idx);
 				
 
 //				int resultNum = 0;
@@ -271,7 +272,7 @@ public class StudentController {
 //				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
 //				model.addAttribute("questionBoardDto", questionBoardDto);
 				
-				return "redirect:/member/student/qna/studentQnABoard";
+				return "/member/student/qna/studentQnARevise";
 			}
 	
 	// 테스트 페이지
