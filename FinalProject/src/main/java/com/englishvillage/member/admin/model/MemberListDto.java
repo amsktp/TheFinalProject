@@ -18,7 +18,7 @@ public class MemberListDto {
 	private int tutorNo;
 	private String url;
 	private int Price;
-	
+	private String tutorTitle;
 
 	
 
@@ -49,13 +49,23 @@ public class MemberListDto {
 		this.gender = gender;
 	}
 
+	
+
+	public MemberListDto(int no, String url, int price, String tutorTitle) {
+		super();
+		this.no = no;
+		this.url = url;
+		this.Price = price;
+		this.tutorTitle = tutorTitle;
+	}
+
 
 
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
-			int price, int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize,
-			Date creDate) {
+			int price, String tutorTitle, int idx, int parentSeq, String originalFileName, String storedFileName,
+			int fileSize, Date creDate) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -70,8 +80,8 @@ public class MemberListDto {
 		this.point = point;
 		this.score = score;
 		this.tutorNo = tutorNo;
-		this.url = url;
 		this.Price = price;
+		this.tutorTitle = tutorTitle;
 		this.idx = idx;
 		this.parentSeq = parentSeq;
 		this.originalFileName = originalFileName;
@@ -79,8 +89,8 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
-	
-	
+
+
 
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
@@ -99,6 +109,9 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
+
+
+
 
 	public int getNo() {
 		return no;
@@ -279,6 +292,21 @@ public class MemberListDto {
 	public void setPrice(int price) {
 		Price = price;
 	}
+
+	
+
+
+	public String getTutorTitle() {
+		return tutorTitle;
+	}
+
+
+
+
+	public void setTutorTitle(String tutorTitle) {
+		this.tutorTitle = tutorTitle;
+	}
+
 
 
 

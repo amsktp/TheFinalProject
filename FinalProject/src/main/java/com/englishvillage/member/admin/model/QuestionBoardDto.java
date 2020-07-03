@@ -13,6 +13,8 @@ public class QuestionBoardDto {
 	private String answerStatus;
 	private String grade;
 	private String name;
+	private String email;
+	private String reply;
 	
 	
 	public QuestionBoardDto() {
@@ -20,8 +22,9 @@ public class QuestionBoardDto {
 	}
 
 
+
 	public QuestionBoardDto(int idx, int no, String title, String content, Date boardCreateDate, Date boardModDate,
-			String answerStatus, String grade, String name) {
+			String answerStatus, String grade, String name, String email, String reply) {
 		super();
 		this.idx = idx;
 		this.no = no;
@@ -32,7 +35,10 @@ public class QuestionBoardDto {
 		this.answerStatus = answerStatus;
 		this.grade = grade;
 		this.name = name;
+		this.email = email;
+		this.reply = reply;
 	}
+
 
 
 	public int getIdx() {
@@ -123,6 +129,34 @@ public class QuestionBoardDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+
+
+	public String getReply() {
+		return reply;
+	}
+
+
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+
 
 
 	@Override

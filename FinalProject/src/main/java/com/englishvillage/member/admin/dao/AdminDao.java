@@ -20,6 +20,13 @@ public interface AdminDao {
 	public int studentSelectCurPage(String searchOption, String keyword, int no);
 	public MemberListDto memberStudentSelectOne(int no);
 	public int memberStudentUpdateOne(MemberListDto memberListDto);
+	//회원 탈퇴
+	public int studentDeleteOne(int no);
+	//튜터 탈퇴
+	public int tutorMemberDeleteOne(int no);
+	public int tutorInfoDeleteOne(int no);
+	public int tutorEvaluationDeleteOne(int no);
+	public int tutorfileDeleteOne(int no);
 	
 	//튜터 목록
 	public List<MemberListDto> tutorSelectList(String searchOption, 
@@ -28,6 +35,8 @@ public interface AdminDao {
 			, String keyword);
 	public int tutorSelectCurPage(String searchOption, String keyword, int no);
 	public MemberListDto memberTutorSelectOne(int no);
+	public int memberTutorUpdateOne(MemberListDto memberListDto);
+	public int TutorProfileUpdateOne(MemberListDto memberListDto);
 	
 	//문의 목록
 	public List<QuestionBoardDto> questionSelectList(String searchOption, 
@@ -35,7 +44,7 @@ public interface AdminDao {
 	public int questionSelectTotalCount(String searchOption
 			, String keyword);
 	public int questionSelectCurPage(String searchOption, String keyword, int no);
-	public MemberListDto questionSelectOne(int no);
+	public QuestionBoardDto questionSelectOne(int no);
 	
 	//파일관리
 	public void insertFile(Map<String, Object> map);

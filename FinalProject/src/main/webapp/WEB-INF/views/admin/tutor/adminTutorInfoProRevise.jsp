@@ -73,22 +73,20 @@
 	
 	<h1>회원정보 수정</h1>
 	
-	<form action='./tutorUpdateCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
-		성 명: <input type='text' name='name' value='${memberListDto.name}'>
-		<br>S
-		E - mail: <input type='text' name='email' value='${memberListDto.email}'>
+	<form action='./tutorUpdateProCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
+		성 명: <input type='text' name='name' value='${memberListDto.name}' disabled="disabled">
 		<br>
-		비밀번호: <input type='text' name='password' value='${memberListDto.password}'>
+		국 적: <input type='text' name='country' value='${memberListDto.country}' disabled="disabled">
 		<br>
-		성 별: <input type='text' name='gender' value='${memberListDto.gender}'>
+		생년월일:<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>
 		<br>
-		생년월일: 
-		
-		<input id="birthDateChoose" type="date"  name=birthDateText 
-			value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
-		
+		평 점: <input type='text' name='socre' value='${memberListDto.score}' disabled="disabled">
 		<br>
-		국 적: <input type='text' name='country' value='${memberListDto.country}'>
+		수 업 료: <input type='text' name='price' value='${memberListDto.price}'>
+		<br>
+		URL: <input type='text' name='url' value='${memberListDto.url}'>
+		<br>
+		강 의 제 목: <input type='text' name='tutorTitle' value='${memberListDto.tutorTitle}'>
 		<br>
 		<input type="hidden" name='no' value='${memberListDto.no}'>
 

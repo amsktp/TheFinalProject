@@ -80,17 +80,15 @@ public class AdminDaoImpl implements AdminDao{
 	public int memberStudentUpdateOne(MemberListDto memberListDto) {
 		// TODO Auto-generated method stub
 		
-		System.out.println(memberListDto.getNo());
-		System.out.println(memberListDto.getEmail());
-		System.out.println(memberListDto.getName());
-		System.out.println(memberListDto.getGender());
-		System.out.println(memberListDto.getPassword());
-		System.out.println(memberListDto.getCountry());
-		System.out.println(memberListDto.getBirthDate());
-		System.out.println(memberListDto.getModifiedDate());
 		return sqlSession.update(namespace + "memberStudentUpdateOne", memberListDto);
 	}
 	
+	@Override
+	public int studentDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "studentDeleteOne",no);
+	}
+
 	
 	//튜터
 	@Override
@@ -140,6 +138,42 @@ public class AdminDaoImpl implements AdminDao{
 	            , no);
 	}
 	
+	@Override
+	public int memberTutorUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.update(namespace + "memberTutorUpdateOne", memberListDto);
+	}
+	
+
+	@Override
+	public int TutorProfileUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "TutorProfileUpdateOne", memberListDto);
+	}
+	//튜터 삭제
+	@Override
+	public int tutorMemberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorMemberDeleteOne",no);
+	}
+	@Override
+	public int tutorInfoDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorInfoDeleteOne",no);
+	}
+	@Override
+	public int tutorEvaluationDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorEvaluationDeleteOne",no);
+	}
+	@Override
+	public int tutorfileDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorfileDeleteOne",no);
+	}
+
+	
 	//문의
 	@Override
 	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
@@ -184,7 +218,7 @@ public class AdminDaoImpl implements AdminDao{
 	
 
 	@Override
-	public MemberListDto questionSelectOne(int no) {
+	public QuestionBoardDto questionSelectOne(int no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "questionSelectOne"
 	            , no);
@@ -215,6 +249,8 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlSession.delete(namespace + "fileDelete",parentSeq);
 	}
 
+
+	
 
 	
 

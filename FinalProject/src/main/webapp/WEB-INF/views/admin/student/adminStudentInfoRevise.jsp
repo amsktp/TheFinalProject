@@ -26,7 +26,7 @@
 	}
 	
 	function pageMoveDeleteFnc(no){
-		var url = "./deleteCtr.do?no=" + no;
+		var url = "./StudentdeleteCtr.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -80,8 +80,6 @@
 		<br>
 		비밀번호: <input type='text' name='password' value='${memberListDto.password}'>
 		<br>
-		비밀번호 확인: <input type='password' name='password' value='${memberListDto.password}'>
-		<br>
 		성 별: <input type='text' name='gender' value='${memberListDto.gender}'>
 		<br>
 		생년월일: 
@@ -89,8 +87,6 @@
 		<input id="birthDateChoose" type="date"  name=birthDateText 
 			value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
 		
-		<br>
-		언 어: <input type='text' name='country' value='${memberListDto.country}'>
 		<br>
 		국 적: <input type='text' name='country' value='${memberListDto.country}'>
 		<br>
@@ -101,6 +97,9 @@
 		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
 	
 	</form>
+	
+	
+	
 	
 <%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>
