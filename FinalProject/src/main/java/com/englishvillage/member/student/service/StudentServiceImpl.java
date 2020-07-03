@@ -80,11 +80,11 @@ public class StudentServiceImpl implements StudentService {
 
 
 	@Override
-	public List<QuestionBoardDto> questionSelectList(int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(int no, int start, int end) {
 		// TODO Auto-generated method stub
 		
 		List<QuestionBoardDto> qusetionList = 
-				studentDao.questionSelectList(start, end);
+				studentDao.questionSelectList(no, start, end);
 		
 		return qusetionList;
 	}
@@ -99,6 +99,17 @@ public class StudentServiceImpl implements StudentService {
 		resultMap.put("QuestionBoardDto", questionBoardDto);
 		
 		return resultMap;
+	}
+
+
+	@Override
+	public int QuestionRevise(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		
+		int resultNum = 0;
+		resultNum= studentDao.QuestionRevise(questionBoardDto);
+		System.out.println("데이터베이스 빠져나옴"+resultNum);
+		return resultNum;
 	}
 
 

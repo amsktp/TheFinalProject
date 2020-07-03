@@ -72,10 +72,11 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public List<QuestionBoardDto> questionSelectList(int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(int no, int start, int end) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map = new HashMap<>();
+		map.put("no", no);
 		map.put("start", start);
 		map.put("end", end);
 		
@@ -90,6 +91,12 @@ public class StudentDaoImpl implements StudentDao{
 		// TODO Auto-generated method stub
 		System.out.println("다오로 넘어옴?"+idx);
 		return sqlSession.selectOne(namespace + "QuestionSelect", idx);
+	}
+
+	@Override
+	public int QuestionRevise(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "QuestionRevise", questionBoardDto);
 	}
 
 

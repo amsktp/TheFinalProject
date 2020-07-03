@@ -137,7 +137,7 @@
 		ORDER
 		BY IDX DESC) H)
 		WHERE MEMBER_NO = #{no}
-		AND IDX = #{idx}
+<!-- 		AND IDX = #{idx} -->
 	</select>
 
 	<select id="questionSelectList" parameterType="map"
@@ -165,7 +165,7 @@
 		FROM MEMBER LEFT OUTER
 		JOIN QUESTION_BOARD
 		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
-		WHERE MEMBER.MEMBER_NO = 2
+		WHERE MEMBER.MEMBER_NO = #{no}
 		ORDER BY IDX DESC) Q
 		) MQ
 		WHERE MQ.RNUM
@@ -183,7 +183,7 @@
 		WHERE Q.IDX = #{idx}
 	</select>
 
-	<update id="QuestionRevise" parameterType="MemberDto">
+	<update id="QuestionRevise" parameterType="QuestionBoardDto">
 		UPDATE QUESTION_BOARD
 		SET
 		TITLE = #{title},

@@ -19,9 +19,11 @@ public interface StudentService {
 
 	public int questionSelectCurPage(int no);
 
-	public List<QuestionBoardDto> questionSelectList(int start, int end);
+	public List<QuestionBoardDto> questionSelectList(int no, int start, int end);
 
 	public Map<String, Object> QuestionSelect(int idx);
+
+	public int QuestionRevise(QuestionBoardDto questionBoardDto);
 
 //	public void memberDeleteOne(String userEmail);
 

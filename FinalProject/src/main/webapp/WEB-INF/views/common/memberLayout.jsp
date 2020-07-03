@@ -12,6 +12,14 @@ var myPageMoveFnc = function() {
 	location.href = '/englishvillage/myPage.do'
 }
 
+var myInfoMoveFnc = function() {
+	location.href = '/englishvillage/myInfo.do'
+}
+
+var QuestionListMoveFnc = function() {
+	location.href='/englishvillage/QuestionList.do'
+}
+
 function pageMoveDeleteFnc(no){
 	var url = "/englishvillage/deleteCtr.do?no=" + no;
 	location.href = url;

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.service.StudentService;
 import com.englishvillage.util.Paging;
 
@@ -206,22 +207,22 @@ public class StudentController {
 				totalCount = studentService.studentQuestionCount(no);
 				System.out.println("totalCount는 도대체 무슨값일까??"+totalCount);
 				
+				List<QuestionBoardDto> qusetionList = 
+						studentService.questionSelectList(no, 1, 10);
+				
+				System.out.println(qusetionList);
 				
 //				이전 체이지로 회원으이 번호가 명확하게 나온경우
 //				자신의 curPage 찾는 로직
 //				if(no != 0) {
 //					curPage
-//						= studentService.questionSelectCurPage(no, idx);
+//						= studentService.questionSelectCurPage(no);
 //				}
-//				
 //				
 //				Paging memberPaging = new Paging(totalCount, curPage);
 //				int start = memberPaging.getPageBegin();
 //				int end = memberPaging.getPageEnd();
-////				
-				List<QuestionBoardDto> qusetionList = 
-						studentService.questionSelectList(1, 30);
-//						
+				
 //				// 페이징
 //				Map<String, Object> pagingMap = new HashMap<>();
 //				pagingMap.put("totalCount", totalCount);
@@ -237,6 +238,7 @@ public class StudentController {
 			@RequestMapping(value = "QuestionSelect.do", method = {RequestMethod.GET, RequestMethod.POST})
 			public String QuestionList(int idx, HttpSession session, Model model) {
 				log.info("Welcome MemberList! " + idx);
+				
 
 				Map<String, Object> map = studentService.QuestionSelect(idx);
 				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
@@ -248,38 +250,23 @@ public class StudentController {
 			
 			//문의 수정
 			@RequestMapping(value = "QuestionRevise.do", method = {RequestMethod.GET, RequestMethod.POST})
-			public String QuestionRevise(HttpSession session, Model model) {
-				log.info("Welcome QuestionRevise.do! ");
-				System.out.println("뭐야 왜 암것도 안나와");
-//				System.out.println(questionBoardDto);
-//				System.out.println(idx);
+			public String QuestionRevise(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
+//				log.info("Welcome QuestionRevise.do! "+questionBoardDto+"idx값은?"+idx);
+				int resultNum = 0;
+				resultNum = studentService.QuestionRevise(questionBoardDto);
 				
-
-//				int resultNum = 0;
-//				MemberDto sessionMemberDto 
-//				= (MemberDto)session.getAttribute("member");
-//				sessionMemberDto.setMemberPassword(memberPassword);
-//				System.out.println("업데이트에서 세션 만들기 성공"+sessionMemberDto);
-//				
-//				resultNum = studentService.memberUpdateOne(sessionMemberDto);
-//				
-//				System.out.println("업데이트 결과값"+resultNum);
-//				
-//				System.out.println("업데이트 완료 세션값"+session.getAttribute("member"));
-//				
-//				
-//				Map<String, Object> map = studentService.QuestionRevise(idx);
-//				QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("QuestionBoardDto");
-//				model.addAttribute("questionBoardDto", questionBoardDto);
+				System.out.println("완료 값"+resultNum);
+				System.out.println("업데이트 완료 DTO값"+questionBoardDto);
 				
-				return "/member/student/qna/studentQnARevise";
+				return "/member/student/qna/studentQnAWrite";
 			}
 	
 	// 테스트 페이지
-	@RequestMapping(value="test.do", method = RequestMethod.GET)
-	public String test(HttpSession session, Model model) {
+	@RequestMapping(value="test.do", method = RequestMethod.POST)
+	public String test(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
+		log.info("Welcome QuestionRevise.do! "+questionBoardDto);
 		
-		return "/member/student/info/delete";
+		return "/member/student/qna/studentQnAWrite";
 	}
 	
 }
