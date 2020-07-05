@@ -62,6 +62,28 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.memberDeleteOne(no);
 	}
 
+	@Override
+	public int studentStudyCount(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentStudyCount! {}", no);
+		return studentDao.studentStudyCount(no);
+	}
+	
+	@Override
+	public List<QuestionBoardDto> studySelectList(int no, int start, int end) {
+		// TODO Auto-generated method stub
+		List<QuestionBoardDto> studyList = 
+				studentDao.studySelectList(no, start, end);
+		
+		return studyList;
+	}
+
+	@Override
+	public int studentStudyInfo(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentStudyInfo! {}", no);
+		return studentDao.studentStudyInfo(no);
+	}
 
 	@Override
 	public int studentQuestionCount(int no) {
@@ -73,9 +95,9 @@ public class StudentServiceImpl implements StudentService {
 
 
 	@Override
-	public int questionSelectCurPage(int no) {
+	public int questionSelectCurPage(int no, int idx) {
 		// TODO Auto-generated method stub
-		return studentDao.questionSelectCurPage(no);
+		return studentDao.questionSelectCurPage(no, idx);
 	}
 
 
@@ -112,6 +134,14 @@ public class StudentServiceImpl implements StudentService {
 		return resultNum;
 	}
 
+
+	@Override
+	public int QuestionAdd(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		resultNum= studentDao.QuestionAdd(questionBoardDto);
+		return resultNum;
+	}
 
 
 }

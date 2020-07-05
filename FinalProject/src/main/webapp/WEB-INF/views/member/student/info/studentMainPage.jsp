@@ -9,7 +9,7 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(0).addClass('on');
+    $('.layoutUl').children().eq(1).addClass('on');
 
 
 });
@@ -25,7 +25,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 
 	<div id="myPageBox">

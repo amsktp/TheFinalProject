@@ -1,15 +1,15 @@
 #pageSize {
-	width: 1900px;
-	height: 920px;
-	padding: 150px 0px 0px 200px;
-	box-sizing: border-box;
-	padding-bottom: 0px;
+    width: 1900px;
+    height: 920px;
+    padding: 114px 0px 0px 63px;
+    box-sizing: border-box;
+    padding-bottom: 0px;
 }
 
 #myPageBox {
 	width: 1150px;
 	height: 690px;
-	margin-left: 300px;
+/* 	margin-left: 450px; */
 	padding: 30px 50px;
 }
 
@@ -36,10 +36,6 @@
 	font-size: 40px;
 	color: #FA6980;
 	font-weight: bold;
-}
-
-#myPageBox div {
-	padding: 10px;
 }
 
 #myPageBox div h1 {
@@ -87,4 +83,14 @@
 
 input:read-only {
        background-color: #F5F5F5;
+}
+
+.textCenter {
+text-align: center;
+
+}
+
+.textLeft {
+text-align: left;
+
 }

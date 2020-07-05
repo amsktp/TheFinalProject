@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
     $('td>input').css('border', 'none')
 	$('td>input:hover').css('border', 'none')
 // #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 
 	<div id="myPageBox">

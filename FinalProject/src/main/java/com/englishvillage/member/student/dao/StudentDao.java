@@ -16,13 +16,21 @@ public interface StudentDao {
 
 	public int studentQuestionCount(int no);
 
-	public int questionSelectCurPage(int no);
+	public int questionSelectCurPage(int no, int idx);
 
 	public List<QuestionBoardDto> questionSelectList(int no, int start, int end);
 
 	public QuestionBoardDto QuestionSelect(int idx);
 
 	public int QuestionRevise(QuestionBoardDto questionBoardDto);
+
+	public int QuestionAdd(QuestionBoardDto questionBoardDto);
+
+	public int studentStudyInfo(int no);
+
+	public int studentStudyCount(int no);
+
+	public List<QuestionBoardDto> studySelectList(int no, int start, int end);
 
 //	public void memberDeleteOne(String userEmail);
 

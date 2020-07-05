@@ -13,7 +13,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
     
     $('input[type=submit]').click(function() {
     	alert("회원정보가 성공적으로 변경되었습니다!");
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 
 	<div id="myPageBox">

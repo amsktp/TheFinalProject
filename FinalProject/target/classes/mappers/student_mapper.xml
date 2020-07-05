@@ -74,13 +74,19 @@
 		<result column="MEMBER_NAME" property="name" />
 		<result column="TITLE" property="title" />
 		<result column="CONTENT" property="content" />
-		<result column="BOARD_CREATE_DATE" property="boardCreateDate" />
-		<result column="BOARD_MODIFY_DATE" property="boardModDate" />
+		<result column="BOARD_CREATE_DATE" property="boardCreateDate"
+			javaType="java.util.Date" />
+		<result column="BOARD_MODIFY_DATE" property="boardModDate"
+			javaType="java.util.Date" />
 		<result column="ANSWER_STATUS" property="answerStatus" />
 		<result column="MEMBER_GRADE" property="grade" />
 		<result column="COMMENT_CREATE_DATE"
-			property="commentCreateDate" />
-		<result column="REPLY" property="reply" />
+			property="commentCreateDate" javaType="java.util.Date" />
+		<result column="STUDY_NAME" property="studyName" />
+		<result column="TUTOR_NAME" property="tutorName" />
+		<result column="PRICE" property="price" />
+		<result column="STUDY_DATE" property="studyDate"
+			javaType="java.util.Date" />
 	</resultMap>
 
 	<select id="SelectOne" parameterType="String"
@@ -109,35 +115,56 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</delete>
 
-	<!-- <select id="studentQuestionCount" resultMap="questionListResultMap" -->
-	<!-- parameterType="map"> -->
-	<!-- SELECT COUNT(*) -->
-	<!-- FROM QUESTION_BOARD -->
-	<!-- WHERE MEMBER_NO = -->
-	<!-- #{no} -->
-	<!-- </select> -->
+	<select id="studentStudyCount" parameterType="int"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER M JOIN EVALUATION E
+		ON MEMBER_NO = STUDENT_NO
+		WHERE MEMBER_NO = #{no}
+	</select>
 
 	<select id="studentQuestionCount" parameterType="int"
 		resultType="int">
 		SELECT COUNT(*)
 		FROM QUESTION_BOARD
-		WHERE MEMBER_NO =
-		#{no}
+		WHERE MEMBER_NO = #{no}
+	</select>
+
+	<select id="studySelectList" parameterType="map"
+		resultMap="questionListResultMap">
+
+		SELECT RNUM IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE
+		FROM (SELECT TUTOR_NO, MEMBER_NAME TUTOR_NAME, STUDY_NAME, PRICE
+		FROM MEMBER M LEFT JOIN TUTOR_INFO T
+		ON MEMBER_NO = TUTOR_NO) A JOIN (SELECT ROWNUM RNUM, TUTOR_NO,
+		STUDY_DATE, EVALUATE_CHECK
+		FROM (SELECT TUTOR_NO, STUDY_DATE, EVALUATE_CHECK
+		FROM MEMBER M JOIN EVALUATION E
+		ON MEMBER_NO = STUDENT_NO
+		WHERE MEMBER_NO = #{no}
+		ORDER BY STUDY_DATE)) B
+		ON A.TUTOR_NO = B.TUTOR_NO
+		WHERE RNUM 
+		BETWEEN #{start} AND #{end}
+		ORDER BY STUDY_DATE DESC
 	</select>
 
 	<select id="memberSelectCurPage" parameterType="map"
 		resultType="int">
 		SELECT FLOOR((RNUM-1) / 10)+1 no
 		FROM ( SELECT ROWNUM RNUM,
-		MEMBER_NO, IDX
+		MEMBER_NO,
+		IDX
 		FROM ( SELECT M.MEMBER_NO MEMBER_NO, Q.IDX IDX
 		FROM
-		MEMBER M INNER JOIN QUESTION_BOARD Q
+		MEMBER
+		M INNER
+		JOIN QUESTION_BOARD Q
 		ON M.MEMBER_NO = Q.MEMBER_NO
-		ORDER
-		BY IDX DESC) H)
-		WHERE MEMBER_NO = #{no}
-<!-- 		AND IDX = #{idx} -->
+		where
+		m.member_no = #{no}
+		ORDER BY IDX DESC) H)
+		where IDX = #{idx}
 	</select>
 
 	<select id="questionSelectList" parameterType="map"
@@ -148,8 +175,7 @@
 		MQ.BOARD_CREATE_DATE, MQ.BOARD_MODIFY_DATE,
 		MQ.ANSWER_STATUS,
 		MQ.MEMBER_GRADE
-		FROM (
-		SELECT ROWNUM RNUM, Q.IDX,
+		FROM ( SELECT ROWNUM RNUM, Q.IDX,
 		Q.MEMBER_NO,
 		Q.MEMBER_NAME, Q.TITLE, Q.CONTENT,
 		Q.BOARD_CREATE_DATE,
@@ -183,20 +209,39 @@
 		WHERE Q.IDX = #{idx}
 	</select>
 
+	<insert id="QuestionAdd" parameterType="QuestionBoardDto"
+		useGeneratedKeys="true" keyProperty="idx">
+		<selectKey keyProperty="idx" resultType="int" order="BEFORE">
+			SELECT
+			QUESTION_BOARD_IDX_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+
+		<!-- INSERT INTO MEMBER -->
+		<!-- VALUE(MNO -->
+		<!-- , EMAIL, PWD, MNAME -->
+		<!-- , CRE_DATE, MOD_DATE) -->
+		<!-- VALUES(#{no} -->
+		<!-- , #{email}, #{password}, #{name} -->
+		<!-- , SYSDATE, SYSDATE) -->
+
+		INSERT INTO QUESTION_BOARD
+		VALUE(IDX, MEMBER_NO, TITLE, CONTENT,
+		BOARD_CREATE_DATE, BOARD_MODIFY_DATE,
+		ANSWER_STATUS)
+		VALUES(#{idx},
+		#{no}, #{title}, #{content}, SYSDATE, SYSDATE, 'N')
+	</insert>
+
 	<update id="QuestionRevise" parameterType="QuestionBoardDto">
 		UPDATE QUESTION_BOARD
 		SET
 		TITLE = #{title},
-        CONTENT = #{content},
+		CONTENT = #{content},
 		BOARD_MODIFY_DATE =
 		SYSDATE
 		WHERE
 		IDX = #{idx}
 	</update>
-
-
-
-
 
 
 </mapper>

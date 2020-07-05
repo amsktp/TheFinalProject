@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	$('.layoutUl').children().eq(1).addClass('on');
+	$('.layoutUl').children().eq(2).addClass('on');
  
 //     $('#editBtn').click(function() {
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 		<div id="myPageBox">
 
 			<div id="pageName">회원탈퇴</div>

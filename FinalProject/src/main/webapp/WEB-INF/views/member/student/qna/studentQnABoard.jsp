@@ -9,102 +9,96 @@
 <meta charset="UTF-8">
 <title>회원 문의내역</title>
 <style type="text/css">
-table {
-	border-collapse: collapse;
-}
 
-table, tr, td, th {
-	border: 1px solid black;
-}
-
-.td_status {
-	font-size: 11px;
-	line-height: 14px;
-	text-align: center;
-}
-
-.thCenter {
-	text-align: center;
-	background-color: skyblue;
-	height: 21px;
-	color: rgb(255, 255, 255);
-	font-size: 11px;
-}
 </style>
-
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
-
-
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.layoutUl').children().eq(3).addClass('on');
+		$('.layoutUl').children().eq(4).addClass('on');
 
 		// #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
 
+		$('#qna').on('click', function() {
+			// 			var idxObj = $('#idx');
+			var url = '';
+
+			url += './QuestionAdd.do';
+
+			location.href = url;
+		});
+
 	});
-	
+
 	function listOnePageFnc(obj, event) {
 		var aTagObj = $(obj);
-		
+
 		event.preventDefault();
-		
+
 		var memberNoObj = '';
-// 		var curPageObj = $('#curPage');
+		// 		var curPageObj = $('#curPage');
 		var keywordObj = $('#keyword');
 		var searchOptionObj = $('#searchOption');
-		
-		
+
 		// 회원이름 클릭시 자신의 회원번호 td태그(eq()를 잘 기억해두자)
-// 		memberNoObj = aTagObj.parent().parent().children('td').eq(0);
-		
+		// 		memberNoObj = aTagObj.parent().parent().children('td').eq(0);
+
 		var url = '';
-		
+
 		url += './adminlistOne.do?';
 		url += 'no=' + memberNoObj.html();
-// 		url += '&curPage=' + curPageObj.val();
+		// 		url += '&curPage=' + curPageObj.val();
 		url += '&keyword=' + keywordObj.val();
 		url += '&searchOption=' + searchOptionObj.val();
-		
-// 		alert(url);
-		
+
+		// 		alert(url);
+
 		location.href = url;
 
 		return false;
 	}
-	
-	function QnAReadFnc(obj){
+
+	function QnAReadFnc(obj) {
 		var aTagObj = $(obj);
-		
+
 		var url = '';
 		var memberNoObj = '';
-		
-		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0).children();
+
+		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
+				.children();
 
 		url += './QuestionSelect.do?';
 		url += 'idx=' + memberNoObj.html();
-		
+
 		location.href = url;
 	}
 </script>
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9">
 
-		<div id="myPageBox">
 
-			<div id="pageName">마이페이지</div>
 
-			<table>
-				<tr>
-					<th class='thCenter'>문의번호</th>
-					<th class='thCenter'>내용</th>
-					<th class='thCenter'>문의일</th>
-					<th class='thCenter'>답변상태</th>
+			<h1>문의내역</h1>
+
+			<table class="table table-hover textCenter">
+			<colgroup>
+			<col width="15%">
+			<col width="45%">
+			<col width="20%">
+			<col width="20%">
+			
+			</colgroup>
+				<tr class="success">
+					<th class="textCenter">문의번호</th>
+					<th class="textCenter">내용</th>
+					<th class="textCenter">문의일</th>
+					<th class="textCenter">답변상태</th>
 
 
 				</tr>
@@ -112,9 +106,9 @@ table, tr, td, th {
 				<c:forEach var="questionDto" items="${qusetionList}">
 					<tr>
 						<td><div id="idxVal" class="td_status">${questionDto.idx}</div></td>
-						<td><div class="td_status">
-								<a href="#" onclick="QnAReadFnc(this);"
-									style="color: black;"> ${questionDto.title} </a>
+						<td class="textLeft"><div class="td_status">
+								<a href="#" onclick="QnAReadFnc(this);" style="color: black;">
+									${questionDto.title} </a>
 							</div></td>
 
 
@@ -137,18 +131,19 @@ table, tr, td, th {
 				</c:forEach>
 
 			</table>
-			<jsp:include page="/WEB-INF/views/common/paging.jsp">
+			<input id="qna" class="btn btn-success" type="button" value="문의하기" style="float: right;">
+			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 				<jsp:param value="${pagingMap}" name="pagingMap" />
 			</jsp:include>
-			<form action="question.do" id="pagingForm" method="get">
+			<form action="QuestionList.do" id="pagingForm" method="get">
 				<input type="hidden" id="curPage" name="curPage"
 					value="${pagingMap.memberPaging.curPage}">
 			</form>
 		</div>
-
-
-
 	</div>
+
+
+
 
 </body>
 

@@ -9,14 +9,6 @@
 <meta charset="UTF-8">
 <title>나의 문의글</title>
 <style type="text/css">
-table {
-	border-collapse: collapse;
-}
-
-table, tr, td, th {
-	border: 1px solid black;
-}
-
 #qnaReadBox {
 	width: 1100px;
 	height: 600px;
@@ -30,7 +22,7 @@ table, tr, td, th {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.layoutUl').children().eq(3).addClass('on');
+		$('.layoutUl').children().eq(4).addClass('on');
 
 		$('#edtiBtn').on('click', function() {
 			$('#edtiBtn').attr('type', 'hidden');
@@ -45,47 +37,54 @@ table, tr, td, th {
 		});
 
 		$('#cancelBtn').on('click', function() {
-
+			var idxObj = $('#idx');
 			var url = '';
 
 			url += './QuestionSelect.do?';
-			url += 'idx=' + $('#idx').html();
+			url += 'idx=' + idxObj.val();
 
 			location.href = url;
 		});
-		
+
 		$('#backListBtn').on('click', function() {
+			var idxObj = $('#idx');
+			var url = '';
 
-			location.href='/englishvillage/QuestionList.do'
+			url += './QuestionList.do?';
+			url += 'idx=' + idxObj.val();
+
+			location.href = url;
+
+			// 			location.href='/englishvillage/QuestionList.do'
 		});
-		
-// 		$('#okBtn').on('click', function(){
-			
-// 			$('form').attr('action', 'QuestionRevise.do')
-// 		});
 
-				$('#okBtn').on('click', function(){
-					alert("문의글 수정이 완료되었습니다");
-			        var form = {
-			                idx: $('#idx').val(),
-			                title: $('#title').val(),
-			                content: $('#content').val()
-		// 	                boardCreateDate: $('#boardCreateDate').html(),
-		// 	                commentCreateDate: $('#commentCreateDate').val()
-			        }
+		// 		$('#okBtn').on('click', function(){
 
-			        $.ajax({
-			            url: "QuestionRevise.do",
-			            type: "POST",
-			            data: form,
-			            success: function(data){
-			                
-			            },
-			            error: function(){
-			                alert("simpleWithObject err");
-			            }
-			        });
-			    });
+		// 			$('form').attr('action', 'QuestionRevise.do')
+		// 		});
+
+		$('#okBtn').on('click', function() {
+			var form = {
+				idx : $('#idx').val(),
+				title : $('#title').val(),
+				content : $('#content').val()
+			// 	                boardCreateDate: $('#boardCreateDate').html(),
+			// 	                commentCreateDate: $('#commentCreateDate').val()
+			}
+
+			$.ajax({
+				url : "QuestionRevise.do",
+				type : "POST",
+				data : form,
+				success : function(data) {
+
+				},
+				error : function() {
+					alert("simpleWithObject err");
+				}
+			});
+			alert("문의글 수정이 완료되었습니다");
+		});
 
 	});
 </script>
@@ -97,109 +96,102 @@ table, tr, td, th {
 <body>
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/common/memberLayout.jsp" />
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9">
 
+			<h1 id="pageName">문의내용</h1>
 
-		<div id="myPageBox">
+				<form method="post">
 
-			<div id="pageName">문의내용</div>
+					<table id='qnaTable' class="table table-bordered">
 
-			<div id="qnaReadBox">
-			<form method="post">
+						<tr class="active">
+							<th class="textCenter" scope="row">문의번호</th>
+							<td class="textCenter"><div>${questionBoardDto.idx}</div></td>
+							<th class="textCenter" scope="row">문의일</th>
+							<td><div id='boardCreateDate'>
+									<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
+										pattern="yyyy-MM-dd a hh:mm:ss" />
+								</div></td>
+						</tr>
 
-				<table id='qnaTable' summary="나의문의하기 답변">
-					<caption>나의문의하기 답변</caption>
+						<tr >
+							<th class="textCenter" scope="row">제목</th>
+							<td colspan="3">
+								<div style="margin-left: 20px">${questionBoardDto.title}</div>
 
-					<tr>
-						<th scope="row">문의번호</th>
-						<td><div>${questionBoardDto.idx}</div></td>
-						<th scope="row">문의일</th>
-						<td><div id='boardCreateDate'>
-								<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
-									pattern="yyyy-MM-dd a hh:mm:ss" />
-							</div></td>
-					</tr>
-
-					<tr>
-						<th scope="row">제목</th>
-						<td colspan="3">
-							<div>${questionBoardDto.title}</div>
-
-						</td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td colspan="3">
-							<div>${questionBoardDto.content}</div>
-							<div>
-								<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
-									pattern="yyyy-MM-dd a hh:mm:ss" />
-							</div>
-						</td>
-					</tr>
-					<c:choose>
-						<c:when test="${not empty questionBoardDto.reply}">
-							<tr>
-								<th>답변</th>
-								<td colspan="3">
-									<div id='reply'>${questionBoardDto.reply}</div>
-									<div>
-										<fmt:formatDate value="${questionBoardDto.commentCreateDate}"
-											pattern="yyyy-MM-dd a hh:mm:ss" />
-									</div>
-								</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-
-						</c:otherwise>
-					</c:choose>
-				</table>
-
-				<c:choose>
-
-					<c:when test="${empty questionBoardDto.reply}">
-
-					</c:when>
-				</c:choose>
-
-
-				<table id='qnaReviceTable' summary="나의문의하기 답변" style="display: none">
-					<caption>나의문의하기 답변</caption>
-
-					<tr>
-						<th scope="row">문의번호</th>
-						<td><div>${questionBoardDto.idx}</div>
-						<input id='idx' type="hidden" name='idx' value='${questionBoardDto.idx}'>
 							</td>
-						<th scope="row">문의일</th>
-						<td><div id='boardCreateDate'>
-								<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
-									pattern="yyyy-MM-dd a hh:mm:ss" />
-							</div></td>
-					</tr>
+						</tr>
+						<tr class="active">
+							<th class="textCenter">내용</th>
+							<td colspan="3">
+								<div style="margin-left: 20px">${questionBoardDto.content}</div>
+							</td>
+						</tr>
+						<c:choose>
+							<c:when test="${not empty questionBoardDto.reply}">
+								<tr >
+									<th class="textCenter">답변</th>
+									<td colspan="3">
+										<div id='reply' style="margin-left: 20px">${questionBoardDto.reply}</div>
+										<div style="margin-left: 20px; float: right;">
+											답변일 : <fmt:formatDate value="${questionBoardDto.commentCreateDate}"
+												pattern="yyyy-MM-dd a hh:mm:ss" />
+										</div>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
 
-					<tr>
-						<th scope="row">제목</th>
-						<td colspan="3"><input type="text" id='title' name='title'
-							value='${questionBoardDto.title}'></td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td colspan="3"><input type="text" id='content' name='content'
-							value='${questionBoardDto.content}'></td>
-					</tr>
-				</table>
+							</c:otherwise>
+						</c:choose>
+					</table>
 
-				<c:if test="${empty questionBoardDto.reply}">
-					<input id="edtiBtn" type="button" value="수정하기">
-				</c:if>
-				<input id="okBtn" type="hidden" value="변경하기"> 
-				<input id="backListBtn" type="button" value="목록">
-				<input id="cancelBtn" type="hidden" value="취소" onclick="QuestionListMoveFnc()">
+					<c:choose>
+
+						<c:when test="${empty questionBoardDto.reply}">
+
+						</c:when>
+					</c:choose>
+
+
+					<table id='qnaReviceTable' class="table table-bordered" summary="나의문의하기 답변"
+						style="display: none">
+						<caption>나의문의하기 답변</caption>
+
+						<tr>
+							<th scope="row">문의번호</th>
+							<td><div>${questionBoardDto.idx}</div> <input id='idx'
+								type="hidden" name='idx' value='${questionBoardDto.idx}'>
+							</td>
+							<th scope="row">문의일</th>
+							<td><div id='boardCreateDate'>
+									<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
+										pattern="yyyy-MM-dd a hh:mm:ss" />
+								</div></td>
+						</tr>
+
+						<tr>
+							<th scope="row">제목</th>
+							<td colspan="3"><input type="text" id='title' name='title'
+								value='${questionBoardDto.title}'></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3"><input type="text" id='content'
+								name='content' value='${questionBoardDto.content}'></td>
+						</tr>
+					</table>
+
+					<c:if test="${empty questionBoardDto.reply}">
+						<input id="edtiBtn" class="btn btn-success" type="button" value="수정하기">
+					</c:if>
+					<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기"> <input
+						id="backListBtn" class="btn btn-default" type="button" value="목록"> <input
+						id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
+						onclick="QuestionListMoveFnc()">
 				</form>
-			</div>
 		</div>
 
 	</div>
