@@ -1,15 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/student.css?ver=1.4">
+<link rel="stylesheet" type="text/css"
+	href="/englishvillage/resources/css/student.css?ver=1.4">
 <script type="text/javascript">
-
 var loginMoveFnc = function(){
 	location.href = '/englishvillage/login.do';
 }
 
 var myPageMoveFnc = function() {
 	location.href = '/englishvillage/myPage.do'
+}
+
+var myInfoMoveFnc = function() {
+	location.href = '/englishvillage/myInfo.do'
+}
+
+var QuestionListMoveFnc = function() {
+	location.href='/englishvillage/QuestionList.do'
 }
 
 function pageMoveDeleteFnc(no){
@@ -36,33 +44,29 @@ var adminMove1Fnc = function() {
 var adminMove2Fnc = function() {
 	location.href = '/englishvillage/admin/questionlist.do'
 }
-
 </script>
 
 <style type="text/css">
-
-dl, ul, ol, menu, li {
-	list-style: none;
-}
+/* dl, ul, ol, menu, li { */
+/* 	list-style: none; */
+/* } */
 
 #mainBox {
-    position: fixed;
 	box-sizing: border-box;
 	background-color: black;
 	border-radius: 30px;
-	padding: 130px 60px;
+/* 	padding: 130px 60px; */
 }
 
+.contentBox {
+margin-top: 100px;
+}
 #memberName {
-	font-size: 28px;
+	font-size: 20px;
 	font-weight: bold;
 	color: white;
 	text-align: center;
 	padding-bottom: 70px;
-}
-
-.layoutUl {
-	padding: 0px;
 }
 
 .layoutUl li {
@@ -89,7 +93,12 @@ dl, ul, ol, menu, li {
 
 .layoutUl li a:hover {
 
- 	color: #d9edf7;
+/*  	color: #d9edf7; */
+ 	color: black;
+ 	background-color: #778F44;
+ 	border-radius: 30px; 
+ 	width: 160px; 
+ 	height: 40px; 
 }
 
 .layoutUl>li>a {
@@ -98,31 +107,20 @@ dl, ul, ol, menu, li {
 	font-size: 18px;
 	text-align: center;
 	font-weight: bold;
-	line-height: 42px;
+	line-height: 23px;
 }
 </style>
 
+<div class="col-md-3" role="complementary">
+	<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+		<ul class="nav bs-docs-sidenav layoutUl">
 
-<div id="mainBox">
+			<li id="memberName">${member.memberName}회원님</li>
+			<li><a href="myPage.do">마이 페이지</a></li>
+			<li><a href="myInfo.do">내 정보</a></li>
+			<li><a href="studyList.do">수강내역</a></li>
+			<li><a href="QuestionList.do">문의내역</a></li>
 
-
-	<div id="memberName">${member.memberName} 회원님</div>
-
-
-	<ul class="layoutUl">
-
-		<li><a href="myPage.do">마이 페이지</a></li>
-		<li><a href="myInfo.do">내 정보</a></li>
-		<li><a href="studyList.do">수강내역</a></li>
-		<li><a href="QuestionList.do">문의내역</a></li>
-	</ul>
-
-
-
-
-
-
-
-
+		</ul>
+	</nav>
 </div>
-

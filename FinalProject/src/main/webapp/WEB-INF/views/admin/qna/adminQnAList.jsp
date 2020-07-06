@@ -43,7 +43,7 @@
 		
 		var url = '';
 		
-		url += './adminlistOne.do?';
+		url += './questionlistOne.do?';
 		url += 'no=' + memberNoObj.html();
 // 		url += '&curPage=' + curPageObj.val();
 		url += '&keyword=' + keywordObj.val();

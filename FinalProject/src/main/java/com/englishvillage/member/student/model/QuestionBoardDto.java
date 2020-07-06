@@ -1,4 +1,4 @@
-package com.englishvillage.member.admin.model;
+package com.englishvillage.member.student.model;
 
 import java.util.Date;
 
@@ -13,8 +13,14 @@ public class QuestionBoardDto {
 	private String answerStatus;
 	private String grade;
 	private String name;
-	private String email;
+	private Date commentCreateDate;
 	private String reply;
+	
+	
+	private String studyName;
+	private String tutorName;
+	private int price;
+	private Date studyDate;
 	
 	
 	public QuestionBoardDto() {
@@ -22,9 +28,9 @@ public class QuestionBoardDto {
 	}
 
 
-
 	public QuestionBoardDto(int idx, int no, String title, String content, Date boardCreateDate, Date boardModDate,
-			String answerStatus, String grade, String name, String email, String reply) {
+			String answerStatus, String grade, String name, Date commentCreateDate, String reply, String studyName,
+			String tutorName, int price, Date studyDate) {
 		super();
 		this.idx = idx;
 		this.no = no;
@@ -35,10 +41,13 @@ public class QuestionBoardDto {
 		this.answerStatus = answerStatus;
 		this.grade = grade;
 		this.name = name;
-		this.email = email;
+		this.commentCreateDate = commentCreateDate;
 		this.reply = reply;
+		this.studyName = studyName;
+		this.tutorName = tutorName;
+		this.price = price;
+		this.studyDate = studyDate;
 	}
-
 
 
 	public int getIdx() {
@@ -129,22 +138,16 @@ public class QuestionBoardDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 
-	public String getEmail() {
-		return email;
+	public Date getCommentCreateDate() {
+		return commentCreateDate;
 	}
 
 
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCommentCreateDate(Date commentCreateDate) {
+		this.commentCreateDate = commentCreateDate;
 	}
-	
 
 
 	public String getReply() {
@@ -152,20 +155,59 @@ public class QuestionBoardDto {
 	}
 
 
-
 	public void setReply(String reply) {
 		this.reply = reply;
 	}
 
+
+	public String getstudyName() {
+		return studyName;
+	}
+
+
+	public void setstudyName(String studyName) {
+		this.studyName = studyName;
+	}
+
+
+	public String gettutorName() {
+		return tutorName;
+	}
+
+
+	public void settutorName(String tutorName) {
+		this.tutorName = tutorName;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public Date getStudyDate() {
+		return studyDate;
+	}
+
+
+	public void setStudyDate(Date studyDate) {
+		this.studyDate = studyDate;
+	}
 
 
 	@Override
 	public String toString() {
 		return "QuestionBoardDto [idx=" + idx + ", no=" + no + ", title=" + title + ", content=" + content
 				+ ", boardCreateDate=" + boardCreateDate + ", boardModDate=" + boardModDate + ", answerStatus="
-				+ answerStatus + ", grade=" + grade + ", name=" + name + "]";
+				+ answerStatus + ", grade=" + grade + ", name=" + name + ", commentCreateDate=" + commentCreateDate
+				+ ", reply=" + reply + ", studyName=" + studyName + ", tutorName=" + tutorName + ", price=" + price
+				+ ", studyDate=" + studyDate + "]";
 	}
 
 
-	
 }

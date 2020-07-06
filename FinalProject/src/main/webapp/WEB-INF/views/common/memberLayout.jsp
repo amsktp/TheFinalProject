@@ -12,6 +12,14 @@ var myPageMoveFnc = function() {
 	location.href = '/englishvillage/myPage.do'
 }
 
+var myInfoMoveFnc = function() {
+	location.href = '/englishvillage/myInfo.do'
+}
+
+var QuestionListMoveFnc = function() {
+	location.href='/englishvillage/QuestionList.do'
+}
+
 function pageMoveDeleteFnc(no){
 	var url = "/englishvillage/deleteCtr.do?no=" + no;
 	location.href = url;
@@ -46,11 +54,14 @@ dl, ul, ol, menu, li {
 }
 
 #mainBox {
-    position: fixed;
+/*     position: fixed; */
+float: left;
 	box-sizing: border-box;
 	background-color: black;
 	border-radius: 30px;
 	padding: 130px 60px;
+	width: 300px;
+	height: 690px;
 }
 
 #memberName {
@@ -100,6 +111,7 @@ dl, ul, ol, menu, li {
 	font-weight: bold;
 	line-height: 42px;
 }
+
 </style>
 
 

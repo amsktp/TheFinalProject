@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService{
 	}
 
 	@Override
-	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) {
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) throws Exception {
 		// TODO Auto-generated method stub
 		
 		MemberDto memberDto = authDao.memberFindPassword(memberName, memberEmail, memberBirthDate);

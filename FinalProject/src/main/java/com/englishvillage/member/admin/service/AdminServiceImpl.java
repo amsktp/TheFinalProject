@@ -131,6 +131,113 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.tutorSelectCurPage(searchOption, keyword, no);
 	}
 	
+	@Override
+	public int memberTutorUpdateOne(MemberListDto memberListDto,
+			MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx) throws Exception {
+		// TODO Auto-generated method stub
+		
+			int resultNum = 0;
+			
+			try {
+				
+//				int parentSeq = memberListDto.getNo();
+				//if문을 위한것(2번째 if문)
+				
+//				Map<String, Object> tempFileMap = 
+//						adminDao.fileSelectStoredFileName(parentSeq);
+				
+				//for문을 위한것
+//				List<Map<String, Object>> list = 
+//						fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+				
+				// 오로지 하나만 관리 수정
+//				if (list.isEmpty() == false) {
+//					
+//					for (Map<String, Object> map : list) {
+//						adminDao.insertFile(map);
+//					}
+//					
+//					if (tempFileMap != null) {
+//						adminDao.fileDelete(parentSeq);
+//						fileUtils.parseUpdateFileInfo(tempFileMap);
+//					}
+//					
+//				}else if (fileIdx == -1) {
+//					if (tempFileMap != null) {
+//						adminDao.fileDelete(parentSeq);
+//						fileUtils.parseUpdateFileInfo(tempFileMap);
+//					}
+//				}
+				
+				//부모를 바꾸기 전에 자식을 바꾸는 형태(참조무결성 제약조건을 생각해야 하는 부분이다)
+				
+				
+				resultNum = adminDao.memberTutorUpdateOne(memberListDto);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+//				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				System.out.println("오류");
+			}
+			
+			return resultNum;
+	}
+	
+	
+	
+	
+	@Override
+	public int TutorProfileUpdateOne(MemberListDto memberListDto,
+			MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx) throws Exception {
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		try {
+			
+//			int parentSeq = memberListDto.getNo();
+			//if문을 위한것(2번째 if문)
+			
+//			Map<String, Object> tempFileMap = 
+//					adminDao.fileSelectStoredFileName(parentSeq);
+			
+			//for문을 위한것
+//			List<Map<String, Object>> list = 
+//					fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+			
+			// 오로지 하나만 관리 수정
+//			if (list.isEmpty() == false) {
+//				
+//				for (Map<String, Object> map : list) {
+//					adminDao.insertFile(map);
+//				}
+//				
+//				if (tempFileMap != null) {
+//					adminDao.fileDelete(parentSeq);
+//					fileUtils.parseUpdateFileInfo(tempFileMap);
+//				}
+//				
+//			}else if (fileIdx == -1) {
+//				if (tempFileMap != null) {
+//					adminDao.fileDelete(parentSeq);
+//					fileUtils.parseUpdateFileInfo(tempFileMap);
+//				}
+//			}
+			
+			//부모를 바꾸기 전에 자식을 바꾸는 형태(참조무결성 제약조건을 생각해야 하는 부분이다)
+			
+			
+			resultNum = adminDao.TutorProfileUpdateOne(memberListDto);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			System.out.println("오류");
+		}
+		
+		return resultNum;
+	
+	}
+	
 	//문의
 	@Override
 	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
@@ -181,12 +288,57 @@ public class AdminServiceImpl implements AdminService{
 		
 		return resultMap;
 	}
+	
+	@Override
+	public int studentDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.studentDeleteOne(no);
+	}
+	
+	@Override
+	public int tutorMemberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.tutorMemberDeleteOne(no);
+	}
+	
+	@Override
+	public int tutorInfoDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.tutorInfoDeleteOne(no);
+	}
+	
+	@Override
+	public int tutorEvaluationDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.tutorEvaluationDeleteOne(no);
+	}
+	
+	@Override
+	public int tutorfileDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.tutorfileDeleteOne(no);
+	}
+	
+	
 
 	@Override
 	public Map<String, Object> questionSelectOne(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		QuestionBoardDto questionBoardDto = adminDao.questionSelectOne(no);
+		
+		resultMap.put("questionBoardDto", questionBoardDto);
+		
+		
+		return resultMap;
 	}
+
+
+
+	
+
+	
 
 	
 	

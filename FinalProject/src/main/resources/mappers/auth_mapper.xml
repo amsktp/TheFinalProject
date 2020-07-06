@@ -31,7 +31,7 @@
 	
 	<select id="memberFindPassword" parameterType="map" resultMap="memberResultMap">
 	
-		SELECT MEMBER_PASSWORD
+		SELECT MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD
 		FROM MEMBER
 		WHERE MEMBER_NAME = #{memberName} 
 		AND MEMBER_BIRTH_DATE = #{memberBirthDate}

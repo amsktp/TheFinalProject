@@ -54,7 +54,7 @@
 	<h1>회원정보 상세조회</h1>
 	
 	<div>
-		<form action='./update.do' method='get' style="margin-top: 200px;">
+		<form action='./tutorUpdate.do' method='get' style="margin-top: 200px;">
 			번호: ${memberListDto.no}<br>
 			이메일: ${memberListDto.email}<br>
 			비밀번호: ${memberListDto.password}<br>
@@ -80,7 +80,7 @@
 	
 	
 	<div>
-		<form action='./update.do' method='get' style="margin-top: 200px;">
+		<form action='./tutorProUpdate.do' method='get' style="margin-top: 200px;">
 			이름: ${memberListDto.name}<br>
 			국적: ${memberListDto.country}<br>
 			나이: <input type="text" value="" id='age'><br>

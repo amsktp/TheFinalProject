@@ -35,7 +35,7 @@ nav > ul > li > a:hover {
  
 .active {
 	color: #FFD9EC;
-	background-color: #5D5D5D;
+/* 	background-color: #5D5D5D; */
 	font-weight: bold;  
 }
 </style>

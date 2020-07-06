@@ -51,7 +51,7 @@
 			ENGLISH VILLAGE
 		</div>
 			<div style="text-align: center;">
-				<span>${member.name}님의 ${member.email}로 발송하였습니다.</span><br><br>
+				<span>${memberDto.memberName}님의 ${memberDto.memberEmail}로 발송하였습니다.</span><br><br>
 				<span>로그인 후 정상적으로 서비스를 이용하실 수 있습니다.</span><br>
 			</div>
 			<div style="display: flex; justify-content: center;">		
