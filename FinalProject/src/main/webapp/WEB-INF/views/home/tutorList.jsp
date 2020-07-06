@@ -199,26 +199,13 @@ dl, ul, ol, menu, li {
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
-	var loginMoveFnc = function(){
-		location.href = '/englishvillage/login.do';
+
+	function moveTutorIntroduceFnc(tutorNo){
+		
+		location.href = './tutorSelectOne.do?tutorNo=' + tutorNo;
+
 	}
-	
-	var myPageMoveFnc = function() {
-		location.href = '/englishvillage/myPage.do'
-	}
-	
-	var tutorListMoveFnc = function() {
-		location.href = '/englishvillage/home.do'
-	}
-	
-	var tutorIntroduceMoveFnc = function() {
-		location.href = '/englishvillage/tutorIntroduce.do'
-	}
-	
-	var adminMoveFnc = function() {
-		location.href = '/englishvillage/admin.do'
-	}
-	
+
 </script>
 
 
@@ -351,7 +338,7 @@ dl, ul, ol, menu, li {
 		</c:when>
 		<c:otherwise>
 			<c:forEach var="tutorDto" items="${tutorDtoList}">
-				<div class="tutorInfoDiv clearfix" >
+				<div class="tutorInfoDiv clearfix" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 					<div class="tutorImgDiv">
 						<img class="tutorImg" id="tutorImg" src="/englishvillage/resources/imgs/sl2.png">
 					</div>

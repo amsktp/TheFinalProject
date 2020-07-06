@@ -124,9 +124,16 @@ public class TutorController {
 	}
 
 	@RequestMapping(value = "/tutorSelectOne.do", method = RequestMethod.GET)
-	public String main( Model model) {
+	public String main(int tutorNo, Model model) {
 		
 		log.info("튜터 소개 입니다. GET");
+		
+		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
+		
+		model.addAttribute("tutorDto", tutorDto);
+		
+		System.out.println(tutorDto);
+		
 		return "member/tutor/info/tutorSelectOne";
 	}
 	
@@ -192,5 +199,14 @@ public class TutorController {
 		model.addAttribute("tutorDto", tutorDto);
 
 		return "member/tutor/info/tutorIntroduceRevise";
+	}
+	
+	@RequestMapping(value = "/writeCommentCtr.do", method = RequestMethod.POST)
+	public String writeCommentCtr(HttpSession session, Model model) {
+		log.info("writeCommentCtr.do 입니다. GET");
+		
+		
+		
+		return "redirect:./tutorSelectOne.do";
 	}
 }

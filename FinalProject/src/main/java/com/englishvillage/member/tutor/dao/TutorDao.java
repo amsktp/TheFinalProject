@@ -22,5 +22,7 @@ public interface TutorDao {
 	public TutorDto getTutorInfo(int no);
 
 	public TutorDto getTutorGrade(int no);
+
+	public TutorDto getTutorIntroduce(int tutorNo);
 }
 

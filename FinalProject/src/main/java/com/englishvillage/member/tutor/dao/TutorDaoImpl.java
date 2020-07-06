@@ -114,4 +114,13 @@ public class TutorDaoImpl implements TutorDao{
 		return tutorDto;
 	}
 
+	@Override
+	public TutorDto getTutorIntroduce(int tutorNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("tutorNo", tutorNo);
+		
+		return sqlSession.selectOne(namespace + "getTutorIntroduce", map);
+	}
+
 }

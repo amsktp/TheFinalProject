@@ -23,5 +23,7 @@ public interface TutorService {
 
 	public TutorDto getTutorGrade(int no);
 
+	public TutorDto getTutorIntroduce(int tutorNo);
+
 
 }
