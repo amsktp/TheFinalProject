@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+
 import com.englishvillage.member.admin.dao.AdminDao;
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
@@ -332,6 +333,83 @@ public class AdminServiceImpl implements AdminService{
 		
 		
 		return resultMap;
+	}
+
+	@Override
+	public void replyInsertOne(QuestionBoardDto questionBoardDto, MultipartHttpServletRequest multipartHttpServletRequest) {
+		// TODO Auto-generated method stub
+//		MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
+//		
+		
+		adminDao.replyInsertOne(questionBoardDto);
+		
+//		int parentSeq = questionBoardDto.getNo();
+		
+//		try {
+//			List<Map<String, Object>> fileList = 
+//					fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+//			
+//			for (int i = 0; i < fileList.size(); i++) {
+//				adminDao.insertFile(fileList.get(i));
+//			}
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch blockS
+//			System.out.println("문제 생기면 처리할꺼 정하자");
+//			System.out.println("일단 여긴 파일 처리 중 문제 발생한 거야");
+//			e.printStackTrace();
+//		}
+
+	}
+
+	@Override
+	public int replyCheck(QuestionBoardDto questionBoardDto, MultipartHttpServletRequest mulRequest) throws Exception {
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		try {
+			
+//			int parentSeq = memberListDto.getNo();
+			//if문을 위한것(2번째 if문)
+			
+//			Map<String, Object> tempFileMap = 
+//					adminDao.fileSelectStoredFileName(parentSeq);
+			
+			//for문을 위한것
+//			List<Map<String, Object>> list = 
+//					fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+			
+			// 오로지 하나만 관리 수정
+//			if (list.isEmpty() == false) {
+//				
+//				for (Map<String, Object> map : list) {
+//					adminDao.insertFile(map);
+//				}
+//				
+//				if (tempFileMap != null) {
+//					adminDao.fileDelete(parentSeq);
+//					fileUtils.parseUpdateFileInfo(tempFileMap);
+//				}
+//				
+//			}else if (fileIdx == -1) {
+//				if (tempFileMap != null) {
+//					adminDao.fileDelete(parentSeq);
+//					fileUtils.parseUpdateFileInfo(tempFileMap);
+//				}
+//			}
+			
+			//부모를 바꾸기 전에 자식을 바꾸는 형태(참조무결성 제약조건을 생각해야 하는 부분이다)
+			
+			
+			resultNum = adminDao.replyCheck(questionBoardDto);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			System.out.println("오류");
+		}
+		
+		return resultNum;
 	}
 
 

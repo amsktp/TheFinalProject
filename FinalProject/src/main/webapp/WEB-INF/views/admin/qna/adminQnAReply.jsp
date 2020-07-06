@@ -2,12 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.4">
+	<script type="text/javascript"
+	src="/englishvillage/resources/js/bootstrap.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>회원정보 수정</title>
 
-<script type="text/javascript" src="/springHome/resources/js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 
 <script type="text/javascript">
 
@@ -31,7 +35,7 @@
 	}
 	
 	function pageMoveBeforeFnc(no) {
-		var url = "./studentlistOne.do?no=" + no;
+		var url = "./questionlist.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -69,11 +73,9 @@
 
 	<jsp:include page="/WEB-INF/views/Header.jsp" />
 	
-<%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
-	
 	<h1>회원정보 수정</h1>
 	
-	<form action='./studentUpdateCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
+	<form action='./replyAddCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
 		글번호: <input type='text' name='idx' value='${questionBoardDto.idx}'>
 		<br>
 		작성일: <input type='text' name='boardCreateDate' value='<fmt:formatDate value="${questionBoardDto.boardCreateDate}" pattern="yyyy-MM-dd"/> '>
@@ -90,20 +92,15 @@
 		글제목: <input type='text' name='title' value='${questionBoardDto.title}'>
 		<br>
 		내용: <input type='text' name='content' value='${questionBoardDto.content}'>
-		<br>
-		
-		
+		<br>	
 		답 글 : <input type='text' name='reply' value='${questionBoardDto.reply}'>
 		<br>
 
-		<input type='submit' value='수정하기'>
-		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
+		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${questionBoardDto.no});'>	
+		<input type="submit" value="답변하기">
 	
 	</form>
 	
 	
-	
-	
-<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>
 </html>

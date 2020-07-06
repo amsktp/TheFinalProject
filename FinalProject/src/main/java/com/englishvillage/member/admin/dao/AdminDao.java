@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 
@@ -45,6 +46,8 @@ public interface AdminDao {
 			, String keyword);
 	public int questionSelectCurPage(String searchOption, String keyword, int no);
 	public QuestionBoardDto questionSelectOne(int no);
+	public void replyInsertOne(QuestionBoardDto questionBoardDto);
+	public int replyCheck(QuestionBoardDto questionBoardDto);
 	
 	//파일관리
 	public void insertFile(Map<String, Object> map);

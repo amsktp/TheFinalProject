@@ -84,7 +84,7 @@
 		<br>
 		생년월일: 
 		
-		<input id="birthDateChoose" type="date"  name=birthDateText 
+		<input id="birthDateChoose" type="date"  name="birthDate"
 			value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
 		
 		<br>

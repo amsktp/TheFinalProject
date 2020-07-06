@@ -2,13 +2,18 @@ package com.englishvillage.member.admin.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MemberListDto {
 	private int no;
 	private String name;
 	private String email;
 	private String password;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date modifiedDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
 	private String country;
 	private String gender;
@@ -27,6 +32,7 @@ public class MemberListDto {
 	private String originalFileName;
     private String storedFileName;  
 	private int fileSize; 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date creDate;
 	
 	public MemberListDto() {

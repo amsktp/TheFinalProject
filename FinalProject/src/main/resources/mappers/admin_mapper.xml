@@ -88,6 +88,7 @@
       	
       
       	<result column="IDX" property="idx"/>   
+      	<result column="BOARD_NO" property="boardNo"/>   
    		<result column="MEMBER_NO" property="no"/>   
    		<result column="MEMBER_NAME" property="name"/>   
       	<result column="TITLE" property="title"/>   
@@ -98,6 +99,7 @@
       	<result column="MEMBER_GRADE" property="grade"/>
       	<result column="MEMBER_EMAIL" property="email"/>
       	<result column="REPLY" property="reply"/>
+      	<result column="COMMENT_CREATE_DATE" property="commentCreDate"/>
       	
    </resultMap>
 	
@@ -312,7 +314,8 @@
 				<include refid="quetionSearch"></include>
 			ORDER BY IDX DESC) Q
 		) MQ
-	WHERE MQ.RNUM BETWEEN #{start} AND #{end}                         
+	WHERE MQ.RNUM BETWEEN #{start} AND #{end}
+	ORDER BY MQ.ANSWER_STATUS,MQ.IDX ASC                        
    </select>
    
    <select id="questionSelectTotalCount" resultType="int" parameterType="map">
@@ -339,19 +342,38 @@
       resultMap="questionListResultMap">
 	SELECT M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_GRADE, M.MEMBER_EMAIL,
 	Q.TITLE, Q.CONTENT, Q.IDX, Q.MEMBERNO, Q.COMMENT_IDX,
-	Q.CRE_DATE, Q.BOARD_NO, Q.BOARD_CREATE_DATE, Q.REPLY, Q.ANSWER
+	Q.COMMENT_CREATE_DATE, Q.BOARD_NO, Q.BOARD_CREATE_DATE, Q.REPLY, Q.ANSWER
 	FROM MEMBER M, (SELECT QUESTION_BOARD.TITLE TITLE, QUESTION_BOARD.CONTENT
 					CONTENT,QUESTION_BOARD.IDX IDX,QUESTION_BOARD.MEMBER_NO MEMBERNO,
-					QUESTION_BOARD.BOARD_CREATE_DATE CRE_DATE, QUESTION_BOARD.ANSWER_STATUS
+					QUESTION_BOARD.BOARD_CREATE_DATE BOARD_CREATE_DATE, QUESTION_BOARD.ANSWER_STATUS
 					ANSWER,
 					QUESTION_BOARD_COMMENT.IDX COMMENT_IDX, QUESTION_BOARD_COMMENT.BOARD_NO BOARD_NO,
-					QUESTION_BOARD_COMMENT.COMMENT_CREATE_DATE BOARD_CREATE_DATE,
+					QUESTION_BOARD_COMMENT.COMMENT_CREATE_DATE COMMENT_CREATE_DATE,
 					QUESTION_BOARD_COMMENT.REPLY REPLY
 					FROM QUESTION_BOARD, QUESTION_BOARD_COMMENT
 					WHERE QUESTION_BOARD.IDX = QUESTION_BOARD_COMMENT.BOARD_NO(+)) Q
 	WHERE M.MEMBER_NO = Q.MEMBERNO
 	and q.idx = #{idx}
    </select>
+   
+   
+   <insert id="replyInsertOne" parameterType="map">
+      INSERT INTO QUESTION_BOARD_COMMENT
+         (IDX, BOARD_NO, COMMENT_CREATE_DATE,
+         REPLY, ADMIN_NO)
+      VALUES(
+         QUESTION_BOARD_COMMENT_IDX_SEQ.NEXTVAL + 5, #{idx}, SYSDATE, 
+         #{reply}, 0
+      )
+   </insert>
+   
+   <update id="replyCheck" parameterType="com.englishvillage.member.admin.model.MemberListDto">
+      UPDATE QUESTION_BOARD SET 
+
+         ANSWER_STATUS = 'Y'
+  
+      WHERE IDX = #{idx}
+   </update>
    
    
 </mapper>

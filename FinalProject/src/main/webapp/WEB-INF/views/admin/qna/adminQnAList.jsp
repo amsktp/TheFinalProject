@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 		border: 1px solid black;
 	}
 </style>
-
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 
 <script type="text/javascript">
@@ -95,14 +96,15 @@
 		
 	</form>
 
-	<table>
-		<tr>
+	<table class="table table-hover">
+		<tr class="success">
 			<th>글번호</th>
 			<th>회원번호</th>
 			<th>글제목</th>
 			<th>답변상태</th>
 			<th>등급</th>
 			<th>문의 등록일</th>
+			<th>대답 확인</th>
 		
 			
 		</tr>
@@ -132,6 +134,8 @@
 			<td>
 				<fmt:formatDate value="${questionDto.boardModDate}" pattern="yyyy-MM-dd"/> 
 			</td>
+			
+			<td>${questionDto.answerStatus}</td>
 			
 
 <%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
