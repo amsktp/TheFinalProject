@@ -9,7 +9,6 @@
 
 </script>
 <style>
-
 #naviUl > li > a{
 
 	font-size: 20px;
@@ -39,6 +38,10 @@ float: left;
 
 .liRight {
 float: right;
+}
+
+.navbar {
+    margin-bottom: 45px;
 }
 </style>
 

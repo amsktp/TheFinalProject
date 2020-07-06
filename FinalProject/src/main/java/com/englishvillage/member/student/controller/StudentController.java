@@ -117,7 +117,7 @@ public class StudentController {
 
 		log.info("call memberdelete!");
 
-//		return "redirect:/member/list.do";
+//		return "redirect:/member/login.do";
 //		return "/member/student/info/delete";
 		return "/member/student/info/studentWithdraw";
 	}
@@ -135,7 +135,7 @@ public class StudentController {
 //	}
 
 	// 회원 삭제
-	@RequestMapping(value = "deleteCtr.do", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteCtr.do", method = RequestMethod.POST)
 	public String memberDeleteCtr(HttpSession session, Model model) {
 
 		log.info("call memberDeleteCtr! " + session.getAttribute("member"));
@@ -153,7 +153,7 @@ public class StudentController {
 //		return "/member/student/info/studentPrivateInfo";
 //		return "redirect:/member/list.do";
 //		return "redirect:/login.do";
-		return "redirect:/member/student/info/delete";
+		return "/member/student/info/delete";
 	}
 
 	@RequestMapping(value = "studyList.do", method = { RequestMethod.GET, RequestMethod.POST })

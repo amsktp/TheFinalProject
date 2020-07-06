@@ -14,10 +14,10 @@
 }
 
 #pageName {
-	font-size: 40px;
-	font-weight: bold;
-	border-bottom: 3px solid #EBEDED;
-	margin-bottom: 40px;
+font-size: 2vw;
+    font-weight: bold;
+    border-bottom: 3px solid #EBEDED;
+    margin-bottom: 25px;
 }
 
 #mainLeft {

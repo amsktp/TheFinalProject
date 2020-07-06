@@ -9,7 +9,15 @@
 <meta charset="UTF-8">
 <title>회원 문의내역</title>
 <style type="text/css">
-
+@media ( min-width : 500px) {
+	.navbar-nav {
+		float: right;
+		margin: 0;
+	}
+	.navbar-nav>li {
+		float: left;
+	}
+}
 </style>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -77,16 +85,14 @@
 
 <body>
 	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+<%-- <jsp:include page="/WEB-INF/views/common/minMemberLayout.jsp" /> --%>
+	<div class="container bs-docs-container contentBox" >
+	<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
+		
+<div id="pageName">문의내역</div>
 
-	<div class="container bs-docs-container contentBox">
-		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9">
-
-
-
-			<h1>문의내역</h1>
-
-			<table class="table table-hover textCenter">
+			<table class="table table-hover textCenter tableFont">
 			<colgroup>
 			<col width="15%">
 			<col width="45%">
@@ -99,8 +105,6 @@
 					<th class="textCenter">내용</th>
 					<th class="textCenter">문의일</th>
 					<th class="textCenter">답변상태</th>
-
-
 				</tr>
 
 				<c:forEach var="questionDto" items="${qusetionList}">
@@ -142,9 +146,9 @@
 		</div>
 	</div>
 
-
-
+<div class="footer"></div>
 
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </html>

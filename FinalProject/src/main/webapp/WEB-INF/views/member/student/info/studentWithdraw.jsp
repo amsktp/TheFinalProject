@@ -57,8 +57,9 @@ $(document).ready(function(){
 				<input class="blackBtn" type='button' value='뒤로가기' onClick="location.href='/englishvillage/update.do'">
 <%-- 				<input id="editBtn" class="blackBtn" type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${member.memberNo});'>  --%>
 <%-- 				<input id="editBtn" class="blackBtn" type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${member.memberNo});'>  --%>
-				<input id="editBtn" class="blackBtn" type='button' value='회원탈퇴' onClick="location.href='/englishvillage/deleteCtr.do'"> 
-
+<form action="deleteCtr.do" method="post">
+				<input id="editBtn" class="blackBtn" type='submit' value='회원탈퇴'> 
+				</form>
 			</div>
 
 

@@ -87,7 +87,7 @@
 
 			<div id="pageName">수강내역</div>
 
-			<table class="table table-hover textCenter">
+			<table class="table table-hover textCenter tableFont">
 				<tr class="success">
 					<th class='textCenter'>번호</th>
 					<th class='textCenter'>강의제목</th>
@@ -114,7 +114,7 @@
 						</td>
 
 						<td><div class="td_status">
-								<fmt:formatDate value="${studyDto.studyDate}" pattern="yyyy-MM-dd" /> 
+								<fmt:formatDate value="${studyDto.studyDate}" pattern="yyyy-MM-dd a hh:mm" /> 
 							</div></td>
 				</c:forEach>
 
