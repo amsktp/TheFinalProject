@@ -86,26 +86,26 @@
 		
 	}
 
-	$('#authBtn').click(function() {
+// 	$('#authBtn').click(function() {
 		
-		$.ajax({
-		      url : "/englishvillage/authSendMailFindPwdCtr.do",
-		      type : "GET",
-		      data : "memberEmail=" + $('#memberEmail').val(),
-		      success : function(data) {
+// 		$.ajax({
+// 		      url : "/englishvillage/authSendMailFindPwdCtr.do",
+// 		      type : "POST",
+// 		      data : "memberEmail=" + $('#memberEmail').val(),
+// 		      success : function(data) {
 		    	  
-	          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
+// 	          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
 
-	          alert('이메일을 전송하였습니다. 확인해보세요');
+// 	          alert('이메일을 전송하였습니다. 확인해보세요');
 
-		      }, error : function() {
-		               console.log("실패");
+// 		      }, error : function() {
+// 		               console.log("실패");
 	    
-		      }
+// 		      }
 	 
-		});
+// 		});
 
-	});
+// 	});
 	
 	
 </script>

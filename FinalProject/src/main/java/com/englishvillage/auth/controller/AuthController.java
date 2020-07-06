@@ -163,33 +163,37 @@ public class AuthController {
 	    }
 	   
 	    return "redirect:/auth/mailCtr";
+	    
 	  }
 	
 	// mailSending 비밀번호 발송 코드
-	@RequestMapping(value = "/authSendMailFindPwdCtr.do", method=RequestMethod.GET)
-	  public String findPwdMailSending(HttpSession session, String memberEmail
+	@RequestMapping(value = "/authSendMailFindPwdCtr.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public String findPwdMailSending(HttpSession session
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
 		
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@비밀번호 찾기 메일");
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-		
 				
-		System.out.println(memberEmail);
-		System.out.println(memberDto.getMemberPassword());
-		System.out.println(memberDto.getMemberEmail());
-		
-		
 	    String setfrom = "javacatch5@gmail.com";
 	    
 	    	title = "비밀번호 찾기의 비밀번호 입니다.";
 	    	content = "비밀번호는 "+ memberDto.getMemberPassword() + " 입니다.";
+	    	
 	    
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 		    
+	      
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+
 	      messageHelper.setFrom(setfrom);
-	      messageHelper.setTo(memberEmail);
+	      messageHelper.setTo(memberDto.getMemberEmail());
 	      messageHelper.setSubject(title); 
 	      messageHelper.setText(content);
 		    
