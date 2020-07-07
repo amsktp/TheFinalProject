@@ -13,7 +13,12 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
+    
+    $('input[type=submit]').click(function() {
+    	alert("회원정보가 성공적으로 변경되었습니다!");
+    	$('form').attr('action', './updateCtr.do');
+    })
 });
 
 
@@ -25,17 +30,17 @@ $(document).ready(function(){
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
-	
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
+
 	<div id="pageSize">
-	<jsp:include page="/WEB-INF/views/memberLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 
 	<div id="myPageBox">
 	
 		<div id="pageName">회원정보 수정</div>
 		
-		<form action='./updateCtr.do' method='post'>
+		<form action='' method='post'>
 			<div>
 				<span>이름: </span>
 				<span>
@@ -84,7 +89,7 @@ $(document).ready(function(){
 			<input type="hidden" name="memberNo" value="${memberFileDto.memberNo}">
 			<input type="hidden" name="memberNo" value="${memberFileDto.memberNo}">
 				
-			<input class='blackBtn' type='submit' value='수정하기'>
+			<input class='blackBtn' type='submit' value='변경하기'>
 			</form>
 				<input class='blackBtn' type='button' value='회원탈퇴' 
 					onclick="location.href='/englishvillage/delete.do'">

@@ -4,15 +4,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -26,6 +31,9 @@ public class AuthController {
 	@Autowired
 	private AuthService authService;
 	
+	  @Autowired
+	  private JavaMailSender mailSender;
+	  
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String login() {
 		log.info("*****Welcome Login!*****");
@@ -61,7 +69,7 @@ public class AuthController {
 		return "redirect:/login.do";
 	}
 	
-	@RequestMapping(value="commonRegister.do")
+	@RequestMapping(value="commonRegister.do", method=RequestMethod.GET)
 	public String commonRegister(Model model) {
 		log.info("*****Welcome Register!*****");
 		
@@ -85,22 +93,117 @@ public class AuthController {
 	public String commonRegisterComplete() {
 		log.info("*****Welcome CommonRegisterComplete!*****");
 		
-		return "auth/commonRegisterComplete"; // jsp페이지로 이동할 경우
+		return "auth/commonRegisterComplete"; // jsp 페이지로 이동
+	} 
+	
+	@RequestMapping(value="/findPassword.do", method=RequestMethod.GET)
+	public String findPassword() {
+		log.info("*****Welcome findPassword!*****");
+		
+		return "auth/findPassword";
+	} 
+	
+	@RequestMapping(value="/findPasswordCtr.do", method=RequestMethod.POST)
+	public String findPasswordCtr(String memberName, String memberEmail, 
+			String memberBirthDate, HttpSession session, Model model) throws Exception {
+		log.info("*****Welcome findPasswordCtr!*****");
+		System.out.println(memberName + memberEmail + memberBirthDate );
+		
+		String viewUrl = "";
+		MemberDto memberDto = authService.memberFindPassword(memberName, memberEmail, memberBirthDate);
+		
+		session.setAttribute("memberDto", memberDto);
+		if(memberDto != null) {
+			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
+			
+		} else {
+			viewUrl = "redirect:/findPassword.do";
+		}
+		return viewUrl;
+		 
 	} 
 	
 	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
-	public String findPasswordComplete() {
+	public String findPasswordComplete( Model model, HttpSession session) {
 		log.info("*****Welcome findPasswordComplete!*****");
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
 		
-		return "auth/commonRegisterComplete";
+		session.invalidate();
+		
+		model.addAttribute("memberDto", memberDto);
+		
+		return "auth/findPasswordComplete";
 	} 
 	
-	@RequestMapping(value="/findPasswordCompleteCtr.do", method=RequestMethod.POST)
-	public String findPasswordCompleteCtr() {
-		log.info("*****Welcome findPasswordCompleteCtr!*****");
+	// mailSending 인증번호 발송 코드
+	@RequestMapping(value = "/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
+	  public String verifyNumMailSending(HttpServletRequest request, String memberEmail, int verifyNum
+			  ,@RequestParam(defaultValue = "") String title
+			  ,@RequestParam(defaultValue ="") String content) {
+	   
 		
-		return "redirect:/findPasswordComplete.do"; 
-	} 
+	    String setfrom = "javacatch5@gmail.com";
+	    
+	    	title = "회원가입 인증번호 입니다.";
+	    	content = "회원가입 인증번호는 "+ verifyNum + " 입니다.";
+	    	
+	    try {
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+	 
+	      messageHelper.setFrom(setfrom);
+	      messageHelper.setTo(memberEmail);
+	      messageHelper.setSubject(title); 
+	      messageHelper.setText(content);
+	     
+	      mailSender.send(message);
+	      
+	    } catch(Exception e){
+	      System.out.println(e);
+	    }
+	   
+	    return "redirect:/auth/mailCtr";
+	    
+	  }
 	
+	// mailSending 비밀번호 발송 코드
+	@RequestMapping(value = "/authSendMailFindPwdCtr.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public String findPwdMailSending(HttpSession session
+			  ,@RequestParam(defaultValue = "") String title
+			  ,@RequestParam(defaultValue ="") String content) {
+		
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@비밀번호 찾기 메일");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+				
+	    String setfrom = "javacatch5@gmail.com";
+	    
+	    	title = "비밀번호 찾기의 비밀번호 입니다.";
+	    	content = "비밀번호는 "+ memberDto.getMemberPassword() + " 입니다.";
+	    	
+	    
+	    try {
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+		    
+	      
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+
+	      messageHelper.setFrom(setfrom);
+	      messageHelper.setTo(memberDto.getMemberEmail());
+	      messageHelper.setSubject(title); 
+	      messageHelper.setText(content);
+		    
+	      mailSender.send(message);
+		    
+	    } catch(Exception e){
+	      System.out.println(e);
+	    }
+	   
+	    return "redirect:/findPasswordComplete.do";
+	  }
 	
 }

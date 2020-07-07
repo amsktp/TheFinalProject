@@ -10,7 +10,7 @@
 	
 	#mainBox {
 		border: 1px solid red;
-		height: 600px;
+		height: 800px;
 		width: 400px; 
 		position: absolute;
 		top: 50%;
@@ -28,16 +28,15 @@
 		font-size: 40px;
 		font-weight: bold;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-bottom: 70px;
 		border: 1px dotted blue;
 	}
 	
-	#subTitleBox {
-		font-size: 40px;
+	#secondTitleBox {
+		font-size: 25px;
 		font-weight: bold;
-		text-align: center;
-		margin-bottom: 20px;
-		border: 1px dotted blue;
+		padding-left: 37px;
+		margin-bottom: 20px;		
 	}
 	
 	.oneBarInputBox {
@@ -48,8 +47,7 @@
 	
 	.wrapInputBox {
 		display: flex; 
-		justify-content: flex-start;
-		margin-bottom: 10px;
+		justify-content: flex-start;		
 	}
 	
 	.twoBarInputBoxBtn {
@@ -67,13 +65,50 @@
 		location.href = "login.do";
 	}
 
-	function confirmBtn() {
-		location.href = "login.do";
-	}
 	
+	/* 비밀번호 찾기 유효성 */
+	function findPasswordBtn(){
+		var memberNameObj = document.getElementById('memberEmail');
+		var memberEmailObj = document.getElementById('memberPwd');
+		var memberBirthDateObj = document.getElementById('memberBirthDate');
+		var emptyMemberNameObj = document.getElementById('emptyMemberName');
+		
+		if(memberNameObj.value.length == 0){
+			alert("이름을 입력해주세요.");
+			return false;
+		} else if(memberEmailObj.value.length == 0){		
+			alert("이메일을 입력해주세요.");
+			return false;
+		} else if(memberBirthDateObj.value.length == 0){		
+			alert("생일을 입력해주세요.");
+			return false;
+		}
+		
+	}
 
+// 	$('#authBtn').click(function() {
+		
+// 		$.ajax({
+// 		      url : "/englishvillage/authSendMailFindPwdCtr.do",
+// 		      type : "POST",
+// 		      data : "memberEmail=" + $('#memberEmail').val(),
+// 		      success : function(data) {
+		    	  
+// 	          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
+
+// 	          alert('이메일을 전송하였습니다. 확인해보세요');
+
+// 		      }, error : function() {
+// 		               console.log("실패");
+	    
+// 		      }
+	 
+// 		});
+
+// 	});
+	
+	
 </script>
-
 
 </head>
 <body>
@@ -85,16 +120,16 @@
 		<div id="secondTitleBox">
 			비밀번호 찾기
 		</div>
-		
-		
 		<div id="secondBox">
-			<form action="./commonRegisterCtr.do" method="post">
+			<form action="./findPasswordCtr.do" method="post" onsubmit="return findPasswordBtn();">
 				<div>
 					<div>
 						이름
 					</div>
 					<div>
-						<input class="oneBarInputBox" type="text" name="memberName" placeholder="이름을 입력하세요">
+						<input class="oneBarInputBox" id="memberName" type="text" name="memberName" placeholder="이름을 입력하세요">
+					</div>
+					<div id="emptyMemberName">
 					</div>
 				</div>
 				<div>
@@ -102,22 +137,22 @@
 						이메일
 					</div>
 					<div>
-						<input class="oneBarInputBox" type="email" name="memberEmail" placeholder="이메일을 입력하세요">
+						<input class="oneBarInputBox" id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요">
 					</div>
 				</div>
 				<div>
 					<div>
 						생년월일
 					</div>
-					<div>
-						<input class="oneBarInputBox" type="date" name="birthDate" placeholder="생년월일을 입력하세요">
+					<div style="margin-bottom: 20px;">
+						<input class="oneBarInputBox" id="memberBirthDate" type="date" name="memberBirthDate" placeholder="생년월일을 입력하세요">
 					</div>
 					<div class="wrapInputBox">
 						<div>
 							<input class="twoBarInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
 						</div>
 						<div>
-							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" onclick="confirmBtn();">
+							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" onclick="authBtn();">
 						</div>
 					</div>
 				</div>

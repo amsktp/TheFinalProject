@@ -2,13 +2,18 @@ package com.englishvillage.member.admin.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MemberListDto {
 	private int no;
 	private String name;
 	private String email;
 	private String password;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date modifiedDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
 	private String country;
 	private String gender;
@@ -18,7 +23,7 @@ public class MemberListDto {
 	private int tutorNo;
 	private String url;
 	private int Price;
-	
+	private String tutorTitle;
 
 	
 
@@ -27,6 +32,7 @@ public class MemberListDto {
 	private String originalFileName;
     private String storedFileName;  
 	private int fileSize; 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date creDate;
 	
 	public MemberListDto() {
@@ -34,11 +40,38 @@ public class MemberListDto {
 	}
 	
 
+	
+
+	public MemberListDto(int no, String name, String email, String password, Date modifiedDate, Date birthDate,
+			String country, String gender) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.modifiedDate = modifiedDate;
+		this.birthDate = birthDate;
+		this.country = country;
+		this.gender = gender;
+	}
+
+	
+
+	public MemberListDto(int no, String url, int price, String tutorTitle) {
+		super();
+		this.no = no;
+		this.url = url;
+		this.Price = price;
+		this.tutorTitle = tutorTitle;
+	}
+
+
+
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
-			int price, int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize,
-			Date creDate) {
+			int price, String tutorTitle, int idx, int parentSeq, String originalFileName, String storedFileName,
+			int fileSize, Date creDate) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -53,8 +86,8 @@ public class MemberListDto {
 		this.point = point;
 		this.score = score;
 		this.tutorNo = tutorNo;
-		url = url;
-		Price = price;
+		this.Price = price;
+		this.tutorTitle = tutorTitle;
 		this.idx = idx;
 		this.parentSeq = parentSeq;
 		this.originalFileName = originalFileName;
@@ -62,6 +95,8 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
+
+
 
 
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
@@ -80,6 +115,9 @@ public class MemberListDto {
 		this.fileSize = fileSize;
 		this.creDate = creDate;
 	}
+
+
+
 
 	public int getNo() {
 		return no;
@@ -261,14 +299,35 @@ public class MemberListDto {
 		Price = price;
 	}
 
+	
+
+
+	public String getTutorTitle() {
+		return tutorTitle;
+	}
+
+
+
+
+	public void setTutorTitle(String tutorTitle) {
+		this.tutorTitle = tutorTitle;
+	}
+
+
 
 
 	@Override
 	public String toString() {
 		return "MemberListDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", idx=" + idx + ", parentSeq="
+				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", birthDate=" + birthDate
+				+ ", country=" + country + ", gender=" + gender + ", grade=" + grade + ", point=" + point + ", score="
+				+ score + ", tutorNo=" + tutorNo + ", url=" + url + ", Price=" + Price + ", idx=" + idx + ", parentSeq="
 				+ parentSeq + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
 				+ ", fileSize=" + fileSize + ", creDate=" + creDate + "]";
 	}
+
+
+
+	
 
 }

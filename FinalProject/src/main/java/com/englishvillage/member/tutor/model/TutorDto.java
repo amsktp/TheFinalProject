@@ -1,5 +1,5 @@
-package com.englishvillage.member.tutor.model;
 
+package com.englishvillage.member.tutor.model;
 import java.util.Date;
 
 
@@ -27,7 +27,6 @@ public class TutorDto {
 	private int score;
 	
 	private int evaluationCount;
-	
 	
 
 	public TutorDto() {

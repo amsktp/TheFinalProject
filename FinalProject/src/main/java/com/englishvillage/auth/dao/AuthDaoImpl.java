@@ -1,5 +1,8 @@
 package com.englishvillage.auth.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,6 +39,21 @@ public class AuthDaoImpl implements AuthDao{
 		
 		return sqlSession.insert(namespace + "memberInsertOne", memberDto);
 		
+	}
+
+	@Override
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) throws Exception {
+		// TODO Auto-generated method stub
+		
+		MemberDto memberDto = new MemberDto();
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date parseDate = simpleDateFormat.parse(memberBirthDate);
+		memberDto.setMemberBirthDate(parseDate);
+		memberDto.setMemberEmail(memberEmail);
+		memberDto.setMemberName(memberName);
+		
+		return sqlSession.selectOne(namespace + "memberFindPassword", memberDto);
 	}
 
 }

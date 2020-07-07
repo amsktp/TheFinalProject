@@ -50,7 +50,7 @@
 			<ul id="topHeaderUl">
 				
 				<li><a href="./home.do"><strong>${member.memberName} 회원님 환영합니다.</strong></a></li>
-				<li><a href=""><strong>보유포인트 5,000점</strong></a></li>
+				<li><a href=""><strong>보유포인트 ${member.memberPoint}점</strong></a></li>
 				<li><a href="<%=request.getContextPath()%>/logout.do"><strong>로그아웃</strong></a></li>
 			</ul>
 		</c:if>
@@ -63,7 +63,7 @@
 		<div id="overLine">
 			<ul class="headUl">
 				<li>튜터목록</li>
-				<li>튜터등록</li>
+				<li><a href="./home.do">튜터등록</a></li>
 				<li>수강권</li>
 			</ul>
 

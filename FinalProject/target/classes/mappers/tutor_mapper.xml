@@ -155,6 +155,7 @@
 		AND M.MEMBER_NO = #{no}
 
 	
+
 	</select>
 
 	<update id="tutorUpdateGrade" parameterType="map">
@@ -213,6 +214,7 @@
      	WHERE MEMBER_NO = #{memberNo}
      
 	</delete>
+
 </mapper>
 
 

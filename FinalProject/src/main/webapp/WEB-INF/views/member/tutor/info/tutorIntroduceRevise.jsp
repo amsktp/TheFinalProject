@@ -5,6 +5,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <title>튜터소개</title>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css">
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -16,6 +17,7 @@ $(document).ready(function(){
     $('.layoutUl').children().eq(1).addClass('on');
 });
 </script>
+
 </head>
 
 <body>

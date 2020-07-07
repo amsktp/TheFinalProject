@@ -1,6 +1,7 @@
 package com.englishvillage.member.student.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.dao.StudentDao;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.util.FileUtils;
@@ -34,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
 		MemberFileDto memberFileDto = studentDao.SelectOne(userEmail);
 		
 		resultMap.put("MemberFileDto", memberFileDto);
-		
 		return resultMap;
 	}
 
@@ -61,6 +62,86 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.memberDeleteOne(no);
 	}
 
+	@Override
+	public int studentStudyCount(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentStudyCount! {}", no);
+		return studentDao.studentStudyCount(no);
+	}
+	
+	@Override
+	public List<QuestionBoardDto> studySelectList(int no, int start, int end) {
+		// TODO Auto-generated method stub
+		List<QuestionBoardDto> studyList = 
+				studentDao.studySelectList(no, start, end);
+		
+		return studyList;
+	}
+
+	@Override
+	public int studentStudyInfo(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentStudyInfo! {}", no);
+		return studentDao.studentStudyInfo(no);
+	}
+
+	@Override
+	public int studentQuestionCount(int no) {
+		// TODO Auto-generated method stub
+		log.info("Welcome studentQuestionCount! {}", no);
+		System.out.println("dddddddddddddddddddddddddddddddddddd");
+		return studentDao.studentQuestionCount(no);
+	}
+
+
+	@Override
+	public int questionSelectCurPage(int no, int idx) {
+		// TODO Auto-generated method stub
+		return studentDao.questionSelectCurPage(no, idx);
+	}
+
+
+	@Override
+	public List<QuestionBoardDto> questionSelectList(int no, int start, int end) {
+		// TODO Auto-generated method stub
+		
+		List<QuestionBoardDto> qusetionList = 
+				studentDao.questionSelectList(no, start, end);
+		
+		return qusetionList;
+	}
+
+
+	@Override
+	public Map<String, Object> QuestionSelect(int idx) {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		QuestionBoardDto questionBoardDto = studentDao.QuestionSelect(idx);
+		resultMap.put("QuestionBoardDto", questionBoardDto);
+		
+		return resultMap;
+	}
+
+
+	@Override
+	public int QuestionRevise(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		
+		int resultNum = 0;
+		resultNum= studentDao.QuestionRevise(questionBoardDto);
+		System.out.println("데이터베이스 빠져나옴"+resultNum);
+		return resultNum;
+	}
+
+
+	@Override
+	public int QuestionAdd(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		resultNum= studentDao.QuestionAdd(questionBoardDto);
+		return resultNum;
+	}
 
 
 }

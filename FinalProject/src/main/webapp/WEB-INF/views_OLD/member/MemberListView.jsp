@@ -146,9 +146,9 @@ table, tr, th, td{
 	</table>
 	
 <%-- 	<jsp:include page="/WEB-INF/views/common/paging.jsp"> --%>
-		<jsp:param value="${pagingMap}" name="pagingMap"/>
-		<jsp:param value="${searchMap}" name="searchMap"/>
-	</jsp:include>
+<%-- 		<jsp:param value="${pagingMap}" name="pagingMap"/> --%>
+<%-- 		<jsp:param value="${searchMap}" name="searchMap"/> --%>
+<%-- 	</jsp:include> --%>
 	
 	<form action="./list.do" id='pagingForm' method="get">
 		

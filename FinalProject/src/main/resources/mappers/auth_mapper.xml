@@ -29,7 +29,17 @@
 		
 	</select>
 	
-		<insert id="memberInsertOne" parameterType="memberDto" useGeneratedKeys="true" keyProperty="memberNo">
+	<select id="memberFindPassword" parameterType="map" resultMap="memberResultMap">
+	
+		SELECT MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{memberName} 
+		AND MEMBER_BIRTH_DATE = #{memberBirthDate}
+		AND MEMBER_EMAIL = #{memberEmail}	
+		
+	</select>
+	
+	<insert id="memberInsertOne" parameterType="memberDto" useGeneratedKeys="true" keyProperty="memberNo">
 		
 		<selectKey keyProperty="memberNo" resultType="int" order="BEFORE">
 			SELECT MEMBER_MEMBER_NO_SEQ.NEXTVAL+67 FROM DUAL

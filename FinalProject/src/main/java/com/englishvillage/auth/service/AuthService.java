@@ -8,5 +8,7 @@ public interface AuthService {
 
 	public int memberInsertOne(MemberDto memberDto);
 
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) throws Exception;
+
 
 }

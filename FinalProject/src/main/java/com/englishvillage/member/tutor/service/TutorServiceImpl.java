@@ -96,8 +96,6 @@ public class TutorServiceImpl implements TutorService{
 	
 	
 	
-	
-
 	@Override
 	public List<TutorDto> getTutorList(String countrySearch, int ageSearch, String genderSearch, String keyword,
 			int start, int end) {
@@ -130,6 +128,4 @@ public class TutorServiceImpl implements TutorService{
 		// TODO Auto-generated method stub
 		return tutorDao.tutorUpdateGrade(memberNo);
 	}
-	
-	
 }

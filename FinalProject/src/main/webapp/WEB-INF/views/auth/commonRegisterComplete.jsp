@@ -10,7 +10,7 @@
 	
 	#mainBox {
 		border: 1px solid red;
-		height: 600px;
+		height: 800px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;

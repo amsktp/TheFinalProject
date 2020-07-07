@@ -76,6 +76,20 @@ public class AdminDaoImpl implements AdminDao{
 		            , no);
 	}
 	
+	@Override
+	public int memberStudentUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.update(namespace + "memberStudentUpdateOne", memberListDto);
+	}
+	
+	@Override
+	public int studentDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "studentDeleteOne",no);
+	}
+
+	
 	//튜터
 	@Override
 	public List<MemberListDto> tutorSelectList(String searchOption, String keyword, int start, int end) {
@@ -124,6 +138,42 @@ public class AdminDaoImpl implements AdminDao{
 	            , no);
 	}
 	
+	@Override
+	public int memberTutorUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.update(namespace + "memberTutorUpdateOne", memberListDto);
+	}
+	
+
+	@Override
+	public int TutorProfileUpdateOne(MemberListDto memberListDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "TutorProfileUpdateOne", memberListDto);
+	}
+	//튜터 삭제
+	@Override
+	public int tutorMemberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorMemberDeleteOne",no);
+	}
+	@Override
+	public int tutorInfoDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorInfoDeleteOne",no);
+	}
+	@Override
+	public int tutorEvaluationDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorEvaluationDeleteOne",no);
+	}
+	@Override
+	public int tutorfileDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "tutorfileDeleteOne",no);
+	}
+
+	
 	//문의
 	@Override
 	public List<QuestionBoardDto> questionSelectList(String searchOption, String keyword, int start, int end) {
@@ -168,11 +218,57 @@ public class AdminDaoImpl implements AdminDao{
 	
 
 	@Override
-	public MemberListDto questionSelectOne(int no) {
+	public QuestionBoardDto questionSelectOne(int no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "questionSelectOne"
 	            , no);
 	}
+	
+	@Override
+	public void replyInsertOne(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		 sqlSession.selectOne(namespace + "replyInsertOne"
+	            , questionBoardDto);
+	}
+	
+	@Override
+	public int replyCheck(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "replyCheck", questionBoardDto);
+	}
+
+
+	
+	//파일관리
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + "insertFile", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> fileSelectList(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "fileSelectList", no);
+	}
+
+	@Override
+	public Map<String, Object> fileSelectStoredFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "fileSelectStoredFileName", no);
+	}
+
+	@Override
+	public int fileDelete(int parentSeq) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "fileDelete",parentSeq);
+	}
+
+	
+	
+
+	
+
 	
 
 }

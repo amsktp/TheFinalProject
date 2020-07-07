@@ -1,8 +1,14 @@
 package com.englishvillage.member.admin.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 import com.englishvillage.member.admin.model.MemberListDto;
@@ -134,6 +141,68 @@ public class AdminController {
 		return "admin/student/adminStudentInfo";
 	}
 	
+	//회원 수정 화면으로
+		@RequestMapping(value = "/admin/StudentUpdate.do", method = RequestMethod.GET)
+		public String studentUpdate(int no, Model model) {
+			
+			log.info("call memberUpdate! {}", no);
+			System.out.println("왔다!");
+			
+			Map<String, Object> map = adminService.memberStudentSelectOne(no);
+			
+			MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+			
+//			List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+			
+			model.addAttribute("memberListDto", memberListDto);
+			
+//			model.addAttribute("fileList", fileList);
+			
+			return "admin/student/adminStudentInfoRevise";
+		}
+		
+		//회원수정
+		@RequestMapping(value = "/admin/studentUpdateCtr.do", method = RequestMethod.POST)
+		public String studentUpdateCtr(HttpSession session, MemberListDto memberListDto,
+									  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
+									  ,MultipartHttpServletRequest multipartHttpServletRequest
+									  , Model model) throws ParseException {
+			
+			log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+			
+			int resultNum = 0;
+			
+			try {
+				// 설명하지 
+				resultNum = adminService.memberStudentUpdateOne(memberListDto
+						, multipartHttpServletRequest, fileIdx);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("updateone에 예외처리되나");
+				e.printStackTrace();
+			}
+			
+			if (resultNum != 0) {
+				MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+				
+				if (sessionMemberListDto != null) {
+					
+					if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+						MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getName()
+								,memberListDto.getEmail(),memberListDto.getPassword(), memberListDto.getModifiedDate()
+								,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
+						
+						session.removeAttribute("member");
+						
+						session.setAttribute("member", newMemberListDto);
+					}
+					
+				}
+			}
+			
+			return "redirect:./studentlist.do";
+		}
+	
 	//튜터 리스트
 	@RequestMapping(value = "/admin/tutorlist.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
@@ -229,6 +298,163 @@ public class AdminController {
 		return "admin/tutor/adminTutorInfo";
 	}
 	
+	//회원 수정 화면으로
+	@RequestMapping(value = "/admin/tutorUpdate.do", method = RequestMethod.GET)
+	public String tutorUpdate(int no, Model model) {
+		
+		log.info("call memberUpdate! {}", no);
+		System.out.println("왔다!");
+		
+		Map<String, Object> map = adminService.memberTutorSelectOne(no);
+		
+		MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+		
+//				List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+		
+		model.addAttribute("memberListDto", memberListDto);
+		
+//				model.addAttribute("fileList", fileList);
+		
+		return "admin/tutor/adminTutorInfoRevise";
+	}
+	
+	//회원 수정 화면으로
+		@RequestMapping(value = "/admin/tutorProUpdate.do", method = RequestMethod.GET)
+		public String tutorProUpdate(int no, Model model) {
+			
+			log.info("call memberUpdate! {}", no);
+			System.out.println("왔다!");
+			
+			Map<String, Object> map = adminService.memberTutorSelectOne(no);
+			
+			MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
+			
+//					List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+			
+			model.addAttribute("memberListDto", memberListDto);
+			
+//					model.addAttribute("fileList", fileList);
+			
+			return "admin/tutor/adminTutorInfoProRevise";
+		}
+	
+	//회원수정
+			@RequestMapping(value = "/admin/tutorUpdateCtr.do", method = RequestMethod.POST)
+			public String TutorUpdateCtr(HttpSession session, MemberListDto memberListDto,
+										  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
+										  ,MultipartHttpServletRequest multipartHttpServletRequest
+										  , Model model) throws ParseException {
+				
+				log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+				
+				int resultNum = 0;
+				
+				try {
+					// 설명하지 
+					
+					resultNum = adminService.memberTutorUpdateOne(memberListDto
+							, multipartHttpServletRequest, fileIdx);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println("updateone에 예외처리되나");
+					e.printStackTrace();
+				}
+				
+				if (resultNum != 0) {
+					MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+					
+					if (sessionMemberListDto != null) {
+						
+						if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+							MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getName()
+									,memberListDto.getEmail(),memberListDto.getPassword(), memberListDto.getModifiedDate()
+									,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
+							
+							session.removeAttribute("member");
+							
+							session.setAttribute("member", newMemberListDto);
+						}
+						
+					}
+				}
+				
+				return "redirect:./tutorlist.do";
+			}
+	
+	//회원수정
+		@RequestMapping(value = "/admin/tutorUpdateProCtr.do", method = RequestMethod.POST)
+		public String TutorProUpdateCtr(HttpSession session, MemberListDto memberListDto,
+									@RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
+									,MultipartHttpServletRequest multipartHttpServletRequest
+									, Model model) throws ParseException {
+				
+		log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+			
+			int resultNum = 0;
+		try {
+			// 설명하지 
+
+			resultNum = adminService.TutorProfileUpdateOne(memberListDto
+					, multipartHttpServletRequest, fileIdx);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("updateone에 예외처리되나");
+			e.printStackTrace();
+		}
+		
+		if (resultNum != 0) {
+			MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+			
+			if (sessionMemberListDto != null) {
+				
+				if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+					MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getUrl(),
+							memberListDto.getPrice(), memberListDto.getTutorTitle());
+					
+					System.out.println("여기오나?");
+					
+					session.removeAttribute("member");
+					
+					session.setAttribute("member", newMemberListDto);
+				}
+				
+			}
+		}
+		
+		return "redirect:./tutorlist.do";
+	}
+	//회원 탈퇴
+		//회원삭제
+	@RequestMapping(value = "/admin/StudentdeleteCtr.do", method = RequestMethod.GET)
+	public String studentDeleteCtr(int no, Model model) {
+		
+		log.info("call memberDeleteCtr! " + no);
+		
+//			Map<String, Object> tempFileMap = null; 
+//			tempFileMap = memberService.fileSelectStoredFileName(no);
+		
+		adminService.studentDeleteOne(no);
+		
+		return "redirect:./studentlist.do";
+	}
+	@RequestMapping(value = "/admin/TutordeleteCtr.do", method = RequestMethod.GET)
+	public String tutorDeleteCtr(int no, Model model) {
+		
+		log.info("call memberDeleteCtr! " + no);
+		
+//			Map<String, Object> tempFileMap = null; 
+//			tempFileMap = memberService.fileSelectStoredFileName(no);
+		
+		adminService.tutorInfoDeleteOne(no);
+		adminService.tutorfileDeleteOne(no);
+		adminService.tutorEvaluationDeleteOne(no);
+		adminService.tutorMemberDeleteOne(no);
+		
+		return "redirect:./studentlist.do";
+	}
+
+	
 	//문의 리스트
 		@RequestMapping(value = "/admin/questionlist.do"
 				, method = {RequestMethod.GET, RequestMethod.POST})
@@ -301,6 +527,36 @@ public class AdminController {
 			System.out.println("@@@@@@@#################" + searchOption);
 			
 			return "admin/qna/adminQnAList";
+		}
+		
+		@RequestMapping(value = "/admin/questionlistOne.do", method = RequestMethod.GET)
+		public String questionListOne(int no, String searchOption, String keyword, Model model) {
+			log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+			
+			Map<String, Object> map = adminService.questionSelectOne(no);
+			
+			QuestionBoardDto questionBoardDto = (QuestionBoardDto)map.get("questionBoardDto");
+			
+//			List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+			
+			model.addAttribute("questionBoardDto", questionBoardDto);
+//			model.addAttribute("fileList", fileList);
+			model.addAttribute("searchOption", searchOption);
+			model.addAttribute("keyword", keyword);
+			
+			
+			return "admin/qna/adminQnAReply";
+		}
+		
+		@RequestMapping(value = "/admin/replyAddCtr.do", method = {RequestMethod.POST})
+		public String memberAdd(QuestionBoardDto questionBoardDto, MultipartHttpServletRequest mulRequest, Model model) throws Exception {
+			log.info("call memberAdd_ctr! {}", questionBoardDto);
+			System.out.println("들어와");
+			
+			adminService.replyInsertOne(questionBoardDto, mulRequest);
+			adminService.replyCheck(questionBoardDto, mulRequest);
+			
+			return "redirect:/admin/questionlist.do";
 		}
 
 }

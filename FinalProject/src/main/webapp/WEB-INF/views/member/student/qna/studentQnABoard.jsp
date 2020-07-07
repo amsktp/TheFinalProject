@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,81 +9,146 @@
 <meta charset="UTF-8">
 <title>회원 문의내역</title>
 <style type="text/css">
-	table {
-		border-collapse: collapse;
+@media ( min-width : 500px) {
+	.navbar-nav {
+		float: right;
+		margin: 0;
 	}
-	
-	table, tr, td, th {
-		border: 1px solid black;
+	.navbar-nav>li {
+		float: left;
 	}
+}
 </style>
-
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
-	
-	
 <script type="text/javascript">
+	$(document).ready(function() {
+		$('.layoutUl').children().eq(4).addClass('on');
 
-$(document).ready(function(){
-    $('.layoutUl').children().eq(3).addClass('on');
+		// #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
 
-// #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
+		$('#qna').on('click', function() {
+			// 			var idxObj = $('#idx');
+			var url = '';
 
-});
+			url += './QuestionAdd.do';
+
+			location.href = url;
+		});
+
+	});
+
+	function listOnePageFnc(obj, event) {
+		var aTagObj = $(obj);
+
+		event.preventDefault();
+
+		var memberNoObj = '';
+		// 		var curPageObj = $('#curPage');
+		var keywordObj = $('#keyword');
+		var searchOptionObj = $('#searchOption');
+
+		// 회원이름 클릭시 자신의 회원번호 td태그(eq()를 잘 기억해두자)
+		// 		memberNoObj = aTagObj.parent().parent().children('td').eq(0);
+
+		var url = '';
+
+		url += './adminlistOne.do?';
+		url += 'no=' + memberNoObj.html();
+		// 		url += '&curPage=' + curPageObj.val();
+		url += '&keyword=' + keywordObj.val();
+		url += '&searchOption=' + searchOptionObj.val();
+
+		// 		alert(url);
+
+		location.href = url;
+
+		return false;
+	}
+
+	function QnAReadFnc(obj) {
+		var aTagObj = $(obj);
+
+		var url = '';
+		var memberNoObj = '';
+
+		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
+				.children();
+
+		url += './QuestionSelect.do?';
+		url += 'idx=' + memberNoObj.html();
+
+		location.href = url;
+	}
 </script>
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
-	
-	<div id="pageSize">
-	<jsp:include page="/WEB-INF/views/memberLayout.jsp" />
-	
-
-	<div id="myPageBox">
-	
-	<h1 class="infoFont">문의내역</h1>
-	</div>
-	
-		<table>
-		<tr>
-			<th>글번호</th>
-			<th>회원번호</th>
-			<th>글제목</th>
-			<th>답변상태</th>
-			<th>등급</th>
-			<th>문의 등록일</th>
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+<%-- <jsp:include page="/WEB-INF/views/common/minMemberLayout.jsp" /> --%>
+	<div class="container bs-docs-container contentBox" >
+	<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
 		
-			
-		</tr>
-	
-	<c:forEach var="questionDto" items="${qusetionList}">
-		<tr>
-			<td>${questionDto.idx}</td>
-			<td>${questionDto.no}</td>
-			<td>
+<div id="pageName">문의내역</div>
 
-				<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
-					${questionDto.title}
-				</a>
-			</td>
+			<table class="table table-hover textCenter tableFont">
+			<colgroup>
+			<col width="15%">
+			<col width="45%">
+			<col width="20%">
+			<col width="20%">
 			
-			
-			<td>${questionDto.content}</td>
-			
-			<td>${questionDto.grade}</td>
-			
-			<td>
-				<fmt:formatDate value="${questionDto.boardModDate}" pattern="yyyy-MM-dd"/> 
-			</td>
+			</colgroup>
+				<tr class="success">
+					<th class="textCenter">문의번호</th>
+					<th class="textCenter">내용</th>
+					<th class="textCenter">문의일</th>
+					<th class="textCenter">답변상태</th>
+				</tr>
 
-		</tr>
-	</c:forEach>
-	
-	</table>
-	
+				<c:forEach var="questionDto" items="${qusetionList}">
+					<tr>
+						<td><div id="idxVal" class="td_status">${questionDto.idx}</div></td>
+						<td class="textLeft"><div class="td_status">
+								<a href="#" onclick="QnAReadFnc(this);" style="color: black;">
+									${questionDto.title} </a>
+							</div></td>
+
+
+						<td><div class="td_status">
+								<fmt:formatDate value="${questionDto.boardCreateDate}"
+									pattern="yyyy-MM-dd" />
+							</div></td>
+
+						<td>
+							<div class="td_status">
+								<c:if test="${questionDto.answerStatus == 'Y'}">
+									답변완료
+								</c:if>
+								<c:if test="${questionDto.answerStatus == 'N'}">
+									답변대기중
+								</c:if>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+
+			</table>
+			<input id="qna" class="btn btn-success" type="button" value="문의하기" style="float: right;">
+			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
+				<jsp:param value="${pagingMap}" name="pagingMap" />
+			</jsp:include>
+			<form action="QuestionList.do" id="pagingForm" method="get">
+				<input type="hidden" id="curPage" name="curPage"
+					value="${pagingMap.memberPaging.curPage}">
+			</form>
+		</div>
 	</div>
+
+<div class="footer"></div>
 
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </html>
