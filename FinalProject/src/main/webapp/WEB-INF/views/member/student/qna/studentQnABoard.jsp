@@ -38,34 +38,6 @@
 
 	});
 
-	function listOnePageFnc(obj, event) {
-		var aTagObj = $(obj);
-
-		event.preventDefault();
-
-		var memberNoObj = '';
-		// 		var curPageObj = $('#curPage');
-		var keywordObj = $('#keyword');
-		var searchOptionObj = $('#searchOption');
-
-		// 회원이름 클릭시 자신의 회원번호 td태그(eq()를 잘 기억해두자)
-		// 		memberNoObj = aTagObj.parent().parent().children('td').eq(0);
-
-		var url = '';
-
-		url += './adminlistOne.do?';
-		url += 'no=' + memberNoObj.html();
-		// 		url += '&curPage=' + curPageObj.val();
-		url += '&keyword=' + keywordObj.val();
-		url += '&searchOption=' + searchOptionObj.val();
-
-		// 		alert(url);
-
-		location.href = url;
-
-		return false;
-	}
-
 	function QnAReadFnc(obj) {
 		var aTagObj = $(obj);
 
@@ -100,7 +72,7 @@
 
 				</colgroup>
 				<tr class="success">
-					<th class="textCenter">문의번호</th>
+					<th class="textCenter">문의 번호</th>
 					<th class="textCenter">내용</th>
 					<th class="textCenter">문의일</th>
 					<th class="textCenter">답변상태</th>

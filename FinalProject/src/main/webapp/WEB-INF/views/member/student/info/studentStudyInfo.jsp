@@ -20,61 +20,20 @@
 	$(document).ready(function() {
 		$('.layoutUl').children().eq(3).addClass('on');
 
-		// #gnb에 자식 요소(li)가 몇번째인지를 확인한 후 on이라는 클래스 추가
+// 	function QnAReadFnc(obj) {
+// 		var aTagObj = $(obj);
 
-		$('#qna').on('click', function() {
-			// 			var idxObj = $('#idx');
-			var url = '';
+// 		var url = '';
+// 		var memberNoObj = '';
 
-			url += './QuestionAdd.do';
+// 		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
+// 				.children();
 
-			location.href = url;
-		});
+// 		url += './QuestionSelect.do?';
+// 		url += 'idx=' + memberNoObj.html();
 
-	});
-
-	function listOnePageFnc(obj, event) {
-		var aTagObj = $(obj);
-
-		event.preventDefault();
-
-		var memberNoObj = '';
-		// 		var curPageObj = $('#curPage');
-		var keywordObj = $('#keyword');
-		var searchOptionObj = $('#searchOption');
-
-		// 회원이름 클릭시 자신의 회원번호 td태그(eq()를 잘 기억해두자)
-		// 		memberNoObj = aTagObj.parent().parent().children('td').eq(0);
-
-		var url = '';
-
-		url += './adminlistOne.do?';
-		url += 'no=' + memberNoObj.html();
-		// 		url += '&curPage=' + curPageObj.val();
-		url += '&keyword=' + keywordObj.val();
-		url += '&searchOption=' + searchOptionObj.val();
-
-		// 		alert(url);
-
-		location.href = url;
-
-		return false;
-	}
-
-	function QnAReadFnc(obj) {
-		var aTagObj = $(obj);
-
-		var url = '';
-		var memberNoObj = '';
-
-		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
-				.children();
-
-		url += './QuestionSelect.do?';
-		url += 'idx=' + memberNoObj.html();
-
-		location.href = url;
-	}
+// 		location.href = url;
+// 	}
 </script>
 </head>
 
@@ -102,8 +61,7 @@
 					<tr>
 						<td><div id="idxVal" class="td_status">${studyDto.idx}</div></td>
 						<td class="textLeft"><div class="td_status">
-								<a href="#" onclick="QnAReadFnc(this);" style="color: black;">
-									${studyDto.studyName} </a>
+									${studyDto.studyName} 
 							</div></td>
 
 						<td><div class="td_status">${studyDto.tutorName}</div></td>

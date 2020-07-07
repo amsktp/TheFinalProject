@@ -9,7 +9,7 @@ import com.englishvillage.member.student.model.QuestionBoardDto;
 public interface StudentService {
 
 
-	Map<String, Object> SelectOne(String userEmail);
+	public Map<String, Object> SelectOne(int no);
 
 	int memberUpdateOne(MemberDto sessionMemberDto);
 
@@ -23,8 +23,6 @@ public interface StudentService {
 
 	public List<QuestionBoardDto> questionSelectList(int no, int start, int end);
 
-	public Map<String, Object> QuestionSelect(int idx);
-
 	public int QuestionRevise(QuestionBoardDto questionBoardDto);
 
 	public int QuestionAdd(QuestionBoardDto questionBoardDto);
@@ -32,6 +30,8 @@ public interface StudentService {
 	public int studentStudyInfo(int no);
 
 	public List<QuestionBoardDto> studySelectList(int no, int start, int end);
+
+	public Map<String, Object> QuestionSelect(int no, int idx);
 
 
 //	public void memberDeleteOne(String userEmail);

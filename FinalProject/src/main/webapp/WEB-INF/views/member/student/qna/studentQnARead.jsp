@@ -183,13 +183,15 @@
 						</tr>
 					</table>
 
+					<!-- 이렇게 해줘야 레알 히든임 -->
 					<c:if test="${empty questionBoardDto.reply}">
 						<input id="edtiBtn" class="btn btn-success" type="button" value="수정하기">
-					</c:if>
-					<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기"> <input
-						id="backListBtn" class="btn btn-default" type="button" value="목록"> <input
-						id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
+						<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기">
+						<input id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
 						onclick="QuestionListMoveFnc()">
+					</c:if>
+					 <input
+						id="backListBtn" class="btn btn-default" type="button" value="목록"> 
 				</form>
 		</div>
 

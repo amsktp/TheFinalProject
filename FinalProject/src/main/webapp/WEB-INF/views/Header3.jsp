@@ -9,6 +9,20 @@
 	src="/englishvillage/resources/js/bootstrap.js"></script>
 <script type="text/javascript">
 
+$(document).ready(function(){
+
+// 	$('#pageButton${num}').click(function(){
+
+// 		var offset = $('#tutorList').offset(); //선택한 태그의 위치를 반환
+
+//             //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+//         $('html').animate({scrollTop : offset.top}, 400);
+
+// 	});
+
+// });
+
 </script>
 <style>
 
@@ -50,7 +64,7 @@ min-width: 172px;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="naviUl" class="nav navbar-nav">
-            <li><a href="#">튜터목록</a></li>
+            <li><a href="#tutorList">튜터목록</a></li>
             <li><a href="tutorRegister.do">튜터신청</a></li>
             <li><a href="#">수강권</a></li>
             <li class="dropdown">
@@ -61,7 +75,7 @@ min-width: 172px;
                 <li><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
                 <li class="divider"></li>
 <!--                 <li class="dropdown-header">----</li> -->
-                <li><a href="myQNA.do">문의내역</a></li>
+                <li><a href="QuestionList.do">문의내역</a></li>
                 <li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
               </ul>
             </li>

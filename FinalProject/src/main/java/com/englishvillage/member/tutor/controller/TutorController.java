@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
-import com.englishvillage.util.Paging;
+import com.englishvillage.util.PagingYJ;
 
 @Controller
 public class TutorController {
@@ -58,7 +56,7 @@ public class TutorController {
 				= tutorService.tutorSelectCurPage(countrySearch, ageSearch, genderSearch, keyword, no);
 		}
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
