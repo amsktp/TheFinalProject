@@ -48,7 +48,13 @@
 
 	$(document).ready(function() {
 		
-		$('.layoutUl').children().eq(0).addClass('on');
+		$('.layoutUl').children().eq(1).addClass('on');
+		
+		var toDay = new Date();
+		var birthDay = $('#subAge').val().substring(24, 28);
+		
+		var age = (toDay.getFullYear()) - birthDay;
+		$('#age').val(age);
 	});
 	
 	function pageMoveListFnc(){
@@ -62,7 +68,7 @@
 		
 		var url = '';
 		
-		url += './studentlist.do?';
+		url += './tutorlist.do?';
 		url += 'no=' + noObj.val();
 		url += '&keyword=' + keywordObj.val();
 		url += ''
@@ -86,7 +92,7 @@
 		
 			<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
 				<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
-					<span>회원 관리(학생)</span>
+					<span><a href="#">회원 관리(학생)</a></span>
 				</div>
 				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 			</div>
@@ -94,8 +100,9 @@
 			
 			<div id="studentProfileDiv">
 			
-				<form action='./StudentUpdate.do' method='get'>
+				<form action='./tutorUpdate.do' method='get'>
 				<span id='memberProfileText'>회원정보</span>
+				<span id='tutorProFileText'>강사정보</span>
 				<div id='lineDiv'>
 				</div>
 					<div id='allmanual'>
@@ -105,36 +112,27 @@
 							${memberListDto.name}
 						</div>
 						
-			<%-- 			번호: ${memberListDto.no}<br> --%>
-						<div class="manual">
-							Email: ${memberListDto.email}
-						</div>
-						
-						<div class="manual"> 
-							비밀번호: ${memberListDto.password}
-						</div>
-						
-						<div class="manual">
-							성별:<c:choose>
-									<c:when test="${memberListDto.gender eq 'F'}">
-										<c:out value="여자"></c:out>
-									</c:when>
-									<c:when test="${memberListDto.gender eq 'M'}">
-										<c:out value="남자"></c:out>
-									</c:when>
-								</c:choose>
-						</div>
-						
-						<div class="manual">
-							생년월일: <fmt:formatDate value="${memberListDto.birthDate}" pattern="yyyy.MM.dd"/>
-						</div>
-						
-				<%-- 		언어: ${memberListDto.password}<br> --%>
 						<div class="manual">
 							국적: ${memberListDto.country}
 						</div>
+
+						<div class="manual">
+							나이: <input type="text" value="" id='age'><br>
+								   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
+						</div>
 						
-				<%-- 		시간대: ${memberListDto.password}<br> --%>
+						<div class="manual">
+							평점: ${memberListDto.score}
+						</div>
+						
+						<div class="manual"> 
+							수업료: ${memberListDto.price}
+						</div>
+						
+						<div class="manual">
+							URL: ${memberListDto.url}<br>
+						</div>
+
 						
 						<div>
 							<input type="hidden" id='no' name="no" value="${memberListDto.no}">

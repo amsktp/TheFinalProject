@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.4">
-	<script type="text/javascript"
-	src="/englishvillage/resources/js/bootstrap.js"></script>
+
 
 <!DOCTYPE html>
 <html>
@@ -72,6 +70,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	
 	
 	<h1>회원정보 수정</h1>
 	

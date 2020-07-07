@@ -24,6 +24,7 @@ public class MemberListDto {
 	private String url;
 	private int Price;
 	private String tutorTitle;
+	private String tutorText;
 
 	
 
@@ -71,7 +72,7 @@ public class MemberListDto {
 	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
 			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
 			int price, String tutorTitle, int idx, int parentSeq, String originalFileName, String storedFileName,
-			int fileSize, Date creDate) {
+			int fileSize, Date creDate, String tutorText) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -94,6 +95,7 @@ public class MemberListDto {
 		this.storedFileName = storedFileName;
 		this.fileSize = fileSize;
 		this.creDate = creDate;
+		this.tutorText = tutorText;
 	}
 
 
@@ -311,6 +313,20 @@ public class MemberListDto {
 
 	public void setTutorTitle(String tutorTitle) {
 		this.tutorTitle = tutorTitle;
+	}
+
+
+
+
+	public String getTutorText() {
+		return tutorText;
+	}
+
+
+
+
+	public void setTutorText(String tutorText) {
+		this.tutorText = tutorText;
 	}
 
 

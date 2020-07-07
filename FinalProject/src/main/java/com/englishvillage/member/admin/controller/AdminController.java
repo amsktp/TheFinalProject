@@ -1,9 +1,6 @@
 package com.englishvillage.member.admin.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
-
 import com.englishvillage.util.Paging;
+import com.englishvillage.util.PagingYJ;
 
 @Controller
 public class AdminController {
@@ -74,7 +70,7 @@ public class AdminController {
 		}
 		
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -242,7 +238,7 @@ public class AdminController {
 		}
 		
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -339,7 +335,7 @@ public class AdminController {
 		}
 	
 	//회원수정
-			@RequestMapping(value = "/admin/tutorUpdateCtr.do", method = RequestMethod.POST)
+			@RequestMapping(value = "/admin/tutorProUpdate.do", method = RequestMethod.POST)
 			public String TutorUpdateCtr(HttpSession session, MemberListDto memberListDto,
 										  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
 										  ,MultipartHttpServletRequest multipartHttpServletRequest
@@ -491,7 +487,7 @@ public class AdminController {
 			}
 			
 			
-			Paging memberPaging = new Paging(totalCount, curPage);
+			PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 			int start = memberPaging.getPageBegin();
 			int end = memberPaging.getPageEnd();
 			
