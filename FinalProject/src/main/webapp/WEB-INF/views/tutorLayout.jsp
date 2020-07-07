@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/student.css?ver=1.2">
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css?ver=1.2">
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/student.css?">
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css?">
 <script type="text/javascript">
 
 var loginMoveFnc = function(){
@@ -112,7 +112,8 @@ dl, ul, ol, menu, li {
 	<ul class="layoutUl">
 
 		<li><a href="tutorMainPage.do">마이 페이지</a></li>
-		<li><a href="tutorIntroduce.do">내 정보</a></li>
+		<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
+		<li><a href="tutorPrivateInfo.do">내 정보</a></li>
 		<li><a href="myStudy.do">수강내역</a></li>
 		<li><a href="myQNA.do">문의내역</a></li>
 

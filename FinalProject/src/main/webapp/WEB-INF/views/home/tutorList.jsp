@@ -76,7 +76,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
 	
 <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png">
 

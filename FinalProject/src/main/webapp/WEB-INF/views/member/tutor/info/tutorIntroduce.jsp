@@ -5,8 +5,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>튜터소개</title>
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css">
+<title>튜터소개수정</title>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -31,33 +30,43 @@ $(document).ready(function(){
 			</div>
 			<div id="profileAll">
 				<div class="profileContests">
-				이름 : ${tutorDto.memberName}<br/>
+					이름 : ${tutorDto.memberName}<br/>
 				</div>
 				<div class="profileContests">
-				국적 : ${tutorDto.memberCountry}<br/>
+					국적 : ${tutorDto.memberCountry}<br/>
 				</div>
 				<div class="profileContests">
-				나이 : ${tutorDto.age}<br/>
+					나이 : ${tutorDto.age}<br/>
 				</div>
 				<div class="profileContests">
-				평점 : ${tutorDtoGrade.score}<br/>
+					평점 : ${tutorDtoGrade.score}<br/>
 				</div>
 				<div class="profileContests">
-				수업료 : ${tutorDto.price}
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				시간/회<br/>
+					수업료 : ${tutorDto.price}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					시간/회<br/>
 				</div>
 				<div class="profileContests">
-				URL : ${tutorDto.youtubeUrl}<br/>
+					URL : ${tutorDto.youtubeUrl}<br/>
 				</div>
+				<div class="profileContests">
+					강의 제목 : ${tutorDto.studyName}<br/>
+				</div>
+				
 			</div>
-			<div id="introduceContents">
-				기본적인 소개글을 작성해주세요
+			<div style="margin-top: 300px;">
+				<textarea id="introduceContents" disabled="disabled" style="margin-left: 80px;">${tutorDto.tutorIntroduce}</textarea>
 			</div>
-			<button class="Btn">뒤로가기</button>
-			<button class="Btn">수정하기</button>
+			<form action="tutorMainPage.do">
+				<button class="Btn">뒤로가기</button>
+			</form>
+			<form action="tutorIntroduceRevise.do">
+				<button class="Btn">수정하기</button>
+			</form>
 			
 		</div>
 	</div>

@@ -37,9 +37,10 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
-	public int tutorSelectTotalCount(String countrySearch, String ageSearch, String genderSearch, String keyword) {
+	public int tutorSelectTotalCount(String countrySearch, int ageSearch, String genderSearch, String keyword) {
 		// TODO Auto-generated method stub
 		
+		System.out.println("들어온다고 난 믿어");
 		int result = tutorDao.tutorSelectTotalCount(countrySearch, ageSearch, genderSearch, keyword);
 				
 		return result;
@@ -62,7 +63,73 @@ public class TutorServiceImpl implements TutorService{
 		
 		return tutorDto;
 	}
+
+	@Override
+	public int updateTutor(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return tutorDao.updateTutor(tutorDto);
+	}
+
+	@Override
+	public TutorDto getTutorPwd(String pwd) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = tutorDao.getTutorPwd(pwd);
+		
+		return tutorDto;
+	}
+
+	@Override
+	public int updatePwd(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return tutorDao.updatePwd(tutorDto);
+	}
 	
+	@Override
+	public int deleteMember(int no) {
+		// TODO Auto-generated method stub
+				
+		return tutorDao.deleteMember(no);
+	}
+	
+	
+	
+	
+
+	@Override
+	public List<TutorDto> getTutorList(String countrySearch, int ageSearch, String genderSearch, String keyword,
+			int start, int end) {
+		// TODO Auto-generated method stub
+		
+		List<TutorDto> tutorDtoList = tutorDao.getTutorList( countrySearch,  ageSearch,  genderSearch,  keyword,
+				 start,  end);
+		
+		return tutorDtoList;
+	}
+
+	@Override
+	public int tutorSelectCurPage(String countrySearch, int ageSearch, String genderSearch, String keyword,
+			int no) {
+		// TODO Auto-generated method stub
+		return tutorDao.tutorSelectCurPage(countrySearch,  ageSearch,  genderSearch,  keyword, no);
+		
+	}
+
+	@Override
+	public int tutorRegister(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return tutorDao.tutorRegister(tutorDto);
+		
+	}
+
+	@Override
+	public int tutorUpdateGrade(int memberNo) {
+		// TODO Auto-generated method stub
+		return tutorDao.tutorUpdateGrade(memberNo);
+	}
 	
 	
 }
