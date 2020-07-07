@@ -97,7 +97,8 @@
 
 
 				</tr>
-
+				<c:choose>
+<c:when test="${not empty studyList}">
 				<c:forEach var="studyDto" items="${studyList}">
 					<tr>
 						<td><div id="idxVal" class="td_status">${studyDto.idx}</div></td>
@@ -117,6 +118,11 @@
 								<fmt:formatDate value="${studyDto.studyDate}" pattern="yyyy-MM-dd a hh:mm" /> 
 							</div></td>
 				</c:forEach>
+</c:when>
+<c:otherwise>
+<td colspan="5"><div class="td_status">수강내역이 존재하지 않습니다.</div></td>
+</c:otherwise>
+</c:choose>
 
 			</table>
 			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
