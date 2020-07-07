@@ -32,7 +32,17 @@ public class StudentController {
 
 	@RequestMapping(value = "myPage.do", method = { RequestMethod.GET })
 	public String myPage(Locale locale, HttpSession session, Model model) {
+		log.info("call myPage! " + session.getAttribute("member"));
+		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 
+		System.out.println("일단 세션 만들기 성공" + sessionMemberDto);
+		String userEmail = sessionMemberDto.getMemberEmail();
+
+		Map<String, Object> map = studentService.SelectOne(userEmail);
+		System.out.println("여긴 맵이야" + map);
+		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+		System.out.println("넣을값" + memberFileDto);
+		model.addAttribute("memberFileDto", memberFileDto);
 		return "/member/student/info/studentMainPage";
 	}
 
@@ -112,7 +122,7 @@ public class StudentController {
 	}
 
 	// 회원탈퇴 확인
-	@RequestMapping(value = "delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
 	public String memberDelete(Model model) {
 
 		log.info("call memberdelete!");
@@ -241,7 +251,7 @@ public class StudentController {
 		return "/member/student/qna/studentQnAWrite";
 	}
 
-	@RequestMapping(value = "QuestionAddCtr.do", method = { RequestMethod.POST })
+	@RequestMapping(value = "QuestionAddCtr.do", method = RequestMethod.POST)
 	public String QuestionAddCtr(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
 		log.info("Welcome QuestionAddCtr.do! " + questionBoardDto);
 

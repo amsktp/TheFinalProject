@@ -13,36 +13,26 @@
 $(document).ready(function(){
 	$('.layoutUl').children().eq(2).addClass('on');
  
-//     $('#editBtn').click(function() {
-
-//     	var password = $('input[type=password]').val();
-//         var passwordCheck = '${member.memberPassword}';
-//         if(password == passwordCheck){
-//          location.href = "/englishvillage/update.do"
-//             }else{
-//             	alert("비밀번호가 일치하지 않습니다.");
-//             }
-//     });
 
 });
 
-// function pageMoveDeleteFnc(no){
-// 	var url = "./deleteCtr.do?no=" + no;
-// 	location.href = url;
-// }
 
-
-// onClick='updateMoveFnc(${member.memberNo});'
 </script>
+<style type="text/css">
 
+#editBtn, #backBtn {
+	margin-left: 68px;
+
+}
+
+</style>
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
-	<div id="pageSize">
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div id="myPageBox">
+		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">회원탈퇴</div>
 
@@ -53,22 +43,16 @@ $(document).ready(function(){
 <h3 style="font-weight: bold; text-align: center; color: #FA6980; margin-top: 30px;">보유 포인트</h3>
 <h3 style="font-weight: bold; text-align: center; margin-bottom: 40px;">${member.memberPoint} 포인트</h3>
 
-				
-				<input class="blackBtn" type='button' value='뒤로가기' onClick="location.href='/englishvillage/update.do'">
-<%-- 				<input id="editBtn" class="blackBtn" type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${member.memberNo});'>  --%>
-<%-- 				<input id="editBtn" class="blackBtn" type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${member.memberNo});'>  --%>
-<form action="deleteCtr.do" method="post">
-				<input id="editBtn" class="blackBtn" type='submit' value='회원탈퇴'> 
+				<form action="deleteCtr.do" method="post">
+					<input id="editBtn" class="btn btn-default btn-lg" type='submit' value='회원탈퇴'>
+					<input id="backBtn" class="btn btn-success btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/update.do'">
 				</form>
+				
+				
 			</div>
-
-
 		</div>
-
-
 	</div>
 
-
 </body>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

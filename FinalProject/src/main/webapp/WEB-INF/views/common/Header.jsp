@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<!-- <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> -->
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 	<script type="text/javascript"
 	src="/englishvillage/resources/js/bootstrap.js"></script>

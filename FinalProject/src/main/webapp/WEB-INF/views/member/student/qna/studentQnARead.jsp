@@ -94,13 +94,12 @@
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
+<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9">
+		<div class="col-md-9" style="margin-top: 40px">
 
-			<h1 id="pageName">문의내용</h1>
+			<div id="pageName">내 문의</div>
 
 				<form method="post">
 
@@ -197,5 +196,5 @@
 	</div>
 
 </body>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

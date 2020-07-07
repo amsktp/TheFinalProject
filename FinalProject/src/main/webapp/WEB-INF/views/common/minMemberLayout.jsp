@@ -5,7 +5,13 @@
 
 
 <style>
-
+@media (min-width: 500px){
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    float: left;
+    }
+}
 </style>
 
 <div class="container">

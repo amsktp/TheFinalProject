@@ -85,7 +85,6 @@
 
 <body>
 	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
-	<%-- <jsp:include page="/WEB-INF/views/common/minMemberLayout.jsp" /> --%>
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 		<div class="col-md-9" style="margin-top: 40px">
@@ -159,7 +158,6 @@
 		</div>
 	</div>
 
-	<div class="footer"></div>
 
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

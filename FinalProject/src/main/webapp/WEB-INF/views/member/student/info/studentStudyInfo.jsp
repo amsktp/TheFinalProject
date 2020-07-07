@@ -79,11 +79,10 @@
 </head>
 
 <body>
-<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
-<div class="container bs-docs-container">
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-
-		<div class="col-md-9">	
+		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">수강내역</div>
 
@@ -139,5 +138,5 @@
 	</div>
 
 </body>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>
