@@ -158,14 +158,6 @@
 
 	</select>
 
-	<update id="tutorUpdateGrade" parameterType="map">
-		
-		update member
-		set member_grade = 'Y'
-		where member_no = #{memberNo}
-		
-	</update>
-
 	<insert id="tutorRegister" parameterType="com.englishvillage.member.tutor.model.TutorDto">
 		
 		INSERT INTO TUTOR_INFO
