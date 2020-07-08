@@ -10,5 +10,9 @@ public interface AuthService {
 
 	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) throws Exception;
 
+	public int emailCheck(MemberDto memberDto) throws Exception;
+
+	
+
 
 }

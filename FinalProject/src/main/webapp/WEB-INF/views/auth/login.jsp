@@ -72,6 +72,7 @@
 	function loginBtn(){
 		var memberEmailObj = document.getElementById('memberEmail');
 		var memberPwdObj = document.getElementById('memberPwd');
+		
 		if(memberEmailObj.value.length == 0){		
 			alert("ID를 입력해주세요.");
 			return false;
