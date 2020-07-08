@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<!-- <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> -->
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 	<script type="text/javascript"
 	src="/englishvillage/resources/js/bootstrap.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('#btn1').click(function(){
+
+		var offset = $('#div1').offset(); //선택한 태그의 위치를 반환
+
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+
+        $('html').animate({scrollTop : offset.top}, 400);
+
+	});
+
+});
+</script>
 
 
 
 <style>
-
 #naviUl > li > a{
 
 	font-size: 20px;
@@ -41,6 +55,10 @@ float: left;
 .liRight {
 float: right;
 }
+
+.navbar {
+    margin-bottom: 45px;
+}
 </style>
 
    
@@ -59,7 +77,7 @@ float: right;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="naviUl" class="nav navbar-nav">
-            <li class="liLeft"><a href="#">튜터목록</a></li>
+            <li class="liLeft"><a href="#tutorList">튜터목록</a></li>
             <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
             <li class="liLeft"><a href="#">수강권</a></li>
             <li class="dropdown" style="float: right;">

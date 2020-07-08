@@ -173,16 +173,18 @@
 	<select id="getTutorInfo" parameterType="int"
 	resultMap="tutorResultMap">
 		
-		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_POINT, PRICE, 
-		FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE,
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_POINT, PRICE, STUDY_NAME, TUTOR_INTRODUCE,
+		MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_GENDER, MEMBER_BIRTH_DATE,
+		FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE, YOUTUBE_URL, MEMBER_COUNTRY,
 		M.MEMBER_GRADE, M.MEMBER_COUNTRY
 		FROM MEMBER M, TUTOR_INFO T
 		WHERE M.MEMBER_NO = T.TUTOR_NO 
 		AND M.MEMBER_NO = #{no}
-		
-		
-	</select>
+
 	
+
+	</select>
+
 	<insert id="tutorRegister" parameterType="com.englishvillage.member.tutor.model.TutorDto">
 		
 		INSERT INTO TUTOR_INFO
@@ -273,6 +275,30 @@
 	</delete>
 	
 	
+	
+	<update id="updateTutor" parameterType="com.englishvillage.member.tutor.model.TutorDto">
+	
+		UPDATE TUTOR_INFO
+		SET PRICE = #{price}, youtube_Url = #{youtubeUrl},  STUDY_NAME = #{studyName}
+		WHERE TUTOR_NO = #{memberNo}
+
+	</update>
+	
+	<update id="updatePwd" parameterType="com.englishvillage.member.tutor.model.TutorDto">
+	
+		UPDATE MEMBER
+		SET MEMBER_PASSWORD = #{memberPassword}
+		WHERE MEMBER_NO = #{memberNo}
+
+	</update>
+	
+	<delete id="deleteMember" parameterType="int">
+	
+		DELETE FROM MEMBER
+     	WHERE MEMBER_NO = #{memberNo}
+     
+	</delete>
+
 </mapper>
 
 

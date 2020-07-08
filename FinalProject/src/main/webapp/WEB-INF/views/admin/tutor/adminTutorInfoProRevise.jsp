@@ -17,6 +17,8 @@
 		$("a[id^='delete']").on("click", function(e) {
 			e.preventDefault();//태그가 작동할 수 없게도 만들수 있는 기술-여기서는 a태그의 default를 무시하고 나의 함수를 우선시 했다
 			deleteFileFnc($(this));
+			
+			$('.layoutUl').children().eq(1).addClass('on');
 		});
 	});
 	
@@ -69,9 +71,13 @@
 
 	<jsp:include page="/WEB-INF/views/Header.jsp" />
 	
-<%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
-	
-	<h1>회원정보 수정</h1>
+
+	<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
+		<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+			<span>회원 관리(강사)</span>
+		</div>
+		<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+	</div>
 	
 	<form action='./tutorUpdateProCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
 		성 명: <input type='text' name='name' value='${memberListDto.name}' disabled="disabled">

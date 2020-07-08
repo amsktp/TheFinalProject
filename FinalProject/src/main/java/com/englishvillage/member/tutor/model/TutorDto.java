@@ -17,7 +17,7 @@ public class TutorDto {
 
 	private String memberCountry;
 	private String memberGender;
-	private String memberBirthDate;
+	private Date memberBirthDate;
 	private String memberPoint;
 	private int age;
 //	private int tutorNo;
@@ -37,7 +37,7 @@ public class TutorDto {
 	}
 	public TutorDto(int memberNo, String memberGrade, String memberEmail, String memberPassword, String memberName,
 			Date memberCreateDate, Date memberModifyDate, String memberCountry, String memberGender,
-			String memberBirthDate, String memberPoint, String tutorIntroduce, String youtubeUrl, String studyName,
+			Date memberBirthDate, String memberPoint, String tutorIntroduce, String youtubeUrl, String studyName,
 			String price, String statusCheck, int Age, int age, int score) {
 		super();
 		this.memberNo = memberNo;
@@ -133,10 +133,10 @@ public class TutorDto {
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
-	public String getMemberBirthDate() {
+	public Date getMemberBirthDate() {
 		return memberBirthDate;
 	}
-	public void setMemberBirthDate(String memberBirthDate) {
+	public void setMemberBirthDate(Date memberBirthDate) {
 		this.memberBirthDate = memberBirthDate;
 	}
 	public String getMemberPoint() {

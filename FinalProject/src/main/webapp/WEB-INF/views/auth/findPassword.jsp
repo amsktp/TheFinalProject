@@ -71,8 +71,9 @@
 		var memberNameObj = document.getElementById('memberEmail');
 		var memberEmailObj = document.getElementById('memberPwd');
 		var memberBirthDateObj = document.getElementById('memberBirthDate');
+		var emptyMemberNameObj = document.getElementById('emptyMemberName');
 		
-		if(memberNameObj.value.length == 0){		
+		if(memberNameObj.value.length == 0){
 			alert("이름을 입력해주세요.");
 			return false;
 		} else if(memberEmailObj.value.length == 0){		
@@ -85,8 +86,29 @@
 		
 	}
 
-</script>
+// 	$('#authBtn').click(function() {
+		
+// 		$.ajax({
+// 		      url : "/englishvillage/authSendMailFindPwdCtr.do",
+// 		      type : "POST",
+// 		      data : "memberEmail=" + $('#memberEmail').val(),
+// 		      success : function(data) {
+		    	  
+// 	          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
 
+// 	          alert('이메일을 전송하였습니다. 확인해보세요');
+
+// 		      }, error : function() {
+// 		               console.log("실패");
+	    
+// 		      }
+	 
+// 		});
+
+// 	});
+	
+	
+</script>
 
 </head>
 <body>
@@ -106,6 +128,8 @@
 					</div>
 					<div>
 						<input class="oneBarInputBox" id="memberName" type="text" name="memberName" placeholder="이름을 입력하세요">
+					</div>
+					<div id="emptyMemberName">
 					</div>
 				</div>
 				<div>
@@ -128,7 +152,7 @@
 							<input class="twoBarInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
 						</div>
 						<div>
-							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" >
+							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" onclick="authBtn();">
 						</div>
 					</div>
 				</div>

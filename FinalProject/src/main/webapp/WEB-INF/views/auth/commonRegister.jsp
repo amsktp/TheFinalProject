@@ -45,6 +45,19 @@
 		margin-bottom: 10px;
 	}
 	
+	#memberEmail {
+		width: 175px;
+		height: 30px;
+		float: left;
+		margin-right: 10px;
+	}
+	
+	#pressEmailCheck {
+		width: 115px;
+		height: 36px;
+		margin-bottom: 10px;
+	}
+	
 	.wrapInputBox {
 		display: flex; 
 		justify-content: flex-start;
@@ -87,6 +100,42 @@
 </style>
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+
+
+	$(document).ready(function() {
+		
+		var verifyNum = Math.floor(Math.random() * 9999);
+		
+
+		$('#sendVerifyNum').val(verifyNum);
+		
+		
+		$('#authBtn').click(function() {
+			
+// 			alert($('#memberEmail').val());
+			
+			$.ajax({
+			      url : "/englishvillage/authSendMailVerifyNumCtr.do",
+			      type : "POST",
+			      data : "memberEmail=" + $('#memberEmail').val() + "&verifyNum=" + $('#sendVerifyNum').val(),
+			      success : function(data) {
+			    	  
+		          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
+
+		          alert('이메일을 전송하였습니다. 확인해보세요');
+
+			      }, error : function() {
+			               console.log("실패");
+		    
+			      }
+		 
+			});
+
+		});
+		
+	});
+	
+
 	function backPageBtn() {
 		location.href = "login.do";
 	}
@@ -143,38 +192,13 @@
 		
 	}
 	
-// 	$('document').ready(function() {
-// 		var randumNum = 4자리를 
-// 		$('#verticalNum').val(randumNum);
+	function checkEmailFnc() {
 		
 		
-		$('#authBtn').click(function() {
-			$.ajax({
-			      url : "/englishvillage/authSendMailCtr.do",
-			      type : "POST",
-			      data : "memberEmail=" + $('#memberEmail').val(),
-			      success : function(data) {
-			    	  
-		          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
-
-		          alert('이메일을 전송하였습니다. 확인해보세요');
-
-			      }, error : function() {
-			               console.log("실패");
-		    
-			      }
-		 
-			});
-
-		});
-		
-		
-		
-// 	});
-		
+	}
 	
+		
 </script>
-
 
 </head>
 <body>
@@ -201,7 +225,10 @@
 						이메일
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요">
+						<input id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요" >
+					</div>
+					<div>
+						<input id="pressEmailCheck" type="button" value="이메일 중복 확인" onclick="checkEmailFnc();">
 					</div>
 				</div>
 				<div class="wrapInputBox">

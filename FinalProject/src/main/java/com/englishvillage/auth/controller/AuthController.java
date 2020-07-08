@@ -114,7 +114,8 @@ public class AuthController {
 		
 		session.setAttribute("memberDto", memberDto);
 		if(memberDto != null) {
-			viewUrl = "redirect:/findPassowrdComplete.do";
+			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
+			
 		} else {
 			viewUrl = "redirect:/findPassword.do";
 		}
@@ -122,7 +123,7 @@ public class AuthController {
 		 
 	} 
 	
-	@RequestMapping(value="/findPassowrdComplete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
 	public String findPasswordComplete( Model model, HttpSession session) {
 		log.info("*****Welcome findPasswordComplete!*****");
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
@@ -134,26 +135,26 @@ public class AuthController {
 		return "auth/findPasswordComplete";
 	} 
 	
-	// mailSending 코드
-	@RequestMapping(value = "/authSendMailCtr.do", method=RequestMethod.POST)
-	  public String mailSending(HttpServletRequest request, String memberEmail
+	// mailSending 인증번호 발송 코드
+	@RequestMapping(value = "/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
+	  public String verifyNumMailSending(HttpServletRequest request, String memberEmail, int verifyNum
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
 	   
+		
 	    String setfrom = "javacatch5@gmail.com";
 	    
-	    	title = "인증번호 입니다.";
-	    	content = "인증번호는 5325 입니다.";
+	    	title = "회원가입 인증번호 입니다.";
+	    	content = "회원가입 인증번호는 "+ verifyNum + " 입니다.";
 	    	
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
-	      MimeMessageHelper messageHelper 
-	                        = new MimeMessageHelper(message, true, "UTF-8");
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	 
-	      messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
-	      messageHelper.setTo(memberEmail); // 받는사람 이메일
-	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-	      messageHelper.setText(content);  // 메일 내용
+	      messageHelper.setFrom(setfrom);
+	      messageHelper.setTo(memberEmail);
+	      messageHelper.setSubject(title); 
+	      messageHelper.setText(content);
 	     
 	      mailSender.send(message);
 	      
@@ -162,5 +163,47 @@ public class AuthController {
 	    }
 	   
 	    return "redirect:/auth/mailCtr";
+	    
 	  }
+	
+	// mailSending 비밀번호 발송 코드
+	@RequestMapping(value = "/authSendMailFindPwdCtr.do", method= {RequestMethod.POST, RequestMethod.GET})
+	public String findPwdMailSending(HttpSession session
+			  ,@RequestParam(defaultValue = "") String title
+			  ,@RequestParam(defaultValue ="") String content) {
+		
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@비밀번호 찾기 메일");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+				
+	    String setfrom = "javacatch5@gmail.com";
+	    
+	    	title = "비밀번호 찾기의 비밀번호 입니다.";
+	    	content = "비밀번호는 "+ memberDto.getMemberPassword() + " 입니다.";
+	    	
+	    
+	    try {
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+		    
+	      
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+	      System.out.println(memberDto.getMemberEmail());
+
+	      messageHelper.setFrom(setfrom);
+	      messageHelper.setTo(memberDto.getMemberEmail());
+	      messageHelper.setSubject(title); 
+	      messageHelper.setText(content);
+		    
+	      mailSender.send(message);
+		    
+	    } catch(Exception e){
+	      System.out.println(e);
+	    }
+	   
+	    return "redirect:/findPasswordComplete.do";
+	  }
+	
 }

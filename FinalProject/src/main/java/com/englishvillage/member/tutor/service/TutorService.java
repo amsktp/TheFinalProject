@@ -33,6 +33,12 @@ public interface TutorService {
 	public int modifyComment(TutorCommentDto tutorCommentDto);
 
 	public int removeComment(TutorCommentDto tutorCommentDto);
+	public int updateTutor(TutorDto tutorDto);
 
+	public TutorDto getTutorPwd(String pwd);
+
+	public int updatePwd(TutorDto tutorDto);
+
+	public int deleteMember(int no);
 
 }

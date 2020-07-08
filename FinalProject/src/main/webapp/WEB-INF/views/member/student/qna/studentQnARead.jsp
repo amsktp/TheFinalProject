@@ -94,13 +94,12 @@
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
+<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9">
+		<div class="col-md-9" style="margin-top: 40px">
 
-			<h1 id="pageName">문의내용</h1>
+			<div id="pageName">내 문의</div>
 
 				<form method="post">
 
@@ -184,18 +183,20 @@
 						</tr>
 					</table>
 
+					<!-- 이렇게 해줘야 레알 히든임 -->
 					<c:if test="${empty questionBoardDto.reply}">
 						<input id="edtiBtn" class="btn btn-success" type="button" value="수정하기">
-					</c:if>
-					<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기"> <input
-						id="backListBtn" class="btn btn-default" type="button" value="목록"> <input
-						id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
+						<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기">
+						<input id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
 						onclick="QuestionListMoveFnc()">
+					</c:if>
+					 <input
+						id="backListBtn" class="btn btn-default" type="button" value="목록"> 
 				</form>
 		</div>
 
 	</div>
 
 </body>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

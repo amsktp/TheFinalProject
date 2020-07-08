@@ -52,6 +52,7 @@ public class AuthDaoImpl implements AuthDao{
 		memberDto.setMemberBirthDate(parseDate);
 		memberDto.setMemberEmail(memberEmail);
 		memberDto.setMemberName(memberName);
+		
 		return sqlSession.selectOne(namespace + "memberFindPassword", memberDto);
 	}
 

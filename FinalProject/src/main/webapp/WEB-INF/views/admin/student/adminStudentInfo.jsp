@@ -6,10 +6,51 @@
 <html>
 <head>
 <title>회원정보 상세조회</title>
-
-<script type="text/javascript" src="/springHome/resources/js/jquery-3.5.1.js"></script>
+<style type="text/css">
+	#studentProfileDiv {
+		border: 1px solid black;
+		width: 700px;
+		height: 950px;
+		font-size: 30px;
+		margin-top: 200px;
+		float: left;
+		box-sizing: border-box;
+	}
+	
+	#lineDiv {
+		border-bottom: 1px solid #BDBDBD; 
+	}
+	
+	.manual {
+		margin-top: 80px;
+	}
+	
+	#btn > input {
+		width: 150px;
+		height: 50px;
+		float: right;
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px 5px/5px 5px;
+		font-size: 25px;
+	}
+	
+	#memberProfileText {
+		font-size: 40px;
+		font-weight: bold;
+	}
+	
+</style>
+<script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 
 <script type="text/javascript">
+
+	$(document).ready(function() {
+		
+		$('.layoutUl').children().eq(0).addClass('on');
+	});
+	
 	function pageMoveListFnc(){
 
 		
@@ -38,34 +79,76 @@
 
 <body>
 <!-- 337 3번 문제 MemberUpdateServlet 화면출력 위임 -->
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
 	
-	<h1>회원정보 상세조회</h1>
 	
-		<form action='./StudentUpdate.do' method='get' style="margin-top: 200px;">
-			성명: ${memberListDto.name}<br>
-<%-- 			번호: ${memberListDto.no}<br> --%>
-			Email: ${memberListDto.email}<br>
-			비밀번호: ${memberListDto.password}<br>
-			성별: ${memberListDto.gender}<br>
-			생년월일: <fmt:formatDate value="${memberListDto.birthDate}" pattern="yyyy-MM-dd"/><br>
-	<%-- 		언어: ${memberListDto.password}<br> --%>
-			국적: ${memberListDto.country}<br>
-	<%-- 		시간대: ${memberListDto.password}<br> --%>
+	
+		<div id="allDiv">
+		
+			<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
+				<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+					<span>회원 관리(학생)</span>
+				</div>
+				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+			</div>
 			
-			<div>
-				<input type="hidden" id='no' name="no" value="${memberListDto.no}">
-				<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
-				<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+			
+			<div id="studentProfileDiv">
+			
+				<form action='./StudentUpdate.do' method='get'>
+				<span id='memberProfileText'>회원정보</span>
+				<div id='lineDiv'>
+				</div>
+					<div id='allmanual'>
+					
+						<div class="manual">
+							<span>성 명:</span> 
+							${memberListDto.name}
+						</div>
+						
+			<%-- 			번호: ${memberListDto.no}<br> --%>
+						<div class="manual">
+							Email: ${memberListDto.email}
+						</div>
+						
+						<div class="manual"> 
+							비밀번호: ${memberListDto.password}
+						</div>
+						
+						<div class="manual">
+							성별:<c:choose>
+									<c:when test="${memberListDto.gender eq 'F'}">
+										<c:out value="여자"></c:out>
+									</c:when>
+									<c:when test="${memberListDto.gender eq 'M'}">
+										<c:out value="남자"></c:out>
+									</c:when>
+								</c:choose>
+						</div>
+						
+						<div class="manual">
+							생년월일: <fmt:formatDate value="${memberListDto.birthDate}" pattern="yyyy.MM.dd"/>
+						</div>
+						
+				<%-- 		언어: ${memberListDto.password}<br> --%>
+						<div class="manual">
+							국적: ${memberListDto.country}
+						</div>
+						
+				<%-- 		시간대: ${memberListDto.password}<br> --%>
+						
+						<div>
+							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
+							<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
+							<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+						</div>
+					</div>
+					<div id='btn'>
+						<input type='submit' value='수정하기' style="margin-right: 30px;">
+						<input type='button' value='이전 페이지' onClick='pageMoveListFnc();' style="margin-right: 30px;">	
+					</div>
+				</form>
 			</div>
+		</div>
 	
-			<div>
-				<input type='submit' value='수정하기 페이지'>
-				<input type='button' value='이전 페이지' onClick='pageMoveListFnc();'>	
-			</div>
-		</form>
-
-	
-<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>
 </html>

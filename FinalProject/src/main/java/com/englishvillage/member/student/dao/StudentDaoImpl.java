@@ -22,9 +22,9 @@ public class StudentDaoImpl implements StudentDao{
 	String namespace = "com.englishvillage.";
 
 	@Override
-	public MemberFileDto SelectOne(String userEmail) {
+	public MemberFileDto SelectOne(int no) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "SelectOne", userEmail);
+		return sqlSession.selectOne(namespace + "SelectOne", no);
 	}
 
 	@Override
@@ -111,10 +111,18 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public QuestionBoardDto QuestionSelect(int idx) {
+	public QuestionBoardDto QuestionSelect(int no, int idx) {
 		// TODO Auto-generated method stub
-		System.out.println("다오로 넘어옴?"+idx);
-		return sqlSession.selectOne(namespace + "QuestionSelect", idx);
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("no", no);
+		paramMap.put("idx", idx);
+		
+		QuestionBoardDto qusetionSelect = sqlSession.selectOne(namespace + "QuestionSelect", paramMap);
+		return qusetionSelect;
+		
+//		System.out.println("다오로 넘어옴? no는"+no+"idx는"+idx);
+//		return sqlSession.selectOne(namespace + "QuestionSelect", idx);
 	}
 
 	@Override

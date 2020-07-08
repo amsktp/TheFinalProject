@@ -55,18 +55,14 @@ var adminMove2Fnc = function() {
 	box-sizing: border-box;
 	background-color: black;
 	border-radius: 30px;
-/* 	padding: 130px 60px; */
+	padding: 50px 0px;
 }
 
-.contentBox {
-margin-top: 100px;
-}
 #memberName {
 	font-size: 20px;
 	font-weight: bold;
 	color: white;
 	text-align: center;
-	padding-bottom: 70px;
 }
 
 .layoutUl li {
@@ -109,13 +105,30 @@ margin-top: 100px;
 	font-weight: bold;
 	line-height: 23px;
 }
+
+.tableFont {
+	font-size: 1vw; 
+}
+
+.tRight {
+	text-align: right;
+}
+
+.tLeft {
+	text-align: left;
+}
+
+.tCenter {
+	text-align: center;
+}
+
 </style>
 
 <div class="col-md-3" role="complementary">
-	<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+	<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
 		<ul class="nav bs-docs-sidenav layoutUl">
 
-			<li id="memberName">${member.memberName}회원님</li>
+			<li id="memberName" >${member.memberName} 회원님</li>
 			<li><a href="myPage.do">마이 페이지</a></li>
 			<li><a href="myInfo.do">내 정보</a></li>
 			<li><a href="studyList.do">수강내역</a></li>
@@ -123,4 +136,13 @@ margin-top: 100px;
 
 		</ul>
 	</nav>
+	
+	<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
+          <ul class="nav navbar-nav">
+            <li><a href="myPage.do">마이 페이지</a></li>
+			<li><a href="myInfo.do">내 정보</a></li>
+			<li><a href="studyList.do">수강내역</a></li>
+			<li><a href="QuestionList.do">문의내역</a></li>
+          </ul>
+        </nav>
 </div>

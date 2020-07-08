@@ -114,6 +114,15 @@ public class TutorDaoImpl implements TutorDao{
 				
 		return tutorDto;
 	}
+	
+	@Override
+	public TutorDto getTutorPwd(String pwd) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = sqlSession.selectOne(namespace + "getTutorPwd", pwd);
+				
+		return tutorDto;
+	}
 
 	@Override
 	public TutorDto getTutorIntroduce(int tutorNo) {
@@ -148,4 +157,34 @@ public class TutorDaoImpl implements TutorDao{
 		return sqlSession.delete(namespace + "removeComment", tutorCommentDto);
 	}
 
+
+	@Override
+	public int updateTutor(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(tutorDto.getMemberNo());
+		System.out.println(tutorDto.getPrice());
+		
+		return sqlSession.update(namespace + "updateTutor", tutorDto);
+	}
+	
+	@Override
+	public int updatePwd(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.update(namespace + "updatePwd", tutorDto);
+	}
+	
+
+
+
+
+	@Override
+	public int deleteMember(int no) {
+		// TODO Auto-generated method stub
+					
+		return sqlSession.delete(namespace + "deleteMember", no);
+	}
+
+	
 }

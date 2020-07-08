@@ -224,6 +224,21 @@ public class AdminDaoImpl implements AdminDao{
 	            , no);
 	}
 	
+	@Override
+	public void replyInsertOne(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		 sqlSession.selectOne(namespace + "replyInsertOne"
+	            , questionBoardDto);
+	}
+	
+	@Override
+	public int replyCheck(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "replyCheck", questionBoardDto);
+	}
+
+
+	
 	//파일관리
 	@Override
 	public void insertFile(Map<String, Object> map) {
@@ -249,6 +264,8 @@ public class AdminDaoImpl implements AdminDao{
 		return sqlSession.delete(namespace + "fileDelete",parentSeq);
 	}
 
+	
+	
 
 	
 

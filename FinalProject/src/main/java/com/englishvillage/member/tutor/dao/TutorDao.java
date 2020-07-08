@@ -33,5 +33,14 @@ public interface TutorDao {
 	public int modifyComment(com.englishvillage.member.tutor.model.TutorCommentDto tutorCommentDto);
 
 	public int removeComment(com.englishvillage.member.tutor.model.TutorCommentDto tutorCommentDto);
+	public TutorDto getTutorPwd(String pwd);
+
+	public int updateTutor(TutorDto tutorDto);
+
+	public int updatePwd(TutorDto tutorDto);
+
+	public int deleteMember(int no);
+
+	
 }
 

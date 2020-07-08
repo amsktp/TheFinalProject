@@ -8,7 +8,7 @@ import com.englishvillage.member.student.model.MemberFileDto;
 
 public interface StudentDao {
 
-	MemberFileDto SelectOne(String userEmail);
+	public MemberFileDto SelectOne(int no);
 
 	int memberUpdateOne(MemberDto sessionMemberDto);
 
@@ -20,7 +20,7 @@ public interface StudentDao {
 
 	public List<QuestionBoardDto> questionSelectList(int no, int start, int end);
 
-	public QuestionBoardDto QuestionSelect(int idx);
+	public QuestionBoardDto QuestionSelect(int no, int idx);
 
 	public int QuestionRevise(QuestionBoardDto questionBoardDto);
 
@@ -32,12 +32,6 @@ public interface StudentDao {
 
 	public List<QuestionBoardDto> studySelectList(int no, int start, int end);
 
-//	public void memberDeleteOne(String userEmail);
-
-
-
-
-	
 	}
 
 

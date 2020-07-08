@@ -64,9 +64,39 @@ public class TutorServiceImpl implements TutorService{
 		
 		return tutorDto;
 	}
-	
-	
 
+	@Override
+	public int updateTutor(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return tutorDao.updateTutor(tutorDto);
+	}
+
+	@Override
+	public TutorDto getTutorPwd(String pwd) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = tutorDao.getTutorPwd(pwd);
+		
+		return tutorDto;
+	}
+
+	@Override
+	public int updatePwd(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		return tutorDao.updatePwd(tutorDto);
+	}
+	
+	@Override
+	public int deleteMember(int no) {
+		// TODO Auto-generated method stub
+				
+		return tutorDao.deleteMember(no);
+	}
+	
+	
+	
 	@Override
 	public List<TutorDto> getTutorList(String countrySearch, int ageSearch, String genderSearch, String keyword,
 			int start, int end) {

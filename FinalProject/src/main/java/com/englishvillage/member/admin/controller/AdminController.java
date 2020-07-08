@@ -1,9 +1,6 @@
 package com.englishvillage.member.admin.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +20,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
-
 import com.englishvillage.util.Paging;
+import com.englishvillage.util.PagingYJ;
 
 @Controller
 public class AdminController {
@@ -73,7 +70,7 @@ public class AdminController {
 		}
 		
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -163,7 +160,6 @@ public class AdminController {
 		//회원수정
 		@RequestMapping(value = "/admin/studentUpdateCtr.do", method = RequestMethod.POST)
 		public String studentUpdateCtr(HttpSession session, MemberListDto memberListDto,
-									String birthDateText,
 									  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
 									  ,MultipartHttpServletRequest multipartHttpServletRequest
 									  , Model model) throws ParseException {
@@ -174,10 +170,6 @@ public class AdminController {
 			
 			try {
 				// 설명하지 
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date parseDate = simpleDateFormat.parse(birthDateText);
-				memberListDto.setBirthDate(parseDate);
-				System.out.println("updateone에 들어오나");
 				resultNum = adminService.memberStudentUpdateOne(memberListDto
 						, multipartHttpServletRequest, fileIdx);
 			} catch (Exception e) {
@@ -246,7 +238,7 @@ public class AdminController {
 		}
 		
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -343,9 +335,8 @@ public class AdminController {
 		}
 	
 	//회원수정
-			@RequestMapping(value = "/admin/tutorUpdateCtr.do", method = RequestMethod.POST)
+			@RequestMapping(value = "/admin/tutorProUpdate.do", method = RequestMethod.POST)
 			public String TutorUpdateCtr(HttpSession session, MemberListDto memberListDto,
-										String birthDateText,
 										  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
 										  ,MultipartHttpServletRequest multipartHttpServletRequest
 										  , Model model) throws ParseException {
@@ -356,9 +347,7 @@ public class AdminController {
 				
 				try {
 					// 설명하지 
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					Date parseDate = simpleDateFormat.parse(birthDateText);
-					memberListDto.setBirthDate(parseDate);
+					
 					resultNum = adminService.memberTutorUpdateOne(memberListDto
 							, multipartHttpServletRequest, fileIdx);
 				} catch (Exception e) {
@@ -498,7 +487,7 @@ public class AdminController {
 			}
 			
 			
-			Paging memberPaging = new Paging(totalCount, curPage);
+			PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 			int start = memberPaging.getPageBegin();
 			int end = memberPaging.getPageEnd();
 			
@@ -553,6 +542,17 @@ public class AdminController {
 			
 			
 			return "admin/qna/adminQnAReply";
+		}
+		
+		@RequestMapping(value = "/admin/replyAddCtr.do", method = {RequestMethod.POST})
+		public String memberAdd(QuestionBoardDto questionBoardDto, MultipartHttpServletRequest mulRequest, Model model) throws Exception {
+			log.info("call memberAdd_ctr! {}", questionBoardDto);
+			System.out.println("들어와");
+			
+			adminService.replyInsertOne(questionBoardDto, mulRequest);
+			adminService.replyCheck(questionBoardDto, mulRequest);
+			
+			return "redirect:/admin/questionlist.do";
 		}
 
 }

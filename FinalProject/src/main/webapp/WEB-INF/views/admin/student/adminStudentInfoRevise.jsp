@@ -6,17 +6,58 @@
 <html>
 <head>
 <title>회원정보 수정</title>
+<style type="text/css">
+	#updateDiv {
+		float: left;
+		width: 700px;
+		height: 800px;
+		border: 1px solid black;
+		box-sizing: border-box;
+		margin-top: 200px;
+	}
 
-<script type="text/javascript" src="/springHome/resources/js/jquery-3.5.1.js"></script>
+	.text {
+		width: 600px;
+		height: 50px;
+		font-size: 30px;
+		margin-bottom: 50px;
+	}
+	#textarea {
+		width:700px;
+		height:600px;
+		float:left;
+		font-size: 30px;
 
+	}
+	
+	.inpText {
+		margin-left: 40px;
+	}
+	
+	#btn > input {
+		width: 150px;
+		height: 50px;
+		float: right;
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px 5px/5px 5px;
+		font-size: 25px;
+		margin-left: 20px;
+	}
+</style>
+<script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		$('.layoutUl').children().eq(0).addClass('on');
 		//이벤트와 태그를 연동시켜주는 바인딩 기술(,)에서 첫번째가 이벤트이다
 		//"a[id^='delete']"는 속성선택자이다(여기서는 delete로 시작하는 모든것을 선택하는 것)
 		$("a[id^='delete']").on("click", function(e) {
 			e.preventDefault();//태그가 작동할 수 없게도 만들수 있는 기술-여기서는 a태그의 default를 무시하고 나의 함수를 우선시 했다
 			deleteFileFnc($(this));
+			
+			
 		});
 	});
 	
@@ -67,38 +108,62 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
 	
 <%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
+	<div id="allDiv">
 	
-	<h1>회원정보 수정</h1>
-	
-	<form action='./studentUpdateCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
-		성 명: <input type='text' name='name' value='${memberListDto.name}'>
-		<br>
-		E - mail: <input type='text' name='email' value='${memberListDto.email}'>
-		<br>
-		비밀번호: <input type='text' name='password' value='${memberListDto.password}'>
-		<br>
-		성 별: <input type='text' name='gender' value='${memberListDto.gender}'>
-		<br>
-		생년월일: 
+		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
+			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+				<span>회원 관리(학생)</span>
+			</div>
+			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+		</div>
 		
-		<input id="birthDateChoose" type="date"  name=birthDateText 
-			value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
-		
-		<br>
-		국 적: <input type='text' name='country' value='${memberListDto.country}'>
-		<br>
-		<input type="hidden" name='no' value='${memberListDto.no}'>
-
-		<input type='submit' value='수정하기'>
-		<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
-		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
-	
-	</form>
-	
-	
+		<div id='updateDiv'>
+			<form action='./studentUpdateCtr.do' method='post' enctype="multipart/form-data">
+				<div id='textarea'>
+					<div class='text'>
+						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
+						<input class='inpText' type='text' name='name' value='${memberListDto.name}'>
+						<br>
+					</div>
+					<div class='text'>
+						<span>E&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;mail :</span> <input class='inpText' type='text' name='email' value='${memberListDto.email}'>
+						<br>
+					</div>
+					<div class='text' >
+						<span>비 밀 번 호 :</span> <input class='inpText' type='text' name='password' value='${memberListDto.password}'>
+						<br>
+					</div>
+					<div class='text'>
+						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별 :</span>
+						<input class='inpText' type='text' name='gender' value='${memberListDto.gender}'>
+						<br>
+					</div>
+					<div class='text'>
+						<span>생 년 월 일 :</span> 
+						<input class='inpText' id="birthDateChoose" type="date"  name="birthDate"
+							value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
+							<br>
+					</div>
+					
+					<div class='text'>
+						<span>국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 :</span>
+						<input class='inpText' type='text' name='country' value='${memberListDto.country}'> 
+						<br>
+					</div>
+					<input type="hidden" name='no' value='${memberListDto.no}'>
+				</div>
+				
+				<div id='btn'>
+					<input type='submit' value='수정하기'>
+					<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
+					<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
+				</div>
+			
+			</form>
+		</div>
+	</div>
 	
 	
 <%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
