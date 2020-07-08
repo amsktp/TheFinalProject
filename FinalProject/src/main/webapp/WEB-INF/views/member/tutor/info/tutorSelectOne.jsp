@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +9,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
 input:focus {outline:none;}
 textarea:focus {outline:none;}
 #tutorYoutubeDiv {
 
 	width : 700px;
 	height: 400px;
-	border : 1px solid red;
 	float: left;
 }
 
@@ -34,7 +41,6 @@ textarea:focus {outline:none;}
 	margin-top : 100px;
 	padding-left : 200px;
 	width : 1800px;
-	border : 1px solid green;
 	padding-bottom: 200px;
 }
 #tutorImgDiv{
@@ -71,11 +77,11 @@ textarea:focus {outline:none;}
 	margin-left : 30px;
 }
 #tutorInfoTable{
-	border: 1px solid black;
+
 }
 
 #studyTitle{
-	width: 80px;
+	width: 100px;
 }
 #studyTitleContent{
 	width: 140px;
@@ -104,16 +110,14 @@ tr {
 }
 
 #commentList {
-	border: 1px solid black;
 	width: 1400px;
-	height: 200px;
 }
 
 .commentOne{
 	margin-bottom: 20px;
+	border: 1px solid black;
 }
 .commentUserName{
-	border: 1px solid black;
 	width : 300px;
 	height: 200px;
 	float : left;
@@ -123,20 +127,17 @@ tr {
 	text-align: center;
 }
 .commentCreateDateAndContents{
-	border: 1px solid black;
 	width : 700px;
 	height: 200px;
 	float: left;
 }
 .commentCreateDate{
-	border: 1px solid black;
 	width: 700px;
 	height: 50px;
 	padding-top: 15px;
 	padding-left: 10px;
 }
 .commentContents{
-	border: 1px solid black;
 	width: 700px;
 	height: 150px;
 	padding: 10px;
@@ -145,7 +146,6 @@ tr {
 
 
 .commentScoreAndBtns{
-	border: 1px solid black;
 	width : 380px;
 	/* 나중에 500으로 수정  */
 	
@@ -153,7 +153,6 @@ tr {
 	float: left;
 }
 .commentScore{
-	border: 1px solid black;
 	width: 380px;
 	height: 130px;
 	padding-left : 70px;
@@ -161,7 +160,6 @@ tr {
 }
 
 .commentBtns{
-	border: 1px solid black;
 	width : 380px;
 	height: 70px;
 	padding : 13px;
@@ -192,6 +190,7 @@ tr {
 	padding-top : 10px;
 	text-align: center;
 	float : right;
+	margin-left: 30px;
 
 }
 
@@ -213,7 +212,7 @@ tr {
 
 .scoreTitle{
 	float:left;
-	width: 70px;
+	width: 100px;
 	height:5px;
 	font-size :25px;
 	margin-right: 20px;
@@ -225,8 +224,16 @@ tr {
 	height: 5px;
 	font-size :25px;
 	margin-right: 25px;
+	color : grey;
 	cursor: pointer;
 }
+
+#scoreAll {
+	width : 300px;
+	height: 5px;
+	font-size :25px;
+}
+
 </style>
 
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -236,81 +243,111 @@ tr {
 
 	$(document).ready(function(){
 		$('#scoreOne').click(function() {
-			$('#scoreOne').css('color', 'yellow');
-			$('#scoreTwo').css('color', 'black');
-			$('#scoreThree').css('color', 'black');
-			$('#scoreFour').css('color', 'black');
-			$('#scoreFive').css('color', 'black');
+			$('#scoreOne').css('color', 'blue');
+			$('#scoreTwo').css('color', 'grey');
+			$('#scoreThree').css('color', 'grey');
+			$('#scoreFour').css('color', 'grey');
+			$('#scoreFive').css('color', 'grey');
 			$('#scoreNum').val(1);
 		});
 		$('#scoreTwo').click(function() {
-			$('#scoreOne').css('color', 'yellow');
-			$('#scoreTwo').css('color', 'yellow');
-			$('#scoreThree').css('color', 'black');
-			$('#scoreFour').css('color', 'black');
-			$('#scoreFive').css('color', 'black');
+			$('#scoreOne').css('color', 'blue');
+			$('#scoreTwo').css('color', 'blue');
+			$('#scoreThree').css('color', 'grey');
+			$('#scoreFour').css('color', 'grey');
+			$('#scoreFive').css('color', 'grey');
 			$('#scoreNum').val(2);
 		});
 		$('#scoreThree').click(function() {
-			$('#scoreOne').css('color', 'yellow');
-			$('#scoreTwo').css('color', 'yellow');
-			$('#scoreThree').css('color', 'yellow');
-			$('#scoreFour').css('color', 'black');
-			$('#scoreFive').css('color', 'black');
+			$('#scoreOne').css('color', 'blue');
+			$('#scoreTwo').css('color', 'blue');
+			$('#scoreThree').css('color', 'blue');
+			$('#scoreFour').css('color', 'grey');
+			$('#scoreFive').css('color', 'grey');
 			$('#scoreNum').val(3);
 		});
 		$('#scoreFour').click(function() {
-			$('#scoreOne').css('color', 'yellow');
-			$('#scoreTwo').css('color', 'yellow');
-			$('#scoreThree').css('color', 'yellow');
-			$('#scoreFour').css('color', 'yellow');
-			$('#scoreFive').css('color', 'black');
+			$('#scoreOne').css('color', 'blue');
+			$('#scoreTwo').css('color', 'blue');
+			$('#scoreThree').css('color', 'blue');
+			$('#scoreFour').css('color', 'blue');
+			$('#scoreFive').css('color', 'grey');
 			$('#scoreNum').val(4);
 		});
 		$('#scoreFive').click(function() {
-			$('#scoreOne').css('color', 'yellow');
-			$('#scoreTwo').css('color', 'yellow');
-			$('#scoreThree').css('color', 'yellow');
-			$('#scoreFour').css('color', 'yellow');
-			$('#scoreFive').css('color', 'yellow');
+			$('#scoreOne').css('color', 'blue');
+			$('#scoreTwo').css('color', 'blue');
+			$('#scoreThree').css('color', 'blue');
+			$('#scoreFour').css('color', 'blue');
+			$('#scoreFive').css('color', 'blue');
 			$('#scoreNum').val(5);
 		});
 		
 		
+		$('#studyStartBtn').click(function() {
+			
+		});
 		
 	});
 
+	var removeCommentFnc = function(studentNo, tutorNo) {
+		alert(studentNo);
+		alert(tutorNo);
+		
+		location.href = './tutorCommentRemoveCtr.do?studentNo=' + studentNo + '&tutorNo=' + tutorNo;
+		
+	}
 
 
+	var modifyCommentFnc = function(studentNo, tutorNo) {
+		alert(studentNo);
+		alert(tutorNo);
+		
+		location.href = './tutorCommentModifyCtr.do?studentNo=' + studentNo + '&tutorNo=' + tutorNo;
+
+	}
 
 </script>
+
+ 
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/views/Header3.jsp" />
-	<div id="contents">
+<jsp:include page="/WEB-INF/views/common/Header.jsp" />
+
+	<div id="contents" class="clearfix">
 		<!-- 소개영상 -->
 		
 		<div id="tutorYoutubeDiv">
-			<iframe width="700px" height="400px;" src="https://www.youtube.com/embed/uR8Mrt1IpXg" frameborder="0" allowfullscreen></iframe>
+			<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }" frameborder="0" allowfullscreen></iframe>
 		</div>
 		
 		<!-- 사람얼굴 -->
-		<div id="tutorInfoDiv">
+		<div id="tutorInfoDiv" class="clearfix">
 			
 			<!-- onLine과 수업시작버튼 -->
-			<div>
+			<div class="clearfix">
 				<div id="onLineCheckDiv">
-					On-Line
+					On-Line 
+					<c:choose>
+						<c:when test="${tutorDto.statusCheck eq 'Y'}">
+							<span style="color: blue">●</span>
+						</c:when>
+						<c:otherwise>
+							<span style="color: red">●</span>
+						</c:otherwise>				
+					</c:choose>
 				</div>
 				
-				<div id="studyStartBtn">
+				<div id="studyStartBtn" onclick="send();">
 					수업시작
 				</div>
 			</div>
 			<!-- 사진 -->
 			<div id="tutorImgDiv">
-				<img id="tutorImg" src="/englishvillage/resources/imgs/sl2.png">
+				
+						<img alt="image not found" id="tutorImg"
+						src="<c:url value='/img/${tutorDto.storeFileName}.jpg'/>">
 			</div>
 			<div id="tutorInfoTableDiv">
 				<table id="tutorInfoTable">
@@ -350,6 +387,8 @@ tr {
 					</tr>
 				</table>
 				
+				<input id="tutorNoNum" type="text" value="${tutorDto.memberNo}">
+				
 			</div>
 		</div>
 
@@ -363,17 +402,20 @@ tr {
 		<!-- 댓글 -->
 
 	<!-- 댓글 입력부분 -->
-		<form action="writeCommentCtr.do" method="post">
-			<div id="writeComment">
+<%-- 		<c:if test="${ }"> --%>
+<!-- 		이미 입력했을경우 작성하는 폼이 안뜨게끔 -->
+	
+		<form id="commentWrite" action="writeCommentCtr.do" method="post">
+			<div id="writeComment" class="clearfix">
 				<!-- 댓글 입력창 -->
 				<div class="commentUserName">${member.memberName} 회원님 </div>
-				<div class="commentCreateDateAndContents">
+				<div class="commentCreateDateAndContents clearfix">
 					<div id="writeCommentContents" >
-						<textarea id="commentContents" name="commentContents" placeholder="댓글을 입력해주세요">댓글 내용</textarea>
+						<textarea id="commentContents" name="evaluateContent" placeholder="댓글을 입력해주세요"></textarea>
 					</div>
 				</div>
 				<div class="commentScoreAndBtns">
-					<div class="commentScore">
+					<div class="commentScore clearfix">
 						<div class="scoreTitle">평 점</div>
 
 						<div id="scoreOne">★</div>
@@ -383,46 +425,82 @@ tr {
 						<div id="scoreFive">★</div>
 						<input id="scoreNum" type="hidden" name="score" value="">
 					</div>
-					<div class="commentBtns">
+					<div class="commentBtns clearfix">
 						<!-- 버튼 -->
-						<div id="commentWriteBtn">
-							작성하기
-						</div>
+						<input type="submit" id="commentWriteBtn" value="작성하기">
 					</div>
 				</div>
 			</div>
 			
-			<input type="hidden" name="studentName" value="${member.memberName}">
-			<input type="hidden" name="studentNo" value="${member.memberNo}">
-			<input type="hidden" name="tutorNo" value="${tutorDto.memberNo}">
+			<input type="text" name="studentName" value="${member.memberName}">
+			<input id="studentNoNum" type="text" name="studentNo" value="${member.memberNo}">
+			<input type="text" name="tutorNo" value="${tutorDto.memberNo}">
 			
 		</form>
 
+<%-- 		</c:if> --%>
+
 	<!-- 댓글 확인 부분 -->
-		<div id="commentList">
-			<!-- 댓글 입력창 -->
-			<div class="commentOne">
-				<div class="commentUserName">session에 있는 이름 </div>
-				<div class="commentCreateDateAndContents">
-					<div class="commentCreateDate">
-						작성일자
-					</div>
-					<div class="commentContents">
-						댓글 내용
-					</div>
-				</div>
-				<div class="commentScoreAndBtns">
-					<div class="commentScore">
-						<div class="scoreTitle">평 점</div>
-					</div>
-					<div class="commentBtns">
-						<!-- 버튼 -->
-						<div class="commentModified">
-							수정하기
+		<c:if test="${tutorCommentDtoList != null}">
+			<div id="commentList">
+				<!-- 댓글 입력창 -->
+				<c:forEach var="tutorCommentDto" items="${tutorCommentDtoList}">
+				
+					<div class="commentOne clearfix">
+						<div class="commentUserName">${tutorCommentDto.studentName} </div>
+						<div class="commentCreateDateAndContents">
+							<div class="commentCreateDate">
+								<span style="margin-right: 20px;">작성 날짜</span>
+								<fmt:formatDate value="${tutorCommentDto.evaluateCreateDate}" pattern="yyyy-MM-dd"/>
+								
+							</div>
+							<div class="commentContents">
+								${tutorCommentDto.evaluateContent}
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
+						<div class="commentScoreAndBtns">
+							<div class="commentScore clearfix">
+								<div class="scoreTitle">평 점</div>
+								<div id="scoreAll">
+									<c:forEach begin="1" end="${tutorCommentDto.score}">
+										<span style="color: blue;">★</span>
+									</c:forEach>
+									<c:forEach begin="${tutorCommentDto.score}" end="4">
+										<span style="color: grey;">★</span>
+									</c:forEach>
+								</div>
+									
+									
+									
+							</div>
+							<div class="commentBtns clearfix">
+								<!-- 버튼 -->
+								<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
+									<div class="commentDelete" onclick="removeCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
+										삭제하기
+									</div>
+									<div class="commentModified" onclick="modifyCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
+										수정하기
+									</div>
+									
+									
+			
+			
+								</c:if>
+							</div>
+						</div>
+					</div>	
+				</c:forEach>
+				
+				
+			</div>
+		</c:if>
 
 	</div>
+  
+</body>
+	
+	
+<script type="text/javascript" src="/englishvillage/resources/js/alert.js"></script>
+	
+</html>

@@ -207,11 +207,11 @@ dl, ul, ol, menu, li {
 	}
 
 </script>
-
+ 
 
 <body>
 
-<jsp:include page="/WEB-INF/views/Header3.jsp" />
+<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png">
 
@@ -340,7 +340,8 @@ dl, ul, ol, menu, li {
 			<c:forEach var="tutorDto" items="${tutorDtoList}">
 				<div class="tutorInfoDiv clearfix" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 					<div class="tutorImgDiv">
-						<img class="tutorImg" id="tutorImg" src="/englishvillage/resources/imgs/sl2.png">
+						<img alt="image not found" class='tutorImg'
+						src="<c:url value='/img/${tutorDto.storeFileName}.jpg'/>">
 					</div>
 					
 					<div class="studyTitle" id="studyTitleDiv">
@@ -393,5 +394,5 @@ dl, ul, ol, menu, li {
 	</form>
 	
 </body>
-
+<script type="text/javascript" src="/englishvillage/resources/js/alert.js"></script>
 </html>

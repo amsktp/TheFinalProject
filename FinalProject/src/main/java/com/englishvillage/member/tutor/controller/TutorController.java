@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 import com.englishvillage.util.Paging;
@@ -124,15 +126,15 @@ public class TutorController {
 	}
 
 	@RequestMapping(value = "/tutorSelectOne.do", method = RequestMethod.GET)
-	public String main(int tutorNo, Model model) {
+	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request) {
 		
-		log.info("튜터 소개 입니다. GET");
 		
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
 		
-		model.addAttribute("tutorDto", tutorDto);
+		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
-		System.out.println(tutorDto);
+		model.addAttribute("tutorDto", tutorDto);
+		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
 		
 		return "member/tutor/info/tutorSelectOne";
 	}
@@ -202,11 +204,33 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/writeCommentCtr.do", method = RequestMethod.POST)
-	public String writeCommentCtr(HttpSession session, Model model) {
-		log.info("writeCommentCtr.do 입니다. GET");
+	public String writeCommentCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.writeComment(tutorCommentDto);
 		
 		
 		
-		return "redirect:./tutorSelectOne.do";
+		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+	}
+	@RequestMapping(value = "/tutorCommentRemoveCtr.do", method = RequestMethod.POST)
+	public String tutorCommentRemoveCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.removeComment(tutorCommentDto);
+		
+		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+	}
+	
+	
+	@RequestMapping(value = "/tutorCommentModifyCtr.do", method = RequestMethod.POST)
+	public String tutorCommentModifyCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.modifyComment(tutorCommentDto);
+		
+		
+		
+		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
 	}
 }

@@ -13,6 +13,8 @@ public class TutorDto {
 	private String memberName;
 	private Date memberCreateDate;
 	private Date memberModifyDate;
+
+
 	private String memberCountry;
 	private String memberGender;
 	private String memberBirthDate;
@@ -25,6 +27,7 @@ public class TutorDto {
 	private String price;
 	private String statusCheck;
 	private int score;
+	private String storeFileName;
 	
 	private int evaluationCount;
 	
@@ -57,7 +60,12 @@ public class TutorDto {
 		this.score = score;
 	}
 
-	
+	public String getStoreFileName() {
+		return storeFileName;
+	}
+	public void setStoreFileName(String storeFileName) {
+		this.storeFileName = storeFileName;
+	}
 	public int getEvaluationCount() {
 		return evaluationCount;
 	}

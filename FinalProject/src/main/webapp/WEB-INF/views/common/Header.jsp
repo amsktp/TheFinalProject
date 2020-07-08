@@ -5,9 +5,10 @@
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 	<script type="text/javascript"
 	src="/englishvillage/resources/js/bootstrap.js"></script>
-<script type="text/javascript">
 
-</script>
+
+
+
 <style>
 
 #naviUl > li > a{
@@ -42,7 +43,10 @@ float: right;
 }
 </style>
 
+   
+  
     <nav class="navbar navbar-inverse navbar-static-top">
+    
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -75,9 +79,10 @@ float: right;
           </ul>
         </div><!--/.nav-collapse -->
       </div>
+      <input id="sessionNo" type="text" value="${member.memberNo}" style="display: none; height: 0px;">
+      <input id="alertStr" type="text" style="display: none; height: 0px;">
     </nav>
     
-
     
     
     

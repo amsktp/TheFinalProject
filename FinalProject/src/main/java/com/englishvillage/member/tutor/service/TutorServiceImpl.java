@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishvillage.member.tutor.dao.TutorDao;
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.util.FileUtils;
 
@@ -103,6 +104,30 @@ public class TutorServiceImpl implements TutorService{
 	public TutorDto getTutorIntroduce(int tutorNo) {
 		// TODO Auto-generated method stub
 		return tutorDao.getTutorIntroduce(tutorNo);
+	}
+
+	@Override
+	public List<TutorCommentDto> getTutorComments(int tutorNo) {
+		// TODO Auto-generated method stub
+		return tutorDao.TutorCommentDto(tutorNo);
+	}
+
+	@Override
+	public int writeComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.writeComment(tutorCommentDto);
+	}
+
+	@Override
+	public int modifyComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.modifyComment(tutorCommentDto);
+	}
+
+	@Override
+	public int removeComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.removeComment(tutorCommentDto);
 	}
 	
 	
