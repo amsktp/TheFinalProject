@@ -77,7 +77,7 @@ float: right;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="naviUl" class="nav navbar-nav">
-            <li class="liLeft"><a href="#tutorList">튜터목록</a></li>
+            <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
             <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
             <li class="liLeft"><a href="#">수강권</a></li>
             <li class="dropdown" style="float: right;">

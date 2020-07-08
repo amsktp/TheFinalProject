@@ -20,20 +20,7 @@
 	$(document).ready(function() {
 		$('.layoutUl').children().eq(3).addClass('on');
 
-// 	function QnAReadFnc(obj) {
-// 		var aTagObj = $(obj);
-
-// 		var url = '';
-// 		var memberNoObj = '';
-
-// 		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
-// 				.children();
-
-// 		url += './QuestionSelect.do?';
-// 		url += 'idx=' + memberNoObj.html();
-
-// 		location.href = url;
-// 	}
+	});
 </script>
 </head>
 
