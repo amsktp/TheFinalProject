@@ -28,10 +28,10 @@ function checkFnc() {
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
+<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 		<div id="myPageBox">
 			<div id="pageName">본인인증
