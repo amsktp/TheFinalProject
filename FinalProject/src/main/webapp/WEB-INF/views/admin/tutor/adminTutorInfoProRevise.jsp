@@ -69,7 +69,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 
 	<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">

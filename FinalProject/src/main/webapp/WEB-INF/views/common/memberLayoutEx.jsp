@@ -7,6 +7,12 @@
 	href="/englishvillage/resources/css/student.css?ver=1.4">
 	
 <script type="text/javascript">
+
+function moveFnc(addr) {
+
+	location.href = addr;
+}
+
 var loginMoveFnc = function(){
 	location.href = '/englishvillage/student/login.do';
 }
