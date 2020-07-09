@@ -28,11 +28,11 @@ public interface TutorDao {
 
 	public List<TutorCommentDto> TutorCommentDto(int tutorNo);
 
-	public int writeComment(com.englishvillage.member.tutor.model.TutorCommentDto tutorCommentDto);
+	public int writeComment(TutorCommentDto tutorCommentDto);
 
-	public int modifyComment(com.englishvillage.member.tutor.model.TutorCommentDto tutorCommentDto);
+	public int modifyComment(TutorCommentDto tutorCommentDto);
 
-	public int removeComment(com.englishvillage.member.tutor.model.TutorCommentDto tutorCommentDto);
+	public int removeComment(TutorCommentDto tutorCommentDto);
 	public TutorDto getTutorPwd(String pwd);
 
 	public int updateTutor(TutorDto tutorDto);
@@ -40,6 +40,10 @@ public interface TutorDao {
 	public int updatePwd(TutorDto tutorDto);
 
 	public int deleteMember(int no);
+
+	public TutorDto boardSelect(int no);
+
+	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
 	
 }

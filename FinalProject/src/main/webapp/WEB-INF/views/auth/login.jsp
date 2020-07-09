@@ -115,7 +115,7 @@
 					</div>
 					<div>
 						<input class="emailPwdBox" id="memberEmail" type="email"
-							name="memberEmail" placeholder="이메일을 입력하세요" value="chan@naver.com">
+							name="memberEmail" placeholder="이메일을 입력하세요" value="smith@gmail.com">
 					</div>
 					<div>
 						<span>비밀번호</span>

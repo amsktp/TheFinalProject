@@ -31,40 +31,56 @@ $(document).ready(function(){
 				<div id="profileImages">
 					사진
 				</div>
-				<div id="profileAll">
-					<div>
-						이름 : ${member.memberName}<br/>
+				<div id="profileAll" style="margin-top: 50px;">
+					<div class="profileInfoContents" >
+						이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;름 : ${member.memberName}<br/>
+					</div>
+					<div class="profileInfoContents" >
+						국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;적 : ${member.memberCountry}<br/>
+					</div>
+					<div class="profileInfoContents" >
+						나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;이 : ${getTutorDtoInfo.age}<br/>
+					</div>
+					<div class="profileInfoContents" >
+						평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;점 : ${getTutorDtoGrade.score}<br/>
 					</div>
 					<div>
-						국적 : ${member.memberCountry}<br/>
-					</div>
-					<div>
-						나이 : ${getTutorDtoInfo.age}<br/>
-					</div>
-					<div>
-						평점 : ${getTutorDtoGrade.score}<br/>
-					</div>
-					<div>
-						수업료 : <input class="profileContests" style="width: 170px;" type="text" value="${getTutorDtoInfo.price}" name="price">
+						수 &nbsp;&nbsp;업 &nbsp;료 : 
+						<input class="profileInfoContents" 
+						style="width: 200px;" type="text" 
+						value="${getTutorDtoInfo.price}" name="price">
 						시간/회<br/>
 					</div>
 					<div>
-						URL : <input class="profileContests" type="text" value="${getTutorDtoInfo.youtubeUrl}" name="youtubeUrl"><br/>
+						U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp;: 
+						<input class="profileInfoContents" style="width: 200px;"
+						type="text" value="${getTutorDtoInfo.youtubeUrl}" 
+						name="youtubeUrl"><br/>
 					</div>
 					<div>
-						강의 제목 : <input class="profileContests" type="text" value="${getTutorDtoInfo.studyName}" name="studyName"><br/>
+						강의&nbsp; 제목 : <input class="profileInfoContents" type="text" 
+						style="width: 200px;"
+						value="${getTutorDtoInfo.studyName}" name="studyName"><br/>
 					</div>
 				</div>
 				
 				<div>
-					<textarea id="introduceContents"  style="margin-left: 80px;">${getTutorDtoInfo.tutorIntroduce}</textarea>
+					<textarea id="introduceContents">
+						${getTutorDtoInfo.tutorIntroduce}
+					</textarea>
 				</div>
 				
-					<input type="button" class="Btn" onclick="location.href='/englishvillage/tutorIntroduce.do'" value="뒤로가기">
+				<input type="button" class="Btn" 
+				onclick="location.href='/englishvillage/tutorIntroduce.do'" 
+				value="뒤로가기">
 	
-					<button class="Btn">수정완료</button>
+				<button class="Btn">수정완료</button>
 					
-					<input type="hidden" name="memberNo" value="${member.memberNo}"	>
+				<input type="hidden" name="memberNo" value="${member.memberNo}">
 				
 			</form>
 		</div>

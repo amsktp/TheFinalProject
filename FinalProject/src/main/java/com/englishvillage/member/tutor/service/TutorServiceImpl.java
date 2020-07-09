@@ -131,6 +131,14 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
+	public TutorDto boardSelect(int no) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = tutorDao.boardSelect(no);
+		
+		return tutorDto;
+	}
+
 	public TutorDto getTutorIntroduce(int tutorNo) {
 		// TODO Auto-generated method stub
 		return tutorDao.getTutorIntroduce(tutorNo);
@@ -158,6 +166,12 @@ public class TutorServiceImpl implements TutorService{
 	public int removeComment(TutorCommentDto tutorCommentDto) {
 		// TODO Auto-generated method stub
 		return tutorDao.removeComment(tutorCommentDto);
+	}
+
+	@Override
+	public int addStudyHistory(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.addStudyHistory(tutorCommentDto);
 	}
 	
 	

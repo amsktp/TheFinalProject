@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 <body>
 
+
 	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
@@ -28,42 +29,42 @@ $(document).ready(function(){
 					<div class="profileContests">
 						이름
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						Email
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						비밀번호
 					</div>
 					<br/><br/>
-					<div class="profileContests">
+					<div class="profileContents">
 						성별
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						생년월일
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						국적
 					</div>
 				</div>
 			<form action="tutorCheckPassword.do">	
 				<div class="profileTitle">
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberName}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberEmail}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						********
 					</div>
 					<br/><br/>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberGender}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						<fmt:formatDate value="${tutorDto.memberBirthDate}"  pattern="yyyy-MM-dd"/>
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberCountry}
 					</div>
 				</div>

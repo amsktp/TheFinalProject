@@ -42,63 +42,84 @@ $(document).ready(function(){
 
 			<div id="pageName">회원정보수정</div>
 				<div class="profileTitle">
-					<div class="profileContests">
+					<div class="profileContents">
 						이름
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						Email
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						비밀번호
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						비밀번호확인
 					</div>
 					<br/>
-					<div class="profileContests">
+					<div class="profileContents">
 						성별
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						생년월일
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						국적
 					</div>
+
 				</div>
-			<form id="modifyPassword" action="tutorPrivateInfoCtr.do" method="post">	
-				<div class="profileTitle">
-					<div class="profileContests">
-						<input type="text" disabled="disabled" value="${tutorDto.memberName}">
-					</div>
-					<div class="profileContests">
-						<input type="text" disabled="disabled" value="${tutorDto.memberEmail}">
-						
-					</div>
-					<div class="profileContests">
-						<input id="pwdRevise" type="password" value="" name="memberPassword">
-					</div>
-					<div class="profileContests">
-						<input id="pwdReviseCheck" type="password" value="">
-					</div>
-					<br/>
-					<div class="profileContests">
-						<input type="text" disabled="disabled" value="${tutorDto.memberGender}">
-					</div>
-					<div class="profileContests">
-						<input type="text" disabled="disabled" value="<fmt:formatDate value="${tutorDto.memberBirthDate}"  pattern="yyyy-MM-dd"/>">
-					</div>
-					<div class="profileContests">
-						<input type="text" disabled="disabled" value="${tutorDto.memberCountry}">
-						
-					</div>
-					<input type="hidden" name="memberNo" value="${member.memberNo}"	>
+				<div class="profileContents">
+					Email
 				</div>
-							
-				<button class="Btn" style="margin-right: 150px; margin-top: 290px;">수정하기</button>
-			</form>
-				<button class="Btn" onclick="location.href='tutorWithdraw.do'" style="margin-right: 150px;">회원탈퇴</button>
-				<button class="Btn" onclick="location.href='tutorPrivateInfo.do'" style="margin-right: 150px;">뒤로가기</button>
-			
+				<div class="profileContents">
+					비밀번호
+				</div>
+				<div class="profileContents">
+					비밀번호확인
+				</div>
+				<br/>
+				<div class="profileContents">
+					성별
+				</div>
+				<div class="profileContents">
+					생년월일
+				</div>
+				<div class="profileContents">
+					국적
+				</div>
+			</div>
+		<form id="modifyPassword" action="tutorPrivateInfoCtr.do" method="post">	
+			<div class="profileTitle">
+				<div class="profileContents">
+					<input type="text" disabled="disabled" value="${tutorDto.memberName}">
+				</div>
+				<div class="profileContents">
+					<input type="text" disabled="disabled" name="memberEmail" value="${tutorDto.memberEmail}">
+					
+				</div>
+				<div class="profileContents">
+					<input id="pwdRevise" type="password" value="" name="memberPassword">
+				</div>
+				<div class="profileContents">
+					<input id="pwdReviseCheck" type="password" value="">
+				</div>
+				<br/>
+				<div class="profileContents">
+					<input type="text" disabled="disabled" value="${tutorDto.memberGender}">
+				</div>
+				<div class="profileContents">
+					<input type="text" disabled="disabled" value="<fmt:formatDate value="${tutorDto.memberBirthDate}"  pattern="yyyy-MM-dd"/>">
+				</div>
+				<div class="profileContents">
+					<input type="text" disabled="disabled" value="${tutorDto.memberCountry}">
+					
+				</div>
+				<input type="hidden" name="memberNo" value="${member.memberNo}"	>
+			</div>
+						
+			<button class="Btn" style="margin-right: 150px; margin-top: 290px;">수정하기</button>
+		</form>
+			<button class="Btn" onclick="location.href='tutorWithdraw.do'" style="margin-right: 150px;">회원탈퇴</button>
+			<button class="Btn" onclick="location.href='tutorPrivateInfo.do'" style="margin-right: 150px;">뒤로가기</button>
+		
 		</div>
 	</div>
 

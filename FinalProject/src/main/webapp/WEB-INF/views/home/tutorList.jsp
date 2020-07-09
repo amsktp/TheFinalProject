@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <title>Hello Spring</title>
 
-<link rel="stylesheet" type="text/css"
-	href="/englishvillage/resources/css/mail.css">
 
 <style type="text/css">
 body {
@@ -93,6 +91,7 @@ dl, ul, ol, menu, li {
 .tutorImgDiv {
 	width: 340px;
 	height: 200px;
+	cursor: pointer;
 }
 
 .tutorImg {
@@ -105,25 +104,19 @@ dl, ul, ol, menu, li {
 	height: 1000px;
 }
 
-.studyTitle {
-	width: 172px;
-	height: 40px;
-	margin-left: 10px;
-	margin-top: 10px;
-}
-
 .tutorName {
 	width: 50px;
 	height: 20px;
 }
 
 .studyTitle {
-	width: 300px;
+	width: 320px;
 	height: 40px;
 	margin-left: 10px;
 	margin-top: 10px;
 	font-size: 17px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .price {
@@ -191,24 +184,32 @@ img {
 		location.href = './tutorSelectOne.do?tutorNo=' + tutorNo;
 
 	}
+	
+	$(document).ready(function() {
+		
+		var titleMaxLenght = 17;
+		
+		for (var i = 0; i < $('.studyTitle').length; i++) {
+			var studyTitleStr = $('.studyTitle').eq(i).text();
+			
+			if(studyTitleStr.length > titleMaxLenght){
+				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
+			}
+
+			$('.studyTitle').eq(i).text(studyTitleStr);
+			
+		}
+		
+	});
+	
 
 </script>
  
 
 <body>
 
-<!-- <<<<<<< HEAD -->
-<%-- <jsp:include page="/WEB-INF/views/common/Header.jsp" /> --%>
-	
-<!-- <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png"> -->
-<!-- ======= -->
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
-
-	<%-- 	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" /> --%>
-	<%-- 	<jsp:include page="/WEB-INF/views/common/Header.jsp" /> --%>
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
-
-	<!-- <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png"> -->
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
@@ -264,7 +265,8 @@ img {
 		<a class="left carousel-control" href="#myCarousel" role="button"
 			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
 			aria-hidden="true"></span> <span class="sr-only">Previous</span>
-		</a> <a class="right carousel-control" href="#myCarousel" role="button"
+		</a> 
+		<a class="right carousel-control" href="#myCarousel" role="button"
 			data-slide="next"> <span
 			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
@@ -277,8 +279,8 @@ img {
 	<div id="searchBox" class="container">
 		<form class="form-inline" action="./home.do#searchOptBox"
 			method="post">
-			<span class="seachFont">검색조건</span> <select id="searchOptBox" class="form-control"
-				name='countrySearch'>
+			<span class="seachFont">검색조건</span>
+			<select id="searchOptBox" class="form-control"	name='countrySearch'>
 				<c:choose>
 					<c:when test="${searchMap.countrySearch eq 'all'}">
 						<option value='all' selected>국적</option>
@@ -377,9 +379,8 @@ img {
 			</select>
 
 			<!-- 				<input id="keyWordBox" type="text" name="keyword" placeholder="키워드를 입력해주세요"> -->
-			<input class="form-control" type="text" name="keyword"
-				placeholder="키워드를 입력해주세요"> <input class="btn btn-primary"
-				type="submit" value="검색">
+			<input class="form-control" type="text" name="keyword" placeholder="키워드를 입력해주세요">
+			<input class="btn btn-primary" type="submit" value="검색">
 
 		</form>
 	</div>
@@ -393,25 +394,23 @@ img {
 		</c:when>
 		<c:otherwise>
 			<c:forEach var="tutorDto" items="${tutorDtoList}">
-				<div class="tutorInfoDiv clearfix" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-					<div class="tutorImgDiv">
+				<div class="tutorInfoDiv clearfix" >
+					<div class="tutorImgDiv" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 						<img alt="image not found" class='tutorImg'
 						src="<c:url value='/img/${tutorDto.storeFileName}.jpg'/>">
 					</div>
 					
-					<div class="studyTitle" id="studyTitleDiv">
-						${tutorDto.studyName}
-					</div>
+					<div class="studyTitle" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">${tutorDto.studyName}</div>
 
 						<div class="price" id="priceDiv">30,000원 / 40분</div>
 
 						<div class="score">
 							<c:forEach begin="1" end="${tutorDto.score}">
-							★
-						</c:forEach>
+								<span style="color: blue;">★</span>
+							</c:forEach>
 							<c:forEach begin="${tutorDto.score}" end="4">
-							☆
-						</c:forEach>
+								<span style="color: grey;">★</span>
+							</c:forEach>
 							(${tutorDto.evaluationCount})
 						</div>
 

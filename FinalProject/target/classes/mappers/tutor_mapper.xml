@@ -49,6 +49,7 @@
 			<result column="STATUS_CHECK" property="statusCheck"/>   
 			<result column="SCORE_AVG" property="score"/>   
 			<result column="EVALUATION_COUNT" property="evaluationCount"	/>   
+			<result column="TITLE" property="title"	/>   
 			
 			<result column="STORE_FILE_NAME" property="storeFileName"/>
    
@@ -127,7 +128,7 @@
 		
 		select count(*)
 		from member m, tutor_info t, file_profile_image f, member_grade g
-                ,(select t.tutor_no, floor(avg(nvl(e.score,0))) score_avg
+                ,(select t.tutor_no, floor(AVG(NVL(e.score,0))) score_avg
                from tutor_info t left join EVALUATION e
                on t.tutor_no = e.tutor_no
                group by t.tutor_no) s
@@ -142,7 +143,7 @@
 	<select id="tutorSelectCurPage" parameterType ="map"
 		resultType="Integer">
 		
-		SELECT floor((rnum-1)/10)+1
+		SELECT floor((RNUM-1)/10)+1
         FROM (  SELECT ROWNUM RNUM
 		                ,M.member_no, M.member_email, M.member_name, M.member_create_date, M.member_point, M.member_country
 		                ,M.grade_name
@@ -276,6 +277,19 @@
 	
 	
 	
+	<select id="boardSelect" parameterType="int" 
+	resultMap="tutorResultMap">
+	
+		SELECT ROWNUM, IDX, TITLE
+		FROM (
+			SELECT IDX, TITLE
+			FROM QUESTION_BOARD
+			WHERE MEMBER_NO = #{no}
+			ORDER BY BOARD_CREATE_DATE DESC, IDX DESC)
+		WHERE ROWNUM = 1
+	
+	</select>
+	
 	<update id="updateTutor" parameterType="com.englishvillage.member.tutor.model.TutorDto">
 	
 		UPDATE TUTOR_INFO
@@ -298,6 +312,16 @@
      	WHERE MEMBER_NO = #{memberNo}
      
 	</delete>
+	
+
+
+	<insert id="addStudyHistory" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
+	
+		<!-- 수업시작했을때 학생번호 튜터번호 학생이름 날짜를 평가테이블에 추가 -->
+	
+	
+	
+	</insert>
 
 </mapper>
 

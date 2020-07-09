@@ -27,35 +27,33 @@ $(document).ready(function(){
 			<div id="profileImages">
 				사진
 			</div>
-			<div id="profileAll">
-				<div class="profileContests">
-					이름 : ${tutorDto.memberName}<br/>
+			<div id="profileAll" style="margin-top: 50px; border-style: none;">
+				<div class="profileInfoContents">
+					이름 : ${tutorDto.memberName}
 				</div>
-				<div class="profileContests">
-					국적 : ${tutorDto.memberCountry}<br/>
+				<div class="profileInfoContents">
+					국적 : ${tutorDto.memberCountry}
 				</div>
-				<div class="profileContests">
-					나이 : ${tutorDto.age}<br/>
+				<div class="profileInfoContents">
+					나이 : ${tutorDto.age}
 				</div>
-				<div class="profileContests">
-					평점 : ${tutorDtoGrade.score}<br/>
+				<div class="profileInfoContents">
+					평점 : ${tutorDtoGrade.score}
 				</div>
-				<div class="profileContests">
+				<div class="profileInfoContents">
 					수업료 : ${tutorDto.price}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
-					시간/회<br/>
+					시간/회
 				</div>
-				<div class="profileContests">
-					URL : ${tutorDto.youtubeUrl}<br/>
+				<div class="profileInfoContents">
+					URL : ${tutorDto.youtubeUrl}
 				</div>
-				<div class="profileContests">
-					강의 제목 : ${tutorDto.studyName}<br/>
+				<div class="profileInfoContents">
+					강의 제목 : ${tutorDto.studyName}
 				</div>
-				
 			</div>
 			<div style="margin-top: 300px;">
 				<textarea id="introduceContents" disabled="disabled" style="margin-left: 80px;">${tutorDto.tutorIntroduce}</textarea>
