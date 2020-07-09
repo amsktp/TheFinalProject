@@ -137,16 +137,22 @@
 	
 
 	function emailChkFnc() {
+		
+		if($("#memberEmail").val() == ""){
+			alert("이메일을 다시 입력하세요.");
+			return false;
+		}
+		
 		$.ajax({
 			url: "/englishvillage/emailCheck.do",
 			type: "POST",
 			data: "memberEmail=" + $("#memberEmail").val(),
 			success: function(data) {
-				if(data == 1){
-					alert("중복된 아이디입니다.");
+				if(data >= 1){
+					alert("중복된 이메일입니다.");
 				} else if(data == 0) {
 					$("#emailCheck").attr("value", "Y");
-					alert("사용가능한 아이디입니다.");
+					alert("사용가능한 이메일입니다.");
 				}
 				
 			}
@@ -185,7 +191,7 @@
 		
 		var memberNameObj = document.getElementById('memberName');
 		var memberEmailObj = document.getElementById('memberEmail');
-		var verifyNumObj = document.getElementById('verifyNum');
+		var verifyNumObj = document.getElementById('inputVerifyNum');
 		var memberPasswordObj = document.getElementById('memberPassword');
 		var verifyPasswordObj = document.getElementById('verifyPassword');
 		var memberBirthDateObj = document.getElementById('memberBirthDate');
@@ -204,6 +210,9 @@
 			return false;
 		} else if(verifyPasswordObj.value.length == 0){		
 			alert("비밀번호 확인을 입력해주세요.");
+			return false;
+		} else if(verifyPasswordObj.value.length != memberPasswordObj.value.length){		
+			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		} else if(memberBirthDateObj.value.length == 0){		
 			alert("생일을 입력해주세요.");
