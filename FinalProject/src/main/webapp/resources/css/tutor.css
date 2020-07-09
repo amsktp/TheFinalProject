@@ -8,11 +8,18 @@ textarea:focus {outline:none;}
 	font-weight: bold;	
 }
 #pointFont{
-	padding-left: 20px;
+	padding-left: 30px;
 	font-size: 20px;
 	font-weight: bold;
 	margin-left: 20px;
 	
+}
+.infomationFont{
+	text-align: left;
+}
+.infomationContents{
+	text-align: left; 
+	margin-left: 40px;
 }
 #infoBtn{
 	background-color: white;
