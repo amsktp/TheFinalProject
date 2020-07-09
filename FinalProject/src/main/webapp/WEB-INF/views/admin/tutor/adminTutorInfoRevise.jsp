@@ -59,6 +59,13 @@
 			
 			
 		});
+		
+		if($('#genderChange').val() == "M") {
+			$('input[name="gender"]').val(['M']);
+			
+		}else if($('#genderChange').val() == "F"){
+			$('input[name="gender"]').val(['F']);
+		}
 	});
 	
 	function pageMoveListFnc(){
@@ -72,7 +79,7 @@
 	}
 	
 	function pageMoveBeforeFnc(no) {
-		var url = "./studentlistOne.do?no=" + no;
+		var url = "./tutorlistOne.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -124,11 +131,12 @@
 				<div id='textarea'>
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
-						<input class='inpText' type='text' name='name' value='${memberListDto.name}'>
+						<input class='inpText' type='text' name='member_name' value='${memberListDto.member_name}'>
 						<br>
 					</div>
 					<div class='text'>
-						<span>E&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;mail :</span> <input class='inpText' type='text' name='email' value='${memberListDto.email}'>
+						<span>E&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;mail :</span> 
+						<input class='inpText' type='text' name='member_email' value='${memberListDto.member_email}'>
 						<br>
 					</div>
 					<div class='text' >
@@ -137,7 +145,9 @@
 					</div>
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별 :</span>
-						<input class='inpText' type='text' name='gender' value='${memberListDto.gender}'>
+						<input type="hidden" id='genderChange' value='${memberListDto.gender}'>
+						<input type="radio" class='menCheck' name='gender' value="M">남자
+						<input type="radio" class='girlCheck' name='gender' value="F">여자
 						<br>
 					</div>
 					<div class='text'>

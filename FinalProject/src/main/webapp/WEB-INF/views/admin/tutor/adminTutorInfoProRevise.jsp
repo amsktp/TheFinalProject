@@ -6,20 +6,221 @@
 <html>
 <head>
 <title>회원정보 수정</title>
+<style type="text/css">
 
-<script type="text/javascript" src="/springHome/resources/js/jquery-3.5.1.js"></script>
+	
+	#tutorProfileDiv {
+		border: 1px solid black;
+		width: 600px;
+		height: 700px;
+		box-sizing: border-box;
+		margin-top: 200px;
+		float: left;
+		font-size: 15px;
+	}
+	
+	#lineDiv {
+		border-bottom: 1px solid #BDBDBD; 
+	}
+	
+	.manual {
+		margin-top: 80px;
+	}
+	
+	span {
+		font-size: 30px;
+	}
+	
+	
+	
+	#btn > input {
+		width: 150px;
+		height: 50px;
+		float: right;
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px 5px/5px 5px;
+		font-size: 25px;
+	}
+	
+	#memberProfileText {
+		font-size: 40px;
+		font-weight: bold;
+	}
+	
+	#tutor {
+		float: right;
+	}
+	
+	#preview {
+	border:1px solid black;
+	width: 200px;
+	height: 200px;
+	float:left;
+	position:relative;
+	vertical-align: bottom;
+}
+
+#previewImg{
+	width:200px;
+	height: 200px;
+}
+
+#inputPhotoBtn{
+	position:relative;
+	top:180px; 
+	right:20px;
+}
+
+.tutorInfoDiv {
+	border: 1px solid black;
+	width: 340px;
+	height: 317px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+.tutorImgDiv {
+	width: 340px;
+	height: 200px;
+}
+
+.tutorImg{
+	width: 337px;
+	height: 200px;
+}
+
+.studyTitle {
+	width: 300px;
+	height: 40px;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.price{
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.score{
+	width : 110px;
+	margin-top : 10px;
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	border-right: 1px solid black;
+	float:left;
+}
+
+.country{
+	margin-top: 10px;
+	padding-left: 10px;
+	float: left;
+}
+
+.tutorName {
+	margin-top:7px;
+	font-size: 22px;
+	font-weight: bold;
+	margin-right : 20px;
+	float: right;
+}
+
+#contentsDiv {
+	padding-top: 100px;
+}
+
+#photoAndInfoDiv {
+	width: 702px;
+	height: 202px;
+	margin-bottom: 30px;
+}
+
+#inputPhotoDiv {
+	height: 200px;
+	width: 240px;
+	float: left;
+}
+
+#selectPictureButton {
+	width: 30px;
+	height: 30px;
+	border-radius: 20px;
+}
+
+#inputInfoDiv {
+	height: 200px;
+	width: 450px;
+	float: left;
+}
+
+td {
+	height: 40px;
+}
+
+#firstTd {
+	width: 80px;
+}
+
+#priceInput {
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+#titleInput {
+	width: 230px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+#tutorIntroduceBox {
+	width: 550px;
+	height: 200px;
+    resize: none;
+	border-radius: 20px;
+	border: 1px solid #707070;
+	padding-top: 20px;
+	margin-left: 23px;
+	text-align: left;
+}
+
+#tutorIntroduceBoxDiv {
+	margin-bottom: 20px;
+}
+
+
+input:focus {outline:none;}
+textarea:focus {outline:none;}
+</style>
+<script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
 		//이벤트와 태그를 연동시켜주는 바인딩 기술(,)에서 첫번째가 이벤트이다
 		//"a[id^='delete']"는 속성선택자이다(여기서는 delete로 시작하는 모든것을 선택하는 것)
+			var toDay = new Date();
+			var birthDay = $('#subAge').val().substring(24, 28);
+			
+			var age = (toDay.getFullYear()) - birthDay;
+			$('#age').val(age);
+			
+			$('.layoutUl').children().eq(1).addClass('on');
+			
 		$("a[id^='delete']").on("click", function(e) {
 			e.preventDefault();//태그가 작동할 수 없게도 만들수 있는 기술-여기서는 a태그의 default를 무시하고 나의 함수를 우선시 했다
 			deleteFileFnc($(this));
 			
-			$('.layoutUl').children().eq(1).addClass('on');
 		});
+		
+		
+		
 	});
 	
 	function pageMoveListFnc(){
@@ -63,15 +264,25 @@
 		});
 	}
 	
+	function setThumbnailFnc(event) { 
+	      var reader = new FileReader(); 
+	      
+	      reader.onload = function(event) { 
+	         var img = document.getElementById("previewImg"); 
+	         img.setAttribute("src", event.target.result); 
+	   //       document.querySelector("div#image_container").appendChild(img); 
+	      }; 
+	      
+	      reader.readAsDataURL(event.target.files[0]); }
+	
 </script>
 
 </head>
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
 	
-
+	
 	<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
 		<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
 			<span>회원 관리(강사)</span>
@@ -79,29 +290,86 @@
 		<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 	</div>
 	
-	<form action='./tutorUpdateProCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
-		성 명: <input type='text' name='name' value='${memberListDto.name}' disabled="disabled">
-		<br>
-		국 적: <input type='text' name='country' value='${memberListDto.country}' disabled="disabled">
-		<br>
-		생년월일:<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>
-		<br>
-		평 점: <input type='text' name='socre' value='${memberListDto.score}' disabled="disabled">
-		<br>
-		수 업 료: <input type='text' name='price' value='${memberListDto.price}'>
-		<br>
-		URL: <input type='text' name='url' value='${memberListDto.url}'>
-		<br>
-		강 의 제 목: <input type='text' name='tutorTitle' value='${memberListDto.tutorTitle}'>
-		<br>
-		<input type="hidden" name='no' value='${memberListDto.no}'>
+	<div class="tutorProfileDiv" id='studentProfileDiv'>
+			
+			<div id='tutorProfileDiv'>
+				<form action='./tutorProUpdateCtr.do' method='post' enctype="multipart/form-data">
+					<span id='studentProfileSpan'>회원 관리(학생)</span>
+					<span id='tutorProfileSpan'>회원 관리(강사)</span>
+					<div id='lineDiv'>
+					</div>
+						<div id='allmanual'>
+							<div id="photoAndInfoDiv" >
+				
+					<div id="inputPhotoDiv" class="clearfix">
+					    <div id='preview'>
+					    <input type="hidden" name="original_File_Name" value="${memberListDto.original_File_Name}">
+					    <input type="hidden" name="store_File_Name" value="${memberListDto.store_File_Name}">
+					        <img alt="image not found" id="previewImg" name="store_File_Name"
+						src="<c:url value='/img/${memberListDto.store_File_Name}'/>">
+					    </div>
+					    <div id="inputPhotoBtn">
+					    	<input type="file" id="uploadFile" name='profilePicture' class="hidden" onchange="setThumbnailFnc(event);"/>
+							<label id="fileSelectLabel" for="uploadFile"><img id="selectPictureButton" src="/englishvillage/resources/imgs/camera.jpg"></label>
+					    </div>
 
-		<input type='submit' value='수정하기'>
-		<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
-		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
+						</div>
+					<div id="inputInfoDiv" class="clearfix">
+						<table>
+							<tr id="firstTr">
+								<td id="firstTd">이름:</td>
+								<td>${memberListDto.member_name}</td>
+							</tr>
+							<tr>
+								<td>국적:</td>
+								<td>${memberListDto.country}</td>
+							</tr>
+							<tr>
+								<td>나이:</td>
+								<td><input type="text" value="" id='age' disabled="disabled"><br></td>
+							</tr>
+							<tr>
+								<td>수업료:</td>
+								<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}"> 원 / 40분</td>
+							</tr>
+							<tr>
+								<td>강의제목:</td>
+								<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}"></td>
+							</tr>
+							
+							<tr>
+								<td>URL:</td>
+								<td><input id='titleInput' type="text" name="url" value="${memberListDto.url}"></td>
+							</tr>
+						</table>
+					</div>
+					   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
+				</div>
+				
+				<div id="tutorIntroduceBoxDiv">
+					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText">
+					${memberListDto.tutorText}</textarea>
+				</div>
+				
+						<div>
+							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
+							<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
+							<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+						</div>
+						</div>
+						<div id='btn'>
+							<input type='submit' value='수정하기'>
+							<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
+							<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
+						</div>
+					</form>
+				</div>
 	
-	</form>
+	</div>
+
+
 	
 <%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>
+
 </html>

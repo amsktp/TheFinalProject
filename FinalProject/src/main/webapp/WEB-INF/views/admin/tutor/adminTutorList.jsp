@@ -17,7 +17,7 @@
 	}
 	
 	#tutorTable {
-		width: 1400px;
+		width: 1200px;
 		font-size: 20px;
 	}
 	
@@ -117,7 +117,7 @@
 		</form>
 	
 		<table class="table table-hover">
-			<tr class="success">
+			<tr class="success" style="font-weight: bolder; text-align: center;">
 				<th>회원번호</th>
 				<th>이름</th>
 				<th>국가</th>
@@ -140,12 +140,12 @@
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
-						${memberDto.name}
+						${memberDto.member_name}
 					</a>
 				</td>
 				<td>${memberDto.country}</td>
 				
-				<td>${memberDto.email}</td>
+				<td>${memberDto.member_email}</td>
 				
 				<td>${memberDto.grade}</td>
 				

@@ -7,14 +7,23 @@
 <head>
 <title>회원정보 상세조회</title>
 <style type="text/css">
-	.studentProfileDiv {
+	.tutorProfileDiv {
 		border: 1px solid black;
 		width: 600px;
-		height: 950px;
-		font-size: 30px;
+		height: 700px;
+		font-size: 20px;
 		margin-top: 200px;
 		float: left;
 		box-sizing: border-box;
+	}
+	
+	#tutorProfileDiv {
+		border: 1px solid black;
+		width: 600px;
+		height: 950px;
+		box-sizing: border-box;
+		float: left;
+		margin-top: 200px;
 	}
 	
 	#lineDiv {
@@ -22,7 +31,11 @@
 	}
 	
 	.manual {
-		margin-top: 80px;
+		margin-bottom: 80px;
+	}
+	
+	#btn {
+		float:right;
 	}
 	
 	#btn > input {
@@ -40,6 +53,155 @@
 		font-size: 40px;
 		font-weight: bold;
 	}
+	
+	#tutor {
+		float: right;
+	}
+	
+	
+	#preview {
+	border:1px solid black;
+	width: 200px;
+	height: 200px;
+	float:left;
+	position:relative;
+	vertical-align: bottom;
+}
+
+#previewImg{
+	width:200px;
+	height: 200px;
+}
+
+#inputPhotoBtn{
+	position:relative;
+	top:180px; 
+	right:20px;
+}
+
+.tutorInfoDiv {
+	border: 1px solid black;
+	width: 340px;
+	height: 317px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+.tutorImgDiv {
+	width: 340px;
+	height: 200px;
+}
+
+.tutorImg{
+	width: 337px;
+	height: 200px;
+}
+
+.studyTitle {
+	width: 300px;
+	height: 40px;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.price{
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.score{
+	width : 110px;
+	margin-top : 10px;
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	border-right: 1px solid black;
+	float:left;
+}
+
+.country{
+	margin-top: 10px;
+	padding-left: 10px;
+	float: left;
+}
+
+.tutorName {
+	margin-top:7px;
+	font-size: 22px;
+	font-weight: bold;
+	margin-right : 20px;
+	float: right;
+}
+
+#contentsDiv {
+	padding-top: 100px;
+}
+
+#photoAndInfoDiv {
+	width: 702px;
+	height: 202px;
+	margin-bottom: 30px;
+}
+
+#inputPhotoDiv {
+	height: 200px;
+	width: 240px;
+	float: left;
+}
+
+#selectPictureButton {
+	width: 30px;
+	height: 30px;
+	border-radius: 20px;
+}
+
+#inputInfoDiv {
+	height: 200px;
+	width: 450px;
+	float: left;
+}
+
+td {
+	height: 40px;
+}
+
+#firstTd {
+	width: 80px;
+}
+
+#priceInput {
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+#titleInput {
+	width: 230px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+#tutorIntroduceBox {
+	width: 550px;
+	height: 200px;
+	resize: none;
+	border-radius: 20px;
+	border: 1px solid #707070;
+	padding: 20px;
+	margin-left: 23px;
+}
+
+#tutorIntroduceBoxDiv {
+	margin-bottom: 20px;
+}
+
+
+input:focus {outline:none;}
+textarea:focus {outline:none;}
 	
 </style>
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -78,6 +240,16 @@
 
 	}
 	
+	function studentProfileFnc() {
+		$('#studentProfileDiv').css('display','');
+		$('#tutorProfileDiv').css('display','none');
+	}
+	
+	function tutorProfileFnc() {
+		$('#studentProfileDiv').css('display','none');
+		$('#tutorProfileDiv').css('display','');
+	}
+	
 
 </script>
 
@@ -92,29 +264,32 @@
 		
 			<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
 				<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
-					<span>회원 관리(학생)</span>
+					<span>회원 관리(강사)</span>
 				</div>
 				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 			</div>
 			
 			
-			<div class="studentProfileDiv">
+			<div class="tutorProfileDiv" id='studentProfileDiv'>
 			
 				<form action='./tutorUpdate.do' method='get'>
-				<span id='memberProfileText'><a href="#">회원정보</a></span>
-				<span id='tutorProFileText'><a href="./tutorProUpdate.do">강사정보</a></span>
+				<div style="font-size: 35px; font-weight: bold;">
+				
+					<span id='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
+					<span id='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
+				</div>	
 				<div id='lineDiv'>
 				</div>
 					<div id='allmanual'>
 					
 						<div class="manual">
 							<span>성 명:</span> 
-							${memberListDto.name}
+							${memberListDto.member_name}
 						</div>
 						
 			<%-- 			번호: ${memberListDto.no}<br> --%>
 						<div class="manual">
-							Email: ${memberListDto.email}
+							Email: ${memberListDto.member_email}
 						</div>
 						
 						<div class="manual"> 
@@ -137,7 +312,7 @@
 						</div>
 						
 				<%-- 		언어: ${memberListDto.password}<br> --%>
-						<div class="manual">
+						<div>
 							국적: ${memberListDto.country}
 						</div>
 						
@@ -156,50 +331,62 @@
 				</form>
 			</div>
 			
-			<div class="studentProfileDiv">
-				<form action='./tutorUpdate.do' method='get'>
-					<span id='memberProfileText'>회원정보</span>
-					<span id='tutorProFileText'>강사정보</span>
+			<div id='tutorProfileDiv' style="display: none;">
+				<form action='./tutorProUpdate.do' method='get'>
+					
+					<div style="font-size: 35px; font-weight: bold;">
+						<span id='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
+						<span id='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
+					</div>	
+					
 					<div id='lineDiv'>
 					</div>
 						<div id='allmanual'>
-						
-							<div class="manual">
-								<span>성 명:</span> 
-								${memberListDto.name}
-							</div>
-							
-							<div class="manual">
-								국적: ${memberListDto.country}
-							</div>
-	
-							<div class="manual">
-								나이: <input type="text" value="" id='age'><br>
-									   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
-							</div>
-							
-							<div class="manual">
-								평점: ${memberListDto.score}
-							</div>
-							
-							<div class="manual"> 
-								수업료: ${memberListDto.price}
-							</div>
-							
-							<div class="manual">
-								URL: ${memberListDto.url}<br>
-							</div>
-							
-							<div class="manual">
-								<textarea style="resize: none;">${memberListDto.tutorText}</textarea>
-							</div>
-	
-							
-							<div>
-								<input type="hidden" id='no' name="no" value="${memberListDto.no}">
-								<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
-								<input type="hidden" id='keyword' name="keyword" value="${keyword}">
-							</div>
+							<div id="photoAndInfoDiv" >
+				
+					<div id="inputPhotoDiv" class="clearfix">
+					    <div id='preview'>
+					        <img alt="image not found" id="previewImg"
+						src="<c:url value='/img/${memberListDto.store_File_Name}'/>">
+					    </div>
+					</div>
+					<div id="inputInfoDiv" class="clearfix">
+						<table>
+							<tr id="firstTr">
+								<td id="firstTd">이름:</td>
+								<td>${memberListDto.member_name}</td>
+							</tr>
+							<tr>
+								<td>국적:</td>
+								<td>${memberListDto.country}</td>
+							</tr>
+							<tr>
+								<td>나이:</td>
+								<td><input type="text" value="" id='age' disabled="disabled"><br></td>
+							</tr>
+							<tr>
+								<td>수업료:</td>
+								<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}" disabled="disabled"> 원 / 40분</td>
+							</tr>
+							<tr>
+								<td>강의제목:</td>
+								<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}" disabled="disabled"></td>
+							</tr>
+						</table>
+					</div>
+					   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
+				</div>
+				
+				<div id="tutorIntroduceBoxDiv">
+					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText" disabled="disabled">
+					${memberListDto.tutorText}</textarea>
+				</div>
+				
+						<div>
+							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
+							<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
+							<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+						</div>
 						</div>
 						<div id='btn'>
 							<input type='submit' value='수정하기' style="margin-right: 30px;">
@@ -207,6 +394,10 @@
 						</div>
 					</form>
 				</div>
+				
+				
+				
+				
 		</div>
 	
 </body>

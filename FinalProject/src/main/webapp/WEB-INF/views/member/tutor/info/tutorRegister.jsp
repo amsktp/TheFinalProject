@@ -348,7 +348,7 @@ textarea:focus {outline:none;}
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="contentsDiv" >
 		<form id="tutorInfoInputForm" action="tutorRegisterCtr.do" method="post" enctype="multipart/form-data">

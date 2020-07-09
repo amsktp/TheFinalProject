@@ -53,9 +53,9 @@
 	<resultMap type="com.englishvillage.member.admin.model.MemberListDto" 
       id="memberListResultMap">
       <result column="MEMBER_NO" property="no"/>
-      <result column="MEMBER_EMAIL" property="email"/>
+      <result column="MEMBER_EMAIL" property="member_email"/>
       <result column="MEMBER_PASSWORD" property="password"/>
-      <result column="MEMBER_NAME" property="name"/>
+      <result column="MEMBER_NAME" property="member_name"/>
       <result column="MEMBER_CREATE_DATE" property="createdDate"
          javaType="java.util.Date"/>
       <result column="MEMBER_MODIFY_DATE" property="modifiedDate"
@@ -75,10 +75,10 @@
      
       
       <result column="IDX"                property="idx"   />
-      <result column="ORIGINAL_FILE_NAME"   property="originalFileName"   />
-      <result column="STORED_FILE_NAME"     property="storedFileName"   />
-      <result column="FILE_SIZE"            property="fileSize"   />
-      <result column="CRE_DATE"             property="creDate"
+      <result column="ORIGINAL_FILE_NAME"   property="original_File_Name"   />
+      <result column="STORE_FILE_NAME"     property="store_File_Name"   />
+      <result column="FILE_SIZE"            property="file_size"   />
+      <result column="FILE_CRE_DATE"             property="creDate"
          javaType="java.util.Date"/>
       
         
@@ -163,8 +163,8 @@
    <update id="memberStudentUpdateOne" parameterType="com.englishvillage.member.admin.model.MemberListDto">
       UPDATE MEMBER SET 
 
-         MEMBER_EMAIL = #{email},
-         MEMBER_NAME = #{name},
+         MEMBER_EMAIL = #{member_email},
+         MEMBER_NAME = #{member_name},
          MEMBER_PASSWORD = #{password},
          MEMBER_GENDER = #{gender},
          MEMBER_COUNTRY = #{country},
@@ -228,10 +228,10 @@
                   , F.MEMBER_NAME, F.MEMBER_CREATE_DATE, F.MEMBER_MODIFY_DATE
                   , F.MEMBER_COUNTRY, F.MEMBER_GENDER, F.MEMBER_POINT, F.MEMBER_BIRTH_DATE, F.MEMBER_GRADE
                   , F.ORIGINAL_FILE_NAME, E.TUTOR_NO, E.SCORE, E.PRICE, E.YOUTUBE_URL,F.MEMBER_PASSWORD, E.STUDY_NAME,
-                  E.TUTOR_INTRODUCE
+                  E.TUTOR_INTRODUCE,F.STORE_FILE_NAME
         FROM (SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
         ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT, MEMBER_PASSWORD,
-        FILE_PROFILE_IMAGE.ORIGINAL_FILE_NAME
+        FILE_PROFILE_IMAGE.ORIGINAL_FILE_NAME,FILE_PROFILE_IMAGE.STORE_FILE_NAME
         FROM MEMBER LEFT OUTER JOIN FILE_PROFILE_IMAGE 
         ON MEMBER.MEMBER_NO = FILE_PROFILE_IMAGE.TUTOR_NO) F
     , (SELECT T.TUTOR_NO, T.TUTOR_INTRODUCE, T.YOUTUBE_URL, T.STUDY_NAME, T.PRICE, T.STATUS_CHECK
@@ -249,8 +249,8 @@
    <update id="memberTutorUpdateOne" parameterType="com.englishvillage.member.admin.model.MemberListDto">
       UPDATE MEMBER SET 
 
-         MEMBER_EMAIL = #{email},
-         MEMBER_NAME = #{name},
+         MEMBER_EMAIL = #{member_email},
+         MEMBER_NAME = #{member_name},
          MEMBER_PASSWORD = #{password},
          MEMBER_GENDER = #{gender},
          MEMBER_COUNTRY = #{country},
@@ -264,7 +264,8 @@
       UPDATE TUTOR_INFO SET
       		YOUTUBE_URL = #{url},
       		PRICE = #{price},
-      		STUDY_NAME = #{tutorTitle}
+      		STUDY_NAME = #{tutorTitle},
+      		TUTOR_INTRODUCE = #{tutorText}
       WHERE TUTOR_NO = #{no}
    </update>
    
@@ -376,6 +377,35 @@
   
       WHERE IDX = #{idx}
    </update>
+   
+   <insert id="insertFile" parameterType="map">
+      INSERT INTO FILE_PROFILE_IMAGE
+         (IDX, TUTOR_NO, ORIGINAL_FILE_NAME,
+         STORE_FILE_NAME, FILE_SIZE, FILE_CREATE_DATE)
+      VALUES(
+         FILE_PROFILE_IMAGE_IDX_SEQ.NEXTVAL, #{no}, #{original_File_Name},
+         #{store_File_Name}, #{file_size}, SYSDATE
+         
+      )
+   </insert>
+   
+   <select id="fileSelectList" parameterType="int"
+      resultType="map"> <!-- resultType을 사용해서 file에 대한 Dto를 만들지 않아도 가능한 기술을 접목시킨다 -->
+      SELECT IDX, ORIGINAL_FILE_NAME, STORE_FILE_NAME, ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
+	  FROM FILE_PROFILE_IMAGE
+	  WHERE TUTOR_NO = #{no};
+   </select>
+   
+   <delete id="fileDelete" parameterType="int">
+   		DELETE FROM FILE_PROFILE_IMAGE
+		WHERE IDX = #{idx}
+   </delete>
+   
+   <select id="fileSelectStoreFileName" parameterType="int" resultType="com.englishvillage.member.admin.model.MemberListDto">
+   		SELECT IDX, STORE_FILE_NAME
+		FROM FILE_PROFILE_IMAGE
+		WHERE TUTOR_NO = #{no}
+   </select>
    
    
 </mapper>

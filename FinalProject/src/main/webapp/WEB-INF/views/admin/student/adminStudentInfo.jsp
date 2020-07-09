@@ -9,9 +9,9 @@
 <style type="text/css">
 	#studentProfileDiv {
 		border: 1px solid black;
-		width: 700px;
-		height: 950px;
-		font-size: 30px;
+		width: 600px;
+		height: 700px;
+		font-size: 20px;
 		margin-top: 200px;
 		float: left;
 		box-sizing: border-box;
@@ -22,7 +22,7 @@
 	}
 	
 	.manual {
-		margin-top: 80px;
+		margin-bottom: 80px;
 	}
 	
 	#btn > input {
@@ -102,12 +102,12 @@
 					
 						<div class="manual">
 							<span>성 명:</span> 
-							${memberListDto.name}
+							${memberListDto.member_name}
 						</div>
 						
 			<%-- 			번호: ${memberListDto.no}<br> --%>
 						<div class="manual">
-							Email: ${memberListDto.email}
+							Email: ${memberListDto.member_email}
 						</div>
 						
 						<div class="manual"> 
@@ -130,7 +130,7 @@
 						</div>
 						
 				<%-- 		언어: ${memberListDto.password}<br> --%>
-						<div class="manual">
+						<div>
 							국적: ${memberListDto.country}
 						</div>
 						

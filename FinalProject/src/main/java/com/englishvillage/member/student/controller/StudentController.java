@@ -241,15 +241,33 @@ public class StudentController {
 
 	// 문의 수정
 	@RequestMapping(value = "/student/questionRevise.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String QuestionRevise(QuestionBoardDto questionBoardDto, Model model) {
+	public String QuestionRevise(HttpSession session, int idx, Model model) {
+		log.info("Welcome QuestionRevise.do! ");
+		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
+		int no = sessionMemberDto.getMemberNo();
+
+		// no값이 없이 설정하면 내 글이 아닌글도 읽어짐... 그래서 no넣었음
+		Map<String, Object> map = studentService.QuestionSelect(no, idx);
+		QuestionBoardDto questionBoardDto = (QuestionBoardDto) map.get("QuestionBoardDto");
+		model.addAttribute("questionBoardDto", questionBoardDto);
+		System.out.println(questionBoardDto);
+
+		return "/member/student/qna/studentQnARevise";
+	}
+	
+	// 문의 수정최종
+	@RequestMapping(value = "/student/questionReviseCtr.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String questionReviseCtr(QuestionBoardDto questionBoardDto, Model model) {
 				log.info("Welcome QuestionRevise.do! ");
 		int resultNum = 0;
 		resultNum = studentService.QuestionRevise(questionBoardDto);
-
+		int idx = questionBoardDto.getIdx();
 		System.out.println("완료 값" + resultNum);
 		System.out.println("업데이트 완료 DTO값" + questionBoardDto);
 
-		return "/member/student/qna/studentQnAWrite";
+//		return "redirect/student/questionSelect.do";
+//		return "./questionSelect.do?idx="+idx;
+		return "redirect:/student/questionSelect.do?idx="+idx;
 	}
 
 	// 테스트 페이지
@@ -257,7 +275,7 @@ public class StudentController {
 	public String test(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
 		log.info("Welcome test.do! " + questionBoardDto);
 
-		return "/member/student/qna/studentQnAWrite";
+		return "/home/student/qna/studentQnAWrite";
 	}
 
 }

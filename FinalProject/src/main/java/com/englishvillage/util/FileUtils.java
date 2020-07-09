@@ -12,12 +12,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishvillage.member.admin.model.MemberListDto;
+
 @Component("fileUtils")
 public class FileUtils {
 
 	private static final String FILE_PATH = "D:\\upload";	
 	
-	public List<Map<String, Object>> parseInsertFileInfo(int parentSeq,
+	public List<Map<String, Object>> parseInsertFileInfo(int no,
 			MultipartHttpServletRequest multipartHttpServletRequest) 
 				throws IllegalStateException, IOException{
 		
@@ -26,9 +28,9 @@ public class FileUtils {
 		
 		MultipartFile multipartFile = null;
 		
-		String originalFileName = null;
+		String original_File_Name = null;
 		String originalFileExtension = null;
-		String storedFileName = null;
+		String store_File_Name = null;
 		
 		List<Map<String, Object>> fileList = 
 			new ArrayList<Map<String,Object>>();
@@ -45,21 +47,24 @@ public class FileUtils {
 				multipartHttpServletRequest.getFile(iterator.next());
 			
 			if(multipartFile.isEmpty() == false) {
-				originalFileName = multipartFile.getOriginalFilename();
+				original_File_Name = multipartFile.getOriginalFilename();
 				originalFileExtension = 
-					originalFileName.substring(
-						originalFileName.lastIndexOf("."));
-				storedFileName = CommonUtils.getRandomString() 
+					original_File_Name.substring(
+						original_File_Name.lastIndexOf("."));
+				store_File_Name = CommonUtils.getRandomString() 
 						+ originalFileExtension;
 				 
-				file = new File(FILE_PATH, storedFileName);
+				file = new File(FILE_PATH, store_File_Name);
 				multipartFile.transferTo(file);
 				
 				fileInfoMap = new HashMap<String, Object>();
-				fileInfoMap.put("parent_seq", parentSeq);
-				fileInfoMap.put("original_file_name", originalFileName);
-				fileInfoMap.put("stored_file_name", storedFileName);
+				fileInfoMap.put("no", no);
+				fileInfoMap.put("original_File_Name", original_File_Name);
+				fileInfoMap.put("store_File_Name", store_File_Name);
 				fileInfoMap.put("file_size", multipartFile.getSize());
+				
+				
+				
 				
 				fileList.add(fileInfoMap);
 			}
@@ -70,14 +75,14 @@ public class FileUtils {
 		return fileList;
 	}
 
-	public void parseUpdateFileInfo(Map<String, Object> tempFileMap) 
+	public void parseUpdateFileInfo(MemberListDto memberFileSave) 
 		throws Exception{
 		// TODO Auto-generated method stub
 		
-		String storedFileName 
-			= (String)tempFileMap.get("STORED_FILE_NAME");
+		String store_File_Name 
+			= memberFileSave.getStore_File_Name();
 		
-		File file = new File(FILE_PATH + "/" + storedFileName);
+		File file = new File(FILE_PATH + "/" + store_File_Name);
 		
 		if(file.exists()) {
 			file.delete();

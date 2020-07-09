@@ -28,8 +28,10 @@ function checkFnc() {
 </head>
 
 <body>
+
 <header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 	<div class="container bs-docs-container contentBox">
+
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 		<div id="myPageBox">
@@ -49,6 +51,7 @@ function checkFnc() {
 			
 		</div>
 	</div>
+	
 	
 
 </body>
