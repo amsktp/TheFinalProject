@@ -25,7 +25,7 @@ public class TutorDto {
 	private String price;
 	private String statusCheck;
 	private int score;
-	
+	private String title;
 	private int evaluationCount;
 	
 
@@ -35,7 +35,7 @@ public class TutorDto {
 	public TutorDto(int memberNo, String memberGrade, String memberEmail, String memberPassword, String memberName,
 			Date memberCreateDate, Date memberModifyDate, String memberCountry, String memberGender,
 			Date memberBirthDate, String memberPoint, String tutorIntroduce, String youtubeUrl, String studyName,
-			String price, String statusCheck, int Age, int age, int score) {
+			String price, String statusCheck, int Age, int age, int score, String title) {
 		super();
 		this.memberNo = memberNo;
 		this.memberGrade = memberGrade;
@@ -55,21 +55,11 @@ public class TutorDto {
 		this.statusCheck = statusCheck;
 		this.age = age;
 		this.score = score;
+		this.title = title;
 	}
 
 	
-	public int getEvaluationCount() {
-		return evaluationCount;
-	}
-	public void setEvaluationCount(int evaluationCount) {
-		this.evaluationCount = evaluationCount;
-	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
+
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -137,6 +127,12 @@ public class TutorDto {
 	public void setMemberPoint(String memberPoint) {
 		this.memberPoint = memberPoint;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public String getTutorIntroduce() {
 		return tutorIntroduce;
 	}
@@ -167,11 +163,23 @@ public class TutorDto {
 	public void setStatusCheck(String statusCheck) {
 		this.statusCheck = statusCheck;
 	}
-	public int getAge() {
-		return age;
+	public int getScore() {
+		return score;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getEvaluationCount() {
+		return evaluationCount;
+	}
+	public void setEvaluationCount(int evaluationCount) {
+		this.evaluationCount = evaluationCount;
 	}
 	
 	@Override
@@ -182,11 +190,6 @@ public class TutorDto {
 				+ ", memberGender=" + memberGender + ", memberBirthDate=" + memberBirthDate + ", memberPoint="
 				+ memberPoint + ", age=" + age + ", tutorIntroduce=" + tutorIntroduce + ", youtubeUrl=" + youtubeUrl
 				+ ", studyName=" + studyName + ", price=" + price + ", statusCheck=" + statusCheck + ", score=" + score
-				+ "]";
+				+ ", title=" + title + ", evaluationCount=" + evaluationCount + "]";
 	}
-	
-	
-	
-	
-	
 }

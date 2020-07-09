@@ -31,6 +31,8 @@ public interface TutorDao {
 
 	public int deleteMember(int no);
 
+	public TutorDto boardSelect(int no);
+
 	
 }
 

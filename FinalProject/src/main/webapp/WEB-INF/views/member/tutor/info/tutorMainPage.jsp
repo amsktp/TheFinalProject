@@ -22,29 +22,27 @@ $(document).ready(function(){
 		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
 	
 		<div id="myPageBox">
-			<div id="pageName" style="margin-bottom: 0px;">마이페이지
+			<div id="pageName" style="margin-bottom: 30px;">마이페이지
 			</div>
 			<div id="mainLeft" style="margin-top: 70px; margin-left: 50px;">
 				<h1 class="infoFont">보유 포인트</h1>
 				<p id="pointFont">${member.memberPoint} 포인트</p><br/>
-				<input class="chargeBtn" type="button" value="충전하기">
+				<input class="chargeBtn" style="margin-left: 50px;" type="button" value="충전하기">
 			</div>
 			<div id="mainRight">
-				<form action="/englishvillage/tutorIntroduce.do">
-					<button id="infoBtn">
-						<h3 class="myInfoFont" onclick="myInfoMoveFnc();">내 정보</h3>
-						<p>이름 : ${member.memberName}</p>
-						<p>email : ${member.memberEmail}</p>
-					</button>
+				<form action="tutorPrivateInfo.do">
+					<h3 class="myInfoFont">내 정보</h3><br/>
+					<p>이름 : ${member.memberName}</p>
+					<p>email : ${member.memberEmail}</p><br/>
+					<input class="chargeBtn" type="submit"  value="내정보 확인">
 				</form> 
 			</div>	
 			<div id="mainRight">
-				<form action="">
-					<button id="infoBtn">
-						<h3 class="myInfoFont" onclick="">문의내역</h3>
-						<p>최근문의내역</p>
-						<p>2개 </p>
-					</button>
+				<form action="tutorQnABoard.do">
+					<h3 class="myInfoFont" onclick="">문의내역</h3><br/>
+					<h5 style="text-align: left; font-weight: bold; margin-left: 40px;">최근문의 내역</h5>
+					<p>내용: ${tutorDtoBodard.title}</p><br/>
+					<input class="chargeBtn" type="submit"  value="문의내역 확인">
 				</form>
 			</div>
 		</div>

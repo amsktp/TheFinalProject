@@ -26,46 +26,46 @@ $(document).ready(function(){
 		<div id="myPageBox">
 			<div id="pageName" style="margin-bottom: 0px;">내정보
 			</div>
-				<div class="profileTitle">
-					<div class="profileContests">
+				<div class="profileTitle" style="font-weight: bold;">
+					<div class="profileContents">
 						이름
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						Email
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						비밀번호
 					</div>
 					<br/><br/>
-					<div class="profileContests">
+					<div class="profileContents">
 						성별
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						생년월일
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						국적
 					</div>
 				</div>
 			<form action="tutorCheckPassword.do">	
 				<div class="profileTitle">
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberName}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberEmail}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						********
 					</div>
 					<br/><br/>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberGender}
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						<fmt:formatDate value="${tutorDto.memberBirthDate}"  pattern="yyyy-MM-dd"/>
 					</div>
-					<div class="profileContests">
+					<div class="profileContents">
 						${tutorDto.memberCountry}
 					</div>
 				</div>

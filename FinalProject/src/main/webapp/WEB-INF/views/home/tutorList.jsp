@@ -224,12 +224,9 @@ dl, ul, ol, menu, li {
 
 <body>
 
-<<<<<<< HEAD
+
 	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
-=======
-<jsp:include page="/WEB-INF/views/Header3.jsp" />
->>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
-	
+
 <img id="mainImg" src="/englishvillage/resources/imgs/sl2.png">
 
 <div id="searchBox">

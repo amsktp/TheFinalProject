@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/student.css?">
-<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css?">
+<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css?ver=1.4">
 <script type="text/javascript">
 
 var loginMoveFnc = function(){

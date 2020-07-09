@@ -123,7 +123,6 @@ public class TutorDaoImpl implements TutorDao{
 		return tutorDto;
 	}
 
-
 	@Override
 	public int updateTutor(TutorDto tutorDto) {
 		// TODO Auto-generated method stub
@@ -141,15 +140,20 @@ public class TutorDaoImpl implements TutorDao{
 		return sqlSession.update(namespace + "updatePwd", tutorDto);
 	}
 	
-
-
-
-
 	@Override
 	public int deleteMember(int no) {
 		// TODO Auto-generated method stub
 					
 		return sqlSession.delete(namespace + "deleteMember", no);
+	}
+
+	@Override
+	public TutorDto boardSelect(int no) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = sqlSession.selectOne(namespace + "boardSelect", no);
+		
+		return tutorDto;
 	}
 
 	

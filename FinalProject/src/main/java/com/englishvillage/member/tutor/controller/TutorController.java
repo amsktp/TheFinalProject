@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.auth.service.AuthService;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 import com.englishvillage.util.Paging;
@@ -30,6 +29,10 @@ public class TutorController {
 	
 	@Autowired
 	private TutorService tutorService;
+	
+	
+	@Autowired
+	private AuthService authService;
 	
 	@RequestMapping(value = "/home.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") 
@@ -141,7 +144,10 @@ public class TutorController {
 		
 		TutorDto tutorDto = tutorService.getTutorInfo(no);
 		
+		TutorDto tutorDtoBodard = tutorService.boardSelect(no);
+		
 		model.addAttribute("tutorDto", tutorDto);
+		model.addAttribute("tutorDtoBodard", tutorDtoBodard);
 		
 		return "member/tutor/info/tutorMainPage";
 	}
@@ -176,6 +182,7 @@ public class TutorController {
 		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorDtoGrade", tutorDtoGrade);
 		
+		
 		return "member/tutor/info/tutorInfoRevise";
 	}
 	
@@ -202,7 +209,16 @@ public class TutorController {
 		log.info("tutorPrivateInfoCtr 입니다. POST");
 		
 		tutorService.updatePwd(tutorDto);
-			
+
+		TutorDto sessionTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
+		
+		String memberEmail = sessionTutorDto.getMemberEmail();
+		
+		MemberDto memberDto = authService.memberExist(memberEmail , tutorDto.getMemberPassword());
+		
+		session.removeAttribute("member");
+		session.setAttribute("member", memberDto);
+		
 		return "redirect:tutorPrivateInfo.do";
 	}
 	
@@ -215,14 +231,10 @@ public class TutorController {
 		int no = sessionTutorDto.getMemberNo();
 
 		TutorDto tutorDto = tutorService.getTutorInfo(no);
-		
-		
+				
 		model.addAttribute("tutorDto", tutorDto);
-		
-		
+				
 		return "member/tutor/info/tutorCheckPassword";
-		
-		
 	}
 	
 	@RequestMapping(value = "/tutorIntroduce.do", method = RequestMethod.GET)
@@ -306,5 +318,23 @@ public class TutorController {
 		session.invalidate();
 		
 		return "redirect:/login.do";
+	}
+	
+	@RequestMapping(value = "/tutorQnABoard.do", method = RequestMethod.GET)
+	public String tutorQnABoard(HttpSession session, Model model) {
+		log.info("tutorQnABoard 입니다. GET");
+		
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+		
+		int no = sessionTutorDto.getMemberNo();
+		
+		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		
+		TutorDto tutorDtoBodard = tutorService.boardSelect(no);
+		
+		model.addAttribute("tutorDto", tutorDto);
+		model.addAttribute("tutorDtoBodard", tutorDtoBodard);
+		
+		return "member/tutor/qna/tutorQnABoard";
 	}
 }

@@ -128,4 +128,13 @@ public class TutorServiceImpl implements TutorService{
 		// TODO Auto-generated method stub
 		return tutorDao.tutorUpdateGrade(memberNo);
 	}
+
+	@Override
+	public TutorDto boardSelect(int no) {
+		// TODO Auto-generated method stub
+		
+		TutorDto tutorDto = tutorDao.boardSelect(no);
+		
+		return tutorDto;
+	}
 }
