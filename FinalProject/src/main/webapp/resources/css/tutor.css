@@ -8,10 +8,16 @@ textarea:focus {outline:none;}
 	font-weight: bold;	
 }
 #pointFont{
-	padding-left: 10px;
+	padding-left: 30px;
 	font-size: 20px;
 	font-weight: bold;
-	
+}
+.infomationFont{
+	text-align: left;
+}
+.infomationContents{
+	text-align: left; 
+	margin-left: 40px;
 }
 #infoBtn{
 	background-color: white;
@@ -81,12 +87,6 @@ textarea:focus {outline:none;}
 	box-sizing: border-box;
 	padding-bottom: 0px;
 }
-/* #myPageBox { */
-/* 	width: 1000px; */
-/* 	height: 690px; */
-/* 	margin-left: 300px; */
-/* 	padding: 30px 50px; */
-/* } */
 #pageName {
 	font-size: 40px;
 	font-weight: bold;

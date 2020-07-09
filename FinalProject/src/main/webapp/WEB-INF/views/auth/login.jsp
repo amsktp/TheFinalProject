@@ -107,14 +107,14 @@
 					</div>
 					<div>
 						<input class="emailPwdBox" id="memberEmail" type="email"
-							name="memberEmail" placeholder="이메일을 입력하세요" value="chan@naver.com">
+							name="memberEmail" placeholder="이메일을 입력하세요" value="smith@gmail.com">
 					</div>
 					<div>
 						<span>비밀번호</span>
 					</div>
 					<div style="margin-bottom: 40px;">
 						<input class="emailPwdBox" id="memberPwd" type="password" name="memberPassword" 
-							placeholder="비밀번호를 입력하세요" value="test2">
+							placeholder="비밀번호를 입력하세요" value="test1">
 					</div>
 				</div>
 				<!-- 로그인 버튼, 비밀번호찾기 버튼, 회원가입 버튼  -->
