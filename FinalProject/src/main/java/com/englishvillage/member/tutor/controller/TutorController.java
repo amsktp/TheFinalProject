@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -102,7 +103,7 @@ public class TutorController {
 	}
 
 	@RequestMapping(value = "/tutorRegisterCtr.do", method = RequestMethod.POST)
-	public String tutorRegisterCtr(HttpSession session, TutorDto tutorDto, Model model) {
+	public String tutorRegisterCtr(HttpSession session, TutorDto tutorDto, Model model, MultipartHttpServletRequest mulRequest) {
 		log.info("튜터등록 입니다. POST");
 
 		System.out.println(tutorDto);

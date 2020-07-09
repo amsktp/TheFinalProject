@@ -351,7 +351,7 @@ textarea:focus {outline:none;}
 	<jsp:include page="/WEB-INF/views/Header3.jsp" />
 
 	<div id="contentsDiv" >
-		<form id="tutorInfoInputForm" action="tutorRegisterCtr.do" method="post">
+		<form id="tutorInfoInputForm" action="tutorRegisterCtr.do" method="post" enctype="multipart/form-data">
 			<div id="inputAllDiv" class="clearfix">
 				<div class="partTitle">
 					강사 정보
