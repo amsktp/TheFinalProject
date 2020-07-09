@@ -47,7 +47,7 @@ td {
         	else if ($('#title').val() && $('#content').val() != "") {
     			
         	alert("문의글 작성이 완료되었습니다!");
-        	$('form').attr('action', 'QuestionAddCtr.do');
+        	$('form').attr('action', './questionAddCtr.do');
     		}
         	
         
@@ -97,7 +97,7 @@ td {
 				</table>
 
 				<input id="okBtn" class="btn btn-success" type="submit" value="작성완료"> 
-				<input id="cancelBtn" class="btn btn-default" type="button" value="취소" onclick="QuestionListMoveFnc()">
+				<input id="cancelBtn" class="btn btn-default" type="button" value="취소" onclick="questionListMoveFnc()">
 				
 				
 				</form>

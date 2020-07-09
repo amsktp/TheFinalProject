@@ -40,7 +40,7 @@
 			var idxObj = $('#idx');
 			var url = '';
 
-			url += './QuestionSelect.do?';
+			url += './questionSelect.do?';
 			url += 'idx=' + idxObj.val();
 
 			location.href = url;
@@ -50,7 +50,7 @@
 			var idxObj = $('#idx');
 			var url = '';
 
-			url += './QuestionList.do?';
+			url += './questionList.do?';
 			url += 'idx=' + idxObj.val();
 
 			location.href = url;
@@ -73,7 +73,7 @@
 			}
 
 			$.ajax({
-				url : "QuestionRevise.do",
+				url : "./questionRevise.do",
 				type : "POST",
 				data : form,
 				success : function(data) {
@@ -182,7 +182,7 @@
 							<input id="edtiBtn" class="btn btn-success" type="button" value="수정하기">
 							<input id="okBtn" class="btn btn-success" type="hidden" value="변경하기">
 							<input id="cancelBtn" class="btn btn-default" type="hidden" value="취소"
-							onclick="QuestionListMoveFnc()">
+							onclick="questionListMoveFnc()">
 						</c:when>
 					</c:choose>
 

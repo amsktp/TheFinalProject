@@ -21,7 +21,7 @@ $(document).ready(function(){
     	var password = $('input[type=password]').val();
         var passwordCheck = '${member.memberPassword}';
         if(password == passwordCheck){
-         location.href = "/englishvillage/update.do"
+         location.href = "/englishvillage/student/update.do"
             }else{
             	alert("비밀번호가 일치하지 않습니다.");
             }
@@ -52,7 +52,7 @@ margin-left: 68px;
 				<h3 style="font-weight: bold; text-align: center;">비밀번호를 입력해주세요</h3>
 
 				<input type="password" class="form-control pwdInputBox" value="${member.memberPassword}" maxlength="12">
-				<input class="btn btn-default btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/myInfo.do'">
+				<input class="btn btn-default btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/student/myInfo.do'">
 				<input id="editBtn" class="btn btn-primary btn-lg" type='button' value='입력완료'> 
   
 			</div>
