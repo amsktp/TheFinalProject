@@ -9,16 +9,25 @@
 <style type="text/css">
 	
 	#mainBox {
-		border: 1px solid red;
 		height: 800px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;
  		left: 50%;
  		transform: translate(-50%, -50%);
+ 		background-color: white;
 	}
 	
-	#secondTitleBox {
+	#titleBox {
+		background-color: black;
+		color: white;
+		font-size: 40px;
+		font-weight: bold;
+		margin-bottom: 70px;
+		text-align: center;
+	}
+	
+	#subTitleBox {
 		font-size: 25px;
 		font-weight: bold;
 		padding-left: 37px;
@@ -31,32 +40,33 @@
 		align-items: center;
 	}
 	
-	#titleBox {
-		font-size: 40px;
-		font-weight: bold;
-		margin-bottom: 70px;
-		border: 1px dotted blue;
-		text-align: center;
-	}
-	
 	.emailPwdBox {
 		width: 300px;
-		height: 30px;
+		height: 40px;
 		margin-bottom: 20px;
+		background-color: #66ccff;
+		border: none;
 	}
 	
-	#login {
+	#loginBtn {
 		width: 308px;
 		height: 40px;
 		margin-bottom: 20px;
 		font-size: 17px;
 		font-weight: bold;
+		border: none;
+		background-color: black;
+		color: white;
 	}
+	
 	.findPwdAndRegister {
 		width: 146px;
 		height: 40px;
 		margin-right: 10px;
  		font-weight: bold; 
+ 		border: none;
+ 		background-color: black;
+		color: white;
 	}
 </style>
 <script type="text/javascript">
@@ -86,17 +96,15 @@
 	
 </script>
 
-
-
 </head>
-<body>
+<body style="background-color: #EEEEEE;">
 
 	<div id="mainBox">
 		<div id="titleBox">
-			ENGLISH VILLAGE
+			<span>ENGLISH VILLAGE</span>
 		</div>
-		<div id="secondTitleBox">
-			로그인
+		<div id="subTitleBox">
+			<span>로그인</span>
 		</div>
 		<!-- 이메일, 비밀번호 입력란  -->
 		<div id="secondBox">
@@ -114,18 +122,18 @@
 					</div>
 					<div style="margin-bottom: 40px;">
 						<input class="emailPwdBox" id="memberPwd" type="password" name="memberPassword" 
-							placeholder="비밀번호를 입력하세요" value="test2">
+							placeholder="비밀번호를 입력하세요" value="test1">
 					</div>
 				</div>
 				<!-- 로그인 버튼, 비밀번호찾기 버튼, 회원가입 버튼  -->
 				<div>		
 					<div>
-						<input id="login" type="submit" value="로그인">
+						<input id="loginBtn" type="submit" value="로그인">
 					</div>
 				</div>
 				<div>
 					<div>
-						<input class="findPwdAndRegister" type="button" value="비밀번호찾기" onclick="moveFindPwd();">
+						<input class="findPwdAndRegister" type="button" value="비밀번호 찾기" onclick="moveFindPwd();">
 						<input class="findPwdAndRegister" type="button" value="회원가입" onclick="moveCommonRegister();">
 					</div>
 				</div>
