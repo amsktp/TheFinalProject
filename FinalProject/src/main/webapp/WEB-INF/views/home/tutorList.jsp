@@ -208,7 +208,7 @@ img {
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
