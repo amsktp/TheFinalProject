@@ -31,7 +31,7 @@
 			// 			var idxObj = $('#idx');
 			var url = '';
 
-			url += './QuestionAdd.do';
+			url += './questionAdd.do';
 
 			location.href = url;
 		});
@@ -47,7 +47,7 @@
 		memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
 				.children();
 
-		url += './QuestionSelect.do?';
+		url += './questionSelect.do?';
 		url += 'idx=' + memberNoObj.html();
 
 		location.href = url;
@@ -123,7 +123,7 @@
 			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 				<jsp:param value="${pagingMap}" name="pagingMap" />
 			</jsp:include>
-			<form action="QuestionList.do" id="pagingForm" method="get">
+			<form action="questionList.do" id="pagingForm" method="get">
 				<input type="hidden" id="curPage" name="curPage"
 					value="${pagingMap.memberPaging.curPage}">
 			</form>

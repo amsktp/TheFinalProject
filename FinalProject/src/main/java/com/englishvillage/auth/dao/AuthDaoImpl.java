@@ -1,6 +1,5 @@
 package com.englishvillage.auth.dao;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,5 +54,13 @@ public class AuthDaoImpl implements AuthDao{
 		
 		return sqlSession.selectOne(namespace + "memberFindPassword", memberDto);
 	}
+
+	@Override
+	public int emailCheck(MemberDto memberDto) {
+		int result = sqlSession.selectOne(namespace + "emailCheck", memberDto);
+		return result;
+	}
+	
+	
 
 }

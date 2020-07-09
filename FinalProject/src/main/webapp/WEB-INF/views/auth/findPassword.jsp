@@ -65,6 +65,10 @@
 		location.href = "login.do";
 	}
 
+	function findPwdCompleteBtn() {
+		location.href = "authSendMailFindPwdCtr.do";
+	}
+	
 	
 	/* 비밀번호 찾기 유효성 */
 	function findPasswordBtn(){
@@ -86,27 +90,6 @@
 		
 	}
 
-// 	$('#authBtn').click(function() {
-		
-// 		$.ajax({
-// 		      url : "/englishvillage/authSendMailFindPwdCtr.do",
-// 		      type : "POST",
-// 		      data : "memberEmail=" + $('#memberEmail').val(),
-// 		      success : function(data) {
-		    	  
-// 	          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
-
-// 	          alert('이메일을 전송하였습니다. 확인해보세요');
-
-// 		      }, error : function() {
-// 		               console.log("실패");
-	    
-// 		      }
-	 
-// 		});
-
-// 	});
-	
 	
 </script>
 
@@ -152,7 +135,7 @@
 							<input class="twoBarInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
 						</div>
 						<div>
-							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" onclick="authBtn();">
+							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" onclick="findPwdCompleteBtn();">
 						</div>
 					</div>
 				</div>

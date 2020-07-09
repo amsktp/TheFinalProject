@@ -2,26 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css"
+	href="/englishvillage/resources/css/tutor.css?ver=1.4">
+<link rel="stylesheet" type="text/css"
 	href="/englishvillage/resources/css/student.css?ver=1.4">
+	
 <script type="text/javascript">
 var loginMoveFnc = function(){
-	location.href = '/englishvillage/login.do';
+	location.href = '/englishvillage/student/login.do';
 }
 
 var myPageMoveFnc = function() {
-	location.href = '/englishvillage/myPage.do'
+	location.href = '/englishvillage/student/myPage.do'
 }
 
 var myInfoMoveFnc = function() {
-	location.href = '/englishvillage/myInfo.do'
+	location.href = '/englishvillage/student/myInfo.do'
 }
 
-var QuestionListMoveFnc = function() {
-	location.href='/englishvillage/QuestionList.do'
+var questionListMoveFnc = function() {
+	location.href='/englishvillage/student/questionList.do'
 }
 
 function pageMoveDeleteFnc(no){
-	var url = "/englishvillage/deleteCtr.do?no=" + no;
+	var url = "/englishvillage/student/deleteCtr.do?no=" + no;
 	location.href = url;
 }
 
@@ -125,24 +128,52 @@ var adminMove2Fnc = function() {
 </style>
 
 <div class="col-md-3" role="complementary">
-	<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
-		<ul class="nav bs-docs-sidenav layoutUl">
-
-			<li id="memberName" >${member.memberName} 회원님</li>
-			<li><a href="myPage.do">마이 페이지</a></li>
-			<li><a href="myInfo.do">내 정보</a></li>
-			<li><a href="studyList.do">수강내역</a></li>
-			<li><a href="QuestionList.do">문의내역</a></li>
-
-		</ul>
-	</nav>
+<c:choose>
+	<c:when test="${member.memberGrade eq 'N'}">
+		<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
+			<ul class="nav bs-docs-sidenav layoutUl">
+				<li id="memberName" >${member.memberName} 회원님</li>
+				<li><a href="myPage.do">마이 페이지</a></li>
+				<li><a href="myInfo.do">내 정보</a></li>
+				<li><a href="studyList.do">수강내역</a></li>
+				<li><a href="questionList.do">문의내역</a></li>
+			</ul>
+		</nav>
 	
-	<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
-          <ul class="nav navbar-nav">
-            <li><a href="myPage.do">마이 페이지</a></li>
-			<li><a href="myInfo.do">내 정보</a></li>
-			<li><a href="studyList.do">수강내역</a></li>
-			<li><a href="QuestionList.do">문의내역</a></li>
-          </ul>
+		<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
+	          <ul class="nav navbar-nav">
+	            <li><a href="myPage.do">마이 페이지</a></li>
+				<li><a href="myInfo.do">내 정보</a></li>
+				<li><a href="studyList.do">수강내역</a></li>
+				<li><a href="questionList.do">문의내역</a></li>
+	          </ul>
         </nav>
+	
+	</c:when>
+	
+	<c:otherwise>
+		<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
+			<ul class="nav bs-docs-sidenav layoutUl">
+				<li id="memberName" >${member.memberName} 튜터님</li>
+				<li><a href="tutorMainPage.do">마이 페이지</a></li>
+				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
+				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
+				<li><a href="myStudy.do">수강내역</a></li>
+				<li><a href="myQNA.do">문의내역</a></li>
+			</ul>
+		</nav>
+	
+		<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
+	        <ul class="nav navbar-nav">
+	          	<li id="memberName" >${member.memberName} 튜터님</li>
+	            <li><a href="tutorMainPage.do">마이 페이지</a></li>
+				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
+				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
+				<li><a href="myStudy.do">수강내역</a></li>
+				<li><a href="myQNA.do">문의내역</a></li>
+	        </ul>
+        </nav>
+	</c:otherwise>
+</c:choose>
+	
 </div>

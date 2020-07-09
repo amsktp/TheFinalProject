@@ -10,11 +10,11 @@
 <title>문의하기</title>
 <style type="text/css">
 tr > th {
-text-align: center;
+	text-align: center;
 }
 
 td {
-text-align: left;
+	text-align: left;
 }
 </style>
 
@@ -24,28 +24,35 @@ text-align: left;
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		$('#title').focus();
 		$('.layoutUl').children().eq(4).addClass('on');
-		$('#okBtn').on('click', function(){
-			alert("문의글 작성이 완료되었습니다");
-	      	$('form').attr('action', 'QuestionAddCtr.do');
-			
-//				var form = {
-//		                title: $('#title').val(),
-//		                content: $('#content').val()
-//		        }
-
-//		        $.ajax({
-//		            url: "QuestionRevise.do",
-//		            type: "POST",
-//		            data: form,
-//		            success: function(data){
-	                
-//		            },
-//		            error: function(){
-//		                alert("simpleWithObject err");
-//		            }
-//		        });
-	    });
+// 		$('#okBtn').on('click', function(){
+// 			alert("문의글 작성이 완료되었습니다");
+// 	      	$('form').attr('action', 'QuestionAddCtr.do');
+	      	
+// 	    });
+		
+		$('input[type=submit]').click(function() {
+            
+        	if ($('#title').val() == "") {
+        	alert("제목을 입력해주세요");
+        	$('#title').focus()
+        	return false;
+    		} else if($('#content').val() == ""){
+    			alert("내용을 입력해주세요");
+    			$('#content').focus()
+            	return false;
+    		}	
+        	else if ($('#title').val() && $('#content').val() != "") {
+    			
+        	alert("문의글 작성이 완료되었습니다!");
+        	$('form').attr('action', './questionAddCtr.do');
+    		}
+        	
+        
+        })
+		
 		});
 
 
@@ -68,7 +75,6 @@ text-align: left;
 			<form method="post">
 
 				<table id='qnaAddTable' class="table table-bordered textCenter" summary="문의하기">
-					<caption>나의문의하기 답변</caption>
 
 					<tr>
 						<th scope="row">이름</th>
@@ -77,19 +83,23 @@ text-align: left;
 					</tr>
 
 					<tr>
-						<th scope="row">제목</th>
-						<td colspan="3"><input type="text" id='title' name='title'
-							value=''></td>
+						<th scope="row" style="vertical-align: middle;">제목</th>
+						<td colspan="3">
+							<input type="text" class="form-control" id="title" name="title" maxlength="30" placeholder="제목을 입력하세요">
+						</td>
 					</tr>
 					<tr>
-						<th>내용</th>
-						<td colspan="3"><input type="text" id='content' name='content'
-							value=''></td>
+						<th scope="row" style="vertical-align: middle;">내용</th>
+						<td colspan="3">
+							<input type="text" class="form-control" id="content" name="content" maxlength="300" placeholder="내용을 입력하세요">
+						</td>
 					</tr>
 				</table>
 
 				<input id="okBtn" class="btn btn-success" type="submit" value="작성완료"> 
-				<input id="cancelBtn" class="btn btn-default" type="button" value="취소" onclick="QuestionListMoveFnc()">
+				<input id="cancelBtn" class="btn btn-default" type="button" value="취소" onclick="questionListMoveFnc()">
+				
+				
 				</form>
 			</div>
 		</div>

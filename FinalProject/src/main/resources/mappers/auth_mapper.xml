@@ -39,6 +39,11 @@
 		
 	</select>
 	
+	<select id="emailCheck" parameterType="com.englishvillage.auth.model.MemberDto" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE  MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
 	<insert id="memberInsertOne" parameterType="memberDto" useGeneratedKeys="true" keyProperty="memberNo">
 		
 		<selectKey keyProperty="memberNo" resultType="int" order="BEFORE">

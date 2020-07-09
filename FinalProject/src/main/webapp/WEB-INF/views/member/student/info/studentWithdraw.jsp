@@ -45,7 +45,7 @@ $(document).ready(function(){
 
 				<form action="deleteCtr.do" method="post">
 					<input id="editBtn" class="btn btn-default btn-lg" type='submit' value='회원탈퇴'>
-					<input id="backBtn" class="btn btn-success btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/update.do'">
+					<input id="backBtn" class="btn btn-success btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/student/update.do'">
 				</form>
 				
 				

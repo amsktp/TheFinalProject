@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 
-<title>튜터소개</title>
+<title>튜터소개수정</title>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/tutor.css">
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript"
@@ -14,7 +14,7 @@
 	
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
 });
 </script>
 
@@ -22,15 +22,12 @@ $(document).ready(function(){
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
-	
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
-	
-		<div id="myPageBox">
-			<form action="tutorIntroduceReviseCtr.do" method="post">
-				<div id="pageName" style="margin-bottom: 0px;">튜터 소개
-				</div>
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
+
+			<div id="pageName">튜터소개수정</div>
 				<div id="profileImages">
 					사진
 				</div>

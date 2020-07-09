@@ -84,7 +84,7 @@
 			</div>
 		</div>
 				<input type="button" value="수정하기" class="btn btn-primary btn-lg pull-right"
-					onClick="location.href='/englishvillage/studentCheck.do'">
+					onClick="location.href='/englishvillage/student/studentCheck.do'">
 	</div>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

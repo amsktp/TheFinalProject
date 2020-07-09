@@ -34,7 +34,6 @@ public class AuthServiceImpl implements AuthService{
 		
 		int memberNo = memberDto.getMemberNo();
 		return memberNo;
-		
 	}
 
 	@Override
@@ -44,6 +43,13 @@ public class AuthServiceImpl implements AuthService{
 		MemberDto memberDto = authDao.memberFindPassword(memberName, memberEmail, memberBirthDate);
 		
 		return memberDto;
+	}
+	
+	@Override
+	public int emailCheck(MemberDto memberDto) throws Exception {
+		
+		int result = authDao.emailCheck(memberDto);
+		return result;
 		
 	}
 	

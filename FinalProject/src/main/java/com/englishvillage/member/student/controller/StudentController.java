@@ -30,7 +30,7 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@RequestMapping(value = "myPage.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET })
 	public String myPage(Locale locale, HttpSession session, Model model) {
 		log.info("call myPage! " + session.getAttribute("member"));
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
@@ -46,7 +46,7 @@ public class StudentController {
 		return "/member/student/info/studentMainPage";
 	}
 
-	@RequestMapping(value = "myInfo.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/myInfo.do", method = { RequestMethod.GET })
 	public String infoPage(Locale locale, HttpSession session, Model model) {
 		log.info("Welcome myInfo.do! {} {}");
 		System.out.println("세션초기값이다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ" + session.getAttribute("member"));
@@ -62,14 +62,14 @@ public class StudentController {
 		return "/member/student/info/studentPrivateInfo";
 	}
 
-	@RequestMapping(value = "studentCheck.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/studentCheck.do", method = { RequestMethod.GET })
 	public String infoPage(Model model) {
 		log.info("Welcome studentCheck.do! {} {}");
 
 		return "/member/student/info/studentCheckPassword";
 	}
 
-	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/update.do", method = RequestMethod.GET)
 	public String memberUpdate(HttpSession session, Model model) {
 		log.info("call update! {}");
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
@@ -87,7 +87,7 @@ public class StudentController {
 	}
 
 	// 회원수정
-	@RequestMapping(value = "updateCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/updateCtr.do", method = RequestMethod.POST)
 	public String memberUpdateCtr(HttpSession session, String memberPassword, Model model) {
 		log.info("call memberUpdateCtr! {} :: {}", session + "패스워드" + memberPassword);
 		int resultNum = 0;
@@ -97,12 +97,12 @@ public class StudentController {
 
 		resultNum = studentService.memberUpdateOne(sessionMemberDto);
 
-		return "redirect:/myInfo.do";
+		return "redirect:/student/myInfo.do";
 
 	}
 
 	// 회원탈퇴 확인
-	@RequestMapping(value = "delete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/delete.do", method = RequestMethod.POST)
 	public String memberDelete(Model model) {
 
 		log.info("call memberdelete!");
@@ -112,7 +112,7 @@ public class StudentController {
 
 
 	// 회원 삭제
-	@RequestMapping(value = "deleteCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/deleteCtr.do", method = RequestMethod.POST)
 	public String memberDeleteCtr(HttpSession session, Model model) {
 
 		log.info("call memberDeleteCtr! " + session.getAttribute("member"));
@@ -131,7 +131,7 @@ public class StudentController {
 	}
 
 //	수강내역
-	@RequestMapping(value = "studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studyList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 			HttpSession session, Locale locale, Model model) {
 		log.info("Welcome studyList! idx: " + idx);
@@ -166,7 +166,7 @@ public class StudentController {
 	}
 
 	// 문의 리스트
-	@RequestMapping(value = "QuestionList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 			HttpSession session, Model model) {
 		log.info("Welcome QuestionList.do\"! " + curPage);
@@ -203,14 +203,14 @@ public class StudentController {
 	}
 
 	// 문의 작성하기
-	@RequestMapping(value = "QuestionAdd.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionAdd.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionAdd(HttpSession session, Model model) {
 		log.info("Welcome QuestionAdd.do! ");
 
 		return "/member/student/qna/studentQnAWrite";
 	}
 
-	@RequestMapping(value = "QuestionAddCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/questionAddCtr.do", method = RequestMethod.POST)
 	public String QuestionAddCtr(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
 		log.info("Welcome QuestionAddCtr.do! " + questionBoardDto);
 
@@ -219,11 +219,11 @@ public class StudentController {
 		resultNum = studentService.QuestionAdd(questionBoardDto);
 		System.out.println("결과값" + resultNum);
 
-		return "redirect:QuestionList.do";
+		return "redirect:/student/questionList.do";
 	}
 
 	// 문의 상세읽기
-	@RequestMapping(value = "QuestionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionList(HttpSession session, int idx, Model model) {
 		log.info("Welcome QuestionSelect.do! " + idx);
 		
@@ -240,7 +240,7 @@ public class StudentController {
 	}
 
 	// 문의 수정
-	@RequestMapping(value = "QuestionRevise.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionRevise.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionRevise(QuestionBoardDto questionBoardDto, Model model) {
 				log.info("Welcome QuestionRevise.do! ");
 		int resultNum = 0;

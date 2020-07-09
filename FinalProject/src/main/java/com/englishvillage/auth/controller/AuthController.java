@@ -15,9 +15,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -172,8 +174,6 @@ public class AuthController {
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
 		
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@비밀번호 찾기 메일");
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 				
 	    String setfrom = "javacatch5@gmail.com";
@@ -181,16 +181,9 @@ public class AuthController {
 	    	title = "비밀번호 찾기의 비밀번호 입니다.";
 	    	content = "비밀번호는 "+ memberDto.getMemberPassword() + " 입니다.";
 	    	
-	    
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-		    
-	      
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
 
 	      messageHelper.setFrom(setfrom);
 	      messageHelper.setTo(memberDto.getMemberEmail());
@@ -205,5 +198,13 @@ public class AuthController {
 	   
 	    return "redirect:/findPasswordComplete.do";
 	  }
+	
+	@ResponseBody
+	@RequestMapping(value="/emailCheck.do", method=RequestMethod.POST)
+	public int emailCheck(MemberDto memberDto) throws Exception {
+		int result = authService.emailCheck(memberDto);
+		return result;
+	}
+	
 	
 }

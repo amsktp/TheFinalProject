@@ -65,7 +65,7 @@
 		<div id="secondTitleBox">
 			비밀번호 찾기 완료
 		</div>
-			<div>
+			<div  style="text-align: center;">
 				<span><span class="nameNemail">${memberDto.memberName}</span>님의 
 					  <span class="nameNemail">${memberDto.memberEmail}</span>로 발송하였습니다.
 				</span><br><br>

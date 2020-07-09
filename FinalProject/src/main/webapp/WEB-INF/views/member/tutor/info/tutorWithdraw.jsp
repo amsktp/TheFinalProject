@@ -11,7 +11,7 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(2).addClass('on');
+    $('.layoutUl').children().eq(3).addClass('on');
 });
 function deleteFnc() {
 	alert('그동안 이용해주셔서 감사드립니다.');
@@ -21,14 +21,12 @@ function deleteFnc() {
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
-	
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
-	
-		<div id="myPageBox">
-			<div id="pageName" style="margin-bottom: 40px;">본인인증
-			</div>
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
+
+			<div id="pageName">본인인증</div>
 			<form action="tutorWithdrawCtr.do" method="post">
 				<div id="deleteBox">
 					<div id="pwdWrite"><br/>회원탈퇴 시 보유 포인트가 사라집니다.<br/>동의 하시면 회원탈퇴 버튼을 눌러주세요</div><br/>

@@ -64,7 +64,7 @@ textarea:focus {outline:none;}
 .profileContests{
 	border-style: none;
 	width: 300px;
-	height: 70px;
+	height: 38px;
 
 }
 .profileTitle{
@@ -80,12 +80,12 @@ textarea:focus {outline:none;}
 	box-sizing: border-box;
 	padding-bottom: 0px;
 }
-#myPageBox {
-	width: 1000px;
-	height: 690px;
-	margin-left: 300px;
-	padding: 30px 50px;
-}
+/* #myPageBox { */
+/* 	width: 1000px; */
+/* 	height: 690px; */
+/* 	margin-left: 300px; */
+/* 	padding: 30px 50px; */
+/* } */
 #pageName {
 	font-size: 40px;
 	font-weight: bold;

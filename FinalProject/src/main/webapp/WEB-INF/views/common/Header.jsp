@@ -73,29 +73,55 @@ float: right;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand active" href="home.do">English Village</a>
+          <a class="navbar-brand active" href="../home.do">English Village</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul id="naviUl" class="nav navbar-nav">
-            <li class="liLeft"><a href="#tutorList">튜터목록</a></li>
-            <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
-            <li class="liLeft"><a href="#">수강권</a></li>
-            <li class="dropdown" style="float: right;">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="liLeft"><a href="myPage.do">마이 페이지</a></li>
-                <li class="liLeft"><a href="myInfo.do">회원정보 수정</a></li>
-                <li class="liLeft"><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
-                <li class="divider" style="clear: both;"></li>
-                
-                <li class="liLeft"><a href="studyList.do">수강내역</a></li>
-                <li class="liLeft"><a href="QuestionList.do">문의내역</a></li>
-                <li class="divider" style="clear: both;"></li>
-                <li class="liLeft"><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
+        
+        
+        <c:choose>
+        	<c:when test="${member.memberGrade eq 'N'}">
+        		<div id="navbar" class="navbar-collapse collapse">
+		           <ul id="naviUl" class="nav navbar-nav">
+		              <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
+		              <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
+		              <li class="liLeft"><a href="#">수강권</a></li>
+		              <li class="dropdown" style="float: right;">
+		                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>
+		                 <ul class="dropdown-menu" role="menu">
+		                    <li class="liLeft"><a href="/student/myPage.do">마이 페이지</a></li>
+		                    <li class="liLeft"><a href="/student/myInfo.do">회원정보 수정</a></li>
+		                    <li class="liLeft"><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
+		                    <li class="divider" style="clear: both;"></li>
+		                    
+		                    <li class="liLeft"><a href="/student/studyList.do">수강내역</a></li>
+		                    <li class="liLeft"><a href="/student/questionList.do">문의내역</a></li>
+		                    <li class="divider" style="clear: both;"></li>
+		                    <li class="liLeft"><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+		               </ul>
+		             </li>
+		           </ul>
+    		    </div><!--학생 네비-->
+        	</c:when>
+        		
+        	<c:otherwise>
+       	        <div id="navbar" class="navbar-collapse collapse">
+	              <ul id="naviUl" class="nav navbar-nav">
+	                 <li><a href="#">튜터목록</a></li>
+	                 <li class="dropdown">
+	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 튜터님 <span class="caret"></span></a>
+	                    <ul class="dropdown-menu" role="menu">
+	                       <li><a href="tutorMainPage.do">마이 페이지</a></li>
+	                       <li><a href="myInfo.do">회원정보 수정</a></li>
+	                       <li><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
+	                       <li class="divider"></li>
+	                       <li><a href="myQNA.do">문의내역</a></li>
+	                       <li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+	                    </ul>
+	                 </li>
+	              </ul>
+       		  </div><!--튜터네비 -->
+        	</c:otherwise>
+        </c:choose>
+        
       </div>
       <input id="sessionNo" type="text" value="${member.memberNo}" style="display: none; height: 0px;">
       <input id="alertStr" type="text" style="display: none; height: 0px;">

@@ -96,3 +96,13 @@ text-align: center;
 text-align: left;
 
 }
+
+.textRight {
+text-align: right;
+
+}
+
+.textMid {
+	vertical-align: middle;
+	
+}
