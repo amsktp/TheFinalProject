@@ -41,4 +41,6 @@ public interface TutorService {
 
 	public int deleteMember(int no);
 
+	public int addStudyHistory(TutorCommentDto tutorCommentDto);
+
 }

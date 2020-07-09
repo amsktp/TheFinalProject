@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.student.model.MemberFileDto;
+import com.englishvillage.member.student.service.StudentService;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
@@ -30,6 +32,9 @@ public class TutorController {
 	
 	@Autowired
 	private TutorService tutorService;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	@RequestMapping(value = "/home.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") 
@@ -108,6 +113,7 @@ public class TutorController {
 		int updateResult = tutorService.tutorUpdateGrade(memberNo);
 		
 		
+		
 		if(insertResult == 0) {
 			log.warn("튜터 레지스터가 실패했습니다.");
 		} else {
@@ -123,16 +129,27 @@ public class TutorController {
 		return "redirect:./home.do";
 	}
 
-	@RequestMapping(value = "/tutorSelectOne.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutorSelectOne.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request) {
+		
+		
+		
+		System.out.println(request.getAttribute("tutorNo"));
+		if(request.getAttribute("tutorNo") != null) {
+			tutorNo = (int)request.getAttribute("tutorNo");
+		}
+		
+		
+		
 		
 		
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
 		
 		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
-		model.addAttribute("tutorDto", tutorDto);
+		
 		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
+		model.addAttribute("tutorDto", tutorDto);
 		
 		return "member/tutor/info/tutorSelectOne";
 	}
@@ -200,6 +217,27 @@ public class TutorController {
 		
 		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorDtoGrade", tutorDtoGrade);
+		
+		return "member/tutor/info/tutorPrivateInfo";
+	}
+	
+	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.GET)
+	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto) {
+		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
+		
+		
+		Map<String, Object> map = studentService.SelectOne(tutorCommentDto.getStudentNo());
+		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+		
+		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
+		
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
+		
 		
 		return "member/tutor/info/tutorPrivateInfo";
 	}
@@ -321,9 +359,11 @@ public class TutorController {
 		
 		int resultNum = tutorService.writeComment(tutorCommentDto);
 		
+		request.setAttribute("tutorNo", tutorCommentDto.getTutorNo());
 		
 		
-		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+//		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+		return "forward:./tutorSelectOne.do";
 	}
 	@RequestMapping(value = "/tutorCommentRemoveCtr.do", method = RequestMethod.POST)
 	public String tutorCommentRemoveCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
@@ -331,7 +371,8 @@ public class TutorController {
 		
 		int resultNum = tutorService.removeComment(tutorCommentDto);
 		
-		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+		
+		return "forward:./tutorSelectOne.do";
 	}
 	
 	
@@ -343,6 +384,6 @@ public class TutorController {
 		
 		
 		
-		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+		return "forward:./tutorSelectOne.do";
 	}
 }

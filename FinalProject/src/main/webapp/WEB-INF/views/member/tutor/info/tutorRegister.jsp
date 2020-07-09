@@ -12,6 +12,14 @@
 </head>
 <style>
 
+
+.partTitle{
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 10px;
+	
+
+}
 #preview {
 	border:1px solid black;
 	width: 200px;
@@ -22,8 +30,8 @@
 }
 
 #previewImg{
-	width:200px;
-	height: 200px;
+	width:198px;
+	height: 198px;
 }
 
 #inputPhotoBtn{
@@ -53,7 +61,7 @@
 }
 
 .studyTitle {
-	width: 300px;
+	width: 320px;
 	height: 40px;
 	margin-left: 10px;
 	margin-top: 10px;
@@ -92,7 +100,9 @@
 }
 
 #contentsDiv {
-	padding-top: 100px;
+	width : 1750px;
+	padding-top: 70px;
+	height: 1000px;
 }
 
 #photoAndInfoDiv {
@@ -140,7 +150,7 @@ td {
 
 #tutorIntroduceBox {
 	width: 700px;
-	height: 200px;
+	height: 150px;
 	resize: none;
 	border-radius: 20px;
 	border: 1px solid #707070;
@@ -154,11 +164,11 @@ td {
 #urlInput {
 	border: none;
 	border-bottom: 1px solid black;
-	width: 550px;
+	width: 490px;
 	margin-right: 20px;
 }
 
-#urlBtn {
+#urlBtn, #urlRefreshBtn {
 	border: none;
 	font-weight: bold;
 	background-color: white;;
@@ -171,7 +181,7 @@ td {
 
 #outputAllDiv {
 	width: 702px;
-	height: 800px;
+	height: 840px;
 	float: left;
 	margin-left: 50px;
 	border-left: 1px solid grey;
@@ -240,12 +250,37 @@ textarea:focus {outline:none;}
 		
 		/* 가격 입력 시 미리보기 반영 */
 		$('#priceInput').change(function() {
-			$('#priceDiv').text($('#priceInput').val());
+			
+			var priceStr = $('#priceInput').val();
+			var printLength = priceStr.length;
+			
+			if(printLength > 6) {
+				priceStr = priceStr.substring(0, printLength - 6) + ',' + priceStr.substring(printLength - 6, printLength - 3) + ',' + priceStr.substring(printLength - 3);
+			}else if(priceStr.length > 3){
+				priceStr = priceStr.substring(0, printLength - 3) + ',' + priceStr.substring(printLength - 3);
+			}
+			
+			priceStr = priceStr + '원 / 40분';
+			
+			$('#priceDiv').text(priceStr);
 		});
 
 		/* 제목 입력 시 미리보기 반영 */
 		$('#titleInput').change(function() {
-			$('#studyTitleDiv').text($('#titleInput').val());
+			var titleMaxLenght = 17;
+
+		
+			var studyTitleStr = $('#titleInput').val();
+			
+			if(studyTitleStr.length > titleMaxLenght){
+				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
+			}
+
+			$('#studyTitleDiv').text(studyTitleStr);
+				
+				
+			
+			
 		});
 		
 		/* 사진 추가 시 미리보기 */
@@ -268,11 +303,17 @@ textarea:focus {outline:none;}
 				}
 				reader.readAsDataURL(f);
 			});
+			
 		});
 
 		/* 유튜브 url 입력 후 확인 클릭하면 동영상이 나옴 */
 		$('#urlBtn').click(function() {
 			$('#yotubePreview').attr("src", $('#urlInput').val());
+		});
+		
+		$('#urlRefreshBtn').click(function() {
+			$('#urlInput').val("");
+			$('#yotubePreview').attr("src", "");
 		});
 		
 		/* 메인으로 버튼 클릭 */
@@ -312,15 +353,18 @@ textarea:focus {outline:none;}
 	<div id="contentsDiv" >
 		<form id="tutorInfoInputForm" action="tutorRegisterCtr.do" method="post">
 			<div id="inputAllDiv" class="clearfix">
+				<div class="partTitle">
+					강사 정보
+				</div>
 				<div id="photoAndInfoDiv" >
 				
 					<div id="inputPhotoDiv" class="clearfix">
 					    <div id='preview'>
-					        <img id="previewImg" alt="사진을 추가해주세요">
+					        <img id="previewImg" src="/englishvillage/resources/imgs/inputPhotoStr.png" alt="사진을 추가해주세요">
 					    </div>
 					    <div id="inputPhotoBtn">
 					    	<input type="file" id="uploadFile" name='profilePicture' value="사진선택" class="hidden"/>
-							<label id="fileSelectLabel" for="uploadFile"><img id="selectPictureButton" src="/englishvillage/resources/imgs/bg1.jpg"></label>
+							<label id="fileSelectLabel" for="uploadFile"><img id="selectPictureButton" src="/englishvillage/resources/imgs/camera.jpg"></label>
 					    </div>
 					</div>
 					<div id="inputInfoDiv" class="clearfix">
@@ -350,17 +394,26 @@ textarea:focus {outline:none;}
 			
 				</div>
 				
+				<div class="partTitle">
+					강사 소개 입력
+				</div>
+				
 				<div id="tutorIntroduceBoxDiv">
 					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorIntroduce" placeholder="회원님의 소개를 입력해주세요"></textarea>
 				</div>
 			
 				<div>
-					본인소개영상
-					<div>
-						<iframe id="yotubePreview" width="700" height="300" frameborder="0" allowfullscreen></iframe>
+					<div class="partTitle">
+						유튜브 소개 영상 URL 입력
 					</div>
 					<div>
-						유튜브 url 입력 <input id="urlInput" name="youtubeUrl" type="text"><input id="urlBtn" type="button" value="확인">
+						유튜브 url 입력
+						 <input id="urlInput" name="youtubeUrl" type="text">
+						 <input id="urlBtn" type="button" value="확인">
+						 <input id="urlRefreshBtn" type="button" value="취소">
+					</div>
+					<div>
+						<iframe id="yotubePreview" width="700" height="300" frameborder="0" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>	
@@ -373,7 +426,7 @@ textarea:focus {outline:none;}
 				<div class="tutorInfoDiv clearfix" >
 							
 					<div class="tutorImgDiv">
-						<img class="tutorImg" id="tutorImg" src="/englishvillage/resources/imgs/sl2.png">
+						<img class="tutorImg" id="tutorImg" src="/englishvillage/resources/imgs/viewPhotoStr.png">
 					</div>
 					<div class="studyTitle" id="studyTitleDiv">
 						차냥이와 함계하는 신나는 영어교실!
@@ -382,7 +435,7 @@ textarea:focus {outline:none;}
 						30,000원 / 40분
 					</div>
 					<div class="score">
-						☆☆☆☆☆ (0)
+						★★★★★ (0)
 					</div>
 					<div class="country">
 						${member.memberCountry}

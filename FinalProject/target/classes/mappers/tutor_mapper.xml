@@ -299,6 +299,14 @@
      
 	</delete>
 
+	<insert id="addStudyHistory" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
+	
+		<!-- 수업시작했을때 학생번호 튜터번호 학생이름 날짜를 평가테이블에 추가 -->
+	
+	
+	
+	</insert>
+
 </mapper>
 
 

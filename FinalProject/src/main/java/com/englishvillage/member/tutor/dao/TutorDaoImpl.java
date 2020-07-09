@@ -186,5 +186,12 @@ public class TutorDaoImpl implements TutorDao{
 		return sqlSession.delete(namespace + "deleteMember", no);
 	}
 
+	@Override
+	public int addStudyHistory(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+
+		return sqlSession.insert(namespace + "addStudyHistory", tutorCommentDto);
+	}
+
 	
 }

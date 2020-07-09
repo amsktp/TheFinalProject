@@ -8,6 +8,8 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/englishvillage/resources/css/mail.css">
 <style type="text/css">
 
 .clearfix:after {
@@ -28,12 +30,14 @@ textarea:focus {outline:none;}
 #tutorInfoDiv {
 
 	border : 1px solid black;
-	width: 600px;
+	width: 650px;
 	height: 400px;
-	margin-left : 100px;
+	margin-left : 50px;
 	padding-top : 30px;
 	float: left;
+	padding-left : 20px;
 	margin-bottom: 40px;
+	border-radius: 20px;
 }
 
 #contents {
@@ -53,12 +57,11 @@ textarea:focus {outline:none;}
 	margin-top:50px;
 }
 #onLineCheckDiv {
-	border: 1px solid black;
 	width: 120px;
 	height: 40px;
 	text-align: center;
 	padding : 8px;
-	margin-left:320px;
+	margin-left:80px;
 	margin-right:10px;
 	float:left;
 }
@@ -76,7 +79,7 @@ textarea:focus {outline:none;}
 	margin-top: 30px;
 	margin-left : 30px;
 }
-#tutorInfoTable{
+.title{
 
 }
 
@@ -234,6 +237,16 @@ tr {
 	font-size :25px;
 }
 
+
+
+.partTitle{
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 10px;
+	
+
+}
+
 </style>
 
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -317,18 +330,20 @@ tr {
 
 	<div id="contents" class="clearfix">
 		<!-- 소개영상 -->
-		
+		<div class="partTitle">
+			튜터 소개
+		</div>
 		<div id="tutorYoutubeDiv">
 			<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }" frameborder="0" allowfullscreen></iframe>
 		</div>
 		
 		<!-- 사람얼굴 -->
+
 		<div id="tutorInfoDiv" class="clearfix">
-			
 			<!-- onLine과 수업시작버튼 -->
 			<div class="clearfix">
 				<div id="onLineCheckDiv">
-					On-Line 
+					<span>On-Line</span>
 					<c:choose>
 						<c:when test="${tutorDto.statusCheck eq 'Y'}">
 							<span style="color: blue">●</span>
@@ -339,7 +354,7 @@ tr {
 					</c:choose>
 				</div>
 				
-				<div id="studyStartBtn" onclick="send();">
+				<div class="btn btn-primary" onclick="send();">
 					수업시작
 				</div>
 			</div>
@@ -371,10 +386,10 @@ tr {
 						<td>평점</td>
 						<td>
 							<c:forEach begin="1" end="${tutorDto.score}">
-								<span style="color: yellow;">★</span>
+								<span style="color: blue;">★</span>
 							</c:forEach>
 							<c:forEach begin="${tutorDto.score}" end="4">
-								<span style="color: black;">★</span>
+								<span style="color: grey;">★</span>
 							</c:forEach>
 						</td>
 					</tr>
@@ -382,18 +397,18 @@ tr {
 						<td>수업료</td>
 						<td>${tutorDto.price}</td>
 					</tr>
-					<tr>
-						<td colspan="2">${tutorDto.evaluationCount} 개의 후기</td>
-					</tr>
 				</table>
 				
-				<input id="tutorNoNum" type="text" value="${tutorDto.memberNo}">
+				<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
 				
 			</div>
 		</div>
 
 		
 		<!-- 소개글 -->
+		<div  class="partTitle" style="clear:left;">
+			강의 소개
+		</div>
 		<div id="tutorIntroduceDiv">
 			${tutorDto.tutorIntroduce}
 		</div>
@@ -404,6 +419,10 @@ tr {
 	<!-- 댓글 입력부분 -->
 <%-- 		<c:if test="${ }"> --%>
 <!-- 		이미 입력했을경우 작성하는 폼이 안뜨게끔 -->
+	
+		<div  class="partTitle" style="clear:left;">
+			${tutorDto.evaluationCount}개의 후기
+		</div>	
 	
 		<form id="commentWrite" action="writeCommentCtr.do" method="post">
 			<div id="writeComment" class="clearfix">
@@ -427,7 +446,7 @@ tr {
 					</div>
 					<div class="commentBtns clearfix">
 						<!-- 버튼 -->
-						<input type="submit" id="commentWriteBtn" value="작성하기">
+						<input type="submit" id="commentWriteBtn" class="btn btn-primary" value="작성하기">
 					</div>
 				</div>
 			</div>
@@ -476,10 +495,10 @@ tr {
 							<div class="commentBtns clearfix">
 								<!-- 버튼 -->
 								<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
-									<div class="commentDelete" onclick="removeCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
+									<div class="commentDelete btn btn-primary" onclick="removeCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
 										삭제하기
 									</div>
-									<div class="commentModified" onclick="modifyCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
+									<div class="commentModified btn btn-primary" onclick="modifyCommentFnc(${tutorCommentDto.tutorNo}, ${tutorCommentDto.studentNo})">
 										수정하기
 									</div>
 									

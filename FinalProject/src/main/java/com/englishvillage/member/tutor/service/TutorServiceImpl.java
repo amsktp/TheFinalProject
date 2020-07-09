@@ -159,6 +159,12 @@ public class TutorServiceImpl implements TutorService{
 		// TODO Auto-generated method stub
 		return tutorDao.removeComment(tutorCommentDto);
 	}
+
+	@Override
+	public int addStudyHistory(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.addStudyHistory(tutorCommentDto);
+	}
 	
 	
 }

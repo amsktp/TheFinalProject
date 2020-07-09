@@ -103,6 +103,8 @@
 										,"강의창"
 										,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 							
+								location.href = "./addStudyHistoryCtr.do?tutorNum=" + $('#tutorNoNum').val() + "&studentNum=" + $('#studentNoNum').val();
+								
 							}
 							
 						} 
