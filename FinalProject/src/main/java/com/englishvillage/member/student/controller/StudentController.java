@@ -30,60 +30,54 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@RequestMapping(value = "myPage.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET })
 	public String myPage(Locale locale, HttpSession session, Model model) {
+		log.info("call myPage! " + session.getAttribute("member"));
+		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 
+		System.out.println("일단 세션 만들기 성공" + sessionMemberDto);
+		int no = sessionMemberDto.getMemberNo();
+
+		Map<String, Object> map = studentService.SelectOne(no);
+		System.out.println("여긴 맵이야" + map);
+		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+		System.out.println("넣을값" + memberFileDto);
+		model.addAttribute("memberFileDto", memberFileDto);
 		return "/member/student/info/studentMainPage";
 	}
 
-	@RequestMapping(value = "myInfo.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/myInfo.do", method = { RequestMethod.GET })
 	public String infoPage(Locale locale, HttpSession session, Model model) {
 		log.info("Welcome myInfo.do! {} {}");
 		System.out.println("세션초기값이다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ" + session.getAttribute("member"));
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 
 		System.out.println("일단 세션 만들기 성공" + sessionMemberDto);
-		String userEmail = sessionMemberDto.getMemberEmail();
+		int no = sessionMemberDto.getMemberNo();
 
-		Map<String, Object> map = studentService.SelectOne(userEmail);
-		System.out.println("여긴 맵이야" + map);
+		Map<String, Object> map = studentService.SelectOne(no);
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
-		System.out.println("넣을값" + memberFileDto);
 		model.addAttribute("memberFileDto", memberFileDto);
 
 		return "/member/student/info/studentPrivateInfo";
 	}
 
-	@RequestMapping(value = "studentCheck.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/studentCheck.do", method = { RequestMethod.GET })
 	public String infoPage(Model model) {
 		log.info("Welcome studentCheck.do! {} {}");
 
 		return "/member/student/info/studentCheckPassword";
 	}
 
-//	@RequestMapping(value = "update.do", method = RequestMethod.GET)
-//	public String memberUpdate(int no, Model model) {
-//
-//		log.info("call studentUpdate! ", no);
-//
-//		Map<String, Object> map = studentService.memberSelect(no);
-//		System.out.println("맵이다" + map);
-//		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
-//		System.out.println("memberFileDto다" + memberFileDto);
-//		model.addAttribute("MemberFileDto", memberFileDto);
-//		
-//		return "/member/student/info/studentInfoRevise";
-//	}
-
-	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/update.do", method = RequestMethod.GET)
 	public String memberUpdate(HttpSession session, Model model) {
-
+		log.info("call update! {}");
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 
 		System.out.println("일단 세션 만들기 성공2");
-		String userEmail = sessionMemberDto.getMemberEmail();
+		int no = sessionMemberDto.getMemberNo();
 
-		Map<String, Object> map = studentService.SelectOne(userEmail);
+		Map<String, Object> map = studentService.SelectOne(no);
 		System.out.println("여긴 맵이야2" + map);
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
 		System.out.println("넣을값2" + memberFileDto);
@@ -93,49 +87,32 @@ public class StudentController {
 	}
 
 	// 회원수정
-	@RequestMapping(value = "updateCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/updateCtr.do", method = RequestMethod.POST)
 	public String memberUpdateCtr(HttpSession session, String memberPassword, Model model) {
 		log.info("call memberUpdateCtr! {} :: {}", session + "패스워드" + memberPassword);
 		int resultNum = 0;
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		sessionMemberDto.setMemberPassword(memberPassword);
-		System.out.println("업데이트에서 세션 만들기 성공" + sessionMemberDto);
+		System.out.println("업데이트 결과값" + resultNum);
 
 		resultNum = studentService.memberUpdateOne(sessionMemberDto);
 
-		System.out.println("업데이트 결과값" + resultNum);
-
-		System.out.println("업데이트 완료 세션값" + session.getAttribute("member"));
-
-		return "redirect:/myInfo.do";
+		return "redirect:/student/myInfo.do";
 
 	}
 
 	// 회원탈퇴 확인
-	@RequestMapping(value = "delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/delete.do", method = RequestMethod.POST)
 	public String memberDelete(Model model) {
 
 		log.info("call memberdelete!");
 
-//		return "redirect:/member/login.do";
-//		return "/member/student/info/delete";
 		return "/member/student/info/studentWithdraw";
 	}
 
-//	// 회원 삭제
-//	@RequestMapping(value="deleteCtr.do", method = RequestMethod.GET)
-//	public String memberDeleteCtr(int no, Model model) {
-//		
-//		log.info("call memberDeleteCtr! " + no);
-//		
-//		studentService.memberDeleteOne(no);
-//		
-////		return "redirect:/member/list.do";
-//		return "/member/student/info/delete";
-//	}
 
 	// 회원 삭제
-	@RequestMapping(value = "deleteCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/deleteCtr.do", method = RequestMethod.POST)
 	public String memberDeleteCtr(HttpSession session, Model model) {
 
 		log.info("call memberDeleteCtr! " + session.getAttribute("member"));
@@ -147,26 +124,22 @@ public class StudentController {
 
 		studentService.memberDeleteOne(no);
 
-//		session.removeAttribute("member");
-//		session.invalidate();
+		session.removeAttribute("member");
+		session.invalidate();
 
-//		return "/member/student/info/studentPrivateInfo";
-//		return "redirect:/member/list.do";
-//		return "redirect:/login.do";
 		return "/member/student/info/delete";
 	}
 
-	@RequestMapping(value = "studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
+//	수강내역
+	@RequestMapping(value = "/student/studyList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studyList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 			HttpSession session, Locale locale, Model model) {
-		log.info("Welcome studyPage! idx: " + idx);
+		log.info("Welcome studyList! idx: " + idx);
 		int totalCount = 0;
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		int no = sessionMemberDto.getMemberNo();
-		System.out.println("회원세션에서 가져온 넘버는???" + no);
 
 		totalCount = studentService.studentStudyCount(no);
-		System.out.println("totalCount는 도대체 무슨값일까??" + totalCount);
 
 //				이전 페이지로 돌아갈때 값
 //				자신의 curPage 찾는 로직
@@ -193,10 +166,10 @@ public class StudentController {
 	}
 
 	// 문의 리스트
-	@RequestMapping(value = "QuestionList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 			HttpSession session, Model model) {
-		log.info("Welcome MemberList! " + curPage);
+		log.info("Welcome QuestionList.do\"! " + curPage);
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 		System.out.println("idx는 도대체 무슨값일까??" + idx);
 		// 페이징을 위한 전체 회원목록 갯수
@@ -204,11 +177,7 @@ public class StudentController {
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		int no = sessionMemberDto.getMemberNo();
 
-		System.out.println("회원세션에서 가져온 넘버는???" + no);
-
 		totalCount = studentService.studentQuestionCount(no);
-		System.out.println("totalCount는 도대체 무슨값일까??" + totalCount);
-
 //				이전 페이지로 돌아갈때 값
 //				자신의 curPage 찾는 로직
 		if (idx != 0) {
@@ -234,14 +203,14 @@ public class StudentController {
 	}
 
 	// 문의 작성하기
-	@RequestMapping(value = "QuestionAdd.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionAdd.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionAdd(HttpSession session, Model model) {
 		log.info("Welcome QuestionAdd.do! ");
 
 		return "/member/student/qna/studentQnAWrite";
 	}
 
-	@RequestMapping(value = "QuestionAddCtr.do", method = { RequestMethod.POST })
+	@RequestMapping(value = "/student/questionAddCtr.do", method = RequestMethod.POST)
 	public String QuestionAddCtr(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
 		log.info("Welcome QuestionAddCtr.do! " + questionBoardDto);
 
@@ -250,15 +219,19 @@ public class StudentController {
 		resultNum = studentService.QuestionAdd(questionBoardDto);
 		System.out.println("결과값" + resultNum);
 
-		return "redirect:QuestionList.do";
+		return "redirect:/student/questionList.do";
 	}
 
 	// 문의 상세읽기
-	@RequestMapping(value = "QuestionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String QuestionList(int idx, Model model) {
-		log.info("Welcome MemberList! " + idx);
+	@RequestMapping(value = "/student/questionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String QuestionList(HttpSession session, int idx, Model model) {
+		log.info("Welcome QuestionSelect.do! " + idx);
+		
+		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
+		int no = sessionMemberDto.getMemberNo();
 
-		Map<String, Object> map = studentService.QuestionSelect(idx);
+		// no값이 없이 설정하면 내 글이 아닌글도 읽어짐... 그래서 no넣었음
+		Map<String, Object> map = studentService.QuestionSelect(no, idx);
 		QuestionBoardDto questionBoardDto = (QuestionBoardDto) map.get("QuestionBoardDto");
 		model.addAttribute("questionBoardDto", questionBoardDto);
 		System.out.println(questionBoardDto);
@@ -267,9 +240,9 @@ public class StudentController {
 	}
 
 	// 문의 수정
-	@RequestMapping(value = "QuestionRevise.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/student/questionRevise.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionRevise(QuestionBoardDto questionBoardDto, Model model) {
-//				log.info("Welcome QuestionRevise.do! "+questionBoardDto+"idx값은?"+idx);
+				log.info("Welcome QuestionRevise.do! ");
 		int resultNum = 0;
 		resultNum = studentService.QuestionRevise(questionBoardDto);
 
@@ -282,7 +255,7 @@ public class StudentController {
 	// 테스트 페이지
 	@RequestMapping(value = "test.do", method = RequestMethod.POST)
 	public String test(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
-		log.info("Welcome QuestionRevise.do! " + questionBoardDto);
+		log.info("Welcome test.do! " + questionBoardDto);
 
 		return "/member/student/qna/studentQnAWrite";
 	}

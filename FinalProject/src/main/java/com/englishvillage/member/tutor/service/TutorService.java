@@ -2,6 +2,7 @@ package com.englishvillage.member.tutor.service;
 
 import java.util.List;
 
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 
 public interface TutorService {
@@ -23,6 +24,15 @@ public interface TutorService {
 
 	public TutorDto getTutorGrade(int no);
 
+	public TutorDto getTutorIntroduce(int tutorNo);
+
+	public List<TutorCommentDto> getTutorComments(int tutorNo);
+
+	public int writeComment(TutorCommentDto tutorCommentDto);
+
+	public int modifyComment(TutorCommentDto tutorCommentDto);
+
+	public int removeComment(TutorCommentDto tutorCommentDto);
 	public int updateTutor(TutorDto tutorDto);
 
 	public TutorDto getTutorPwd(String pwd);
@@ -32,5 +42,7 @@ public interface TutorService {
 	public int deleteMember(int no);
 
 	public TutorDto boardSelect(int no);
+
+	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
 }

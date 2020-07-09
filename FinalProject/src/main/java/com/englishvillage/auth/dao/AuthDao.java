@@ -8,6 +8,8 @@ public interface AuthDao {
 
 	public int memberInsertOne(MemberDto memberDto);
 
-	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate)throws Exception;
+	public MemberDto memberFindPassword(String memberName, String memberEmail, String memberBirthDate) throws Exception;
+
+	public int emailCheck(MemberDto memberDto);
 }
 

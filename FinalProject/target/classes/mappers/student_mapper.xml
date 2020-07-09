@@ -89,14 +89,14 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
-	<select id="SelectOne" parameterType="String"
+	<select id="SelectOne" parameterType="int"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, MEMBER_GRADE,
 		MEMBER_POINT
 		, MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_PASSWORD,
 		MEMBER_BIRTH_DATE
 		FROM MEMBER
-		WHERE MEMBER_EMAIL = #{memberEmail}
+		WHERE MEMBER_NO = #{no}
 	</select>
 
 	<update id="memberUpdateOne" parameterType="MemberDto">
@@ -134,24 +134,21 @@
 	<select id="studySelectList" parameterType="map"
 		resultMap="questionListResultMap">
 
-		SELECT RNUM IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE
+		SELECT RNUM, IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE
 		FROM (SELECT
 		TUTOR_NO, MEMBER_NAME TUTOR_NAME, STUDY_NAME, PRICE
 		FROM MEMBER M LEFT
 		JOIN TUTOR_INFO T
-		ON MEMBER_NO = TUTOR_NO) A JOIN (SELECT ROWNUM RNUM,
-		TUTOR_NO,
-		STUDY_DATE, EVALUATE_CHECK
-		FROM (SELECT TUTOR_NO, STUDY_DATE,
-		EVALUATE_CHECK
+		ON MEMBER_NO = TUTOR_NO) A JOIN (SELECT ROWNUM RNUM, IDX, TUTOR_NO, STUDY_DATE, EVALUATE_CHECK
+		FROM (SELECT IDX, TUTOR_NO, STUDY_DATE,	EVALUATE_CHECK
 		FROM MEMBER M JOIN EVALUATION E
 		ON MEMBER_NO = STUDENT_NO
-		WHERE MEMBER_NO = #{no}
-		ORDER BY STUDY_DATE)) B
+		WHERE MEMBER_NO = ${no})
+		ORDER BY IDX DESC) B
 		ON A.TUTOR_NO = B.TUTOR_NO
 		WHERE RNUM
-		BETWEEN #{start} AND #{end}
-		ORDER BY STUDY_DATE DESC, IDX DESC
+        BETWEEN ${start} AND ${end}
+        ORDER BY IDX DESC
 	</select>
 
 	<select id="memberSelectCurPage" parameterType="map"
@@ -203,7 +200,7 @@
 		BETWEEN #{start} AND #{end}
 	</select>
 
-	<select id="QuestionSelect" parameterType="java.lang.Integer"
+	<select id="QuestionSelect" parameterType="map"
 		resultMap="questionListResultMap">
 		SELECT *
 		FROM MEMBER M
@@ -211,7 +208,8 @@
 		M.MEMBER_NO = q.member_no
 		LEFT OUTER JOIN question_board_comment C ON
 		Q.IDX = C.IDX
-		WHERE Q.IDX = #{idx}
+		WHERE M.MEMBER_NO = #{no}
+        AND Q.IDX = #{idx}
 	</select>
 
 	<insert id="QuestionAdd" parameterType="QuestionBoardDto"
@@ -220,14 +218,6 @@
 			SELECT
 			QUESTION_BOARD_IDX_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-
-		<!-- INSERT INTO MEMBER -->
-		<!-- VALUE(MNO -->
-		<!-- , EMAIL, PWD, MNAME -->
-		<!-- , CRE_DATE, MOD_DATE) -->
-		<!-- VALUES(#{no} -->
-		<!-- , #{email}, #{password}, #{name} -->
-		<!-- , SYSDATE, SYSDATE) -->
 
 		INSERT INTO QUESTION_BOARD
 		VALUE(IDX, MEMBER_NO, TITLE, CONTENT,

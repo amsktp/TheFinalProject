@@ -6,28 +6,27 @@
 <head>
 
 <meta charset="UTF-8">
-<title>튜터 정보 수정</title>
+<title>회원정보 수정</title>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(2).addClass('on');
+    $('.layoutUl').children().eq(3).addClass('on');
 });
 </script>
 </head>
 
 <body>
 
-<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
-	
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
-	
-		<div id="myPageBox">
-			<div id="pageName" style="margin-bottom: 0px;">내정보
-			</div>
-				<div class="profileTitle" style="font-weight: bold;">
-					<div class="profileContents">
+
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
+
+			<div id="pageName">회원정보수정</div>
+				<div class="profileTitle">
+					<div class="profileContests">
 						이름
 					</div>
 					<div class="profileContents">
@@ -69,8 +68,8 @@ $(document).ready(function(){
 						${tutorDto.memberCountry}
 					</div>
 				</div>
-							
-				<button class="Btn" style="margin-right: 250px; margin-top: 410px;">수정하기</button>
+						
+					<input type="submit" value="수정하기" class="btn btn-primary btn-lg pull-right">	
 			</form>
 			
 		</div>

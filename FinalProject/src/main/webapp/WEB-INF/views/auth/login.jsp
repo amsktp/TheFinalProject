@@ -72,6 +72,7 @@
 	function loginBtn(){
 		var memberEmailObj = document.getElementById('memberEmail');
 		var memberPwdObj = document.getElementById('memberPwd');
+		
 		if(memberEmailObj.value.length == 0){		
 			alert("ID를 입력해주세요.");
 			return false;
@@ -79,6 +80,7 @@
 			alert("패스워드를 입력해주세요.");
 			return false;
 		}
+		
 	}
 	
 	
@@ -101,14 +103,14 @@
 			<form action="/englishvillage/loginCtr.do" method="post" onsubmit=" return loginBtn();">
 				<div>
 					<div>
-						이메일
+						<span>이메일</span>
 					</div>
 					<div>
 						<input class="emailPwdBox" id="memberEmail" type="email"
 							name="memberEmail" placeholder="이메일을 입력하세요" value="chan@naver.com">
 					</div>
 					<div>
-						비밀번호
+						<span>비밀번호</span>
 					</div>
 					<div style="margin-bottom: 40px;">
 						<input class="emailPwdBox" id="memberPwd" type="password" name="memberPassword" 
@@ -118,7 +120,7 @@
 				<!-- 로그인 버튼, 비밀번호찾기 버튼, 회원가입 버튼  -->
 				<div>		
 					<div>
-						<input id="login" type="submit"  value="로그인">
+						<input id="login" type="submit" value="로그인">
 					</div>
 				</div>
 				<div>

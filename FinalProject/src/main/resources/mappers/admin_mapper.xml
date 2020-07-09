@@ -71,6 +71,7 @@
       <result column="TUTOR_NO" property="tutorNo"/>
       <result column="SCORE" property="score"/>
       <result column="STUDY_NAME" property="tutorTitle"/>
+      <result column="TUTOR_INTRODUCE" property="tutorText"/>
      
       
       <result column="IDX"                property="idx"   />
@@ -226,7 +227,8 @@
      SELECT F.MEMBER_NO, F.MEMBER_EMAIL
                   , F.MEMBER_NAME, F.MEMBER_CREATE_DATE, F.MEMBER_MODIFY_DATE
                   , F.MEMBER_COUNTRY, F.MEMBER_GENDER, F.MEMBER_POINT, F.MEMBER_BIRTH_DATE, F.MEMBER_GRADE
-                  , F.ORIGINAL_FILE_NAME, E.TUTOR_NO, E.SCORE, E.PRICE, E.YOUTUBE_URL,F.MEMBER_PASSWORD, E.STUDY_NAME
+                  , F.ORIGINAL_FILE_NAME, E.TUTOR_NO, E.SCORE, E.PRICE, E.YOUTUBE_URL,F.MEMBER_PASSWORD, E.STUDY_NAME,
+                  E.TUTOR_INTRODUCE
         FROM (SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_CREATE_DATE, MEMBER_NAME, MEMBER_MODIFY_DATE
         ,MEMBER_COUNTRY, MEMBER_GENDER, MEMBER_GRADE, MEMBER_BIRTH_DATE, MEMBER_POINT, MEMBER_PASSWORD,
         FILE_PROFILE_IMAGE.ORIGINAL_FILE_NAME

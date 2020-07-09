@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
@@ -31,8 +32,8 @@ public class AuthController {
 	@Autowired
 	private AuthService authService;
 	
-	  @Autowired
-	  private JavaMailSender mailSender;
+	@Autowired
+	private JavaMailSender mailSender;
 	  
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String login() {
@@ -83,6 +84,7 @@ public class AuthController {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date parseDate = simpleDateFormat.parse(birthDate);
 		memberDto.setMemberBirthDate(parseDate);
+//		서비스에 있으면 컨트롤러에서 호출 (자주 사용한다면)
 		
 		authService.memberInsertOne(memberDto);
 		
@@ -136,14 +138,14 @@ public class AuthController {
 	} 
 	
 	// mailSending 인증번호 발송 코드
-	@RequestMapping(value = "/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
+	  @RequestMapping(value = "/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
 	  public String verifyNumMailSending(HttpServletRequest request, String memberEmail, int verifyNum
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
 	   
 		
 	    String setfrom = "javacatch5@gmail.com";
-	    
+//	    DB??
 	    	title = "회원가입 인증번호 입니다.";
 	    	content = "회원가입 인증번호는 "+ verifyNum + " 입니다.";
 	    	
@@ -160,6 +162,7 @@ public class AuthController {
 	      
 	    } catch(Exception e){
 	      System.out.println(e);
+//	      오류는 페이지화 시킬 것 
 	    }
 	   
 	    return "redirect:/auth/mailCtr";
@@ -172,8 +175,6 @@ public class AuthController {
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
 		
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@비밀번호 찾기 메일");
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
 				
 	    String setfrom = "javacatch5@gmail.com";
@@ -181,16 +182,9 @@ public class AuthController {
 	    	title = "비밀번호 찾기의 비밀번호 입니다.";
 	    	content = "비밀번호는 "+ memberDto.getMemberPassword() + " 입니다.";
 	    	
-	    
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-		    
-	      
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
-	      System.out.println(memberDto.getMemberEmail());
 
 	      messageHelper.setFrom(setfrom);
 	      messageHelper.setTo(memberDto.getMemberEmail());
@@ -205,5 +199,21 @@ public class AuthController {
 	   
 	    return "redirect:/findPasswordComplete.do";
 	  }
+	
+//	이메일 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/emailCheck.do", method=RequestMethod.POST)
+	public int emailCheck(MemberDto memberDto) throws Exception {
+		
+		int result = authService.emailCheck(memberDto);
+		
+		System.out.println(result);
+		System.out.println(result);
+		System.out.println(result);
+		System.out.println(result);
+		
+		return result;
+	}
+	
 	
 }

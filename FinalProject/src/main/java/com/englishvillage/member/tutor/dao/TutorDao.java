@@ -2,6 +2,7 @@ package com.englishvillage.member.tutor.dao;
 
 import java.util.List;
 
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 
 public interface TutorDao {
@@ -23,6 +24,15 @@ public interface TutorDao {
 
 	public TutorDto getTutorGrade(int no);
 
+	public TutorDto getTutorIntroduce(int tutorNo);
+
+	public List<TutorCommentDto> TutorCommentDto(int tutorNo);
+
+	public int writeComment(TutorCommentDto tutorCommentDto);
+
+	public int modifyComment(TutorCommentDto tutorCommentDto);
+
+	public int removeComment(TutorCommentDto tutorCommentDto);
 	public TutorDto getTutorPwd(String pwd);
 
 	public int updateTutor(TutorDto tutorDto);
@@ -32,6 +42,8 @@ public interface TutorDao {
 	public int deleteMember(int no);
 
 	public TutorDto boardSelect(int no);
+
+	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
 	
 }

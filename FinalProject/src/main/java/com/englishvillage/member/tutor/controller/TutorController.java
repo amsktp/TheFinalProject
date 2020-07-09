@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.student.model.MemberFileDto;
+import com.englishvillage.member.student.service.StudentService;
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
-import com.englishvillage.util.Paging;
+import com.englishvillage.util.PagingYJ;
 
 @Controller
 public class TutorController {
@@ -30,9 +34,11 @@ public class TutorController {
 	@Autowired
 	private TutorService tutorService;
 	
-	
 	@Autowired
 	private AuthService authService;
+
+	@Autowired
+	private StudentService studentService;
 	
 	@RequestMapping(value = "/home.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") 
@@ -61,7 +67,7 @@ public class TutorController {
 				= tutorService.tutorSelectCurPage(countrySearch, ageSearch, genderSearch, keyword, no);
 		}
 		
-		Paging memberPaging = new Paging(totalCount, curPage);
+		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -111,6 +117,7 @@ public class TutorController {
 		int updateResult = tutorService.tutorUpdateGrade(memberNo);
 		
 		
+		
 		if(insertResult == 0) {
 			log.warn("튜터 레지스터가 실패했습니다.");
 		} else {
@@ -126,10 +133,28 @@ public class TutorController {
 		return "redirect:./home.do";
 	}
 
-	@RequestMapping(value = "/tutorSelectOne.do", method = RequestMethod.GET)
-	public String main( Model model) {
+	@RequestMapping(value = "/tutorSelectOne.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request) {
 		
-		log.info("튜터 소개 입니다. GET");
+		
+		
+		System.out.println(request.getAttribute("tutorNo"));
+		if(request.getAttribute("tutorNo") != null) {
+			tutorNo = (int)request.getAttribute("tutorNo");
+		}
+		
+		
+		
+		
+		
+		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
+		
+		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
+		
+		
+		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
+		model.addAttribute("tutorDto", tutorDto);
+		
 		return "member/tutor/info/tutorSelectOne";
 	}
 	
@@ -200,6 +225,27 @@ public class TutorController {
 		
 		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorDtoGrade", tutorDtoGrade);
+		
+		return "member/tutor/info/tutorPrivateInfo";
+	}
+	
+	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.GET)
+	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto) {
+		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
+		
+		
+		Map<String, Object> map = studentService.SelectOne(tutorCommentDto.getStudentNo());
+		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+		
+		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
+		
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
+		
 		
 		return "member/tutor/info/tutorPrivateInfo";
 	}
@@ -336,5 +382,38 @@ public class TutorController {
 		model.addAttribute("tutorDtoBodard", tutorDtoBodard);
 		
 		return "member/tutor/qna/tutorQnABoard";
+	}
+	@RequestMapping(value = "/writeCommentCtr.do", method = RequestMethod.POST)
+	public String writeCommentCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.writeComment(tutorCommentDto);
+		
+		request.setAttribute("tutorNo", tutorCommentDto.getTutorNo());
+		
+		
+//		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
+		return "forward:./tutorSelectOne.do";
+	}
+	@RequestMapping(value = "/tutorCommentRemoveCtr.do", method = RequestMethod.POST)
+	public String tutorCommentRemoveCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.removeComment(tutorCommentDto);
+		
+		
+		return "forward:./tutorSelectOne.do";
+	}
+	
+	
+	@RequestMapping(value = "/tutorCommentModifyCtr.do", method = RequestMethod.POST)
+	public String tutorCommentModifyCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
+		log.info("writeCommentCtr.do 입니다. POST");
+		
+		int resultNum = tutorService.modifyComment(tutorCommentDto);
+		
+		
+		
+		return "forward:./tutorSelectOne.do";
 	}
 }

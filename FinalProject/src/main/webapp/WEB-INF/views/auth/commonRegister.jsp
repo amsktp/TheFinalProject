@@ -112,7 +112,7 @@
 		
 		$('#authBtn').click(function() {
 			
-// 			alert($('#memberEmail').val());
+			alert($('#memberEmail').val() + '로 인증번호를 전송하였습니다.');
 			
 			$.ajax({
 			      url : "/englishvillage/authSendMailVerifyNumCtr.do",
@@ -136,6 +136,31 @@
 	});
 	
 
+	function emailChkFnc() {
+		
+		if($("#memberEmail").val() == ""){
+			alert("이메일을 다시 입력하세요.");
+			return false;
+		}
+		
+		$.ajax({
+			url: "/englishvillage/emailCheck.do",
+			type: "POST",
+			data: "memberEmail=" + $("#memberEmail").val(),
+			success: function(data) {
+				if(data >= 1){
+					alert("중복된 이메일입니다.");
+				} else if(data == 0) {
+					$("#emailCheck").attr("value", "Y");
+					alert("사용가능한 이메일입니다.");
+				}
+				
+			}
+			
+		});
+				
+	}
+
 	function backPageBtn() {
 		location.href = "login.do";
 	}
@@ -151,7 +176,7 @@
 		
 		if(inputVerifyNumObj.value == sendVerifyNumObj.value){
 			verifyNumResultObj.value = "Y";
-			alert("인증번호가 성공했습니다");
+			alert("인증이 성공됐습니다.");
 		}
 		
 		else if(inputVerifyNumObj.value != sendVerifyNumObj.value){
@@ -163,11 +188,12 @@
 	
 	/* 회원가입 유효성 */
 	function commonRegisterBtn(){
+		
 		var memberNameObj = document.getElementById('memberName');
 		var memberEmailObj = document.getElementById('memberEmail');
-		var veryfyNumObj = document.getElementById('veryfyNum');
+		var verifyNumObj = document.getElementById('inputVerifyNum');
 		var memberPasswordObj = document.getElementById('memberPassword');
-		var veryfyPasswordObj = document.getElementById('veryfyPassword');
+		var verifyPasswordObj = document.getElementById('verifyPassword');
 		var memberBirthDateObj = document.getElementById('memberBirthDate');
 		
 		if(memberNameObj.value.length == 0){		
@@ -176,24 +202,22 @@
 		} else if(memberEmailObj.value.length == 0){		
 			alert("이메일을 입력해주세요.");
 			return false;
-		} else if(veryfyNumObj.value.length == 0){		
+		} else if(verifyNumObj.value.length == 0){		
 			alert("인증번호를 입력해주세요.");
 			return false;
 		} else if(memberPasswordObj.value.length == 0){		
 			alert("비밀번호를 입력해주세요.");
 			return false;
-		} else if(veryfyPasswordObj.value.length == 0){		
+		} else if(verifyPasswordObj.value.length == 0){		
 			alert("비밀번호 확인을 입력해주세요.");
+			return false;
+		} else if(verifyPasswordObj.value.length != memberPasswordObj.value.length){		
+			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		} else if(memberBirthDateObj.value.length == 0){		
 			alert("생일을 입력해주세요.");
 			return false;
 		}
-		
-	}
-	
-	function checkEmailFnc() {
-		
 		
 	}
 	
@@ -228,13 +252,12 @@
 						<input id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요" >
 					</div>
 					<div>
-						<input id="pressEmailCheck" type="button" value="이메일 중복 확인" onclick="checkEmailFnc();">
+						<input id="pressEmailCheck" type="button" value="이메일 중복 확인" onclick="emailChkFnc();">
 					</div>
 				</div>
 				<div class="wrapInputBox">
 					<div>
-						<input id="authBtn" class="threeBarInputBox" type="button" 
-							value="인증번호 요청" style="width: 100px; height: 36px;" >
+						<input id="authBtn" class="threeBarInputBox" type="button" value="인증번호 요청" style="width: 100px; height: 36px;" >
 					</div>
 					<div>
 						<input class="threeBarInputBox" id="inputVerifyNum" type="text" style="width: 80px;">
@@ -259,7 +282,7 @@
 						비밀번호 확인
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="veryfyPassword" type="password" placeholder="비밀번호를 입력하세요">
+						<input class="oneBarInputBox" id="verifyPassword" type="password" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div>

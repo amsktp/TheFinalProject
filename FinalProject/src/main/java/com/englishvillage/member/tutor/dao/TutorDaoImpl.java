@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 
 
@@ -124,6 +125,39 @@ public class TutorDaoImpl implements TutorDao{
 	}
 
 	@Override
+	public TutorDto getTutorIntroduce(int tutorNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("tutorNo", tutorNo);
+		
+		return sqlSession.selectOne(namespace + "getTutorIntroduce", map);
+	}
+
+	@Override
+	public List<TutorCommentDto> TutorCommentDto(int tutorNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "TutorCommentDto", tutorNo);
+	}
+
+	@Override
+	public int writeComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "writeComment", tutorCommentDto);
+	}
+
+	@Override
+	public int modifyComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "modifyComment", tutorCommentDto);
+	}
+
+	@Override
+	public int removeComment(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "removeComment", tutorCommentDto);
+	}
+
+	@Override
 	public int updateTutor(TutorDto tutorDto) {
 		// TODO Auto-generated method stub
 		
@@ -154,6 +188,12 @@ public class TutorDaoImpl implements TutorDao{
 		TutorDto tutorDto = sqlSession.selectOne(namespace + "boardSelect", no);
 		
 		return tutorDto;
+
+	}
+		public int addStudyHistory(TutorCommentDto tutorCommentDto) {
+		// TODO Auto-generated method stub
+
+		return sqlSession.insert(namespace + "addStudyHistory", tutorCommentDto);
 	}
 
 	

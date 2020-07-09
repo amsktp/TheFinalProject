@@ -13,6 +13,8 @@ public class TutorDto {
 	private String memberName;
 	private Date memberCreateDate;
 	private Date memberModifyDate;
+
+
 	private String memberCountry;
 	private String memberGender;
 	private Date memberBirthDate;
@@ -26,6 +28,7 @@ public class TutorDto {
 	private String statusCheck;
 	private int score;
 	private String title;
+	private String storeFileName;
 	private int evaluationCount;
 	
 
@@ -58,8 +61,24 @@ public class TutorDto {
 		this.title = title;
 	}
 
-	
-
+	public String getStoreFileName() {
+		return storeFileName;
+	}
+	public void setStoreFileName(String storeFileName) {
+		this.storeFileName = storeFileName;
+	}
+	public int getEvaluationCount() {
+		return evaluationCount;
+	}
+	public void setEvaluationCount(int evaluationCount) {
+		this.evaluationCount = evaluationCount;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -163,23 +182,11 @@ public class TutorDto {
 	public void setStatusCheck(String statusCheck) {
 		this.statusCheck = statusCheck;
 	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public int getEvaluationCount() {
-		return evaluationCount;
-	}
-	public void setEvaluationCount(int evaluationCount) {
-		this.evaluationCount = evaluationCount;
 	}
 	
 	@Override

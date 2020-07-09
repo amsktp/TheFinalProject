@@ -11,21 +11,19 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(1).addClass('on');
+    $('.layoutUl').children().eq(2).addClass('on');
 });
 </script>
 </head>
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
-	
-	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
-	
-		<div id="myPageBox">
-			<div id="pageName" style="margin-bottom: 0px;">튜터 소개
-			</div>
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px">
+
+			<div id="pageName">튜터소개</div>
 			<div id="profileImages">
 				사진
 			</div>

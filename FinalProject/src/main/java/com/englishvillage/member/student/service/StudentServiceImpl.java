@@ -29,11 +29,11 @@ public class StudentServiceImpl implements StudentService {
 	private FileUtils fileUtils;
 
 	@Override
-	public Map<String, Object> SelectOne(String userEmail) {
+	public Map<String, Object> SelectOne(int no) {
 		// TODO Auto-generated method stub
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		MemberFileDto memberFileDto = studentDao.SelectOne(userEmail);
+		MemberFileDto memberFileDto = studentDao.SelectOne(no);
 		
 		resultMap.put("MemberFileDto", memberFileDto);
 		return resultMap;
@@ -113,11 +113,12 @@ public class StudentServiceImpl implements StudentService {
 
 
 	@Override
-	public Map<String, Object> QuestionSelect(int idx) {
+	public Map<String, Object> QuestionSelect(int no, int idx) {
 		// TODO Auto-generated method stub
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		QuestionBoardDto questionBoardDto = studentDao.QuestionSelect(idx);
+		QuestionBoardDto questionBoardDto = studentDao.QuestionSelect(no, idx);
 		resultMap.put("QuestionBoardDto", questionBoardDto);
 		
 		return resultMap;

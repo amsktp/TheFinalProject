@@ -11,14 +11,17 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	
+	
 	$('.layoutUl').children().eq(2).addClass('on');
- 
+ 	$('input[type=password]').focus();
+ 	
     $('#editBtn').click(function() {
 
     	var password = $('input[type=password]').val();
         var passwordCheck = '${member.memberPassword}';
         if(password == passwordCheck){
-         location.href = "/englishvillage/update.do"
+         location.href = "/englishvillage/student/update.do"
             }else{
             	alert("비밀번호가 일치하지 않습니다.");
             }
@@ -26,27 +29,32 @@ $(document).ready(function(){
 });
 
 
-// onClick='updateMoveFnc(${member.memberNo});'
 </script>
+<style type="text/css">
+
+input[type=button] {
+margin-left: 68px;
+
+}
+
+</style>
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
-	<div id="pageSize">
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div id="myPageBox">
+		<div class="col-md-7" style="margin-top: 40px">
 
 			<div id="pageName">본인인증</div>
 
 			<div id="pwdCheckBox" style="padding-top: 25px;">
-				<h4 style="font-weight: bold; text-align: center;">개인정보 변경을 위해 비밀번호를 입력해주세요</h4>
+				<h3 style="font-weight: bold; text-align: center;">비밀번호를 입력해주세요</h3>
 
-				<input class="pwdInputBox" type="password" placeholder=" 비밀번호" value="${member.memberPassword}"> 
-				
-				<input class="blackBtn" type='button' value='뒤로가기' onClick="location.href='/englishvillage/myInfo.do'">
-				<input id="editBtn" class="blackBtn" type='button' value='수정하기'> 
-
+				<input type="password" class="form-control pwdInputBox" value="${member.memberPassword}" maxlength="12">
+				<input class="btn btn-default btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/student/myInfo.do'">
+				<input id="editBtn" class="btn btn-primary btn-lg" type='button' value='입력완료'> 
+  
 			</div>
 
 
@@ -58,5 +66,5 @@ $(document).ready(function(){
 
 
 </body>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>
