@@ -69,8 +69,7 @@ $(document).ready(function(){
 				</div>
 				
 				<div>
-					<textarea id="introduceContents">
-						${getTutorDtoInfo.tutorIntroduce}
+					<textarea id="introduceContents" style="margin-left: 80px;">${getTutorDtoInfo.tutorIntroduce}
 					</textarea>
 				</div>
 				

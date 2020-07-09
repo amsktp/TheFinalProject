@@ -37,6 +37,9 @@ $(document).ready(function(){
 				</tr>
 					
 			</table>
+			<textarea style="margin-left:400px; width: 100px; height: 100px;">
+			
+			</textarea>
 					
 		</div>
 	</div>

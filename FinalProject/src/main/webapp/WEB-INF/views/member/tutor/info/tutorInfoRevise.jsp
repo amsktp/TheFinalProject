@@ -64,27 +64,6 @@ $(document).ready(function(){
 					<div class="profileContents">
 						국적
 					</div>
-
-				</div>
-				<div class="profileContents">
-					Email
-				</div>
-				<div class="profileContents">
-					비밀번호
-				</div>
-				<div class="profileContents">
-					비밀번호확인
-				</div>
-				<br/>
-				<div class="profileContents">
-					성별
-				</div>
-				<div class="profileContents">
-					생년월일
-				</div>
-				<div class="profileContents">
-					국적
-				</div>
 			</div>
 		<form id="modifyPassword" action="tutorPrivateInfoCtr.do" method="post">	
 			<div class="profileTitle">
@@ -115,10 +94,18 @@ $(document).ready(function(){
 				<input type="hidden" name="memberNo" value="${member.memberNo}"	>
 			</div>
 						
-			<button class="Btn" style="margin-right: 150px; margin-top: 290px;">수정하기</button>
+			<button class="updateReviseBtn" style="margin-top: 160px;">
+				수정하기
+			</button>
 		</form>
-			<button class="Btn" onclick="location.href='tutorWithdraw.do'" style="margin-right: 150px;">회원탈퇴</button>
-			<button class="Btn" onclick="location.href='tutorPrivateInfo.do'" style="margin-right: 150px;">뒤로가기</button>
+			<button class="updateReviseBtn" 
+			onclick="location.href='tutorWithdraw.do'">
+				회원탈퇴
+			</button>
+			<button class="updateReviseBtn" 
+			onclick="location.href='tutorPrivateInfo.do'">
+				뒤로가기
+			</button>
 		
 		</div>
 	</div>
