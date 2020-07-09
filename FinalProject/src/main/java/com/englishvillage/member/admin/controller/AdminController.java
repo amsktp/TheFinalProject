@@ -45,15 +45,6 @@ public class AdminController {
 			+ searchOption + " : " + keyword);
 		System.out.println("여긴 오는지 1");
 		
-		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
-		if("name".equals(searchOption)) {
-			searchOption = "member_name";
-		}
-
-		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
-		if("email".equals(searchOption)) {
-			searchOption = "member_email";
-		}
 	
 		
 		// 페이징을 위한 전체 회원목록 갯수
@@ -84,14 +75,6 @@ public class AdminController {
 		
 		System.out.println("여긴 오는지 2");
 		// 화면의 form의 이름을 맞추기 위한 작업
-		
-		if("member_name".equals(searchOption)) {
-			searchOption = "name";
-		}
-
-		if("member_email".equals(searchOption)) {
-			searchOption = "email";
-		}
 		
 		// 검색
 		HashMap<String, Object> searchMap 
@@ -153,6 +136,7 @@ public class AdminController {
 			model.addAttribute("memberListDto", memberListDto);
 			
 //			model.addAttribute("fileList", fileList);
+		
 			
 			return "admin/student/adminStudentInfoRevise";
 		}
@@ -164,9 +148,15 @@ public class AdminController {
 									  ,MultipartHttpServletRequest multipartHttpServletRequest
 									  , Model model) throws ParseException {
 			
-			log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+			log.info("call studentUpdateCtr! {} :: {}" + memberListDto, fileIdx);
 			
 			int resultNum = 0;
+			
+			System.out.println(memberListDto.getNo());
+			System.out.println(memberListDto.getMember_name());
+			System.out.println(memberListDto.getMember_email());
+			System.out.println(memberListDto.getGender());
+
 			
 			try {
 				// 설명하지 
@@ -184,8 +174,8 @@ public class AdminController {
 				if (sessionMemberListDto != null) {
 					
 					if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
-						MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getName()
-								,memberListDto.getEmail(),memberListDto.getPassword(), memberListDto.getModifiedDate()
+						MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getMember_name()
+								,memberListDto.getMember_email(),memberListDto.getPassword(), memberListDto.getModifiedDate()
 								,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
 						
 						session.removeAttribute("member");
@@ -211,15 +201,8 @@ public class AdminController {
 		log.info("Welcome MemberList! " + curPage + " : " 
 			+ searchOption + " : " + keyword);
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
-		if("name".equals(searchOption)) {
-			searchOption = "member_name";
-		}
 
-		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
-		if("email".equals(searchOption)) {
-			searchOption = "member_email";
-		}
-		
+	
 		
 	
 		
@@ -247,13 +230,7 @@ public class AdminController {
 				, start, end);
 
 		// 화면의 form의 이름을 맞추기 위한 작업
-		if("member_name".equals(searchOption)) {
-			searchOption = "name";
-		}
 
-		if("member_email".equals(searchOption)) {
-			searchOption = "email";
-		}
 		// 검색
 		HashMap<String, Object> searchMap 
 			= new HashMap<String, Object>();
@@ -277,16 +254,16 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/tutorlistOne.do", method = RequestMethod.GET)
 	public String tutorListOne(int no, String searchOption, String keyword, Model model) {
-		log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		log.info("call tutorlistOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
 		
 		Map<String, Object> map = adminService.memberTutorSelectOne(no);
 		
 		MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
 		
-//		List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+		List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 		
 		model.addAttribute("memberListDto", memberListDto);
-//		model.addAttribute("fileList", fileList);
+		model.addAttribute("fileList", fileList);
 		model.addAttribute("searchOption", searchOption);
 		model.addAttribute("keyword", keyword);
 		
@@ -305,11 +282,11 @@ public class AdminController {
 		
 		MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
 		
-//				List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+		List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 		
 		model.addAttribute("memberListDto", memberListDto);
 		
-//				model.addAttribute("fileList", fileList);
+		model.addAttribute("fileList", fileList);
 		
 		return "admin/tutor/adminTutorInfoRevise";
 	}
@@ -325,17 +302,17 @@ public class AdminController {
 			
 			MemberListDto memberListDto = (MemberListDto)map.get("memberListDto");
 			
-//					List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+			List<Map<String, Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 			
 			model.addAttribute("memberListDto", memberListDto);
 			
-//					model.addAttribute("fileList", fileList);
+			model.addAttribute("fileList", fileList);
 			
 			return "admin/tutor/adminTutorInfoProRevise";
 		}
 	
 	//회원수정
-			@RequestMapping(value = "/admin/tutorProUpdate.do", method = RequestMethod.POST)
+			@RequestMapping(value = "/admin/tutorUpdateCtr.do", method = RequestMethod.POST)
 			public String TutorUpdateCtr(HttpSession session, MemberListDto memberListDto,
 										  @RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
 										  ,MultipartHttpServletRequest multipartHttpServletRequest
@@ -362,8 +339,8 @@ public class AdminController {
 					if (sessionMemberListDto != null) {
 						
 						if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
-							MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getName()
-									,memberListDto.getEmail(),memberListDto.getPassword(), memberListDto.getModifiedDate()
+							MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getMember_name()
+									,memberListDto.getMember_email(),memberListDto.getPassword(), memberListDto.getModifiedDate()
 									,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
 							
 							session.removeAttribute("member");
@@ -378,14 +355,15 @@ public class AdminController {
 			}
 	
 	//회원수정
-		@RequestMapping(value = "/admin/tutorUpdateProCtr.do", method = RequestMethod.POST)
+		@RequestMapping(value = "/admin/tutorProUpdateCtr.do", method = RequestMethod.POST)
 		public String TutorProUpdateCtr(HttpSession session, MemberListDto memberListDto,
 									@RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
 									,MultipartHttpServletRequest multipartHttpServletRequest
 									, Model model) throws ParseException {
 				
 		log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
-			
+		
+		
 			int resultNum = 0;
 		try {
 			// 설명하지 
@@ -406,7 +384,7 @@ public class AdminController {
 				
 				if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
 					MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getUrl(),
-							memberListDto.getPrice(), memberListDto.getTutorTitle());
+							memberListDto.getPrice(), memberListDto.getTutorTitle(), memberListDto.getTutorText());
 					
 					System.out.println("여기오나?");
 					

@@ -253,15 +253,15 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public Map<String, Object> fileSelectStoredFileName(int no) {
+	public MemberListDto fileSelectStoreFileName(int no) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "fileSelectStoredFileName", no);
+		return sqlSession.selectOne(namespace + "fileSelectStoreFileName", no);
 	}
 
 	@Override
-	public int fileDelete(int parentSeq) {
+	public int fileDelete(int idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete(namespace + "fileDelete",parentSeq);
+		return sqlSession.delete(namespace + "fileDelete",idx);
 	}
 
 	
