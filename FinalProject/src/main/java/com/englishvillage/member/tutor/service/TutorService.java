@@ -52,4 +52,6 @@ public interface TutorService {
 
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);
 
+	public int changeTutorStatus(TutorDto tutorDto);
+
 }

@@ -150,7 +150,7 @@ public class TutorServiceImpl implements TutorService{
 	@Override
 	public List<TutorCommentDto> getTutorComments(int tutorNo) {
 		// TODO Auto-generated method stub
-		return tutorDao.TutorCommentDto(tutorNo);
+		return tutorDao.getTutorComments(tutorNo);
 	}
 
 	@Override
@@ -208,6 +208,12 @@ public class TutorServiceImpl implements TutorService{
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo) {
 		// TODO Auto-generated method stub
 		return tutorDao.getStudentTutorComment(studentNo, tutorNo);
+	}
+
+	@Override
+	public int changeTutorStatus(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.changeTutorStatus(tutorDto);
 	}
 
 	

@@ -40,7 +40,29 @@
 									,"강의창"
 									,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 							
-
+//							강사 시작하면 바뀌는 부분 좀더 설정해야함
+							$.ajax({
+								url: "/englishvillage/changeTutorStatusCheck.do",
+								type: "POST",
+								data: "memberNo=" + $("#sessionNo").val() + "&statusCheck=" + $('#statusCheck').val(),
+								success: function(data) {
+										if($('#statusSwitch').text() == 'on'){
+											$('#statusSwitch').text('off');
+											$('#statusSwitch').css('color', 'red');
+											$('#statusCheck').val('N');
+										} else {
+											$('#statusSwitch').text('on');
+											$('#statusSwitch').css('color', 'blue');
+											$('#statusCheck').val('Y');
+										}
+									 if(data == 0) {
+										alert("실패");
+									}
+									
+								}
+								
+							});
+						
 						} else if(con_test == false){
 							
 							var text=tutorAndStudentNo[1] + ","+tutorAndStudentNo[0] + ',' + 'T' + ',' + 'N';
@@ -66,8 +88,21 @@
 										,"강의창"
 										,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 							
-								location.href = "./addStudyHistoryCtr.do?tutorNum=" + $('#tutorNoNum').val() + "&studentNum=" + $('#studentNoNum').val();
+								$.ajax({
+									url: "/englishvillage/addStudyHistoryCtr.do",
+									type: "POST",
+									data: 'tutorNo=' + $('#tutorNoNum').val() + "&studentNo=" + $('#studentNoNum').val() 
+									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val(),
+									success: function(data) {
+											
+										alert("성공");
+										
+									}
+									
+								});
 								
+								
+						
 							}
 							
 						} 

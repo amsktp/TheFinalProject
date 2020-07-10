@@ -27,7 +27,7 @@ public interface TutorDao {
 
 	public TutorDto getTutorIntroduce(int tutorNo);
 
-	public List<TutorCommentDto> TutorCommentDto(int tutorNo);
+	public List<TutorCommentDto> getTutorComments(int tutorNo);
 
 	public int writeComment(TutorCommentDto tutorCommentDto);
 
@@ -49,6 +49,8 @@ public interface TutorDao {
 	public void insertFile(Map<String, Object> map);
 
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);
+
+	public int changeTutorStatus(TutorDto tutorDto);
 
 	
 }
