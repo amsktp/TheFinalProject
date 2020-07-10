@@ -63,6 +63,61 @@ public class FileUtils {
 				fileInfoMap.put("store_File_Name", store_File_Name);
 				fileInfoMap.put("file_size", multipartFile.getSize());
 				
+				fileList.add(fileInfoMap);
+			}
+			
+		} // while end 
+		
+		
+		return fileList;
+	}
+
+	
+	
+	
+	public List<Map<String, Object>> parseInsertFileTutorInfo(int tutorNo,
+			MultipartHttpServletRequest multipartHttpServletRequest) 
+				throws IllegalStateException, IOException{
+		
+		Iterator<String> iterator = 
+			multipartHttpServletRequest.getFileNames();
+		
+		MultipartFile multipartFile = null;
+		
+		String originalFileName = null;
+		String originalFileExtension = null;
+		String storeFileName = null;
+		
+		List<Map<String, Object>> fileList = 
+			new ArrayList<Map<String,Object>>();
+		Map<String, Object> fileInfoMap = null;
+		
+		File file = new File(FILE_PATH);
+		
+		if(file.exists() == false) {
+			file.mkdirs();
+		}
+		
+		while(iterator.hasNext()) {
+			multipartFile = 
+				multipartHttpServletRequest.getFile(iterator.next());
+			
+			if(multipartFile.isEmpty() == false) {
+				originalFileName = multipartFile.getOriginalFilename();
+				originalFileExtension = 
+					originalFileName.substring(
+						originalFileName.lastIndexOf("."));
+				storeFileName = CommonUtils.getRandomString() 
+						+ originalFileExtension;
+				 
+				file = new File(FILE_PATH, storeFileName);
+				multipartFile.transferTo(file);
+				
+				fileInfoMap = new HashMap<String, Object>();
+				fileInfoMap.put("tutorNo", tutorNo);
+				fileInfoMap.put("originalFileName", originalFileName);
+				fileInfoMap.put("storeFileName", storeFileName);
+				fileInfoMap.put("fileSize", multipartFile.getSize());
 				
 				
 				
@@ -75,6 +130,9 @@ public class FileUtils {
 		return fileList;
 	}
 
+	
+	
+	
 	public void parseUpdateFileInfo(MemberListDto memberFileSave) 
 		throws Exception{
 		// TODO Auto-generated method stub

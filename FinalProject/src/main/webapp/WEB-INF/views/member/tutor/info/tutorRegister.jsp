@@ -387,7 +387,7 @@ textarea:focus {outline:none;}
 							</tr>
 							<tr>
 								<td>강의제목</td>
-								<td><input id='titleInput' type="text" name="studyName"></td>
+								<td><input id='titleInput' type="text" name="studyName" maxlength="30"></td>
 							</tr>
 						</table>
 					</div>

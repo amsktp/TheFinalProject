@@ -1,6 +1,7 @@
 package com.englishvillage.member.tutor.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.tutor.dao.TutorDao;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
@@ -173,6 +176,40 @@ public class TutorServiceImpl implements TutorService{
 		// TODO Auto-generated method stub
 		return tutorDao.addStudyHistory(tutorCommentDto);
 	}
+
+	@Override
+	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest) {
+		// TODO Auto-generated method stub
+		
+		
+		int memberNo = tutorDto.getMemberNo();
+		
+		try {
+			List<Map<String, Object>> fileList = 
+				fileUtils.parseInsertFileTutorInfo(memberNo
+					, mulRequest);
+			
+			for (int i = 0; i < fileList.size(); i++) {
+				tutorDao.insertFile(fileList.get(i));
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("문제 생기면 처리할꺼 정하자");
+			System.out.println("일단 여긴 파일 처리 중 문제 발생한 거야");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	@Override
+	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo) {
+		// TODO Auto-generated method stub
+		return tutorDao.getStudentTutorComment(studentNo, tutorNo);
+	}
+
 	
 	
 }

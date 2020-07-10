@@ -397,7 +397,7 @@ img {
 				<div class="tutorInfoDiv clearfix" >
 					<div class="tutorImgDiv" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 						<img alt="image not found" class='tutorImg'
-						src="<c:url value='/img/${tutorDto.storeFileName}.jpg'/>">
+						src="<c:url value='/img/${tutorDto.storeFileName}'/>">
 					</div>
 					
 					<div class="studyTitle" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">${tutorDto.studyName}</div>

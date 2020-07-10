@@ -114,10 +114,18 @@ public class TutorController {
 		tutorDto.setMemberNo(memberNo);
 		
 		int insertResult = tutorService.tutorRegister(tutorDto);
+
+		tutorService.tutorAddProfile(tutorDto, mulRequest);
 		
 		int updateResult = tutorService.tutorUpdateGrade(memberNo);
 		
+		TutorDto newTutorDto = tutorService.getTutorInfo(memberNo);
 		
+		MemberDto newSessionMemberDto = authService.memberExist(newTutorDto.getMemberEmail(), newTutorDto.getMemberPassword());
+		
+		session.removeAttribute("member");
+		
+		session.setAttribute("member", newSessionMemberDto);
 		
 		if(insertResult == 0) {
 			log.warn("튜터 레지스터가 실패했습니다.");
@@ -130,31 +138,38 @@ public class TutorController {
 		} else {
 			log.info("튜터 GRADE 변경 성공!");
 		}
-		
+
 		return "redirect:./home.do";
 	}
 
 	@RequestMapping(value = "/tutorSelectOne.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request) {
-		
+	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request, HttpSession session) {
 		
 		
 		System.out.println(request.getAttribute("tutorNo"));
 		if(request.getAttribute("tutorNo") != null) {
 			tutorNo = (int)request.getAttribute("tutorNo");
 		}
+		System.out.println("asdsad");
 		
+		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		
+		System.out.println(tutorNo);
+		System.out.println(sessionMemberDto.getMemberNo());
 		
+		TutorCommentDto studentTutorCommentDtoList = tutorService.getStudentTutorComment(sessionMemberDto.getMemberNo(), tutorNo);
 		
+		System.out.println("asdsad");
 		
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
-		
 		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
+		System.out.println("asdsad");
 		
 		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
+		model.addAttribute("studentTutorCommentDtoList", studentTutorCommentDtoList);
 		model.addAttribute("tutorDto", tutorDto);
+		
 		
 		return "member/tutor/info/tutorSelectOne";
 	}
@@ -411,6 +426,13 @@ public class TutorController {
 	public String tutorCommentModifyCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
 		
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
 		int resultNum = tutorService.modifyComment(tutorCommentDto);
 		
 		

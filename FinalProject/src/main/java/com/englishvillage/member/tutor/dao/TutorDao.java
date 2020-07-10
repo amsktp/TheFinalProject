@@ -1,6 +1,7 @@
 package com.englishvillage.member.tutor.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
@@ -44,6 +45,10 @@ public interface TutorDao {
 	public TutorDto boardSelect(int no);
 
 	public int addStudyHistory(TutorCommentDto tutorCommentDto);
+
+	public void insertFile(Map<String, Object> map);
+
+	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);
 
 	
 }
