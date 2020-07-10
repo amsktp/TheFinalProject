@@ -119,7 +119,7 @@ public class AuthController {
 			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
 			
 		} else {
-			viewUrl = "redirect:/auth/findPassword";
+			viewUrl = "redirect:/findPassword.do";
 		}
 		return viewUrl;
 		 
