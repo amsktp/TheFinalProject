@@ -8,6 +8,11 @@
 <title>회원 목록</title>
 
 <style type="text/css">
+	th { 
+		text-align: center; 
+	}
+
+
 	table {
 		border-collapse: collapse;
 	}
@@ -22,7 +27,7 @@
 	}
 	
 	#allDiv {
-		font-weight: bold;
+		box-sizing: border-box;
 	}
 </style>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
@@ -110,22 +115,22 @@
 	
 				</c:choose>	
 			</select>
-			<input type="text" id='keyword' name="keyword" value="${searchMap.keyword}"
+			<input type="text" id=' keyword' name="keyword" value="${searchMap.keyword}"
 				 placeholder="회원이름 or 이메일 검색">
 			<input type="submit" value="검색">
 			
 		</form>
 	
 		<table class="table table-hover">
-			<tr class="success" style="font-weight: bolder; text-align: center;">
-				<th>회원번호</th>
-				<th>이름</th>
-				<th>국가</th>
-				<th>이메일</th>
-				<th>등급</th>
-				<th>생성일</th>
-				<th>포인트</th>
-				
+			<tr class="success">
+				<th style="text-align: center; font-weight: bold;">회원번호</th>
+				<th style="text-align: center; font-weight: bold;">이름</th>
+				<th style="text-align: center; font-weight: bold;">국가</th>
+				<th style="text-align: center; font-weight: bold;">이메일</th>
+				<th style="text-align: center; font-weight: bold;">등급</th>
+				<th style="text-align: center; font-weight: bold;">생성일</th>
+				<th style="text-align: center; font-weight: bold;">포인트</th>
+				 
 			</tr>
 		
 		<c:if test="${empty memberList}">
@@ -136,7 +141,7 @@
 		
 		<c:forEach var="memberDto" items="${memberList}">
 			<tr>
-				<td>${memberDto.no}</td>
+				<td style="text-align: center;">${memberDto.no}</td>
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
@@ -147,12 +152,15 @@
 				
 				<td>${memberDto.member_email}</td>
 				
-				<td>${memberDto.grade}</td>
+				<c:if test="${memberDto.grade eq 'Y'}">
+					<td><c:out value="강사"></c:out></td>
+				</c:if>
 				
 				<td>
 					<fmt:formatDate value="${memberDto.createdDate}" pattern="yyyy-MM-dd"/> 
 				</td>
-				<td>${memberDto.point}</td>
+				<td style="text-align: right;" id='point'>
+				<fmt:formatNumber value="${memberDto.point}" pattern="#,###"/></td>
 	
 	<%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
 	<!-- 				<td>첨부파일 없음</td> -->
