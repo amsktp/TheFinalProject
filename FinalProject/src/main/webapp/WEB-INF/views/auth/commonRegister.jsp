@@ -22,6 +22,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		font-weight: bold;
 	}
 	
 	.thirdBox {
@@ -44,15 +45,16 @@
 		font-size: 25px;
 		font-weight: bold;
 		padding-left: 37px;
-		margin-bottom: 20px;		
+		margin-bottom: 20px;
 	}
 	
 	.oneInputBox {
 		width: 300px;
 		height: 40px;
 		margin-bottom: 10px;
-		background-color: #66ccff;
+		background-color:#E1E1E1;
 		border: none;
+		padding-left: 10px;
 	}
 
 	#emailCheckBtn {
@@ -67,12 +69,13 @@
 		width: 141px;
 		height: 40px;
 		margin-right: 10px;
-		background-color: #66ccff;
+		background-color: #E1E1E1;
 		border: none;
+		padding-left: 10px;
 	}
 		
 	.twoInputBoxBtn {
-		width: 147px;
+		width: 153px;
 		height: 40px;
 		margin-right: 10px;
 		margin-top: 10px; 
@@ -97,23 +100,28 @@
 		height: 40px;
 		margin-right: 10px;
 		text-align: center;
-		background-color: #66ccff;
+		background-color: #E1E1E1;
 		border: none;
+		padding-left: 10px;
 	}
 	
 	#selectCountry {
-		width: 193px;
+		width: 203px;
 		height: 40px;
 		margin-right: 10px;
 		border: none; 
-		background-color: #66ccff;
+		background-color: #E1E1E1;
+		color: gray;
+		padding-left: 10px;
 	}
 
 	#selectGender {
 		width: 100px;
 		height: 40px;
 		border: none; 
-		background-color: #66ccff;
+		background-color: #E1E1E1;
+		color: gray;
+		padding-left: 10px;
 	}
 
 </style>
@@ -268,9 +276,9 @@
 						<span>이메일</span>
 					</div>
 					<div>
-						<input type="email" name="memberEmail" placeholder="이메일을 입력하세요"
+						<input id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요"
 								style="width: 190px; height: 40px; float: left; margin-right: 10px;
-								background-color: #66ccff;border: none;">
+								background-color: #E1E1E1;border: none;padding-left: 10px;">
 					</div>
 					<div>
 						<input id="emailCheckBtn" type="button" value="이멜 중복확인" onclick="emailChkFnc();">
@@ -278,7 +286,7 @@
 				</div>
 				<div class="thirdBox">
 					<div>
-						<input class="verifyNumBtn" type="button" value="인증번호 요청">
+						<input id="requestNumBtn" class="verifyNumBtn" type="button" value="인증번호 요청">
 					</div>
 					<div>
 						<input id="inputVerifyNum" type="text">
@@ -312,7 +320,7 @@
 					</div>
 					<div>
 						<input class="oneInputBox" id="memberBirthDate" type="date" name="birthDate" placeholder="생년월일을 입력하세요"
-								style="width: 303px;">
+								style="width: 303px;color: gray;">
 					</div>
 					<div class="thirdBox">
 						<div>

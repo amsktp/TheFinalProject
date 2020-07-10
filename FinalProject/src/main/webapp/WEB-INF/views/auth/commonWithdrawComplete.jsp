@@ -34,7 +34,6 @@
 		text-align: center;		
 	}
 	
-	
 	#withdrawBtn {
 		width: 300px;
 		height: 45px;

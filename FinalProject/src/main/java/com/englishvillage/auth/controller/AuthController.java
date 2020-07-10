@@ -87,7 +87,7 @@ public class AuthController {
 //		서비스에 있으면 컨트롤러에서 호출 (자주 사용한다면)
 		
 		authService.memberInsertOne(memberDto);
-		
+
 		return "redirect:/commonRegisterComplete.do";
 	} 
 	
@@ -119,7 +119,7 @@ public class AuthController {
 			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
 			
 		} else {
-			viewUrl = "redirect:/findPassword.do";
+			viewUrl = "redirect:/auth/findPassword";
 		}
 		return viewUrl;
 		 

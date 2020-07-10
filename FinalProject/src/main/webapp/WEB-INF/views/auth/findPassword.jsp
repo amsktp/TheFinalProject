@@ -9,7 +9,7 @@
 <style type="text/css">
 	
 	#mainBox {
-		height: 800px;
+		height: 600px;
 		width: 400px; 
 		position: absolute;
 		top: 50%;
@@ -22,6 +22,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		font-weight: bold;
+	}
+	
+	.thirdBox {
+		display: flex; 
+		justify-content: flex-start;		
 	}
 	
 	#titleBox {
@@ -44,20 +50,16 @@
 		width: 300px;
 		height: 40px;
 		margin-bottom: 10px;
-		background-color: #66ccff;
+		background-color: #E1E1E1;
 		border: none;
-	}
-	
-	.thirdBox {
-		display: flex; 
-		justify-content: flex-start;		
+		padding-left: 10px;
 	}
 	
 	.twoInputBoxBtn {
-		width: 147px;
+		width: 152px;
 		height: 40px;
 		margin-right: 10px;
-		margin-top: 10px; 
+/* 		margin-top: 10px;  */
 		text-align: center;
 		font-weight: bold;
 		background-color: black;
@@ -79,10 +81,9 @@
 	
 	/* 비밀번호 찾기 유효성 */
 	function findPasswordBtn(){
-		var memberNameObj = document.getElementById('memberEmail');
-		var memberEmailObj = document.getElementById('memberPwd');
+		var memberNameObj = document.getElementById('memberName');
+		var memberEmailObj = document.getElementById('memberEmail');
 		var memberBirthDateObj = document.getElementById('memberBirthDate');
-		var emptyMemberNameObj = document.getElementById('emptyMemberName');
 		
 		if(memberNameObj.value.length == 0){
 			alert("이름을 입력해주세요.");
@@ -119,8 +120,6 @@
 					<div>
 						<input class="oneInputBox" id="memberName" type="text" name="memberName" placeholder="이름을 입력하세요">
 					</div>
-					<div id="emptyMemberName">
-					</div>
 				</div>
 				<div>
 					<div>
@@ -134,9 +133,9 @@
 					<div>
 						<span>생년월일</span>
 					</div>
-					<div style="margin-bottom: 20px;">
+					<div style="margin-bottom: 10px;">
 						<input class="oneInputBox" id="memberBirthDate" type="date" name="memberBirthDate" placeholder="생년월일을 입력하세요"
-								style="width: 303px;">
+								style="width: 303px;color: gray;">
 					</div>
 					<div class="thirdBox">
 						<div>

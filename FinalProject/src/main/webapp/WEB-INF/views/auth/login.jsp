@@ -9,13 +9,20 @@
 <style type="text/css">
 	
 	#mainBox {
-		height: 800px;
+		height: 600px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;
  		left: 50%;
  		transform: translate(-50%, -50%);
  		background-color: white;
+	}
+	
+	#secondBox {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
 	}
 	
 	#titleBox {
@@ -34,22 +41,17 @@
 		margin-bottom: 20px;		
 	}
 	
-	#secondBox {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
 	.emailPwdBox {
 		width: 300px;
 		height: 40px;
-		margin-bottom: 20px;
-		background-color: #66ccff;
+		margin-bottom: 10px;
+		background-color: #E1E1E1;
 		border: none;
+		padding-left: 10px;
 	}
 	
 	#loginBtn {
-		width: 308px;
+		width: 312px;
 		height: 40px;
 		margin-bottom: 20px;
 		font-size: 17px;
@@ -60,7 +62,7 @@
 	}
 	
 	.findPwdAndRegister {
-		width: 146px;
+		width: 148px;
 		height: 40px;
 		margin-right: 10px;
  		font-weight: bold; 
@@ -120,7 +122,7 @@
 					<div>
 						<span>비밀번호</span>
 					</div>
-					<div style="margin-bottom: 40px;">
+					<div style="margin-bottom: 20px;">
 						<input class="emailPwdBox" id="memberPwd" type="password" name="memberPassword" 
 							placeholder="비밀번호를 입력하세요" value="test1">
 					</div>
