@@ -63,6 +63,7 @@
 		margin-bottom: 10px;
 		background-color: #FFE146;
 		border: none;
+		font-size: 12px;
 	}
 	
 	.twoInputBox {
@@ -160,6 +161,14 @@
 
 		});
 		
+		
+		
+		$('#memberEmail').change(function() {
+			$("#emailCheck").val("N");
+			$("#verifyNumResult").val('N');
+			
+		});
+		
 	});
 	
 
@@ -176,9 +185,10 @@
 			data: "memberEmail=" + $("#memberEmail").val(),
 			success: function(data) {
 				if(data >= 1){
+					$("#emailCheck").val('N');
 					alert("중복된 이메일입니다.");
 				} else if(data == 0) {
-					$("#emailCheck").attr("value", "Y");
+					$("#emailCheck").val('Y');
 					alert("사용가능한 이메일입니다.");
 				}
 				
@@ -225,8 +235,14 @@
 		} else if(memberEmailObj.value.length == 0){		
 			alert("이메일을 입력해주세요.");
 			return false;
+		} else if($('#emailCheck').val() == 'N'){
+			alert("이메일 중복확인을 해주세요")
+			return false;
 		} else if(verifyNumObj.value.length == 0){		
 			alert("인증번호를 입력해주세요.");
+			return false;
+		} else if($('#verifyNumResult').val() == 'N'){		
+			alert("인증번호가 확인되지 않았습니다.");
 			return false;
 		} else if(memberPasswordObj.value.length == 0){		
 			alert("비밀번호를 입력해주세요.");
@@ -277,7 +293,8 @@
 								background-color: #E1E1E1;border: none;padding-left: 10px;">
 					</div>
 					<div>
-						<input id="emailCheckBtn" type="button" value="이멜 중복확인" onclick="emailChkFnc();">
+						<input id="emailCheckBtn" type="button" value="이메일 중복확인" onclick="emailChkFnc();">
+						<input id="emailCheck" type="hidden" value="N">
 					</div>
 				</div>
 				<div class="thirdBox">
@@ -286,7 +303,7 @@
 					</div>
 					<div>
 						<input id="inputVerifyNum" type="text">
-						<input type="hidden" id="sendVerifyNum" value="5325">
+						<input type="hidden" id="sendVerifyNum" value="">
 					</div>
 					<div>
 						<input type="hidden" id="verifyNumResult" value="N">

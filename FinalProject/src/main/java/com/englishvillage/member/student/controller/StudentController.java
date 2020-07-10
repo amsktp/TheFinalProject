@@ -278,4 +278,21 @@ public class StudentController {
 		return "/home/student/qna/studentQnAWrite";
 	}
 
+	// 고재민 작업분 (수강권 구매)
+	@RequestMapping(value = "/buyPoint.do", method = { RequestMethod.GET })
+	public String buyPoint(Locale locale, HttpSession session, Model model) {
+		log.info("@@@@@@@buyPoint!!!@@@@@@@@@");
+
+		return "/auth/buyPoint";
+	}
+	
+	// 고재민 작업분 (수강권 구매Ctr)
+	@RequestMapping(value = "/buyPointCtr.do", method = { RequestMethod.POST })
+	public String buyPointCtr(Locale locale, HttpSession session, Model model) {
+		log.info("@@@@@@@buyPointCtr!!!@@@@@@@@@");
+
+		return "/auth/buyPoint";
+	}
+	
+	
 }
