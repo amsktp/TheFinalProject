@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.tutor.model.TutorDto;
+import com.englishvillage.member.tutor.service.TutorService;
 
 @Controller
 public class AuthController {
@@ -31,6 +33,9 @@ public class AuthController {
 	
 	@Autowired
 	private AuthService authService;
+	
+	@Autowired
+	private TutorService tutorService;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -48,19 +53,28 @@ public class AuthController {
 		
 		String viewUrl = "";
 		MemberDto memberDto = authService.memberExist(memberEmail, memberPassword);
-		// 이메일과 비밀번호의 변수를 넘겨주고 값을 받아와서 memberDto에 저장한다.
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);
-			// memberDto를 member변수로 담는다.
+
 			viewUrl = "redirect:/home.do";
 		} else {
-			viewUrl = "redirect:/login.do";
-			// 로그인 실패하면 세션에 들어가지 못하고, 로그인 성공하면 세션에 들어가서 로그아웃할때까지 세션이 유지됨
+			viewUrl = "redirect:/loginError.do";
 		}
+		
+		
+		
+		
 		return viewUrl;
 	}
 
+	@RequestMapping(value="loginError.do", method=RequestMethod.GET)
+	public String loginError(Model model){
+		log.info("*****Welcome loginError!*****");
+		
+		return "auth/loginError";
+	}
+	
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session, Model model){
 		log.info("*****Welcome Logout!*****");
@@ -86,16 +100,33 @@ public class AuthController {
 		memberDto.setMemberBirthDate(parseDate);
 //		서비스에 있으면 컨트롤러에서 호출 (자주 사용한다면)
 		
-		authService.memberInsertOne(memberDto);
+		String viewUrl = "";
 		
-		return "redirect:/commonRegisterComplete.do";
+		try {
+			authService.memberInsertOne(memberDto);
+			viewUrl = "redirect:/commonRegisterComplete.do";
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			viewUrl = "redirect:/commonRegisterError.do";
+		}
+
+		return viewUrl;
+	} 
+	
+	@RequestMapping(value="commonRegisterError.do", method=RequestMethod.GET)
+	public String commonRegisterError(Model model) {
+		log.info("*****commonRegisterError!*****"); 
+		
+		return "auth/commonRegisterError";
+		
 	} 
 	
 	@RequestMapping(value="/commonRegisterComplete.do", method=RequestMethod.GET)
 	public String commonRegisterComplete() {
 		log.info("*****Welcome CommonRegisterComplete!*****");
 		
-		return "auth/commonRegisterComplete"; // jsp 페이지로 이동
+		return "auth/commonRegisterComplete";
 	} 
 	
 	@RequestMapping(value="/findPassword.do", method=RequestMethod.GET)
@@ -119,10 +150,16 @@ public class AuthController {
 			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
 			
 		} else {
-			viewUrl = "redirect:/findPassword.do";
+			viewUrl = "redirect:/findPasswordError.do";
 		}
 		return viewUrl;
-		 
+	} 
+	
+	@RequestMapping(value="/findPasswordError.do", method=RequestMethod.GET)
+	public String findPasswordError(Model model) {
+		log.info("*****Welcome findPasswordError!*****");
+		
+		return "auth/findPasswordError";
 	} 
 	
 	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
@@ -145,7 +182,7 @@ public class AuthController {
 	   
 		
 	    String setfrom = "javacatch5@gmail.com";
-//	    DB??
+
 	    	title = "회원가입 인증번호 입니다.";
 	    	content = "회원가입 인증번호는 "+ verifyNum + " 입니다.";
 	    	
@@ -162,7 +199,7 @@ public class AuthController {
 	      
 	    } catch(Exception e){
 	      System.out.println(e);
-//	      오류는 페이지화 시킬 것 
+
 	    }
 	   
 	    return "redirect:/auth/mailCtr";
@@ -207,13 +244,7 @@ public class AuthController {
 		
 		int result = authService.emailCheck(memberDto);
 		
-		System.out.println(result);
-		System.out.println(result);
-		System.out.println(result);
-		System.out.println(result);
-		
 		return result;
 	}
-	
 	
 }

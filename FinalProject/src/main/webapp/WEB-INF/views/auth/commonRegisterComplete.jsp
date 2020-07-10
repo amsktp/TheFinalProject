@@ -9,29 +9,41 @@
 <style type="text/css">
 	
 	#mainBox {
-		border: 1px solid red;
-		height: 800px;
+		height: 500px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;
  		left: 50%;
  		transform: translate(-50%, -50%);
+ 		background-color: white;
 	}
 	
 	#titleBox {
+		background-color: black;
+		color: white;
 		font-size: 40px;
 		font-weight: bold;
 		margin-bottom: 100px;
-		border: 1px dotted blue;
 		text-align: center;
 	}
 	
+	#subTitleBox {
+		font-size: 25px;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 50px;	
+			
+	}
+	
 	#loginBtn {
-		width: 250px;
+		width: 300px;
 		height: 45px;
 		font-size: 18px;
 		font-weight: bold;
-		margin-top: 30px;
+		margin-top: 40px;
+		border: none;
+		background-color: black;
+		color: white;
 	}
 
 
@@ -44,18 +56,21 @@
 </script>
 
 </head>
-<body>
+<body style="background-color: #EEEEEE;">
 
 	<div id="mainBox">
 		<div id="titleBox">
-			ENGLISH VILLAGE
+			<span>ENGLISH VILLAGE</span>
+		</div>
+		<div id="subTitleBox">
+			<span>회원가입 완료</span>
 		</div>
 			<div style="text-align: center;">
-				<span><span style="font-weight: bold;">English Village</span>에 가입하신 것을 환영합니다!</span><br><br>
-				<span>로그인 후 정상적으로 서비스를 이용하실 수 있습니다.</span><br>
+				<span><span style="font-weight: bold;">English Village</span>에 오신 것을 환영합니다!</span><br><br>
+				<span>로그인 후 서비스를 이용하실 수 있습니다.</span><br>
 			</div>
 			<div style="display: flex; justify-content: center;">		
-				<div id="loginBtn">
+				<div>
 					<input id="loginBtn" type="button" value="로그인 페이지로 이동" onclick="moveLoginBtn();">
 				</div>
 			</div>

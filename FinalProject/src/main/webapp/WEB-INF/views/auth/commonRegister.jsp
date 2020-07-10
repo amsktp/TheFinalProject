@@ -9,92 +9,120 @@
 <style type="text/css">
 	
 	#mainBox {
-		border: 1px solid red;
 		height: 800px;
 		width: 400px; 
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-	}
-	
-	#secondTitleBox {
-		font-size: 25px;
-		font-weight: bold;
-		padding-left: 37px;
-		margin-bottom: 20px;		
+		background-color: white;
 	}
 	
 	#secondBox {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-	
-	#titleBox {
-		font-size: 40px;
 		font-weight: bold;
-		text-align: center;
-		margin-bottom: 70px;
-		border: 1px dotted blue;
 	}
 	
-	.oneBarInputBox {
-		width: 300px;
-		height: 30px;
-		margin-bottom: 10px;
-	}
-	
-	#memberEmail {
-		width: 175px;
-		height: 30px;
-		float: left;
-		margin-right: 10px;
-	}
-	
-	#pressEmailCheck {
-		width: 115px;
-		height: 36px;
-		margin-bottom: 10px;
-	}
-	
-	.wrapInputBox {
+	.thirdBox {
 		display: flex; 
 		justify-content: flex-start;
 		margin-bottom: 10px;
 	}
 	
-	.twoBarInputBox {
+	
+	#titleBox {
+		background-color: black;
+		color: white;
+		font-size: 40px;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 70px;		
+	}
+	
+	#subTitleBox {
+		font-size: 25px;
+		font-weight: bold;
+		padding-left: 37px;
+		margin-bottom: 20px;
+	}
+	
+	.oneInputBox {
+		width: 300px;
+		height: 40px;
+		margin-bottom: 10px;
+		background-color:#E1E1E1;
+		border: none;
+		padding-left: 10px;
+	}
+
+	#emailCheckBtn {
+		width: 100px;
+		height: 42px;
+		margin-bottom: 10px;
+		background-color: #FFE146;
+		border: none;
+		font-size: 12px;
+	}
+	
+	.twoInputBox {
 		width: 141px;
-		height: 30px;
+		height: 40px;
 		margin-right: 10px;
+		background-color: #E1E1E1;
+		border: none;
+		padding-left: 10px;
 	}
 		
-	.twoBarInputBoxBtn {
-		width: 150px;
+	.twoInputBoxBtn {
+		width: 153px;
 		height: 40px;
 		margin-right: 10px;
 		margin-top: 10px; 
 		text-align: center;
 		font-weight: bold;
+		border: none;
+		background-color: black;
+		color: white;
 	}
 	
-	.threeBarInputBox {
-		width: 88px;
-		height: 30px;
+	.verifyNumBtn {
+		width: 100px;
+		height: 42px;
 		margin-right: 10px;
 		text-align: center;
+		background-color: #FFE146;
+		border: none;
+	}
+	
+	#inputVerifyNum {
+		width: 80px;
+		height: 40px;
+		margin-right: 10px;
+		text-align: center;
+		background-color: #E1E1E1;
+		border: none;
+		padding-left: 10px;
 	}
 	
 	#selectCountry {
-		width: 180px;
-		height: 35px;
+		width: 203px;
+		height: 40px;
 		margin-right: 10px;
+		border: none; 
+		background-color: #E1E1E1;
+		color: gray;
+		padding-left: 10px;
 	}
 
 	#selectGender {
-		width: 118px;
-		height: 35px;
+		width: 100px;
+		height: 40px;
+		border: none; 
+		background-color: #E1E1E1;
+		color: gray;
+		padding-left: 10px;
 	}
 
 </style>
@@ -110,7 +138,7 @@
 		$('#sendVerifyNum').val(verifyNum);
 		
 		
-		$('#authBtn').click(function() {
+		$('#requestNumBtn').click(function() {
 			
 			alert($('#memberEmail').val() + '로 인증번호를 전송하였습니다.');
 			
@@ -133,6 +161,14 @@
 
 		});
 		
+		
+		
+		$('#memberEmail').change(function() {
+			$("#emailCheck").val("N");
+			$("#verifyNumResult").val('N');
+			
+		});
+		
 	});
 	
 
@@ -149,9 +185,10 @@
 			data: "memberEmail=" + $("#memberEmail").val(),
 			success: function(data) {
 				if(data >= 1){
+					$("#emailCheck").val('N');
 					alert("중복된 이메일입니다.");
 				} else if(data == 0) {
-					$("#emailCheck").attr("value", "Y");
+					$("#emailCheck").val('Y');
 					alert("사용가능한 이메일입니다.");
 				}
 				
@@ -165,10 +202,6 @@
 		location.href = "login.do";
 	}
 
-	function registerCompleteBtn() {
-		location.href = "commonRegisterComplete.do";
-	}
-	
 	function checkNumFnc() {
 		var inputVerifyNumObj = document.getElementById('inputVerifyNum');
 		var sendVerifyNumObj = document.getElementById('sendVerifyNum');
@@ -202,8 +235,14 @@
 		} else if(memberEmailObj.value.length == 0){		
 			alert("이메일을 입력해주세요.");
 			return false;
+		} else if($('#emailCheck').val() == 'N'){
+			alert("이메일 중복확인을 해주세요")
+			return false;
 		} else if(verifyNumObj.value.length == 0){		
 			alert("인증번호를 입력해주세요.");
+			return false;
+		} else if($('#verifyNumResult').val() == 'N'){		
+			alert("인증번호가 확인되지 않았습니다.");
 			return false;
 		} else if(memberPasswordObj.value.length == 0){		
 			alert("비밀번호를 입력해주세요.");
@@ -225,77 +264,81 @@
 </script>
 
 </head>
-<body>
+<body style="background-color: #EEEEEE;">
 
 	<div id="mainBox">
 		<div id="titleBox">
-			ENGLISH VILLAGE
+			<span>ENGLISH VILLAGE</span>
 		</div>
-		<div id="secondTitleBox">
-			회원가입
+		<div id="subTitleBox">
+			<span>회원가입</span>
 		</div>
 		<div id="secondBox">
 			<form action="./commonRegisterCtr.do" method="post" onsubmit="return commonRegisterBtn();">
 				<div>
 					<div>
-						이름
+						<span>이름</span>
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="memberName" type="text" name="memberName" placeholder="이름을 입력하세요">
+						<input class="oneInputBox" id="memberName" type="text" name="memberName" placeholder="이름을 입력하세요">
 					</div>
 				</div>
 				<div>
 					<div>
-						이메일
+						<span>이메일</span>
 					</div>
 					<div>
-						<input id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요" >
+						<input id="memberEmail" type="email" name="memberEmail" placeholder="이메일을 입력하세요"
+								style="width: 190px; height: 40px; float: left; margin-right: 10px;
+								background-color: #E1E1E1;border: none;padding-left: 10px;">
 					</div>
 					<div>
-						<input id="pressEmailCheck" type="button" value="이메일 중복 확인" onclick="emailChkFnc();">
+						<input id="emailCheckBtn" type="button" value="이메일 중복확인" onclick="emailChkFnc();">
+						<input id="emailCheck" type="hidden" value="N">
 					</div>
 				</div>
-				<div class="wrapInputBox">
+				<div class="thirdBox">
 					<div>
-						<input id="authBtn" class="threeBarInputBox" type="button" value="인증번호 요청" style="width: 100px; height: 36px;" >
+						<input id="requestNumBtn" class="verifyNumBtn" type="button" value="인증번호 요청">
 					</div>
 					<div>
-						<input class="threeBarInputBox" id="inputVerifyNum" type="text" style="width: 80px;">
-						<input type="hidden" id="sendVerifyNum" value="5325">
+						<input id="inputVerifyNum" type="text">
+						<input type="hidden" id="sendVerifyNum" value="">
 					</div>
 					<div>
 						<input type="hidden" id="verifyNumResult" value="N">
 					</div>
 					
 					<div>
-						<input class="threeBarInputBox" type="button" value="인증번호 확인"	style="width: 100px; height: 36px;" onclick="checkNumFnc();">
+						<input class="verifyNumBtn" type="button" value="인증번호 확인"	onclick="checkNumFnc();">
 					</div>
 				</div>
 				<div>
 					<div>
-						비밀번호
+						<span>비밀번호</span>
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="memberPassword" type="password" name="memberPassword" placeholder="비밀번호를 입력하세요">
+						<input class="oneInputBox" id="memberPassword" type="password" name="memberPassword" placeholder="비밀번호를 입력하세요">
 					</div>
 					<div>
-						비밀번호 확인
+						<span>비밀번호 확인</span>
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="verifyPassword" type="password" placeholder="비밀번호를 입력하세요">
+						<input class="oneInputBox" id="verifyPassword" type="password" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div>
 					<div>
-						생년월일
+						<span>생년월일</span>
 					</div>
 					<div>
-						<input class="oneBarInputBox" id="memberBirthDate" type="date" name="birthDate" placeholder="생년월일을 입력하세요">
+						<input class="oneInputBox" id="memberBirthDate" type="date" name="birthDate" placeholder="생년월일을 입력하세요"
+								style="width: 303px;color: gray;">
 					</div>
-					<div class="wrapInputBox">
+					<div class="thirdBox">
 						<div>
 							<div>
-								국적
+								<span>국적</span>
 							</div>
 							<select id="selectCountry" name="memberCountry">
     							<option value="KOREA">한국</option>
@@ -307,20 +350,20 @@
 						</div>
 						<div>
 							<div>
-								성별
+								<span>성별</span>
 							</div>
-							<select id="selectGender" name="memberGender" >
+							<select id="selectGender" name="memberGender"> 
     							<option value="M">남</option>
     							<option value="F">여</option>
   							</select>
 						</div>
 					</div>
-					<div class="wrapInputBox">
+					<div class="thirdBox">
 						<div>
-							<input class="twoBarInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
+							<input class="twoInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
 						</div>
 						<div>
-							<input class="twoBarInputBoxBtn" type="submit" value="입력완료" >
+							<input class="twoInputBoxBtn" type="submit" value="입력완료" >
 						</div>
 					</div>
 				</div>

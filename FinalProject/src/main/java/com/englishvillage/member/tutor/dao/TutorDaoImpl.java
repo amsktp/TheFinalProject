@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 
@@ -131,9 +132,9 @@ public class TutorDaoImpl implements TutorDao {
 	}
 
 	@Override
-	public List<TutorCommentDto> TutorCommentDto(int tutorNo) {
+	public List<TutorCommentDto> getTutorComments(int tutorNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "TutorCommentDto", tutorNo);
+		return sqlSession.selectList(namespace + "getTutorComments", tutorNo);
 	}
 
 	@Override
@@ -199,6 +200,13 @@ public class TutorDaoImpl implements TutorDao {
 		return sqlSession.insert(namespace + "addStudyHistory", tutorCommentDto);
 	}
 
+		@Override
+		public List<QuestionBoardDto> tutorBoardList(int start, int end) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList(namespace + "tutorBoardList");
+		}
+
+	
 	@Override
 	public void insertFile(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -218,6 +226,18 @@ public class TutorDaoImpl implements TutorDao {
 		map.put("tutorNo", tutorNo);
 		
 		return sqlSession.selectOne(namespace + "getStudentTutorComment", map);
+	}
+
+	@Override
+	public int changeTutorStatus(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		return sqlSession.update(namespace + "changeTutorStatus", tutorDto);
 	}
 
 }

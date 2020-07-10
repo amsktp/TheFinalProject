@@ -5,20 +5,22 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>비밀번호 찾기 오류</title>
 <script type="text/javascript">
-	alert('성공적으로 처리했습니다.');
-	
-	location.href = '/springHome/member/list.do';
+
+	window.onload = function() {
+		
+		alert("비밀번호 찾기를 실패했습니다.\n다시 작성해주시기 바랍니다.");
+		
+		location.href = "findPassword.do";
+	} 
+		
 </script>
 
 </head>
-
 <body>
 
-   
-
+	
 </body>
 
 </html>

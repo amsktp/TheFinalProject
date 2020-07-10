@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 
@@ -48,8 +48,15 @@ public interface TutorService {
 
 	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
+	public int tutorSelectTotalCount();
+
+	public int tutorSelectCurPage(int no);
+
+	public List<QuestionBoardDto> tutorBoardList(int start, int end);
 	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest);
 
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);
+
+	public int changeTutorStatus(TutorDto tutorDto);
 
 }

@@ -9,29 +9,40 @@
 <style type="text/css">
 	
 	#mainBox {
-		border: 1px solid red;
-		height: 600px;
+		height: 500px;
 		width: 400px;
  		position: absolute; 
  		top: 50%;
  		left: 50%;
  		transform: translate(-50%, -50%);
+ 		background-color: white;
 	}
 	
 	#titleBox {
+		background-color: black;
+		color: white;
 		font-size: 40px;
 		font-weight: bold;
 		margin-bottom: 100px;
-		border: 1px dotted blue;
 		text-align: center;
 	}
 	
-	#withdraw {
-		width: 250px;
+	#subTitleBox {
+		font-size: 25px;
+		font-weight: bold;
+		margin-bottom: 40px;
+		text-align: center;		
+	}
+	
+	#withdrawBtn {
+		width: 300px;
 		height: 45px;
 		font-size: 18px;
 		font-weight: bold;
-		margin-top: 30px;
+		margin-top: 50px;
+		border: none;
+		background-color: black;
+		color: white;
 	}
 
 </style>
@@ -43,19 +54,22 @@
 </script>
 
 </head>
-<body>
+<body style="background-color: #EEEEEE;">
 
 	<div id="mainBox">
 		<div id="titleBox">
-			ENGLISH VILLAGE
+			<span>ENGLISH VILLAGE</span>
+		</div>
+		<div id="subTitleBox">
+			<span>회원탈퇴 완료</span>
 		</div>
 		<div style="text-align: center;">
 			<span>회원탈퇴가 완료되었습니다.</span><br><br>
-			<span>지금까지 이용해주셔서 감사합니다.</span><br>
+			<span>지금까지 이용해주셔서 감사합니다.</span><br><br>
 		</div>
 		<div style="display: flex; justify-content: center;">		
 			<div>
-				<input id="withdraw" type="button" value="확인" onclick="moveLoginBtn();">
+				<input id="withdrawBtn" type="button" value="확인" onclick="moveLoginBtn();">
 			</div>
 		</div>
 	</div>

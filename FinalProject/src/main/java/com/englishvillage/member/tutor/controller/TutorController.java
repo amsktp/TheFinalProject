@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.service.StudentService;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
@@ -150,7 +153,6 @@ public class TutorController {
 		if(request.getAttribute("tutorNo") != null) {
 			tutorNo = (int)request.getAttribute("tutorNo");
 		}
-		System.out.println("asdsad");
 		
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		
@@ -159,12 +161,15 @@ public class TutorController {
 		
 		TutorCommentDto studentTutorCommentDtoList = tutorService.getStudentTutorComment(sessionMemberDto.getMemberNo(), tutorNo);
 		
-		System.out.println("asdsad");
 		
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
 		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
-		System.out.println("asdsad");
+		System.out.println(tutorCommentDtoList);
+		System.out.println(tutorCommentDtoList);
+		System.out.println(tutorCommentDtoList);
+		System.out.println(tutorCommentDtoList);
+		System.out.println(tutorCommentDtoList);
 		
 		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
 		model.addAttribute("studentTutorCommentDtoList", studentTutorCommentDtoList);
@@ -245,26 +250,6 @@ public class TutorController {
 		return "member/tutor/info/tutorPrivateInfo";
 	}
 	
-	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.GET)
-	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto) {
-		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
-		
-		
-		Map<String, Object> map = studentService.SelectOne(tutorCommentDto.getStudentNo());
-		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
-		
-		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
-		
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
-		
-		
-		return "member/tutor/info/tutorPrivateInfo";
-	}
 	
 	@RequestMapping(value = "/tutorPrivateInfoCtr.do", method = RequestMethod.POST)
 	public String tutorPrivateInfo(TutorDto tutorDto, HttpSession session, Model model) {
@@ -381,24 +366,7 @@ public class TutorController {
 		
 		return "redirect:/login.do";
 	}
-	
-	@RequestMapping(value = "/tutorQnABoard.do", method = RequestMethod.GET)
-	public String tutorQnABoard(HttpSession session, Model model) {
-		log.info("tutorQnABoard 입니다. GET");
-		
-		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
-		
-		int no = sessionTutorDto.getMemberNo();
-		
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
-		
-		TutorDto tutorDtoBodard = tutorService.boardSelect(no);
-		
-		model.addAttribute("tutorDto", tutorDto);
-		model.addAttribute("tutorDtoBodard", tutorDtoBodard);
-		
-		return "member/tutor/qna/tutorQnABoard";
-	}
+
 	@RequestMapping(value = "/writeCommentCtr.do", method = RequestMethod.POST)
 	public String writeCommentCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
@@ -425,18 +393,109 @@ public class TutorController {
 	@RequestMapping(value = "/tutorCommentModifyCtr.do", method = RequestMethod.POST)
 	public String tutorCommentModifyCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
-		
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
+
 		int resultNum = tutorService.modifyComment(tutorCommentDto);
-		
-		
 		
 		return "forward:./tutorSelectOne.do";
 	}
+	
+	
+	@RequestMapping(value = "/tutorQnABoard.do"
+			, method = {RequestMethod.GET, RequestMethod.POST})
+	public String tutorBoardList(HttpSession session, @RequestParam(defaultValue = "1") 
+		int curPage, 
+		@RequestParam(defaultValue = "0") 
+		int no, 
+		Model model) {
+		log.info("Welcome tutorBoardList! " + curPage + " : ???? ");
+		
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+		
+		int memberNo = sessionTutorDto.getMemberNo();
+		
+		TutorDto tutorDto = tutorService.getTutorInfo(memberNo);
+		
+		model.addAttribute("tutorDto", tutorDto);
+		
+		// 회원 토탈카운트 -> 보드 토탈카운트
+		int totalCount = 
+			tutorService.tutorSelectTotalCount(
+					
+		);
+		
+		// 이전 페이지로 회원의 번호가 명확하게 나온 경우
+		// 자신의 curPage 찾는 로직 ->보드쪽으로 IDX 주면서
+		if(no != 0) {
+			curPage 
+				= tutorService.tutorSelectCurPage(no);
+		}
+		
+//		
+//		System.out.println("????????: " + curPage);
+		
+		PagingYJ tutorPaging = new PagingYJ(totalCount, curPage);
+		int start = tutorPaging.getPageBegin();
+		int end = tutorPaging.getPageEnd();
+
+//		튜터보드리스트
+		List<QuestionBoardDto> tutorBoardList = 
+				tutorService.tutorBoardList(start, end);
+		
+		// 페이징
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("tutorPaging", tutorPaging);
+
+		model.addAttribute("tutorBoardList", tutorBoardList);
+		model.addAttribute("pagingMap", pagingMap);
+		
+		return "member/tutor/qna/tutorQnABoard";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/changeTutorStatusCheck.do", method = RequestMethod.POST)
+	public int changeTutorStatusCheck(TutorDto tutorDto, HttpSession session) {
+		log.info("changeTutorStatusCheck.do 입니다. POST");
+		
+		int resultNum = tutorService.changeTutorStatus(tutorDto);
+		
+		TutorDto newSesssionTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
+		
+		session.removeAttribute("tutor");
+		session.setAttribute("tutor", newSesssionTutorDto);
+		
+		return resultNum;
+	}
+	
+	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.POST)
+	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck) {
+		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
+		
+		
+		Map<String, Object> map = studentService.SelectOne(tutorCommentDto.getStudentNo());
+		
+		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
+		
+		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
+		
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
+
+		if(resultNum == 0) {
+			System.out.println("에드 히스토리 실패");
+		}else if(resultNum == 1) {
+			System.out.println("에드 히스토리 성공");
+		}
+		
+		TutorDto tutorDto = new TutorDto();
+		tutorDto.setMemberNo(tutorCommentDto.getTutorNo());
+		tutorDto.setStatusCheck(statusCheck);
+		
+		return "member/tutor/info/tutorPrivateInfo";
+	}
+	
+	
 }

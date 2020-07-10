@@ -60,6 +60,7 @@
 			
 		});
 		
+		
 		if($('#genderChange').val() == "M") {
 			$('input[name="gender"]').val(['M']);
 			
@@ -67,7 +68,151 @@
 			$('input[name="gender"]').val(['F']);
 		}
 		
+		
 	});
+	
+	function checkFinshFnc() {
+		
+		if(nameCompareFnc() == false || dateCompareFnc() == false) {
+			if(nameCompareFnc() == false) {
+				alert('이름이 유효하지 않습니다.')
+			}else if(dateCompareFnc() == false) {
+				alert('날짜가 유효하지 않습니다.')
+			}
+			return false;
+		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true) {
+			return true;
+		}
+		
+		return true;
+		
+	}
+	//이름 유효성 검사
+	function nameCompareFnc() {
+		
+		if($("#name").val().length == 0) {
+			$('#nameSpan').html('이름을 정확히 입력해주세요');
+			$('#nameSpan').css('color', '#FF4848');
+			$('#nameSpan').css('font-size', '20px');
+			
+			return false;
+		}
+		
+		if($('#country').val() == 'KOREA'){
+			for (var i=0; i<$("#name").val().length; i++)  { 
+			    var chk = $("#name").val().substring(i,i+1); 
+			    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					valCheckStr = false;
+			    }
+			    
+			    if ($("#name").val().length <= 1) {
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					valCheckStr = false;
+
+			    }
+
+			    if(chk.match(/([^가-힣\x20])/i)){
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					valCheckStr = false;
+			    }
+			    if($("#name").val() == " "){
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					valCheckStr = false;
+			    }
+			    
+			    if($("#name").val() == "") {
+					$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					
+					return false;
+				}
+			}
+
+		} else {
+		
+			for (var i=0; i<$("#name").val().length; i++)  {
+				
+				var chk = $("#name").val().substring(i,i+1);
+				
+				if(chk.match(/[0-9]|[가-힣]|[ㄱ-ㅎ]|[ㅏ-ㅣ]/)){
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+
+			        return false;
+			    }
+			 
+			    if($("#name").val() == " "){
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					
+					
+			        return false;
+			    }
+			 
+			    if($("#name").val() == ""){
+			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
+					$('#nameSpan').css('color', '#FF4848');
+					$('#nameSpan').css('font-size', '20px');
+					
+					
+			        return false;
+			    }
+			 
+			    
+			}
+
+		} 
+		
+		
+		if (true) {
+			$('#nameSpan').html('올바른 이름입니다.');
+			$('#nameSpan').css('color', '#74D36D');
+			$('#nameSpan').css('font-size', '20px');
+		}
+		
+		return true;
+	}
+	
+	var cnt = 0;
+	//날짜 유효성 검사
+	function dateCompareFnc() {
+		
+		var date = new Date;
+		var todayYear = date.getFullYear();
+		var todayMonth = date.getMonth() + 1;
+		var todayDate = date.getDate();
+		
+		var today = todayYear + '-' + todayMonth + '-' + todayDate;
+		
+		
+			if($('#birthDateChoose').val() > today) {
+				$('#dateSpan').html('현재 날짜보다 날짜가 커서 다시 수정해주시길 바랍니다.');
+				$('#dateSpan').css('color', '#FF4848');
+				$('#dateSpan').css('font-size', '20px');
+				return false;
+			}else if($('#birthDateChoose').val() < today && cnt >= 1) {
+				$('#dateSpan').html(' 유효한 날짜입니다.');
+				$('#dateSpan').css('color', '#74D36D');
+				$('#dateSpan').css('font-size', '20px');
+				return true;
+			
+			}
+			
+			cnt++;
+			return true;
+		}
 	
 	function pageMoveListFnc(){
 		var url = "./list.do";
@@ -128,20 +273,24 @@
 		</div>
 		
 		<div id='updateDiv'>
-			<form action='./studentUpdateCtr.do' method='post' enctype="multipart/form-data">
+			<form action='./studentUpdateCtr.do' onsubmit="return checkFinshFnc()" method='post' enctype="multipart/form-data">
 				<div id='textarea'>
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
-						<input class='inpText' type='text' name='member_name' value='${memberListDto.member_name}'>
+						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>
+						<input type="button" onclick="nameCompareFnc()" value="확인">
+						<span id='nameSpan'></span>
 						<br>
 					</div>
 					<div class='text'>
 						<span>E&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;mail :</span> 
-						<input class='inpText' type="email" name='member_email' value='${memberListDto.member_email}'>
+						<input class='inpText' id='email' type="email" name='member_email' value='${memberListDto.member_email}'>
+						<span id='emailSpan'></span>
 						<br>
 					</div>
 					<div class='text' >
 						<span>비 밀 번 호 :</span> <input class='inpText' type='text' name='password' value='${memberListDto.password}'>
+						<span id='passwordSpan'></span>
 						<br>
 					</div>
 					<div class='text'>
@@ -149,26 +298,42 @@
 						<input type="hidden" id='genderChange' value='${memberListDto.gender}'>
 						<input type="radio" class='menCheck' name='gender' value="M">남자
 						<input type="radio" class='girlCheck' name='gender' value="F">여자
-							
+						<span id='genderSpan'></span>	
 						<br>
 					</div>
 					<div class='text'>
 						<span>생 년 월 일 :</span> 
 						<input class='inpText' id="birthDateChoose" type="date"  name="birthDate"
 							value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
+							<input type="button" onclick="dateCompareFnc()" value="확 인">
+							<br>
+							<span id='dateSpan'></span>
 							<br>
 					</div>
 					
 					<div class='text'>
 						<span>국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 :</span>
-						<input class='inpText' type='text' name='country' value='${memberListDto.country}'> 
+						<select name='country'>
+							<option value="KOREA"
+							<c:if test="${memberListDto.country eq 'KOREA'}">selected</c:if>>KOREA</option>
+							<option value="England"
+							<c:if test="${memberListDto.country eq 'England'}">selected</c:if>>England</option>
+							<option value="USA"
+							<c:if test="${memberListDto.country eq 'USA'}">selected</c:if>>USA</option>
+							<option value="Ireland"
+							<c:if test="${memberListDto.country eq 'Ireland'}">selected</c:if>>Ireland</option>
+							<option value="Canada"
+							<c:if test="${memberListDto.country eq 'Canada'}">selected</c:if>>Canada</option>
+						</select>
+						<input class='inpText' id='country' type="hidden" value='${memberListDto.country}'> 
+						<span id='nameSpan'></span>
 						<br>
 					</div>
 					<input type="hidden" name='no' value='${memberListDto.no}'>
 				</div>
 				
 				<div id='btn'>
-					<input type='submit' value='수정하기'>
+					<input type='submit' id='adjust' value='수정하기'>
 					<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
 					<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
 				</div>

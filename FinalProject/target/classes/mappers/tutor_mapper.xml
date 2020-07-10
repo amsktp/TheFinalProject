@@ -19,7 +19,7 @@
    	    	AND MEMBER_GENDER = #{genderSearch}
 		</if>
 		<if test="keyword != ''">
-       		AND MEMBER_NAME LIKE '%' || #{keyword} || '%'
+       		AND UPPER(MEMBER_NAME) LIKE UPPER('%' || #{keyword} || '%')
 		</if>
 	</sql>
 	
@@ -79,6 +79,25 @@
 			
 				
  		</resultMap>
+ 		<resultMap type="com.englishvillage.member.admin.model.QuestionBoardDto" 
+      		id="questionListResultMap">
+      	
+      
+	      	<result column="IDX" property="idx"/>   
+	      	<result column="BOARD_NO" property="boardNo"/>   
+	   		<result column="MEMBER_NO" property="no"/>   
+	   		<result column="MEMBER_NAME" property="name"/>   
+	      	<result column="TITLE" property="title"/>   
+	      	<result column="CONTENT" property="content"/>   
+	      	<result column="BOARD_CREATE_DATE" property="boardCreateDate"/>   
+	      	<result column="BOARD_MODIFY_DATE" property="boardModDate"/>   
+	      	<result column="ANSWER_STATUS" property="answerStatus"/>   
+	      	<result column="MEMBER_GRADE" property="grade"/>
+	      	<result column="MEMBER_EMAIL" property="email"/>
+	      	<result column="REPLY" property="reply"/>
+	      	<result column="COMMENT_CREATE_DATE" property="commentCreDate"/>
+      	
+  		</resultMap>
 	
 	<select id="getTutorList" parameterType="map" resultMap ="tutorResultMap">
 		
@@ -177,7 +196,7 @@
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_POINT, PRICE, STUDY_NAME, TUTOR_INTRODUCE,
 		MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_GENDER, MEMBER_BIRTH_DATE,
 		FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE, YOUTUBE_URL, MEMBER_COUNTRY,
-		M.MEMBER_GRADE, M.MEMBER_COUNTRY
+		M.MEMBER_GRADE, M.MEMBER_COUNTRY, T.STATUS_CHECK
 		FROM MEMBER M, TUTOR_INFO T
 		WHERE M.MEMBER_NO = T.TUTOR_NO 
 		AND M.MEMBER_NO = #{no}
@@ -223,7 +242,7 @@
 		, F.store_file_name
 		FROM MEMBER M INNER JOIN TUTOR_INFO T
 		ON M.MEMBER_NO = T.TUTOR_NO
-		LEFT JOIN (SELECT TUTOR_NO, AVG(NVL(SCORE,0)) SCORE_AVG, COUNT(SCORE) EVALUATION_COUNT
+		LEFT JOIN (SELECT TUTOR_NO, (NVL(AVG(SCORE),0)) SCORE_AVG, COUNT(SCORE) EVALUATION_COUNT
 		            FROM EVALUATION 
 		            GROUP BY TUTOR_NO) SA
 		ON M.MEMBER_NO = SA.TUTOR_NO
@@ -235,7 +254,7 @@
 	</select>
 	
 
-	<select id="TutorCommentDto" parameterType="int"
+	<select id="getTutorComments" parameterType="int"
 	resultMap="tutorCommentResultMap">
 	
 		SELECT IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE
@@ -244,6 +263,15 @@
 		AND TUTOR_NO = #{tutorNo}
 		ORDER BY IDX DESC
 				
+	</select>
+	
+	<select id="tutorBoardList" parameterType="int" 
+	resultMap="questionListResultMap">
+	
+		SELECT TITLE, BOARD_CREATE_DATE, ANSWER_STATUS
+		FROM QUESTION_BOARD
+		WHERE MEMBER_NO = #{no}
+		
 	</select>
 	
 	<update id="writeComment" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
@@ -313,14 +341,18 @@
      
 	</delete>
 	
+	
+	
 
 
 	<insert id="addStudyHistory" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
 	
 		<!-- 수업시작했을때 학생번호 튜터번호 학생이름 날짜를 평가테이블에 추가 -->
-	
-	
-	
+		
+		    insert into evaluation
+		    value(IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE)
+		    values(EVALUATION_IDX_SEQ.nextval, #{tutorNo}, #{studentNo}, null, null, 'N', #{studentName}, null, SYSDATE)
+		
 	</insert>
 
 	<insert id="insertFile" parameterType="map">
@@ -338,12 +370,33 @@
 	<select id="getStudentTutorComment" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto"
 	resultMap="tutorCommentResultMap">
 	
-		SELECT IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE
-		FROM EVALUATION
-		WHERE TUTOR_NO = #{tutorNo}
-		AND STUDENT_NO = #{studentNo}
+	    SELECT IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE
+	    FROM (
+	        SELECT IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE
+	        FROM EVALUATION
+	        WHERE TUTOR_NO = #{tutorNo}
+	        AND STUDENT_NO = #{studentNo}
+	        ORDER BY EVALUATE_CHECK DESC
+	    )
+	  <![CDATA[  WHERE ROWNUM <= 1  ]]>
+	    
+	    	
+          
 	
 	</select>
+	
+	<update id="changeTutorStatus" parameterType="com.englishvillage.member.tutor.model.TutorDto">
+
+		<!-- set을 if로 주고 강사 status가 Y일때 N N일때 Y로 바꾸기 -->
+		UPDATE TUTOR_INFO
+		
+		<set>
+			<if test='statusCheck == "Y"'>STATUS_CHECK = 'N'</if>
+			<if test='statusCheck == "N"'>STATUS_CHECK = 'Y'</if>
+		</set> 		
+		WHERE TUTOR_NO = #{memberNo}
+		
+	</update>
 </mapper>
 
 

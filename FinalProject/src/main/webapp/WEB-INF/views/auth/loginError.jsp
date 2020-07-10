@@ -5,19 +5,21 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 오류</title>
 <script type="text/javascript">
+
 	window.onload = function() {
-		window.close();
-	}
-
-
+		
+		alert("로그인을 실패했습니다.\n다시 시도해주시기 바랍니다.");
+		
+		location.href = "login.do";
+	} 
+		
 </script>
-</head>
 
+</head>
 <body>
 
-	
 	
 </body>
 
