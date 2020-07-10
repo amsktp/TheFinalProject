@@ -365,7 +365,7 @@
          (IDX, BOARD_NO, COMMENT_CREATE_DATE,
          REPLY, ADMIN_NO)
       VALUES(
-         QUESTION_BOARD_COMMENT_IDX_SEQ.NEXTVAL + 5, #{idx}, SYSDATE, 
+         QUESTION_BOARD_COMMENT_IDX_SEQ.NEXTVAL, #{idx}, SYSDATE, 
          #{reply}, 0
       )
    </insert>
