@@ -7,6 +7,9 @@
 <head>
 <title>회원 목록</title>
 <style type="text/css">
+	
+	
+	
 	table {
 		border-collapse: collapse;
 	}
@@ -21,7 +24,7 @@
 	}
 	
 	#allDiv {
-		font-weight: bold;
+
 		box-sizing: border-box;
 	}
 	
@@ -35,6 +38,9 @@
 	$(document).ready(function() {
 		
 		$('.layoutUl').children().eq(0).addClass('on');
+		
+	
+
 	});
 	
 	function listOnePageFnc(obj, event) {
@@ -124,13 +130,13 @@
 	
 		<table class="table table-hover">
 			<tr class="success">
-				<th>회원번호</th>
-				<th>이름</th>
-				<th>국가</th>
-				<th>이메일</th>
-				<th>등급</th>
-				<th>생성일</th>
-				<th>포인트</th>
+				<th style="text-align: center; font-weight: bold;">회원번호</th>
+				<th style="text-align: center; font-weight: bold;">이름</th>
+				<th style="text-align: center; font-weight: bold;">국가</th>
+				<th style="text-align: center; font-weight: bold;">이메일</th>
+				<th style="text-align: center; font-weight: bold;">등급</th>
+				<th style="text-align: center; font-weight: bold;">생성일</th>
+				<th style="text-align: center; font-weight: bold;">포인트</th>
 				
 			</tr>
 		
@@ -142,7 +148,7 @@
 		
 		<c:forEach var="memberDto" items="${memberList}">
 			<tr>
-				<td>${memberDto.no}</td>
+				<td style="text-align: center;">${memberDto.no}</td>
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
@@ -153,23 +159,21 @@
 				
 				<td>${memberDto.member_email}</td>
 				
-				<td>${memberDto.grade}</td>
 				
-				<td>
+				<c:if test="${memberDto.grade eq 'N'}">
+					<td><c:out value="학생"></c:out></td>
+				</c:if>
+				
+				
+				<td style="text-align: center;">
 					<fmt:formatDate value="${memberDto.createdDate}" pattern="yyyy-MM-dd"/> 
 				</td>
-				<td>${memberDto.point}</td>
-	
-	<%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
-	<!-- 				<td>첨부파일 없음</td> -->
-	<%-- 			</c:if> --%>
-	<%-- 			<c:if test="${fileFlag eq false}"> --%>
-	<%-- 				<td>${memberDto.originalFileName}</td> --%>
-	<%-- 			</c:if> --%>
+				<td style="text-align: right;" id='point'>
+				<fmt:formatNumber value="${memberDto.point}" pattern="#,###"/></td>
 				
-	<!-- 			<td> -->
-	<%-- 				<a href='./deleteCtr.do?no=${memberDto.no}'>[삭제]</a><br> --%>
-	<!-- 			</td> -->
+
+
+	
 			</tr>
 		</c:forEach>
 		
