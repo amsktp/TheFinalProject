@@ -322,7 +322,7 @@ tr {
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 	border: solid 1px #f5f5f5;
 }
-</style>
+</style> 
 
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
