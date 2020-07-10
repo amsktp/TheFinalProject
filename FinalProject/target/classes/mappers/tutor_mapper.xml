@@ -79,6 +79,25 @@
 			
 				
  		</resultMap>
+ 		<resultMap type="com.englishvillage.member.admin.model.QuestionBoardDto" 
+      		id="questionListResultMap">
+      	
+      
+	      	<result column="IDX" property="idx"/>   
+	      	<result column="BOARD_NO" property="boardNo"/>   
+	   		<result column="MEMBER_NO" property="no"/>   
+	   		<result column="MEMBER_NAME" property="name"/>   
+	      	<result column="TITLE" property="title"/>   
+	      	<result column="CONTENT" property="content"/>   
+	      	<result column="BOARD_CREATE_DATE" property="boardCreateDate"/>   
+	      	<result column="BOARD_MODIFY_DATE" property="boardModDate"/>   
+	      	<result column="ANSWER_STATUS" property="answerStatus"/>   
+	      	<result column="MEMBER_GRADE" property="grade"/>
+	      	<result column="MEMBER_EMAIL" property="email"/>
+	      	<result column="REPLY" property="reply"/>
+	      	<result column="COMMENT_CREATE_DATE" property="commentCreDate"/>
+      	
+  		</resultMap>
 	
 	<select id="getTutorList" parameterType="map" resultMap ="tutorResultMap">
 		
@@ -246,6 +265,15 @@
 				
 	</select>
 	
+	<select id="tutorBoardList" parameterType="int" 
+	resultMap="questionListResultMap">
+	
+		SELECT TITLE, BOARD_CREATE_DATE, ANSWER_STATUS
+		FROM QUESTION_BOARD
+		WHERE MEMBER_NO = #{no}
+		
+	</select>
+	
 	<update id="writeComment" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
 	
 		update evaluation
@@ -312,6 +340,9 @@
      	WHERE MEMBER_NO = #{memberNo}
      
 	</delete>
+	
+	
+	
 
 
 	<insert id="addStudyHistory" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishvillage.member.admin.model.QuestionBoardDto;
+import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.tutor.dao.TutorDao;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
@@ -178,6 +180,24 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
+	public int tutorSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int tutorSelectCurPage(int no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<QuestionBoardDto> tutorBoardList(int start, int end) {
+		// TODO Auto-generated method stub
+		List<QuestionBoardDto> tutorList = 
+				tutorDao.tutorBoardList(start, end);
+		return tutorList;
+	}
 	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest) {
 		// TODO Auto-generated method stub
 		
