@@ -81,7 +81,6 @@ dl, ul, ol, menu, li {
 }
 
 .tutorInfoDiv {
-	border: 1px solid black;
 	width: 340px;
 	height: 317px;
 	float: left;
@@ -89,6 +88,12 @@ dl, ul, ol, menu, li {
 }
 
 .tutorImgDiv {
+	width: 340px;
+	height: 200px;
+	cursor: pointer;
+}
+
+.tutorImgDiv:hover {
 	width: 340px;
 	height: 200px;
 	cursor: pointer;
@@ -104,58 +109,89 @@ dl, ul, ol, menu, li {
 	height: 1000px;
 }
 
+.studyInfo {
+	width: 275px;
+	padding-left: 10px;
+}
+
 .tutorName {
-	width: 50px;
-	height: 20px;
+	
 }
 
 .studyTitle {
-	width: 320px;
-	height: 40px;
-	margin-left: 10px;
-	margin-top: 10px;
-	font-size: 17px;
-	font-weight: bold;
+	cursor: pointer;
+}
+
+.studyTitle:hover {
+	color: #772ce8;
 	cursor: pointer;
 }
 
 .price {
-	margin-left: 10px;
-	font-size: 15px;
-	font-weight: bold;
-}
-
-.score {
-	width: 110px;
-	margin-top: 10px;
-	margin-left: 10px;
-	font-size: 12px;
-	font-weight: bold;
-	border-right: 1px solid black;
 	float: left;
-}
-
-.country {
-	margin-top: 10px;
-	padding-left: 10px;
-	float: left;
-	font-size: 12px;
+	margin-right: 20px;
 }
 
 .tutorName {
-	width: 120px;
-	margin-top: 7px;
-	font-size: 16px;
-	font-weight: bold;
-	margin-right: 40px;
-	float: right;
-	text-align: center;
+	margin-right: 20px;
 }
 
-img {
+.detailInfo {
+	display: flex;
+	margin-top: 10px;
+}
+
+.flagBox {
+	width: 40px;
+	height: 85px;
+	padding-top: 10px;
+}
+
+.flagIcon {
+	width: 40px;
+	height: 40px;
+}
+
+.scale {
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transition: all 0.4s ease-in-out; /* 부드러운 모션을 위해 추가*/
+}
+
+.scale:hover {
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+}
+
+.mainImg {
 	width: 1920px;
 }
 
+.img {
+	border-radius: 20px;
+	overflow: hidden
+} /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+
+.bird {
+	background-image: url('bird.svg');
+	background-size: auto 100%;
+	width: 88px;
+	height: 125px;
+	will-change: background-position;
+}
+
+@
+keyframes fly-cycle { 100% {
+	background-position: -900px 0;
+}
+
+}
 @media ( min-width : 1200px) {
 	#searchBox {
 		width: 720px;
@@ -173,6 +209,7 @@ img {
 		width: 720px;
 	}
 }
+
 </style>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -187,25 +224,23 @@ img {
 	
 	$(document).ready(function() {
 		
-		var titleMaxLenght = 17;
+// 		var titleMaxLenght = 17;
 		
-		for (var i = 0; i < $('.studyTitle').length; i++) {
-			var studyTitleStr = $('.studyTitle').eq(i).text();
+// 		for (var i = 0; i < $('.studyTitle').length; i++) {
+// 			var studyTitleStr = $('.studyTitle').eq(i).text();
 			
-			if(studyTitleStr.length > titleMaxLenght){
-				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
-			}
+// 			if(studyTitleStr.length > titleMaxLenght){
+// 				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
+// 			}
 
-			$('.studyTitle').eq(i).text(studyTitleStr);
+// 			$('.studyTitle').eq(i).text(studyTitleStr);
 			
-		}
+// 		}
 		
 	});
 	
 
 </script>
- 
-
 <body>
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
@@ -220,8 +255,8 @@ img {
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="item">
-				<img class="first-slide" src="/englishvillage/resources/imgs/a.jpg"
-					alt="First slide">
+				<img class="first-slide mainImg"
+					src="/englishvillage/resources/imgs/s.jpg" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>영어 지금 시작하세요!</h1>
@@ -234,8 +269,8 @@ img {
 				</div>
 			</div>
 			<div class="item active">
-				<img class="second-slide"
-					src="/englishvillage/resources/imgs/a2.jpg" alt="Second slide">
+				<img class="second-slide mainImg"
+					src="/englishvillage/resources/imgs/s1.jpg" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>영어의 시대</h1>
@@ -248,8 +283,8 @@ img {
 				</div>
 			</div>
 			<div class="item">
-				<img class="third-slide" src="/englishvillage/resources/imgs/a3.jpg"
-					alt="Third slide">
+				<img class="third-slide mainImg"
+					src="/englishvillage/resources/imgs/s2.jpg" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>지금 당장 가입하세요!</h1>
@@ -265,8 +300,7 @@ img {
 		<a class="left carousel-control" href="#myCarousel" role="button"
 			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
 			aria-hidden="true"></span> <span class="sr-only">Previous</span>
-		</a> 
-		<a class="right carousel-control" href="#myCarousel" role="button"
+		</a> <a class="right carousel-control" href="#myCarousel" role="button"
 			data-slide="next"> <span
 			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
@@ -279,8 +313,8 @@ img {
 	<div id="searchBox" class="container">
 		<form class="form-inline" action="./home.do#searchOptBox"
 			method="post">
-			<span class="seachFont">검색조건</span>
-			<select id="searchOptBox" class="form-control"	name='countrySearch'>
+			<span class="seachFont">검색조건</span> <select id="searchOptBox"
+				class="form-control" name='countrySearch'>
 				<c:choose>
 					<c:when test="${searchMap.countrySearch eq 'all'}">
 						<option value='all' selected>국적</option>
@@ -379,44 +413,62 @@ img {
 			</select>
 
 			<!-- 				<input id="keyWordBox" type="text" name="keyword" placeholder="키워드를 입력해주세요"> -->
-			<input class="form-control" type="text" name="keyword" placeholder="키워드를 입력해주세요">
-			<input class="btn btn-primary" type="submit" value="검색">
+			<input class="form-control" type="text" name="keyword"
+				placeholder="키워드를 입력해주세요"> <input class="btn btn-primary"
+				type="submit" value="검색">
 
 		</form>
 	</div>
 
 	<div id="tutorList">
 		<c:choose>
-		<c:when test="${empty tutorDtoList}">
-			<div>
-				검색 결과가 없습니다.
-			</div>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="tutorDto" items="${tutorDtoList}">
-				<div class="tutorInfoDiv clearfix" >
-					<div class="tutorImgDiv" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-						<img alt="image not found" class='tutorImg'
-						src="<c:url value='/img/${tutorDto.storeFileName}'/>">
-					</div>
-					
-					<div class="studyTitle" onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">${tutorDto.studyName}</div>
+			<c:when test="${empty tutorDtoList}">
+				<div>검색 결과가 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="tutorDto" items="${tutorDtoList}">
 
-						<div class="price" id="priceDiv">30,000원 / 40분</div>
-
-						<div class="score">
-							<c:forEach begin="1" end="${tutorDto.score}">
-								<span style="color: blue;">★</span>
-							</c:forEach>
-							<c:forEach begin="${tutorDto.score}" end="4">
-								<span style="color: grey;">★</span>
-							</c:forEach>
-							(${tutorDto.evaluationCount})
+					<div class="tutorInfoDiv clearfix">
+						<div class="img">
+							<div class="scale tutorImgDiv"
+								onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
+								<img alt="image not found" class='tutorImg'
+									src="<c:url value='/img/${tutorDto.storeFileName}'/>">
+							</div>
 						</div>
 
-						<div class="country">${tutorDto.memberCountry}</div>
+						<div class="detailInfo">
+							<div class="studyInfo">
+								<div class="studyTitle"
+									onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
+									<h4>
+										<Strong>${tutorDto.studyName}</Strong>
+									</h4>
+								</div>
+								<div style="margin-left: 10px">
+									<div>
+										<span class="tutorName">${tutorDto.memberName}</span> <span
+											class="country">${tutorDto.memberCountry}</span>
+									</div>
 
-						<div class="tutorName">${tutorDto.memberName}</div>
+									<div>
+										<span class="price" id="priceDiv">30,000원 / 40분</span> <span
+											class="score"> <c:forEach begin="1"
+												end="${tutorDto.score}">
+												<span style="color: blue;">★</span>
+											</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
+												<span style="color: grey;">★</span>
+											</c:forEach> (${tutorDto.evaluationCount})
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="flagBox">
+								<img class="flagIcon" title="${tutorDto.memberCountry}"
+									src="<c:url value='/resources/imgs/worldFlag/${tutorDto.memberCountry}.ico'/>">
+
+							</div>
+						</div>
 					</div>
 				</c:forEach>
 			</c:otherwise>
@@ -440,6 +492,9 @@ img {
 			value="${pagingMap.memberPaging.curPage}">
 	</form>
 
+
+
 </body>
-<script type="text/javascript" src="/englishvillage/resources/js/alert.js"></script>
+<script type="text/javascript"
+	src="/englishvillage/resources/js/alert.js"></script>
 </html>
