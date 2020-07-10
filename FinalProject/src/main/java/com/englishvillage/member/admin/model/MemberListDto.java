@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class MemberListDto {
 	private int no;
-	private String name;
-	private String email;
+	private String member_name;
+	private String member_email;
 	private String password;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdDate;
@@ -22,33 +22,29 @@ public class MemberListDto {
 	private int score;
 	private int tutorNo;
 	private String url;
-	private int Price;
+	private int price;
 	private String tutorTitle;
 	private String tutorText;
 
 	
 
 	private int idx;
-	private int parentSeq;        
-	private String originalFileName;
-    private String storedFileName;  
-	private int fileSize; 
+	private String original_File_Name;
+    private String store_File_Name;  
+	private int file_size; 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date creDate;
 	
-	public MemberListDto() {
-		super();
-	}
 	
 
 	
 
-	public MemberListDto(int no, String name, String email, String password, Date modifiedDate, Date birthDate,
+	public MemberListDto(int no, String member_name, String member_email, String password, Date modifiedDate, Date birthDate,
 			String country, String gender) {
 		super();
 		this.no = no;
-		this.name = name;
-		this.email = email;
+		this.member_name = member_name;
+		this.member_email = member_email;
 		this.password = password;
 		this.modifiedDate = modifiedDate;
 		this.birthDate = birthDate;
@@ -58,25 +54,31 @@ public class MemberListDto {
 
 	
 
-	public MemberListDto(int no, String url, int price, String tutorTitle) {
+	public MemberListDto(int no, String url, int price, String tutorTitle, String tutorText) {
 		super();
 		this.no = no;
 		this.url = url;
-		this.Price = price;
+		this.price = price;
 		this.tutorTitle = tutorTitle;
+		this.tutorText = tutorText;
 	}
 
 
 
+	public MemberListDto() {
+		super();
+	}
 
-	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			Date birthDate, String country, String gender, String grade, int point, int score, int tutorNo, String url,
-			int price, String tutorTitle, int idx, int parentSeq, String originalFileName, String storedFileName,
-			int fileSize, Date creDate, String tutorText) {
+
+
+	public MemberListDto(int no, String member_name, String member_email, String password, Date createdDate,
+			Date modifiedDate, Date birthDate, String country, String gender, String grade, int point, int score,
+			int tutorNo, String url, int price, String tutorTitle, String tutorText, int idx, String original_File_Name,
+			String store_File_Name, int file_size, Date creDate) {
 		super();
 		this.no = no;
-		this.name = name;
-		this.email = email;
+		this.member_name = member_name;
+		this.member_email = member_email;
 		this.password = password;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
@@ -87,37 +89,16 @@ public class MemberListDto {
 		this.point = point;
 		this.score = score;
 		this.tutorNo = tutorNo;
-		this.Price = price;
+		this.url = url;
+		this.price = price;
 		this.tutorTitle = tutorTitle;
-		this.idx = idx;
-		this.parentSeq = parentSeq;
-		this.originalFileName = originalFileName;
-		this.storedFileName = storedFileName;
-		this.fileSize = fileSize;
-		this.creDate = creDate;
 		this.tutorText = tutorText;
-	}
-
-
-
-
-	public MemberListDto(int no, String name, String email, String password, Date createdDate, Date modifiedDate,
-			int idx, int parentSeq, String originalFileName, String storedFileName, int fileSize, Date creDate) {
-		super();
-		this.no = no;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.createdDate = createdDate;
-		this.modifiedDate = modifiedDate;
 		this.idx = idx;
-		this.parentSeq = parentSeq;
-		this.originalFileName = originalFileName;
-		this.storedFileName = storedFileName;
-		this.fileSize = fileSize;
+		this.original_File_Name = original_File_Name;
+		this.store_File_Name = store_File_Name;
+		this.file_size = file_size;
 		this.creDate = creDate;
 	}
-
 
 
 
@@ -125,144 +106,138 @@ public class MemberListDto {
 		return no;
 	}
 
+
+
 	public void setNo(int no) {
 		this.no = no;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getMember_name() {
+		return member_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
-	public String getEmail() {
-		return email;
+
+
+	public String getMember_email() {
+		return member_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
+
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+
 
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
+
+
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public int getIdx() {
-		return idx;
-	}
 
-	public void setIdx(int idx) {
-		this.idx = idx;
-	}
 
-	public int getParentSeq() {
-		return parentSeq;
-	}
-
-	public void setParentSeq(int parentSeq) {
-		this.parentSeq = parentSeq;
-	}
-
-	public String getOriginalFileName() {
-		return originalFileName;
-	}
-
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
-	}
-
-	public String getStoredFileName() {
-		return storedFileName;
-	}
-
-	public void setStoredFileName(String storedFileName) {
-		this.storedFileName = storedFileName;
-	}
-
-	public int getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(int fileSize) {
-		this.fileSize = fileSize;
-	}
-
-	public Date getCreDate() {
-		return creDate;
-	}
-
-	public void setCreDate(Date creDate) {
-		this.creDate = creDate;
-	}
-
-	
 	public Date getBirthDate() {
 		return birthDate;
 	}
+
+
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
+
+
 	public String getCountry() {
 		return country;
 	}
+
+
 
 	public void setCountry(String country) {
 		this.country = country;
 	}
 
+
+
 	public String getGender() {
 		return gender;
 	}
+
+
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
+
+
 	public String getGrade() {
 		return grade;
 	}
+
+
 
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
+
+
 	public int getPoint() {
 		return point;
 	}
 
+
+
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	
 
-	
+
+
 	public int getScore() {
 		return score;
 	}
+
 
 
 	public void setScore(int score) {
@@ -270,13 +245,17 @@ public class MemberListDto {
 	}
 
 
+
 	public int getTutorNo() {
 		return tutorNo;
 	}
 
+
+
 	public void setTutorNo(int tutorNo) {
 		this.tutorNo = tutorNo;
 	}
+
 
 
 	public String getUrl() {
@@ -292,22 +271,20 @@ public class MemberListDto {
 
 
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 
 
 
 	public void setPrice(int price) {
-		Price = price;
+		this.price = price;
 	}
 
-	
 
 
 	public String getTutorTitle() {
 		return tutorTitle;
 	}
-
 
 
 
@@ -317,11 +294,9 @@ public class MemberListDto {
 
 
 
-
 	public String getTutorText() {
 		return tutorText;
 	}
-
 
 
 
@@ -331,16 +306,82 @@ public class MemberListDto {
 
 
 
+	public int getIdx() {
+		return idx;
+	}
+
+
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+
+
+
+	public String getOriginal_File_Name() {
+		return original_File_Name;
+	}
+
+
+
+	public void setOriginal_File_Name(String original_File_Name) {
+		this.original_File_Name = original_File_Name;
+	}
+
+
+
+	public String getStore_File_Name() {
+		return store_File_Name;
+	}
+
+
+
+	public void setStore_File_Name(String store_File_Name) {
+		this.store_File_Name = store_File_Name;
+	}
+
+
+
+	public int getFile_size() {
+		return file_size;
+	}
+
+
+
+	public void setFile_size(int file_size) {
+		this.file_size = file_size;
+	}
+
+
+
+	public Date getCreDate() {
+		return creDate;
+	}
+
+
+
+	public void setCreDate(Date creDate) {
+		this.creDate = creDate;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "MemberListDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", birthDate=" + birthDate
-				+ ", country=" + country + ", gender=" + gender + ", grade=" + grade + ", point=" + point + ", score="
-				+ score + ", tutorNo=" + tutorNo + ", url=" + url + ", Price=" + Price + ", idx=" + idx + ", parentSeq="
-				+ parentSeq + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
-				+ ", fileSize=" + fileSize + ", creDate=" + creDate + "]";
+		return "MemberListDto [no=" + no + ", member_name=" + member_name + ", member_email=" + member_email
+				+ ", password=" + password + ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate
+				+ ", birthDate=" + birthDate + ", country=" + country + ", gender=" + gender + ", grade=" + grade
+				+ ", point=" + point + ", score=" + score + ", tutorNo=" + tutorNo + ", url=" + url + ", price=" + price
+				+ ", tutorTitle=" + tutorTitle + ", tutorText=" + tutorText + ", idx=" + idx + ", original_File_Name="
+				+ original_File_Name + ", store_File_Name=" + store_File_Name + ", file_size=" + file_size
+				+ ", creDate=" + creDate + "]";
 	}
+
+	
+	
+	
+
+
 
 
 

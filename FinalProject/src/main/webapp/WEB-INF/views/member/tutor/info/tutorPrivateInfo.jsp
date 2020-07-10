@@ -25,8 +25,8 @@ $(document).ready(function(){
 		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">회원정보수정</div>
-				<div class="profileTitle">
-					<div class="profileContests">
+				<div class="profileTitle" style="font-weight: bold;">
+					<div class="profileContents">
 						이름
 					</div>
 					<div class="profileContents">
@@ -69,7 +69,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 						
-					<input type="submit" value="수정하기" class="btn btn-primary btn-lg pull-right">	
+					<input type="submit" value="수정하기" id="updateBtn" class="btn btn-primary btn-lg pull-right">	
 			</form>
 			
 		</div>

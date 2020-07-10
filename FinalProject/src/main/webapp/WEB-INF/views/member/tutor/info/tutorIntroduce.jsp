@@ -29,19 +29,22 @@ $(document).ready(function(){
 			</div>
 			<div id="profileAll" style="margin-top: 50px; border-style: none;">
 				<div class="profileInfoContents">
-					이름 : ${tutorDto.memberName}
+					이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;름: 
+					${tutorDto.memberName}
 				</div>
 				<div class="profileInfoContents">
-					국적 : ${tutorDto.memberCountry}
+					국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 : 
+					${tutorDto.memberCountry}
 				</div>
 				<div class="profileInfoContents">
-					나이 : ${tutorDto.age}
+					나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 : 
+					${tutorDto.age}
 				</div>
 				<div class="profileInfoContents">
-					평점 : ${tutorDtoGrade.score}
+					평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점 : ${tutorDtoGrade.score}
 				</div>
 				<div class="profileInfoContents">
-					수업료 : ${tutorDto.price}
+					수 &nbsp;&nbsp;업 &nbsp;료 : ${tutorDto.price}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,14 +52,16 @@ $(document).ready(function(){
 					시간/회
 				</div>
 				<div class="profileInfoContents">
-					URL : ${tutorDto.youtubeUrl}
+					U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp; : ${tutorDto.youtubeUrl}
 				</div>
 				<div class="profileInfoContents">
-					강의 제목 : ${tutorDto.studyName}
+					강의&nbsp; 제목 : : ${tutorDto.studyName}
 				</div>
 			</div>
-			<div style="margin-top: 300px;">
-				<textarea id="introduceContents" disabled="disabled" style="margin-left: 80px;">${tutorDto.tutorIntroduce}</textarea>
+			<div>
+				<textarea id="introduceContents" disabled="disabled" 
+				style="margin-left: 80px;">${tutorDto.tutorIntroduce}
+				</textarea>
 			</div>
 			<form action="tutorMainPage.do">
 				<button class="Btn">뒤로가기</button>

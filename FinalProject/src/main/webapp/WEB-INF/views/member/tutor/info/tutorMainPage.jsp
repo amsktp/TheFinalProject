@@ -31,7 +31,7 @@ $(document).ready(function(){
 				<p id="pointFont">${member.memberPoint} 포인트</p><br/>
 				<input class="chargeBtn" style="margin-left: 60px;" type="button" value="충전하기">
 			</div>
-			<div id="mainRight" class="infomationFont">
+			<div id="mainRight" class="infomationFont" style="width: 300px;">
 				<form action="tutorPrivateInfo.do">
 					<h3 class="myInfoFont">내 정보</h3><br/>
 					<p class="infomationContents">이름 : ${member.memberName}</p>
@@ -39,7 +39,7 @@ $(document).ready(function(){
 					<input class="chargeBtn" type="submit"  value="내정보 확인">
 				</form> 
 			</div>	
-			<div id="mainRight" class="infomationFont">
+			<div id="mainRight" class="infomationFont" style="width: 300px;">
 				<form action="tutorQnABoard.do">
 					<h3 class="myInfoFont">문의내역</h3><br/>
 					<h5 class="infomationContents">최근문의 내역</h5>

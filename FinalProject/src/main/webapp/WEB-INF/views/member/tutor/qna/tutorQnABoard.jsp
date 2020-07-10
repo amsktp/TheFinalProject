@@ -16,10 +16,10 @@ $(document).ready(function(){
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/tutorHeader.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 	<div id="pageSize">
-		<jsp:include page="/WEB-INF/views/tutorLayout.jsp" />
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 	
 		<div id="">
 			<table>
@@ -37,6 +37,9 @@ $(document).ready(function(){
 				</tr>
 					
 			</table>
+			<textarea style="margin-left:400px; width: 100px; height: 100px;">
+			
+			</textarea>
 					
 		</div>
 	</div>

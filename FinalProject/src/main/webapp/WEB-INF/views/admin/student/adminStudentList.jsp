@@ -16,7 +16,7 @@
 	}
 	
 	#studentTable {
-		width: 1400px;
+		width: 1200px;
 		font-size: 20px;
 	}
 	
@@ -146,12 +146,12 @@
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
-						${memberDto.name}
+						${memberDto.member_name}
 					</a>
 				</td>
 				<td>${memberDto.country}</td>
 				
-				<td>${memberDto.email}</td>
+				<td>${memberDto.member_email}</td>
 				
 				<td>${memberDto.grade}</td>
 				

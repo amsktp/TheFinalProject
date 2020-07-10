@@ -259,7 +259,7 @@
 	<update id="modifyComment" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
 	
 		update evaluation
-		set score = #{score}, evaluate_content = #{evaluateContent)
+		set score = #{score}, evaluate_content = #{evaluateContent}
 		where student_no = #{studentNo}
 		and tutor_no = #{tutorNo}
 	
@@ -323,6 +323,27 @@
 	
 	</insert>
 
+	<insert id="insertFile" parameterType="map">
+	
+		INSERT INTO file_profile_image
+			(IDX, TUTOR_NO, ORIGINAL_FILE_NAME,
+			STORE_FILE_NAME, FILE_SIZE, FILE_CREATE_DATE)
+		VALUES(
+			FILE_PROFILE_IMAGE_IDX_SEQ.NEXTVAL, #{tutorNo}, #{originalFileName},
+			#{storeFileName}, #{fileSize}, SYSDATE
+		)	
+	
+	</insert>
+
+	<select id="getStudentTutorComment" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto"
+	resultMap="tutorCommentResultMap">
+	
+		SELECT IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE
+		FROM EVALUATION
+		WHERE TUTOR_NO = #{tutorNo}
+		AND STUDENT_NO = #{studentNo}
+	
+	</select>
 </mapper>
 
 

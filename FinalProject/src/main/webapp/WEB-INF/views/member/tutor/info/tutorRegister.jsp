@@ -348,7 +348,7 @@ textarea:focus {outline:none;}
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header3.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
 	<div id="contentsDiv" >
 		<form id="tutorInfoInputForm" action="tutorRegisterCtr.do" method="post" enctype="multipart/form-data">
@@ -387,7 +387,7 @@ textarea:focus {outline:none;}
 							</tr>
 							<tr>
 								<td>강의제목</td>
-								<td><input id='titleInput' type="text" name="studyName"></td>
+								<td><input id='titleInput' type="text" name="studyName" maxlength="30"></td>
 							</tr>
 						</table>
 					</div>

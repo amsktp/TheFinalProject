@@ -2,11 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css"
-	href="/englishvillage/resources/css/tutor.css?ver=1.4">
+	href="/englishvillage/resources/css/tutor.css?ver=1.6">
 <link rel="stylesheet" type="text/css"
 	href="/englishvillage/resources/css/student.css?ver=1.4">
 	
 <script type="text/javascript">
+
+function moveFnc(addr) {
+
+	location.href = addr;
+}
+
 var loginMoveFnc = function(){
 	location.href = '/englishvillage/student/login.do';
 }
@@ -159,7 +165,7 @@ var adminMove2Fnc = function() {
 				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
 				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
 				<li><a href="myStudy.do">수강내역</a></li>
-				<li><a href="myQNA.do">문의내역</a></li>
+				<li><a href="tutorQnABoard.do">문의내역</a></li>
 			</ul>
 		</nav>
 	
@@ -170,7 +176,7 @@ var adminMove2Fnc = function() {
 				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
 				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
 				<li><a href="myStudy.do">수강내역</a></li>
-				<li><a href="myQNA.do">문의내역</a></li>
+				<li><a href="tutorQnABoard.do">문의내역</a></li>
 	        </ul>
         </nav>
 	</c:otherwise>

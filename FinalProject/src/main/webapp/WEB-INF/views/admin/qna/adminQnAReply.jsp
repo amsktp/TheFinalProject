@@ -69,7 +69,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/Header.jsp" />
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 	
 	<h1>회원정보 수정</h1>
