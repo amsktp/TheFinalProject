@@ -125,7 +125,7 @@
 			                ,s.score_avg
                             ,s.evaluation_count
 			            from member m, tutor_info t, file_profile_image f, member_grade g
-			                ,(select t.tutor_no, floor(avg(nvl(e.score,0))) score_avg, count(e.score) evaluation_count
+			                ,(select t.tutor_no, floor((nvl(avg(e.score),0))) score_avg, count(e.score) evaluation_count
 			                  from tutor_info t left join EVALUATION e
 			                  on t.tutor_no = e.tutor_no
 			                  group by t.tutor_no) s
@@ -147,7 +147,7 @@
 		
 		select count(*)
 		from member m, tutor_info t, file_profile_image f, member_grade g
-                ,(select t.tutor_no, floor(AVG(NVL(e.score,0))) score_avg
+                ,(select t.tutor_no, floor((NVL(AVG(e.score),0))) score_avg
                from tutor_info t left join EVALUATION e
                on t.tutor_no = e.tutor_no
                group by t.tutor_no) s
@@ -176,7 +176,7 @@
 			                ,f.original_file_name
 			                ,s.score_avg
 			            from member m, tutor_info t, file_profile_image f, member_grade g
-			                ,(select t.tutor_no, floor(avg(nvl(e.score,0))) score_avg
+			                ,(select t.tutor_no, floor((nvl(avg(e.score),0))) score_avg
 			                  from tutor_info t left join EVALUATION e
 			                  on t.tutor_no = e.tutor_no
 			                  group by t.tutor_no) s
