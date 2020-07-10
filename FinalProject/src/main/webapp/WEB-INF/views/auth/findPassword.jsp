@@ -74,10 +74,6 @@
 		location.href = "login.do";
 	}
 
-	function findPwdCompleteBtn() {
-		location.href = "authSendMailFindPwdCtr.do";
-	}
-	
 	
 	/* 비밀번호 찾기 유효성 */
 	function findPasswordBtn(){
@@ -142,7 +138,7 @@
 							<input class="twoInputBoxBtn" type="button" value="뒤로가기" onclick="backPageBtn();">
 						</div>
 						<div>
-							<input class="twoInputBoxBtn" type="submit" value="입력완료" onclick="findPwdCompleteBtn();">
+							<input class="twoInputBoxBtn" type="submit" value="입력완료">
 						</div>
 					</div>
 				</div>

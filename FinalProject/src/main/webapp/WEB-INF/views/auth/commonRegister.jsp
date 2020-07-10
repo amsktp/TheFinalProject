@@ -192,10 +192,6 @@
 		location.href = "login.do";
 	}
 
-	function registerCompleteBtn() {
-		location.href = "commonRegisterComplete.do";
-	}
-	
 	function checkNumFnc() {
 		var inputVerifyNumObj = document.getElementById('inputVerifyNum');
 		var sendVerifyNumObj = document.getElementById('sendVerifyNum');
