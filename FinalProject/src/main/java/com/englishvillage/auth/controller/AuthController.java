@@ -56,17 +56,7 @@ public class AuthController {
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);
-<<<<<<< HEAD
-=======
-			TutorDto tutorDto = tutorService.getTutorInfo(memberDto.getMemberNo());
-			session.setAttribute("tutor", tutorDto);
-			System.out.println(tutorDto);
-			System.out.println(tutorDto);
-			System.out.println(tutorDto);
-			System.out.println(tutorDto);
-			System.out.println(tutorDto);
-			// memberDto를 member변수로 담는다.
->>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
+
 			viewUrl = "redirect:/home.do";
 		} else {
 			viewUrl = "redirect:/loginError.do";
