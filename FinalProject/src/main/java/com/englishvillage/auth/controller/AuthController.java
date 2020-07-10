@@ -48,15 +48,12 @@ public class AuthController {
 		
 		String viewUrl = "";
 		MemberDto memberDto = authService.memberExist(memberEmail, memberPassword);
-		// 이메일과 비밀번호의 변수를 넘겨주고 값을 받아와서 memberDto에 저장한다.
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);
-			// memberDto를 member변수로 담는다.
 			viewUrl = "redirect:/home.do";
 		} else {
 			viewUrl = "redirect:/loginError.do";
-			// 로그인 실패하면 세션에 들어가지 못하고, 로그인 성공하면 세션에 들어가서 로그아웃할때까지 세션이 유지됨
 		}
 		return viewUrl;
 	}
@@ -146,7 +143,6 @@ public class AuthController {
 			viewUrl = "redirect:/findPasswordError.do";
 		}
 		return viewUrl;
-		 
 	} 
 	
 	@RequestMapping(value="/findPasswordError.do", method=RequestMethod.GET)
@@ -155,8 +151,6 @@ public class AuthController {
 		
 		return "auth/findPasswordError";
 	} 
-	
-	
 	
 	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
 	public String findPasswordComplete( Model model, HttpSession session) {
@@ -242,6 +236,5 @@ public class AuthController {
 		
 		return result;
 	}
-	
 	
 }

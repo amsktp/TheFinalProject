@@ -103,7 +103,7 @@ float: right;
 		           <ul id="naviUl" class="nav navbar-nav">
 		              <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
 		              <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
-		              <li class="liLeft"><a href="#">수강권</a></li>
+		              <li class="liLeft"><a href="buyPoint.do">수강권</a></li>
 		              <li class="dropdown" style="float: right;">
 		                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>
 		                 <ul class="dropdown-menu" role="menu">
