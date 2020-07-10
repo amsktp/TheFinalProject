@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.tutor.model.TutorDto;
+import com.englishvillage.member.tutor.service.TutorService;
 
 @Controller
 public class AuthController {
@@ -31,6 +33,9 @@ public class AuthController {
 	
 	@Autowired
 	private AuthService authService;
+	
+	@Autowired
+	private TutorService tutorService;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -52,12 +57,23 @@ public class AuthController {
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);
+			TutorDto tutorDto = tutorService.getTutorInfo(memberDto.getMemberNo());
+			session.setAttribute("tutor", tutorDto);
+			System.out.println(tutorDto);
+			System.out.println(tutorDto);
+			System.out.println(tutorDto);
+			System.out.println(tutorDto);
+			System.out.println(tutorDto);
 			// memberDto를 member변수로 담는다.
 			viewUrl = "redirect:/home.do";
 		} else {
 			viewUrl = "redirect:/login.do";
 			// 로그인 실패하면 세션에 들어가지 못하고, 로그인 성공하면 세션에 들어가서 로그아웃할때까지 세션이 유지됨
 		}
+		
+		
+		
+		
 		return viewUrl;
 	}
 

@@ -19,7 +19,42 @@ $(document).ready(function(){
 
 	});
 
+	
+	$('#changeStatusBtn').click(function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			url: "/englishvillage/changeTutorStatusCheck.do",
+			type: "POST",
+			data: "memberNo=" + $("#sessionNo").val() + "&statusCheck=" + $('#statusCheck').val(),
+			success: function(data) {
+					if($('#statusSwitch').text() == 'on'){
+						$('#statusSwitch').text('off');
+						$('#statusSwitch').css('color', 'red');
+						$('#statusCheck').val('N');
+					} else {
+						$('#statusSwitch').text('on');
+						$('#statusSwitch').css('color', 'blue');
+						$('#statusCheck').val('Y');
+					}
+				if(data >= 1){
+					
+					
+				} else if(data == 0) {
+					$("#emailCheck").attr("value", "Y");
+					alert("실패");
+				}
+				
+			}
+			
+		});
+		
+
+		
+	});
 });
+
+
 </script>
 
 
@@ -73,7 +108,7 @@ float: right;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand active" href="/englishvillage/home.do">English Village</a>
+          <a class="navbar-brand active" href="/englishvillage/home.do">${tutor.statusCheck}</a>
         </div>
         
         
@@ -82,7 +117,19 @@ float: right;
 				<div id="navbar" class="navbar-collapse collapse">
 	              <ul id="naviUl" class="nav navbar-nav">
 	                 <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
-	                 <li><a href="tutorIntroduce.do">강의준비</a></li>
+	                 <li>
+	                	 <a id="changeStatusBtn" href="#">
+	                		 강의준비
+	                		 <c:choose>
+	                		 	<c:when test="${tutor.statusCheck eq 'Y'}">
+	                		 		<span id="statusSwitch" style="color : blue">on</span>
+	                		 	</c:when>
+	                		 	<c:when test="${tutor.statusCheck eq 'N'}">
+	                		 		<span id="statusSwitch" style="color : red">off</span>
+	                		 	</c:when>
+	                		 </c:choose>
+	                	 </a>
+	                 </li>
 	                 <li class="dropdown">
 	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 튜터님 <span class="caret"></span></a>
 	                    <ul class="dropdown-menu" role="menu">
@@ -125,6 +172,7 @@ float: right;
         
       </div>
       <input id="sessionNo" type="text" value="${member.memberNo}" style="display: none; height: 0px;">
+      <input id="statusCheck" type="text" value="${tutor.statusCheck}" style="display: none; height: 0px;">
       <input id="alertStr" type="text" style="display: none; height: 0px;">
     </nav>
     

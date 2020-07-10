@@ -131,9 +131,9 @@ public class TutorDaoImpl implements TutorDao {
 	}
 
 	@Override
-	public List<TutorCommentDto> TutorCommentDto(int tutorNo) {
+	public List<TutorCommentDto> getTutorComments(int tutorNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "TutorCommentDto", tutorNo);
+		return sqlSession.selectList(namespace + "getTutorComments", tutorNo);
 	}
 
 	@Override
@@ -218,6 +218,18 @@ public class TutorDaoImpl implements TutorDao {
 		map.put("tutorNo", tutorNo);
 		
 		return sqlSession.selectOne(namespace + "getStudentTutorComment", map);
+	}
+
+	@Override
+	public int changeTutorStatus(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		System.out.println(tutorDto);
+		return sqlSession.update(namespace + "changeTutorStatus", tutorDto);
 	}
 
 }
