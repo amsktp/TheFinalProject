@@ -7,6 +7,15 @@
 <head>
 <title>회원정보 수정</title>
 <style type="text/css">
+	
+	#allDiv {
+		width: 1500px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+	}
+	
 	#updateDiv {
 		float: left;
 		width: 610px;
@@ -29,11 +38,11 @@
 		width: 600px;
 		height: 50px;
 		font-size: 30px;
-		margin-bottom: 50px;
+		margin-bottom: 40px;
 	}
 	#textarea {
 		width:700px;
-		height:600px;
+		height:550px;
 		float:left;
 		font-size: 30px;
 
@@ -244,7 +253,7 @@ function checkFinshFnc() {
 <body>
 
 	
-<%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="allDiv">
 	
 		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
@@ -262,7 +271,7 @@ function checkFinshFnc() {
 					<span id='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
 				</div>	
 				<div id='lineDiv'></div>
-				<div id='textarea'>
+				<div id='textarea' style="margin-top: 20px;">
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
 						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>

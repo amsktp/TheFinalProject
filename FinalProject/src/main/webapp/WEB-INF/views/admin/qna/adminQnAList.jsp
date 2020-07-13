@@ -18,7 +18,7 @@
 	}
 	
 	#qnaTable {
-		width: 1400px;
+		width: 1000px;
 		font-size: 20px;
 		text-overflow:ellipsis; 
 		overflow:hidden;
@@ -26,7 +26,11 @@
 	}
 	
 	#allDiv {
-		font-weight: bold;
+		width: 1500px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 	}
 </style>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
@@ -72,13 +76,14 @@
 </head>
 
 <body>
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="allDiv">
 		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-				<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
-					<span>문의 게시판</span>
-				</div>
-				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+				<span>문의 게시판</span>
 			</div>
+			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+		</div>
 		<div id='qnaTable' style="margin-top: 200px; float: left;" >
 		<form id='searchingForm' action="./questionListOne.do" method="post">
 		
@@ -150,7 +155,7 @@
 				</td>
 				
 				<td>
-					<fmt:formatDate value="${questionDto.boardModDate}" pattern="yyyy-MM-dd"/> 
+					<fmt:formatDate value="${questionDto.boardModDate}" pattern="yyyy-MM-dd HH:mm:ss"/> 
 				</td>
 				
 				<td>

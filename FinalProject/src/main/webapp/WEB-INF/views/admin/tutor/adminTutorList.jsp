@@ -8,6 +8,15 @@
 <title>회원 목록</title>
 
 <style type="text/css">
+	
+	#allDiv {
+		width: 1600px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+	}
+	
 	th { 
 		text-align: center; 
 	}
@@ -22,7 +31,7 @@
 	}
 	
 	#tutorTable {
-		width: 1200px;
+		width: 1000px;
 		font-size: 20px;
 	}
 	
@@ -81,7 +90,7 @@
 </head>
 
 <body>
-	
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="allDiv">
 	
 		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">

@@ -11,9 +11,9 @@ public class QuestionBoardDto {
 	private int boardNo;
 	private String title;
 	private String content;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date boardCreateDate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date boardModDate;
 	private String answerStatus;
 	private String grade;

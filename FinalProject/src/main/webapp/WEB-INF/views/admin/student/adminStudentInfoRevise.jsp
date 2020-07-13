@@ -7,13 +7,22 @@
 <head>
 <title>회원정보 수정</title>
 <style type="text/css">
+
+	#allDiv {
+		width: 1500px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+	}
+	
 	#updateDiv {
 		float: left;
 		width: 610px;
 		height: 710px;
 		border: 1px solid black;
 		box-sizing: border-box;
-		margin-top: 200px;
+		margin-top: 100px;
 	}
 
 	#lineDiv {
@@ -29,11 +38,11 @@
 		width: 600px;
 		height: 50px;
 		font-size: 30px;
-		margin-bottom: 50px;
+		margin-bottom: 40px;
 	}
 	#textarea {
 		width:700px;
-		height:600px;
+		height:550px;
 		float:left;
 		font-size: 30px;
 
@@ -282,12 +291,12 @@
 </head>
 
 <body>
-
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 <%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
 	<div id="allDiv">
 	
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
+		<div id="menuDiv" style="float: left; margin-top: 100px; margin-right: 200px;">
 			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
 				<span>회원 관리(학생)</span>
 			</div>
@@ -298,7 +307,7 @@
 			<form action='./studentUpdateCtr.do' onsubmit="return checkFinshFnc()" method='post' enctype="multipart/form-data">
 				<span id='memberProfileText'>회원정보</span>
 				<div id='lineDiv'></div>
-				<div id='textarea'>
+				<div id='textarea' style="margin-top: 20px;">
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
 						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>

@@ -7,6 +7,15 @@
 <head>
 <title>회원정보 상세조회</title>
 <style type="text/css">
+
+	#allDiv {
+		width: 1500px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+	}
+	
 	.tutorProfileDiv {
 		border: 1px solid black;
 		width: 600px;
@@ -20,7 +29,7 @@
 	#tutorProfileDiv {
 		border: 1px solid black;
 		width: 600px;
-		height: 950px;
+		height: 700px;
 		box-sizing: border-box;
 		float: left;
 		margin-top: 200px;
@@ -207,6 +216,7 @@ td {
 
 
 
+
 input:focus {outline:none;}
 textarea:focus {outline:none;}
 	
@@ -269,7 +279,7 @@ textarea:focus {outline:none;}
 </head>
 
 <body>
-<!-- 337 3번 문제 MemberUpdateServlet 화면출력 위임 -->
+	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 	
 	

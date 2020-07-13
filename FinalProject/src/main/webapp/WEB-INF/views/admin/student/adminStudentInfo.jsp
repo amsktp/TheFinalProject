@@ -7,6 +7,14 @@
 <head>
 <title>회원정보 상세조회</title>
 <style type="text/css">
+
+	#allDiv {
+		width: 1500px;
+	    position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+	}
 	#studentProfileDiv {
 		border: 1px solid black;
 		width: 600px;
@@ -16,6 +24,8 @@
 		float: left;
 		box-sizing: border-box;
 	}
+	
+	
 	
 	#lineDiv {
 		border-bottom: 1px solid #BDBDBD; 
@@ -79,7 +89,7 @@
 <body>
 <!-- 337 3번 문제 MemberUpdateServlet 화면출력 위임 -->
 	
-	
+		<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
 		<div id="allDiv">
 		
