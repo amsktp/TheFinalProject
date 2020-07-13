@@ -11,11 +11,14 @@
 	table tr td {
  		border: 1px dotted red;  /*테스트용, 페이지완성 후 지울 것 */
 		font-size: 20px;
+		padding-left: 20px;
+		
 	} 
 	
 	td {
 		height: 50px;
 		width: 300px;
+		
 	}
 
 	.pricePoint {
@@ -93,7 +96,7 @@
 						<td id="resultPrice">0 원</td>
 					</tr>
 				</table>
-				<input class="blackBtn" type="submit" value="결제하기">
+				<input class="blackBtn" type="submit" value="결제하기" style="margin-top: 20px;">
 				<input id="originalPoint" type="hidden" value="${member.memberPoint}">
 			</div>
 		</form>

@@ -427,10 +427,10 @@ keyframes fly-cycle { 100% {
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="tutorDto" items="${tutorDtoList}">
-
 					<div class="tutorInfoDiv clearfix">
 						<div class="img">
 							<div class="scale tutorImgDiv"
+							
 								onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 								<img alt="image not found" class='tutorImg'
 									src="<c:url value='/img/${tutorDto.storeFileName}'/>">
