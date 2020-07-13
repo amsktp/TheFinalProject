@@ -80,9 +80,9 @@
 </script>
 
 	<div class="page_wrap">
-   <div class="page_nation">
-      <a class="arrow pprev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.beginPage});"></a>
-      <a class="arrow prev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.prevPage});"></a>
+		<div class="page_nation">
+	    <a class="arrow pprev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.beginPage});"></a>
+	    <a class="arrow prev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.prevPage});"></a>
       		<c:forEach var="num" 
 				begin="${pagingMap.memberPaging.blockBegin}" 
 				end="${pagingMap.memberPaging.blockEnd}">

@@ -47,7 +47,7 @@ public interface TutorDao {
 
 	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
-	public List<QuestionBoardDto> tutorBoardList(int start, int end);
+	public List<QuestionBoardDto> tutorBoardList(int start, int end, int no);
 	public void insertFile(Map<String, Object> map);
 
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);

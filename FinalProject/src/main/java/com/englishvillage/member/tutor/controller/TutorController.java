@@ -404,19 +404,17 @@ public class TutorController {
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String tutorBoardList(HttpSession session, @RequestParam(defaultValue = "1") 
 		int curPage, 
-		@RequestParam(defaultValue = "0") 
-		int no, 
+		@RequestParam(defaultValue = "0") int no, 
 		Model model) {
+		
 		log.info("Welcome tutorBoardList! " + curPage + " : ???? ");
 		
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
 		
-		int memberNo = sessionTutorDto.getMemberNo();
-		
-		TutorDto tutorDto = tutorService.getTutorInfo(memberNo);
-		
-		model.addAttribute("tutorDto", tutorDto);
-		
+		no = sessionTutorDto.getMemberNo();
+		System.out.println(no);
+		TutorDto tutorDto = tutorService.getTutorInfo(no);
+
 		// 회원 토탈카운트 -> 보드 토탈카운트
 		int totalCount = 
 			tutorService.tutorSelectTotalCount(
@@ -439,19 +437,21 @@ public class TutorController {
 
 //		튜터보드리스트
 		List<QuestionBoardDto> tutorBoardList = 
-				tutorService.tutorBoardList(start, end);
+				tutorService.tutorBoardList(start, end, no);
 		
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("tutorPaging", tutorPaging);
 
+		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorBoardList", tutorBoardList);
 		model.addAttribute("pagingMap", pagingMap);
 		
 		return "member/tutor/qna/tutorQnABoard";
 	}
-	@ResponseBody
+	
+	
 	@RequestMapping(value = "/changeTutorStatusCheck.do", method = RequestMethod.POST)
 	public int changeTutorStatusCheck(TutorDto tutorDto, HttpSession session) {
 		log.info("changeTutorStatusCheck.do 입니다. POST");

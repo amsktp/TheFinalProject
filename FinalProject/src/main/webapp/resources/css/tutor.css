@@ -1,6 +1,18 @@
 input:focus {outline:none;}
 textarea:focus {outline:none;}
 
+table, tr, th, td{
+	
+	padding: 10px 10px;	
+}  
+th{
+	border-right: 1px solid #C4C3C3;
+	border-bottom: 1px solid #C4C3C3;
+	width: 200px;
+}
+td {
+	border-bottom: 1px solid #C4C3C3;
+}
 .myInfoFont{
 	padding-left: 30px;
 	font-size: 30px;

@@ -12,7 +12,7 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(4).addClass('on');
+    $('.layoutUl').children().eq(5).addClass('on');
 });
 </script>
 </head>
@@ -20,16 +20,18 @@ $(document).ready(function(){
 <body>
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
-	<div id="pageSize">
-<%-- 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" /> --%>
-	
-		<div id="">
+	<div class="container bs-docs-container contentBox">
+		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
+		<div class="col-md-9" style="margin-top: 40px; margin-bottom: 100px;">
+			<div id="pageName">
+					문의 내역
+			</div>
 			<table>
 				<tr>
-					<th>제목</th>
+					<th style="width: 400px;">제목</th>
 					<th>작성자</th>
-					<th>질문한 내용</th>
-					<th>답변상태</th>
+					<th>질문한 날짜</th>
+					<th style="border-right: 1px solid white;">답변상태</th>
 				</tr>
 				<c:choose>
 					<c:when test="${empty tutorBoardList}">
@@ -40,33 +42,40 @@ $(document).ready(function(){
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="tutorDto" items="${tutorBoardList}">
+						<c:forEach var="tutorBoard" items="${tutorBoardList}">
 							<tr>
 								<td>
-									${member.memberNo}
-								</td>
-								<td>
 									<a href='#' onclick="listOnePageFnc(this, event);">
-										${tutorDto.memberName}
+										${tutorBoard.title}
 									</a>
 								</td>
 								<td>
-									${tutorDto.memberEmail}
+									${tutorBoard.name}
 								</td>
 								<td>
-									<fmt:formatDate value="${tutorDto.memberCreateDate}" 
-										pattern="yyyy년MM월dd일 hh시mm분"/>
+									<fmt:formatDate value="${tutorBoard.boardCreateDate}" 
+									pattern="yyyy-MM-dd"/>
+								</td>
+								<td>
+									<c:choose>
+										<c:when test="${tutorBoard.answerStatus == 'N'}">
+											답변대기중
+										</c:when>
+										<c:when test="${tutorBoard.answerStatus == 'Y'}">
+											답변완료
+										</c:when>
+									</c:choose>
 								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-			
 			</table>
-
 		</div>
+		<jsp:include page="/WEB-INF/views/common/paging3.jsp">
+			<jsp:param value="${pagingMap}" name="pagingMap"/>
+		</jsp:include>
 	</div>
-
 	
 
 </body>
