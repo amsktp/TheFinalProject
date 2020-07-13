@@ -220,22 +220,10 @@ keyframes fly-cycle { 100% {
 		
 		location.href = './tutorSelectOne.do?tutorNo=' + tutorNo;
 
-	}
+	};
 	
 	$(document).ready(function() {
 		
-// 		var titleMaxLenght = 17;
-		
-// 		for (var i = 0; i < $('.studyTitle').length; i++) {
-// 			var studyTitleStr = $('.studyTitle').eq(i).text();
-			
-// 			if(studyTitleStr.length > titleMaxLenght){
-// 				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
-// 			}
-
-// 			$('.studyTitle').eq(i).text(studyTitleStr);
-			
-// 		}
 		
 	});
 	
@@ -423,7 +411,7 @@ keyframes fly-cycle { 100% {
 	<div id="tutorList">
 		<c:choose>
 			<c:when test="${empty tutorDtoList}">
-				<div>검색 결과가 없습니다.</div>
+				<div style="font-weight: bold; font-size: 25px;">조건에 만족하는 튜터가 없습니다! 다시 검색해주세요~</div>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="tutorDto" items="${tutorDtoList}">

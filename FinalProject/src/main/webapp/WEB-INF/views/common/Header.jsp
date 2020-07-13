@@ -108,7 +108,7 @@ float: right;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand active" href="/englishvillage/home.do">${tutor.statusCheck}</a>
+          <a class="navbar-brand active" href="/englishvillage/home.do">English Village</a>
         </div>
         
         

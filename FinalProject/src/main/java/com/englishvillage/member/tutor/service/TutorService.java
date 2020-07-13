@@ -59,4 +59,6 @@ public interface TutorService {
 
 	public int changeTutorStatus(TutorDto tutorDto);
 
+	public int addPoint(int memberNo, int price);
+
 }

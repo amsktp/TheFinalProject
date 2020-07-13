@@ -397,6 +397,15 @@
 		WHERE TUTOR_NO = #{memberNo}
 		
 	</update>
+	
+	<update id="addPount" parameterType="map">
+
+		<!-- set을 if로 주고 강사 status가 Y일때 N N일때 Y로 바꾸기 -->
+		UPDATE MEMBER
+		SET MEMBER_POINT = MEMBER_POINT + #{price}
+		WHERE MEMBER_NO = #{memberNo}
+		
+	</update>
 </mapper>
 
 

@@ -467,7 +467,7 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.POST)
-	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck) {
+	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck, int price) {
 		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
 		
 		
@@ -476,14 +476,12 @@ public class TutorController {
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
 		
 		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
-		
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
-		System.out.println(tutorCommentDto);
+
 		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
 
+		tutorService.addPoint(tutorCommentDto.getTutorNo(), price);
+		tutorService.addPoint(tutorCommentDto.getStudentNo(), 0 - price);
+		
 		if(resultNum == 0) {
 			System.out.println("에드 히스토리 실패");
 		}else if(resultNum == 1) {

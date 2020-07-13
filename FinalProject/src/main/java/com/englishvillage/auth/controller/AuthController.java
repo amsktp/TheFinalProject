@@ -56,7 +56,8 @@ public class AuthController {
 		
 		if(memberDto != null) {
 			session.setAttribute("member", memberDto);
-
+			TutorDto tutorDto = tutorService.getTutorInfo(memberDto.getMemberNo());
+			session.setAttribute("tutor", tutorDto);
 			viewUrl = "redirect:/home.do";
 		} else {
 			viewUrl = "redirect:/loginError.do";

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
@@ -42,9 +43,17 @@
       </property>
  
    </bean>
-   
+  
+<beans:bean id="sampleInterceptor"
+	class="com.englishvillage.util.AuthInterceptor" />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/auth/**"/>
+			<beans:ref bean="sampleInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 
 </beans>
-

@@ -92,7 +92,8 @@
 									url: "/englishvillage/addStudyHistoryCtr.do",
 									type: "POST",
 									data: 'tutorNo=' + $('#tutorNoNum').val() + "&studentNo=" + $('#studentNoNum').val() 
-									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val(),
+									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val()
+									+ '&price' + $('#tutorPrice').val(),
 									success: function(data) {
 											
 										alert("성공");

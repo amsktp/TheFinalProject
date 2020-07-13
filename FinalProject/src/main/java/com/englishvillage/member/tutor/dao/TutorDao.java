@@ -54,6 +54,8 @@ public interface TutorDao {
 
 	public int changeTutorStatus(TutorDto tutorDto);
 
+	public int addPoint(int memberNo, int price);
+
 	
 }
 

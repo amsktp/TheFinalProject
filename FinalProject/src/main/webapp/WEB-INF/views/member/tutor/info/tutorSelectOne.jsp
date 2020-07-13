@@ -477,10 +477,10 @@ tr {
 		<div class="tutorInfoBox">
 
 
-<!-- 			<div> -->
-<%-- 				<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }" --%>
-<!-- 					frameborder="0" allowfullscreen></iframe> -->
-<!-- 			</div> -->
+			<div>
+				<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }"
+					frameborder="0" allowfullscreen></iframe>
+			</div>
 
 			<div>
 				<div id="onLineCheckDiv">
@@ -544,6 +544,7 @@ tr {
 				<!-- 사진 -->
 
 				<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
+				<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
 
 				<input id="statusCheck" type="hidden" value="${tutorDto.statusCheck}">
 				
@@ -618,9 +619,6 @@ tr {
 
 
 		<!-- 댓글 확인 부분 -->
-=======
-	<!-- 댓글 확인 부분 -->
->>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 		<c:choose>
 			<c:when test="${not empty tutorCommentDtoList}">
 				<div id="commentList">
@@ -720,25 +718,15 @@ tr {
 
 								</form>
 							</div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 						</c:if>
 					</c:forEach>
 				</div>
 			</c:when>
-<<<<<<< HEAD
-			<c:otherwise>
-				<div>등록된 후기가 없습니다</div>
-			</c:otherwise>
-=======
 			<c:when test="${empty tutorCommentDtoList}">
 				<div style="font-size: 40px; margin-top: 40px;">
 					아직 등록된 후기가 없습니다
 				</div>
 			</c:when>
->>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 		</c:choose>
 		</div>
 </body>

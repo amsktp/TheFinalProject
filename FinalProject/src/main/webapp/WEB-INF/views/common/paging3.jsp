@@ -68,7 +68,7 @@
 		var pagingForm = $('#pagingForm');
 		pagingForm.submit();
 		
-	}
+	};
 	
 	window.onload = function(){
 		var curPage = document.getElementById('curPage');
@@ -76,24 +76,27 @@
 		
 		document.getElementById(pageButtonId)
 			.setAttribute('class', 'active');
-	}
+	};
 </script>
 
-	<div class="page_wrap">
-   <div class="page_nation">
-      <a class="arrow pprev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.beginPage});"></a>
-      <a class="arrow prev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.prevPage});"></a>
-      		<c:forEach var="num" 
+<div class="page_wrap">
+	<div class="page_nation">
+		<c:if test="${pagingMap.memberPaging.blockBegin ne 1 || pagingMap.memberPaging.blockEnd ne 0}">
+			<a class="arrow pprev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.beginPage});"></a>
+			<a class="arrow prev" href="#" onclick="goPageFnc(${pagingMap.memberPaging.prevPage});"></a>
+			<c:forEach var="num" 
 				begin="${pagingMap.memberPaging.blockBegin}" 
-				end="${pagingMap.memberPaging.blockEnd}">
-				
+				end="${pagingMap.memberPaging.blockEnd}">	
 					<a id="pageButton${num}" href="#" onclick="goPageFnc(${num});">
 						<c:out value="${num}"/>
 					</a>
 			</c:forEach>
-			
-      <a class="arrow next" href="#" onclick="goPageFnc(${pagingMap.memberPaging.nextPage});"></a>
-      <a class="arrow nnext" href="#" onclick="goPageFnc(${pagingMap.memberPaging.endPage});"></a>
-   </div>
+
+			<li id='pageButton1'>
+				<a class="arrow next" href="#" onclick="goPageFnc(${pagingMap.memberPaging.nextPage});"></a>
+				<a class="arrow nnext" href="#" onclick="goPageFnc(${pagingMap.memberPaging.endPage});"></a>
+			</li>
+		</c:if>	
+	</div>
 </div>
 

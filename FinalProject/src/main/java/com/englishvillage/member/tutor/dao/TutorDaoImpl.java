@@ -240,4 +240,15 @@ public class TutorDaoImpl implements TutorDao {
 		return sqlSession.update(namespace + "changeTutorStatus", tutorDto);
 	}
 
+	@Override
+	public int addPoint(int memberNo, int price) {
+		// TODO Auto-generated method stub
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberNo);
+		map.put("price", price);
+		
+		return sqlSession.update(namespace + "addPount", map);
+	}
+
 }

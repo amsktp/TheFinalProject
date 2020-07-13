@@ -1,0 +1,222 @@
+--MEMBER_GRADE
+insert into member_grade values('A', '관리자');
+insert into member_grade values('N', '학생');
+insert into member_grade values('Y', '강사');
+
+select * from member_grade;
+
+--MEMBER 테이블
+
+insert into member values(0, 'dd', 'dd', '디디', SYSDATE, SYSDATE, 'KOREA', 'M', '1996-10-04', 99999999, 'A');
+
+insert into member values(1,'chan@naver.com','test1','이찬양','2020-06-10','2020-06-20','KOREA','M','1998-05-02',0,'N');
+
+insert into member
+value(MEMBER_NO,MEMBER_EMAIL,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_CREATE_DATE,MEMBER_MODIFY_DATE,MEMBER_COUNTRY,MEMBER_GENDER,MEMBER_BIRTH_DATE,MEMBER_POINT,MEMBER_GRADE)
+values(2,'smith@gmail.com','test1','SMITH','2020-05-18','2020-06-21','USA','M','1996-10-04',10000,'Y');
+
+insert into member values(3,'khabib@gmail.com','test3','Khabib Nurmag','2020-05-18','2020-07-30','USA','M','1992-03-18',10000,'Y');
+insert into member values(4,'stipe@gmail.com','test4','Stipe Miocic','2019-11-14','2019-11-30','USA','F','1998-01-01',1000,'Y');
+insert into member values(5,'israel@gmail.com','test5','Irael Adnya','2019-11-24','2020-09-29','USA','F','1995-06-28',20000,'Y');
+insert into member values(6,'daniel@gmail.com','test6','Daiel Coier','2020-06-14','2019-12-09','USA','F','1987-07-20',0,'Y');
+insert into member values(7,'kamaru@gmail.com','test7','Kamu Usan','2018-03-03','2019-12-10','USA','F','1997-08-21',1000,'Y');
+insert into member values(8,'alexander@gmail.com','test8','Aladr Vlnosi','2020-12-12','2020-05-18','USA','F','1993-02-10',20000,'Y');
+insert into member values(9,'conor@gmail.com','test9','Conor MGrgr','2020-01-02','2020-12-25','USA','F','1992-03-18',39000,'Y');
+insert into member values(10,'max@gmail.com','test10','Max Holw','2019-11-16','2019-12-11','USA','F','1992-03-17',58000,'Y');
+insert into member values(11,'justin@gmail.com','test11','Jusi Ghje','2020-01-04','2020-06-13','USA','M','1997-08-21',77000,'Y');
+insert into member values(12,'dustin@gmail.com','test12','Duin Prier','2018-01-06','2019-11-12','USA','M','1987-07-20',96000,'Y');
+insert into member values(13,'tony@gmail.com','test13','Tony Feron','2019-05-05','2019-11-25','USA','M','1997-08-23',0,'Y');
+insert into member values(14,'robert@gmail.com','test14','Robrt Wker','2019-11-20','2020-06-07','USA','M','1992-03-16',0,'Y');
+insert into member values(15,'francis@gmail.com','test15','Frai gou','2020-01-08','2019-11-27','USA','M','1998-05-04',0,'Y');
+insert into member values(16,'dominick@gmail.com','test16','Domick Ryes','2020-05-18','2020-06-02','USA','M','1998-10-10',0,'Y');
+insert into member values(17,'deiveson@gmail.com','test17','Deson Figdo','2019-11-22','2019-11-29','USA','M','1998-05-03',0,'Y');
+insert into member values(18,'joseph@gmail.com','test18','Josh Beidez','2019-12-15','2020-06-08','USA','F','1992-03-15',210000,'Y');
+insert into member values(19,'brandon@gmail.com','test19','Brandn Moreno','2020-01-05','2019-12-06','USA','F','1997-08-22',10000,'Y');
+insert into member values(20,'alexandre@gmail.com','test20','Aldre Pantoja','2020-05-18','2019-12-03','Ireland','F','1993-02-22',20000,'Y');
+insert into member values(21,'alex@gmail.com','test21','Alex Perez','2019-12-04','2019-12-16','Ireland','F','1992-11-11',20000,'Y');
+insert into member values(22,'jussier@gmail.com','test22','Jsier Foiga','2020-06-11','2020-01-08','Ireland','F','1992-03-19',0,'Y');
+insert into member values(23,'askar@gmail.com','test23','Askar Aarov','2019-11-26','2020-05-18','Ireland','F','1992-03-20',20000,'Y');
+insert into member values(24,'kai@gmail.com','test24','Kaara Fance','2020-01-07','2019-11-22','Ireland','F','1992-12-12',0,'Y');
+insert into member values(25,'rogerio@gmail.com','test25','Roio Borin','2019-12-07','2019-12-15','Ireland','M','1992-03-22',10000,'Y');
+insert into member values(26,'matt@gmail.com','test26','Matt Scell','2020-06-12','2020-01-05','Ireland','M','1990-12-28',50000,'Y');
+insert into member values(27,'jordan@gmail.com','test27','Joran Enosa','2019-12-08','2020-05-18','Ireland','M','1992-03-24',50000,'Y');
+insert into member values(28,'tim@gmail.com','test28','Tim Eott','2017-08-07','2019-12-04','Ireland','M','1993-02-20',10000,'Y');
+insert into member values(29,'raulian@gmail.com','test29','Rian Pava','2019-12-14','2020-06-11','Ireland','M','1993-02-21',50000,'Y');
+insert into member values(30,'daivd@gmail.com','test30','Did Dvok','2017-08-22','2019-11-26','Canada','M','1992-03-27',10000,'Y');
+insert into member values(31,'marlon@gmail.com','test31','Malon Moaes','2020-01-06','2020-01-07','Canada','F','1995-12-28',50000,'Y');
+insert into member values(32,'aljamain@gmail.com','test32','Aljin Steng','2020-07-30','2019-12-07','Canada','F','1992-03-29',50000,'Y');
+insert into member values(33,'peter@gmail.com','test33','Peter Yan','2019-11-30','2020-06-12','Canada','F','1993-02-19',50000,'Y');
+insert into member values(34,'cory@gmail.com','test34','Cory Sagen','2020-09-29','2019-12-08','Canada','F','1999-06-19',115000,'Y');
+insert into member values(35,'cody@gmail.com','test35','Cody Gadt','2019-12-09','2017-08-07','Canada','F','1992-12-04',134000,'Y');
+insert into member values(36,'jose@gmail.com','test36','Jose Aldo','2019-12-10','2019-12-14','Canada','F','1992-04-02',153000,'Y');
+insert into member values(37,'pedro@gmail.com','test37','Pedro Munoz','2020-05-18','2017-08-22','Canada','F','1993-02-18',172000,'Y');
+insert into member values(38,'raphael@gmail.com','test38','Raael Ascao','2020-12-25','2020-01-06','Canada','F','1995-05-05',191000,'Y');
+insert into member values(39,'jimmie@gmail.com','test39','Jimie Rivera','2019-12-11','2020-07-30','Canada','F','1988-05-05',0,'Y');
+insert into member values(40,'rob@gmail.com','test40','Rob Font','2020-06-13','2019-11-30','Canada','F','1992-03-23',10000,'Y');
+insert into member values(41,'john@gmail.com','test41','John Dodson','2019-11-12','2020-09-29','England','F','1999-06-18',50000,'Y');
+insert into member values(42,'sean@gmail.com','test42','SeanO Maey','2019-11-28','2019-12-09','England','F','1980-07-07',20000,'Y');
+insert into member values(43,'song@gmail.com','test43','Song Yang','2020-04-14','2020-06-07','England','M','1987-07-20',0,'Y');
+insert into member values(44,'brian@gmail.com','test44','Brian Orga','2020-05-18','2019-11-27','England','M','1997-08-23',50000,'Y');
+insert into member values(45,'zabit@gmail.com','test45','Zabit Maov','2019-12-13','2020-06-02','England','M','1999-06-17',0,'Y');
+insert into member values(46,'yair@gmail.com','test46','Yair Roez','2020-06-01','2019-11-29','England','M','1992-03-26',20000,'Y');
+insert into member values(47,'calvin@gmail.com','test47','Cvin Katar','2020-01-03','2020-06-08','England','M','1998-05-04',50000,'N');
+insert into member values(48,'frankie@gmail.com','test48','Fraie Edgar','2019-11-11','2019-12-06','England','M','1998-05-05',50000,'N');
+insert into member values(49,'josh@gmail.com','test49','Josh Emett','2020-06-01','2019-12-03','England','F','1993-02-17',60000,'N');
+insert into member values(50,'jeremy@gmail.com','test50','Jemy Sens','2019-11-13','2019-12-16','England','F','1988-11-11',70000,'N');
+insert into member values(51,'shane@gmail.com','test51','Shane Burgs','2019-12-12','2020-05-18','England','F','1999-06-16',80000,'N');
+insert into member values(52,'arnold@gmail.com','test52','Arnld Allen','2019-11-15','2019-11-22','England','F','1992-03-28',90000,'N');
+insert into member values(53,'jessica@gmail.com','test53','Jessa Anade','2020-06-01','2019-12-15','USA','F','1993-02-26',100000,'N');
+insert into member values(54,'rose@gmail.com','test54','Rose Najas','2019-11-17','2020-01-05','USA','F','1981-06-07',0,'N');
+insert into member values(55,'tatiana@gmail.com','test55','Tana Suarez','2019-11-18','2020-05-18','USA','F','1992-03-25',0,'N');
+insert into member values(56,'joanna@gmail.com','test56','Joana Jedrk','2019-11-19','2019-12-04','USA','F','1999-06-15',0,'N');
+insert into member values(57,'nina@gmail.com','test57','Nina Ansf','2020-06-01','2020-06-11','USA','F','1989-11-11',0,'N');
+insert into member values(58,'claudia@gmail.com','test58','Claia Gaha','2019-11-21','2019-11-26','USA','M','1992-03-30',70000,'N');
+insert into member values(59,'carla@gmail.com','test59','Carla Esza','2020-06-04','2020-01-07','USA','M','1998-05-06',70000,'N');
+insert into member values(60,'michelle@gmail.com','test60','Mile Waton','2019-11-23','2020-05-17','USA','M','1993-02-16',60000,'N');
+insert into member values(61,'marina@gmail.com','test61','Mara Roez','2020-06-05','2019-03-17','Ireland','M','1993-02-25',70000,'N');
+insert into member values(62,'yan@gmail.com','test62','Yan Xian','2019-11-25','2020-12-04','Ireland','M','1985-05-12',60000,'N');
+insert into member values(63,'tecia@gmail.com','test63','Tecia Torres','2020-06-07','2019-03-19','Ireland','M','1992-03-21',70000,'N');
+insert into member values(64,'alexa@gmail.com','test64','Alexa Grasso','2019-11-27','2020-12-28','Ireland','M','1993-02-24',60000,'N');
+insert into member values(65,'angela@gmail.com','test65','Angela Hill','2020-06-02','2019-03-18','Ireland','F','1999-06-14',0,'N');
+insert into member values(66,'amanda@gmail.com','test66','Amanda Ribas','2019-11-29','2017-03-15','Ireland','F','1998-10-10',60000,'N');
+insert into member values(67,'felice@gmail.com','test67','Felice Herrig','2020-06-08','2018-12-28','Ireland','F','1999-06-13',20000,'N');
+
+select * from member;
+--TUTOR_INFO 테이블
+
+insert into TUTOR_INFO
+value(TUTOR_NO, TUTOR_INTRODUCE, YOUTUBE_URL, STUDY_NAME, PRICE, STATUS_CHECK)
+values(2, '저는 케임브릿지 대학교 출신입니다 ', 'https://www.youtube.com/embed/u6R1DeCez9s', '[1:1] 즐거운 영어수업', 15000, 'N');
+
+insert into tutor_info values(3,'안녕하세요 천재이찬양입니다 믿고따라오세요','https://www.youtube.com/embed/L0XYa01AktA','[1:1] 재미있는 영어수업',500000,'N');
+insert into tutor_info values(4,'반갑습니다 ','https://www.youtube.com/embed/09a3arhxq6w','[1:1] 야스오 미드빵',20000,'N');
+insert into tutor_info values(5,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/ufuhlxJjz1w','[1:1] 제건이 아칼리 쵝오',30000,'N');
+insert into tutor_info values(6,'저는 LA 현지인 강사입니다','https://www.youtube.com/embed/R7Vuh1vBM2I','[1:1] 탑 누누 장인 오현석',28000,'N');
+insert into tutor_info values(7,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/qnA1fk_2ZFU','[1:1] 찡긋찡긋',29000,'N');
+insert into tutor_info values(8,'안녕하세요 Kamaru Usman 강사입니다. ','https://www.youtube.com/embed/d0iJo-8gWSs','[1:1] Hello, this is english study',30000,'N');
+insert into tutor_info values(9,'저는 서울대학교 에서 영문학과 전공했으며 현재 강사활동중입니다','https://www.youtube.com/embed/i4ZORQUUx5E','[1:1] 야! 너두 영어 할 수 있어 ',22000,'N');
+insert into tutor_info values(10,'현재 유럽권에서 강사활동하고있는 Conor McGregor 입니다','https://www.youtube.com/embed/82kG_8roc0A','[1:1] 야! 너도 할수있어!',23000,'N');
+insert into tutor_info values(11,'저는 필리핀 현지인 강사입니다','https://www.youtube.com/embed/a_BrkCa7WmA','[1:1] 야! 너도 할수있어!',16000,'N');
+insert into tutor_info values(12,'안녕하세요 영어에대해 쉽게접근하기 좋게 가려켜 드리겠습니다','https://www.youtube.com/embed/il8ClautXrs','[1:1] 야! 너도 할수있어!',20000,'N');
+insert into tutor_info values(13,'안녕하세요 Dustin Poirier 강사입니다. ','https://www.youtube.com/embed/XGVkbSoCoSE','[1:1] 야! 너도 할수있어!',30000,'N');
+insert into tutor_info values(14,'영어회화가 어렵다면 저한테 배우세요!','https://www.youtube.com/embed/-dryf11f29E','[1:1] 야! 너도 할수있어!',33000,'N');
+insert into tutor_info values(15,'안녕하세요 일주일안에 영어에 대한 이해력 마스터 해드릴수있습니다','https://www.youtube.com/embed/a8toKhLWKhI4','[1:1] 야! 너도 할수있어!',24000,'N');
+insert into tutor_info values(16,'영어에대한 이해가 잘안된다면 저한테 배우세요!','https://www.youtube.com/embed/gUF4pFRJIUQ','[1:1] 영어마스터 강좌',25000,'N');
+insert into tutor_info values(17,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/tKv9OpZ5YRY','[1:1] 영어마스터 강좌',33000,'N');
+insert into tutor_info values(18,'영어회화가 어렵다면 저한테 배우세요!','https://www.youtube.com/embed/4XM2hpEzV_4','[1:1] 영어마스터 강좌',31000,'N');
+insert into tutor_info values(19,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/nlJrz-THTPU','[1:1] 즐거운 영어수업',32000,'N');
+insert into tutor_info values(20,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/kLBRhy3McMs','[1:1] 즐거운 영어수업',50000,'N');
+insert into tutor_info values(21,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/tGloaud-_38','[1:1] 즐거운 영어수업',34000,'N');
+insert into tutor_info values(22,'영어회화가 어렵다면 저한테 배우세요!','https://www.youtube.com/embed/oZRvJ7Kp7yE','[1:1] 즐거운 영어수업',35000,'N');
+insert into tutor_info values(23,'안녕하세요 Jussier Formiga 강사입니다. ','https://www.youtube.com/embed/wi8ipxsdpLk','[1:1] 즐거운 영어수업',10000,'N');
+insert into tutor_info values(24,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/5-NFTWa9QK8','[1:1] 즐거운 영어수업',10000,'N');
+insert into tutor_info values(25,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/FmQ259r3vxM','[1:1] 즐거운 영어수업',40000,'N');
+insert into tutor_info values(26,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/0QwhzMxAiOI','[1:1] 즐거운 영어수업',50000,'N');
+insert into tutor_info values(27,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/3YWkQneaRmg','[1:1] 야! 너도 할수있어!',10000,'N');
+insert into tutor_info values(28,'안녕하세요 Marina Rodriguez 강사입니다. ','https://www.youtube.com/embed/e7ZLzqd7_Q8','[1:1] 야! 너도 할수있어!',17000,'N');
+insert into tutor_info values(29,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/vfUqQ8gyKsE','[1:1] 야! 너도 할수있어!',18000,'N');
+insert into tutor_info values(30,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/pCArASOlr8U','[1:1] 야! 너도 할수있어!',19000,'N');
+insert into tutor_info values(31,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/S6GHzMfHvF0','[1:1] 야! 너도 할수있어!',20000,'N');
+insert into tutor_info values(32,'저는 고려대학교 에서 영문학과 전공했으며 현재 강사활동중입니다','https://www.youtube.com/embed/G00kYyVJyg0','[1:1] 야! 너도 할수있어!',10000,'N');
+insert into tutor_info values(33,'현재 강사활동중이지만 저도 영어가 어려울때가 있었습니다 저를 믿고 따라와주세요','https://www.youtube.com/embed/n3MfBI3Xxqg','[1:1] 야! 너도 할수있어!',10000,'N');
+insert into tutor_info values(34,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/p3ri5nLud0s','[1:1] 영어마스터 강좌',26000,'N');
+insert into tutor_info values(35,'영어회화가 어렵다면 저한테 배우세요!','https://www.youtube.com/embed/U2pvtVPcano','[1:1] 영어마스터 강좌',27000,'N');
+insert into tutor_info values(36,'안녕하세요 Cody Garbrandt 강사입니다. ','https://www.youtube.com/embed/WI2kq8NoreQ','[1:1] 영어마스터 강좌',28000,'N');
+insert into tutor_info values(37,'영어에대한 이해가 잘안된다면 저한테 배우세요!','https://www.youtube.com/embed/nrC7r4T9TAU','[1:1] 즐거운 영어수업',29000,'N');
+insert into tutor_info values(38,'현재 유럽권에서 강사활동하고있는 Pedro Munhoz 입니다','https://www.youtube.com/embed/Bd3j2qWky84','[1:1] 즐거운 영어수업',30000,'N');
+insert into tutor_info values(39,'영어에대한 이해가 잘안된다면 저한테 배우세요!','https://www.youtube.com/embed/BZOIEsBOIs4','[1:1] 즐거운 영어수업',10000,'N');
+insert into tutor_info values(40,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/axR9gSM38do','[1:1] 즐거운 영어수업',15000,'N');
+insert into tutor_info values(41,'저는 옥스퍼드 에서 영문학과 전공했으며 현재 강사활동중입니다','https://www.youtube.com/embed/yNyQlk2bc2o','[1:1] 즐거운 영어수업',16000,'N');
+insert into tutor_info values(42,'안녕하세요 Joanna Jedrzejczyk 강사입니다. ','https://www.youtube.com/embed/mE4BLzxcED0','[1:1] 즐거운 영어수업',20000,'N');
+insert into tutor_info values(43,'안녕하세요 Frankie Edgar 강사입니다. ','https://www.youtube.com/embed/ehvSlbsWxRk','[1:1] 즐거운 영어수업',30000,'N');
+insert into tutor_info values(44,'안녕하세요 영어를 제대로 배우고싶다면 여기로오세요','https://www.youtube.com/embed/2sqa_hv9pGg','[1:1] 즐거운 영어수업',10000,'N');
+insert into tutor_info values(45,'저는 연세대학교 에서 영문학과 전공했으며 현재 강사활동중입니다','https://www.youtube.com/embed/lO69fLQlshU','[1:1] 야! 너도 할수있어!',17000,'N');
+insert into tutor_info values(46,'저는 케임브릿지 영문학과 박사출신입니다','https://www.youtube.com/embed/lDapRfZnToI','[1:1] 야! 너도 할수있어!',17000,'N');
+
+
+select * from tutor_info;
+--EVALUATION 테이블
+
+insert into EVALUATION values(1, 2, 1, 5, '강의가 너무 재미있네요', 'Y', '이찬양', '2020-06-20', '2020-06-20');
+insert into EVALUATION values(2, 2, 47, 3, '재미없어요', 'Y', 'CalvinKattar', '2020-06-21', '2020-06-21');
+insert into EVALUATION values(3, 2, 48, 1, '못가르쳐요', 'Y', 'FrankieEdgar', '2020-06-21', '2020-06-21' );
+insert into EVALUATION values(4, 2, 49, 4, '잘가르쳐요', 'Y', 'JoshEmmett', '2020-06-21', '2020-06-21' );
+insert into EVALUATION values(5, 2, 50, 2, '모르겠어요', 'Y', 'JeremyStephens', '2020-06-21', '2020-06-21' );
+insert into EVALUATION values(6, 2, 51, null, null, 'N', 'ShaneBurgos', null, '2020-06-21');
+
+select * from evaluation;
+--QUESTION_BOARD
+
+insert into QUESTION_BOARD values(1, 2, '충전이 안되는데요..??', '충전했는데 충전이 안돼요.. 30000원 충전했는데 얼른 해결 해주세요', SYSDATE, SYSDATE, 'Y');
+insert into QUESTION_BOARD values(2, 1, '로그인 어떻게 해요??', '로그인 어떻게 해요?>?', SYSDATE, SYSDATE, 'Y');
+insert into QUESTION_BOARD values(3, 2, 'how are you what', 'Im fine Thank you', SYSDATE, SYSDATE, 'Y');
+insert into QUESTION_BOARD values(4, 2, '안녕하세요??', '안녕히 가세요', SYSDATE, SYSDATE, 'Y');
+insert into QUESTION_BOARD values(5, 1, '강사 등록 어떻게 하는건가요?', '강사등록 어떻게 해요??', SYSDATE, SYSDATE, 'Y');
+insert into QUESTION_BOARD values(6, 3, '이 선생님 너무 못가르쳐요..', '너무너무 못가르치는데 어떻게해요??', SYSDATE, SYSDATE, 'N');
+insert into QUESTION_BOARD values(7, 3, '영어만 되나요??', '중국어도 배우고 싶은데', SYSDATE, SYSDATE, 'N');
+insert into QUESTION_BOARD values(8, 1, '밤에도 수업 들을수 있나요??', '밤에도 수업 듣고 싶어요', SYSDATE, SYSDATE, 'N');
+insert into QUESTION_BOARD values(9, 2, '파팅파팅', '우리모두 파이팅', SYSDATE, SYSDATE, 'N');
+
+select * from question_board;
+--QUESTION_BOARD_COMMENT 
+
+insert into QUESTION_BOARD_COMMENT values(1, 1, SYSDATE,  '충전버튼은 마이페이지에 있습니다~', 0);
+insert into QUESTION_BOARD_COMMENT values(2, 2, SYSDATE,  '로그인은 우측 상단에 버튼으로 할 수 있습니다.', 0);
+insert into QUESTION_BOARD_COMMENT values(3, 3, SYSDATE,  'Hello cheer up everybody', 0);
+insert into QUESTION_BOARD_COMMENT values(4, 4, SYSDATE,  '안녕하세요~~~~', 0);
+insert into QUESTION_BOARD_COMMENT values(5, 5, SYSDATE,  '강사등록은 상단 헤더에 튜터 등록을 통해 진행하실 수 있습니다.', 0);
+
+select * from question_board_comment;
+--FILE_PROFILE_IMAGE
+
+
+insert into FILE_PROFILE_IMAGE values(1, 2, 'SMITH.jpg', 'a998cdbe5f8a4907bb06186c4f73b71b.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(2, 3, 'Khabib Nurmagomedov.jpg', '859a18126d1745bfa0e4a4832b65a801.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(3, 4, 'Stipe Miocic.jpg', '8d87df202212460fb9f19b4c3654822c.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(4, 5, 'Israel Adesanya.jpg', '11ba83e0405e4d8494accfdcdabd1b0a.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(5, 6, 'Daniel Cormier.jpg', '50d809ea5a6749a3ab48c6b1f5083d78.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(6, 7, 'Kamaru Usman.jpg', '00a769244be543c2bb34a5e699aa9186.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(7, 8, 'Alexander Volkanovski.jpg', 'cc66b7747aa344759790fcd54daed495.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(8, 9, 'Conor McGregor.jpg', '50c02e165e8d4a048d608dbde53b357c.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(9, 10, 'Max Holloway.jpg', '5c6b59f5d55146deb99c975b9bea3d56.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(10, 11, 'Justin Gaethje.jpg', 'f84a8399104b4dbca250d9fb828bf036.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(11, 12, 'Dustin Poirier.jpg', '07e07d91f7cf480a8226b5b8b323619a.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(12, 13, 'Tony Ferguson.jpg', '7e1c940031824dc7bfde3c4ace9c0936.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(13, 14, 'Robert Whittaker.jpg', '8af59e58f9dc426ea65aca3e888804f5.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(14, 15, 'Francis Ngannou.jpg', '1765feb8188244639393ff24dbe46704.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(15, 16, 'Dominick Reyes.jpg', '9a155e4a3ec246d1a2a7341317d274cb.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(16, 17, 'Deiveson Figueiredo.jpg', 'dfb52651468d45ecb917a7024dca6d0c.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(17, 18, 'Joseph Benavidez.jpg', '5dccd05473d944599dea717a8a1e2461.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(18, 19, 'Brandon Moreno.jpg', 'cc7775e501444064b95a141c794ad75a.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(29, 20, 'Alexandre Pantoja.jpg', '21d20198c3254c57821e780cf7c24d21.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(20, 21, 'Alex Perez.jpg', 'eabef149ac254968b5aa2ebad0083823.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(21, 22, 'Jussier Formiga.jpg', 'd1fc531e5d5c475da79c3a8702fd118f.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(22, 23, 'Askar Askarov.jpg', '135c93361bd444e3a4f982a85a665b85.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(23, 24, 'KaiKara France.jpg', '05456438d9e54719b50aada1f45dcb3d.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(24, 25, 'Rogerio Bontorin.jpg', '3925c02f2d394e7aa67024eac4162b07.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(25, 26, 'Matt Schnell.jpg', 'f4d3d5e500b2424c85a440d449db803b.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(26, 27, 'Jordan Espinosa.jpg', '2f5de6fcb2d04ad08f853ecc5492b97f.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(27, 28, 'Tim Elliott.jpg', '5bb581d2f0f24a3f80b0cb224bb15a40.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(28, 29, 'Raulian Paiva.jpg', '5e0b730ffeec4608a01c82e0b7ffd5a3.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(29, 30, 'David Dvorak.jpg', '07b5b55a817d41bcb7d77a6ec064f8f9.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(30, 31, 'Marlon Moraes.jpg', 'eb8dac4374a0424384e17c29d5cc006b.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(31, 32, 'Aljamain Sterling.jpg', 'bf7df8b2af4b42c38e681b9f892764ac.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(32, 33, 'Peter Yan.jpg', 'fa2b60d558d24027af696f0132203add.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(33, 34, 'Cory Sandhagen.jpg', 'd94a30fc84704ddaa0c37af8b1a768e7.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(34, 35, 'Cody Garbrandt.jpg', '9e6f317f085143629cb04835f6c8c909.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(35, 36, 'Jose Aldo.jpg', '14318f7f5dcd4729a01cd55a95e521f1.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(36, 37, 'Pedro Munhoz.jpg', 'b671b80dcdc045fb90c89de940212f0d.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(37, 38, 'Raphael Assuncao.jpg', '071ba2b064b84cd5b9ea509b028081a3.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(38, 39, 'Jimmie Rivera.jpg', '3f7e0cd9f1e04266a1c5f678faa5b046.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(39, 40, 'Rob Font.jpg', '602b7e0aa1cb49ec80da373c2943da2f.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(40, 41, 'John Dodson.jpg', 'cb2be9a8125445b8a9ba80c97f34d599.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(41, 42, 'SeanO Malley.jpg', 'd3e23abef6b54f98b7f4266d63694fc8.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(42, 43, 'Song Yadong.jpg', '6f57821738eb4325bf6703a700553966.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(43, 44, 'Brian Ortega.jpg', '1692464c369f4056917c6a16b174b0e7.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(44, 45, 'Zabit Magomedsharipov.jpg', 'ca113aca43d14682bae6b809fbc5455a.jpg', 3235, SYSDATE);
+insert into FILE_PROFILE_IMAGE values(45, 46, 'Yair Rodriguez.jpg', 'e9cb1596bb6a4341a8a2d38ba98031e4.jpg', 3235, SYSDATE);
+select * from file_profile_image;
+commit;
+
+select member_no, member_name from tutor_info t, member m
+where t.tutor_no = m.member_no;

@@ -236,6 +236,12 @@ public class TutorServiceImpl implements TutorService{
 		return tutorDao.changeTutorStatus(tutorDto);
 	}
 
+	@Override
+	public int addPoint(int memberNo, int price) {
+		// TODO Auto-generated method stub
+		return tutorDao.addPoint(memberNo, price);
+	}
+
 	
 	
 }
