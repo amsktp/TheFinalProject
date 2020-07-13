@@ -279,19 +279,19 @@ public class StudentController {
 	}
 
 	// 고재민 작업분 (수강권 구매)
-	@RequestMapping(value = "/buyPoint.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/buyPoint.do", method=RequestMethod.GET)
 	public String buyPoint(Locale locale, HttpSession session, Model model) {
 		log.info("@@@@@@@buyPoint!!!@@@@@@@@@");
 
-		return "/auth/buyPoint";
+		return "/member/student/info/buyPoint";
 	}
 	
 	// 고재민 작업분 (수강권 구매Ctr)
-	@RequestMapping(value = "/buyPointCtr.do", method = { RequestMethod.POST })
+	@RequestMapping(value = "/buyPointCtr.do", method=RequestMethod.POST)
 	public String buyPointCtr(Locale locale, HttpSession session, Model model) {
 		log.info("@@@@@@@buyPointCtr!!!@@@@@@@@@");
 
-		return "/auth/buyPoint";
+		return "redirect:/student/myInfo.do";
 	}
 	
 	

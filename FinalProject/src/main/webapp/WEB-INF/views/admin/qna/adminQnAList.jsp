@@ -56,7 +56,7 @@
 		
 		var url = '';
 		
-		url += './questionlistOne.do?';
+		url += './questionListOne.do?';
 		url += 'no=' + memberNoObj.html();
 // 		url += '&curPage=' + curPageObj.val();
 		url += '&keyword=' + keywordObj.val();
@@ -80,7 +80,7 @@
 				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 			</div>
 		<div id='qnaTable' style="margin-top: 200px; float: left;" >
-		<form id='searchingForm' action="./questionlist.do" method="post">
+		<form id='searchingForm' action="./questionListOne.do" method="post">
 		
 			<select id='searchOption' name="searchOption">
 				<c:choose>
@@ -115,12 +115,10 @@
 		<table class="table table-hover" >
 			<tr class="success">
 				<th>글번호</th>
-				<th>회원번호</th>
 				<th>글제목</th>
-				<th>답변상태</th>
 				<th>등급</th>
 				<th>문의 등록일</th>
-				<th>대답 확인</th>
+				<th>답변 상태 확인</th>
 			
 				
 			</tr>
@@ -134,36 +132,38 @@
 		<c:forEach var="questionDto" items="${qusetionList}">
 			<tr>
 				<td>${questionDto.idx}</td>
-				<td>${questionDto.no}</td>
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">
 						${questionDto.title}
 					</a>
 				</td>
-				
-				
-				<td>${questionDto.content}</td>
-				
-				<td>${questionDto.grade}</td>
+				<td>
+				<c:choose>
+					<c:when test="${questionDto.grade eq 'Y'}">
+						<c:out value="강 사"></c:out>
+					</c:when>
+					<c:when test="${questionDto.grade eq 'N'}">
+						<c:out value="학 생"></c:out>
+					</c:when>
+				</c:choose>
+				</td>
 				
 				<td>
 					<fmt:formatDate value="${questionDto.boardModDate}" pattern="yyyy-MM-dd"/> 
 				</td>
 				
-				<td>${questionDto.answerStatus}</td>
+				<td>
+				<c:choose>
+					<c:when test="${questionDto.answerStatus eq 'Y'}">
+						<c:out value="확인 완료"></c:out>
+					</c:when>
+					<c:when test="${questionDto.answerStatus eq 'N'}">
+						<c:out value="확인중"></c:out>
+					</c:when>
+				</c:choose>
+				</td>
 				
-	
-	<%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
-	<!-- 				<td>첨부파일 없음</td> -->
-	<%-- 			</c:if> --%>
-	<%-- 			<c:if test="${fileFlag eq false}"> --%>
-	<%-- 				<td>${memberDto.originalFileName}</td> --%>
-	<%-- 			</c:if> --%>
-				
-	<!-- 			<td> -->
-	<%-- 				<a href='./deleteCtr.do?no=${memberDto.no}'>[삭제]</a><br> --%>
-	<!-- 			</td> -->
 			</tr>
 		</c:forEach>
 		

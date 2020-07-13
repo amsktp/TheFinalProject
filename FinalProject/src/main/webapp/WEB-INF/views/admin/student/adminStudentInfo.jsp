@@ -62,10 +62,9 @@
 		
 		var url = '';
 		
-		url += './studentlist.do?';
+		url += './studentList.do?';
 		url += 'no=' + noObj.val();
 		url += '&keyword=' + keywordObj.val();
-		url += ''
 		url += '&searchOption=' + searchOptionObj.val();
 		
 		location.href = url;
@@ -94,7 +93,7 @@
 			
 			<div id="studentProfileDiv">
 			
-				<form action='./StudentUpdate.do' method='get'>
+				<form action='./studentUpdate.do' method='get'>
 				<span id='memberProfileText'>회원정보</span>
 				<div id='lineDiv'>
 				</div>

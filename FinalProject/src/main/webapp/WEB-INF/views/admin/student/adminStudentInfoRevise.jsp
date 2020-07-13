@@ -9,13 +9,22 @@
 <style type="text/css">
 	#updateDiv {
 		float: left;
-		width: 700px;
-		height: 800px;
+		width: 610px;
+		height: 710px;
 		border: 1px solid black;
 		box-sizing: border-box;
 		margin-top: 200px;
 	}
 
+	#lineDiv {
+		border-bottom: 1px solid #BDBDBD; 
+	}
+	
+	#memberProfileText {
+		font-size: 40px;
+		font-weight: bold;
+	}
+	
 	.text {
 		width: 600px;
 		height: 50px;
@@ -32,6 +41,14 @@
 	
 	.inpText {
 		margin-left: 40px;
+		width: 300px;
+	}
+	
+	.inpBtn {
+		width: 60px;
+		height: 30px;
+		font-size: 20px;
+		font-weight: bold;
 	}
 	
 	#btn > input {
@@ -197,6 +214,7 @@
 		var today = todayYear + '-' + todayMonth + '-' + todayDate;
 		
 		
+			cnt++;
 			if($('#birthDateChoose').val() > today) {
 				$('#dateSpan').html('현재 날짜보다 날짜가 커서 다시 수정해주시길 바랍니다.');
 				$('#dateSpan').css('color', '#FF4848');
@@ -210,7 +228,6 @@
 			
 			}
 			
-			cnt++;
 			return true;
 		}
 	
@@ -220,12 +237,17 @@
 	}
 	
 	function pageMoveDeleteFnc(no){
-		var url = "./StudentdeleteCtr.do?no=" + no;
+		if(confirm('정말 삭제하시겠습니까??') == true) {
+			alert("삭제 되었습니다.");
+		}else {
+			return false;
+		}
+		var url = "./studentdeleteCtr.do?no=" + no;
 		location.href = url;
 	}
 	
 	function pageMoveBeforeFnc(no) {
-		var url = "./studentlistOne.do?no=" + no;
+		var url = "./studentListOne.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -274,11 +296,14 @@
 		
 		<div id='updateDiv'>
 			<form action='./studentUpdateCtr.do' onsubmit="return checkFinshFnc()" method='post' enctype="multipart/form-data">
+				<span id='memberProfileText'>회원정보</span>
+				<div id='lineDiv'></div>
 				<div id='textarea'>
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
 						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>
-						<input type="button" onclick="nameCompareFnc()" value="확인">
+						<input class='inpBtn' type="button" onclick="nameCompareFnc()" value="확 인" style="float: right;">
+						<br>
 						<span id='nameSpan'></span>
 						<br>
 					</div>
@@ -305,7 +330,7 @@
 						<span>생 년 월 일 :</span> 
 						<input class='inpText' id="birthDateChoose" type="date"  name="birthDate"
 							value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
-							<input type="button" onclick="dateCompareFnc()" value="확 인">
+							<input class='inpBtn' type="button" onclick="dateCompareFnc()" value="확 인" style="float: right;">
 							<br>
 							<span id='dateSpan'></span>
 							<br>

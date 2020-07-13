@@ -98,7 +98,7 @@ float: right;
 
    
   
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
     
       <div class="container">
         <div class="navbar-header">

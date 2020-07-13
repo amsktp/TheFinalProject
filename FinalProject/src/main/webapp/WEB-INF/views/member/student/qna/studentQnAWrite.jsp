@@ -60,12 +60,11 @@ td {
 
 <body>
 	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
-
-	<div class="container bs-docs-container">
+	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9">
+		<div class="col-md-9" style="margin-top: 40px">
 
-			<h1 id="pageName">문의하기</h1>
+			<div id="pageName">문의하기</div>
 
 			<form method="post">
 

@@ -21,10 +21,6 @@ var QuestionListMoveFnc = function() {
 	location.href='/englishvillage/QuestionList.do'
 }
 
-function pageMoveDeleteFnc(no){
-	var url = "/englishvillage/deleteCtr.do?no=" + no;
-	location.href = url;
-}
 
 var tutorListMoveFnc = function() {
 	location.href = '/englishvillage/home.do'
@@ -35,15 +31,15 @@ var tutorIntroduceMoveFnc = function() {
 }
 
 var adminMoveFnc = function() {
-	location.href = '/englishvillage/admin/studentlist.do'
+	location.href = '/englishvillage/admin/studentList.do'
 }
 
 var adminMove1Fnc = function() {
-	location.href = '/englishvillage/admin/tutorlist.do'
+	location.href = '/englishvillage/admin/tutorList.do'
 }
 
 var adminMove2Fnc = function() {
-	location.href = '/englishvillage/admin/questionlist.do'
+	location.href = '/englishvillage/admin/questionList.do'
 }
 </script>
 
@@ -127,9 +123,9 @@ ul {
 		<ul class="nav bs-docs-sidenav layoutUl">
 
 			
-			<li><a href="./studentlist.do">학 생</a></li>
-			<li><a href="./tutorlist.do">강 사</a></li>
-			<li><a href="./questionlist.do">문 의</a></li>
+			<li><a href="./studentList.do">학 생</a></li>
+			<li><a href="./tutorList.do">강 사</a></li>
+			<li><a href="./questionList.do">문 의</a></li>
 
 		</ul>
 	</nav>

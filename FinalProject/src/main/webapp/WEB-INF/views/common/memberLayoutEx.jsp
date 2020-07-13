@@ -131,6 +131,16 @@ var adminMove2Fnc = function() {
 	text-align: center;
 }
 
+@media ( min-width : 500px) {
+	.navbar-nav {
+		float: right;
+		margin: 0;
+	}
+	.navbar-nav>li {
+		float: left;
+	}
+}
+
 </style>
 
 <div class="col-md-3" role="complementary">

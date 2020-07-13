@@ -9,15 +9,6 @@
 <meta charset="UTF-8">
 <title>회원 문의내역</title>
 <style type="text/css">
-@media ( min-width : 500px) {
-	.navbar-nav {
-		float: right;
-		margin: 0;
-	}
-	.navbar-nav>li {
-		float: left;
-	}
-}
 </style>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>

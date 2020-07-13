@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>수강내역</title>
 <style type="text/css">
-
 </style>
 
 <script type="text/javascript"

@@ -63,7 +63,8 @@
 		
 		var url = '';
 		
-		url += './tutorlistOne.do?';
+		
+		url += './tutorListOne.do?';
 		url += 'no=' + memberNoObj.html();
 // 		url += '&curPage=' + curPageObj.val();
 		url += '&keyword=' + keywordObj.val();
@@ -91,7 +92,7 @@
 		</div>
 			
 		<div id='tutorTable' style="margin-top: 200px; float: left;" >
-		<form id='searchingForm' action="./tutorlist.do" method="post">
+		<form id='searchingForm' action="./tutorList.do" method="post">
 		
 			<select id='searchOption' name="searchOption">
 				<c:choose>
@@ -115,7 +116,7 @@
 	
 				</c:choose>	
 			</select>
-			<input type="text" id=' keyword' name="keyword" value="${searchMap.keyword}"
+			<input type="text" id='keyword' name="keyword" value="${searchMap.keyword}"
 				 placeholder="회원이름 or 이메일 검색">
 			<input type="submit" value="검색">
 			
@@ -161,17 +162,6 @@
 				</td>
 				<td style="text-align: right;" id='point'>
 				<fmt:formatNumber value="${memberDto.point}" pattern="#,###"/></td>
-	
-	<%-- 			<c:if test="${empty memberDto.originalFileName}" var="fileFlag"> --%>
-	<!-- 				<td>첨부파일 없음</td> -->
-	<%-- 			</c:if> --%>
-	<%-- 			<c:if test="${fileFlag eq false}"> --%>
-	<%-- 				<td>${memberDto.originalFileName}</td> --%>
-	<%-- 			</c:if> --%>
-				
-	<!-- 			<td> -->
-	<%-- 				<a href='./deleteCtr.do?no=${memberDto.no}'>[삭제]</a><br> --%>
-	<!-- 			</td> -->
 			</tr>
 		</c:forEach>
 		
@@ -181,11 +171,11 @@
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 			
-	    <form action="/englishvillage/admin/tutorlist.do" id="pagingForm" method="get">
+	    <form action="/englishvillage/admin/tutorList.do" id="pagingForm" method="get">
 	       <input type="hidden" id="curPage" name="curPage" 
 	            value="${pagingMap.memberPaging.curPage}">
 	       <input type="hidden" name="searchOption" value="${searchMap.searchOption}">
-	       <input type="hidden" name="keyword" value="${searchMap.keyword}">
+	       <input id="hiddenKeyword" type="hidden" name="keyword" value="${searchMap.keyword}">
 	    </form>
 		</div>
 	</div>
