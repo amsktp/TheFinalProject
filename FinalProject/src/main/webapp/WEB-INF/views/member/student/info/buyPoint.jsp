@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,13 +60,13 @@
 		
 		$('#priceNum').keyup(function() {
 			$('#pointNum').val($('#priceNum').val());
+			$('#buyPointPrice').val($('#priceNum').val());
 			$('#buyPoint').text($('#priceNum').val());
 			$('#resultPoint').text(parseInt($('#originalPoint').val()) + parseInt($('#priceNum').val()));
 			$('#realPoint').val(parseInt($('#originalPoint').val()) + parseInt($('#priceNum').val()));
 			$('#realPrice').val($('#priceNum').val());
 			$('#resultPrice').text($('#priceNum').val())
 		});
-		
 	});
 
 	function buyPointBtn(){
@@ -115,28 +116,37 @@
 				<table>
 					<tr>
 						<td>보유포인트</td>
-						<td class="numberAlign">${member.memberPoint}</td>
+						<td class="numberAlign">
+							<c:choose>
+								<c:when test="${member.memberPoint eq 0}">
+									0
+								</c:when>
+								<c:otherwise>
+									${member.memberPoint}
+								</c:otherwise>
+							</c:choose>
+						</td>
 						<td>포인트</td>
 					</tr>
 					<tr>
 						<td>구매포인트</td>
-						<td id="buyPoint" class="numberAlign"></td>
+						<td id="buyPoint" class="numberAlign">0</td>
 						<td>포인트</td>
 					</tr>
 					<tr>
 						<td>결제후포인트</td>
-						<td id="resultPoint" class="numberAlign">${member.memberPoint}</td>
+						<td id="resultPoint" class="numberAlign">0</td>
 						<td>포인트</td>
 					</tr>
 					<tr>
 						<td>최종결제금액</td>
-						<td id="resultPrice" class="numberAlign"></td>
+						<td id="resultPrice" class="numberAlign">0</td>
 						<td>원</td>
 					</tr>
 				</table>
 				<input class="payBtn" type="submit" value="결제하기">
-				<input id="originalPoint" type="hidden" name="price" value="${member.memberPoint}">
-				<input id="originalPoint" type="hidden" name="price" value="${member.memberPoint}">
+				<input id="buyPointPrice" type="hidden" name="price" value="">
+				<input id="originalPoint" type="hidden" value="${member.memberPoint}">
 			</div>
 		</form>
 	</div>

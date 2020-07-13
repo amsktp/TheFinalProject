@@ -58,7 +58,13 @@ public class AuthController {
 			TutorDto tutorDto = tutorService.getTutorInfo(memberDto.getMemberNo());
 			session.setAttribute("tutor", tutorDto);
 			
-			if(memberDto.getMemberGrade() == "A") {
+			System.out.println(memberDto.getMemberGrade());
+			System.out.println(memberDto.getMemberGrade());
+			System.out.println(memberDto.getMemberGrade());
+			System.out.println(memberDto.getMemberGrade());
+			System.out.println(memberDto.getMemberGrade());
+			if(memberDto.getMemberGrade().equals("A")) {
+				System.out.println("들어와???");
 				viewUrl = "redirect:/admin/studentList.do";
 			} else {
 				viewUrl = "redirect:/tutor/home.do";

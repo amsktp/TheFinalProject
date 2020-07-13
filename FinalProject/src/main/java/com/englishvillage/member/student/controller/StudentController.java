@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishvillage.auth.model.MemberDto;
+import com.englishvillage.auth.service.AuthService;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.service.StudentService;
@@ -30,6 +31,9 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
+	@Autowired
+	private AuthService authService;
+	
 	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET })
 	public String myPage(Locale locale, HttpSession session, Model model) {
 		log.info("call myPage! " + session.getAttribute("member"));
@@ -291,9 +295,16 @@ public class StudentController {
 	public String buyPointCtr(Locale locale, HttpSession session, Model model, int price) {
 		log.info("@@@@@@@buyPointCtr!!!@@@@@@@@@");
 		
+		
 		MemberDto memberDto = (MemberDto) session.getAttribute("member");
 		int no = memberDto.getMemberNo();		
-		int a = studentService.buyPoint(price, no);
+		
+		studentService.buyPoint(price, no);
+		
+		MemberDto sessionMemberDto = authService.memberExist(memberDto.getMemberEmail(), memberDto.getMemberPassword());
+		
+		session.removeAttribute("member");
+		session.setAttribute("member", sessionMemberDto);
 		
 		return "redirect:/student/myPage.do";
 	}

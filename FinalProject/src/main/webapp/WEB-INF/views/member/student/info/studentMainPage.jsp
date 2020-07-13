@@ -12,6 +12,15 @@
 		$('.layoutUl').children().eq(1).addClass('on');
 
 	});
+
+	
+	function moveButPointFnc(){
+		
+		location.href = "/englishvillage/student/buyPoint.do";
+		
+		
+	}
+	
 </script>
 
 
@@ -36,7 +45,7 @@
 				<h1 class="infoFont">보유 포인트</h1>
 				<p>${member.memberPoint}포인트</p>
 
-				<input class="blackBtn" type="button" value="충전하기">
+				<input class="blackBtn" type="button" value="충전하기" onclick="moveButPointFnc();">
 			</div>
 
 		</div>
