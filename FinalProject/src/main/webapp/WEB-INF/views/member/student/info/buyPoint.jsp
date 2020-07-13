@@ -43,6 +43,14 @@
 		padding-right: 20px;
 	}
 
+	.pageName {
+		width: 380px;
+		font-size: 35px;
+	    font-weight: bold;
+	    margin-bottom: 20px;
+	    border-bottom: 3px solid #EBEDED;
+	}
+
 </style>
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
@@ -79,8 +87,8 @@
 		<div class="col-md-9" style="margin-top: 40px">
 	
 		<form action="./buyPointCtr.do" method="post" onsubmit="return buyPointBtn();">
-			<div style="margin-top: 30px;">
-				<span id="pageName">포인트구매</span>
+			<div style="margin-top: 30px; margin-left: 30px;">
+				<div class="pageName">포인트구매</div>
 				<table>
 					<tr>
 						<td>
@@ -102,8 +110,8 @@
 					</tr>
 				</table>
 			</div>
-			<div style="margin-top: 50px;">
-				<span id="pageName">결제정보</span>
+			<div style="margin-top: 50px;margin-left: 30px;">
+				<div class="pageName">결제정보</div>
 				<table>
 					<tr>
 						<td>보유포인트</td>
@@ -112,7 +120,7 @@
 					</tr>
 					<tr>
 						<td>구매포인트</td>
-						<td id="buyPoint" class="numberAlign">0</td>
+						<td id="buyPoint" class="numberAlign"></td>
 						<td>포인트</td>
 					</tr>
 					<tr>
@@ -122,7 +130,7 @@
 					</tr>
 					<tr>
 						<td>최종결제금액</td>
-						<td id="resultPrice" class="numberAlign">0</td>
+						<td id="resultPrice" class="numberAlign"></td>
 						<td>원</td>
 					</tr>
 				</table>
