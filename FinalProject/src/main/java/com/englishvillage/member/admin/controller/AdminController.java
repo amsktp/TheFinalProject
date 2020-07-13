@@ -33,7 +33,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	//학생리스트
-	@RequestMapping(value = "/admin/studentlist.do"
+	@RequestMapping(value = "/admin/studentList.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String StudentList(@RequestParam(defaultValue = "1") 
 			int curPage
@@ -41,7 +41,7 @@ public class AdminController {
 			, @RequestParam(defaultValue = "all") String searchOption
 			, @RequestParam(defaultValue = "") String keyword
 			, Model model) {
-		log.info("Welcome MemberList! " + curPage + " : " 
+		log.info("Welcome studentList! " + curPage + " : " 
 			+ searchOption + " : " + keyword);
 		System.out.println("여긴 오는지 1");
 		
@@ -101,9 +101,11 @@ public class AdminController {
 		return "admin/student/adminStudentList";
 	}
 	
-	@RequestMapping(value = "/admin/studentlistOne.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/studentListOne.do", method = RequestMethod.GET)
 	public String studentListOne(int no, String searchOption, String keyword, Model model) {
-		log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		log.info("call studentListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		
+		
 		
 		Map<String, Object> map = adminService.memberStudentSelectOne(no);
 		
@@ -121,10 +123,10 @@ public class AdminController {
 	}
 	
 	//회원 수정 화면으로
-		@RequestMapping(value = "/admin/StudentUpdate.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/admin/studentUpdate.do", method = RequestMethod.GET)
 		public String studentUpdate(int no, Model model) {
 			
-			log.info("call memberUpdate! {}", no);
+			log.info("call studentUpdate! {}", no);
 			System.out.println("왔다!");
 			
 			Map<String, Object> map = adminService.memberStudentSelectOne(no);
@@ -186,11 +188,11 @@ public class AdminController {
 				}
 			}
 			
-			return "redirect:./studentlist.do";
+			return "redirect:./studentList.do";
 		}
 	
 	//튜터 리스트
-	@RequestMapping(value = "/admin/tutorlist.do"
+	@RequestMapping(value = "/admin/tutorList.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String TutorList(@RequestParam(defaultValue = "1") 
 			int curPage
@@ -198,7 +200,7 @@ public class AdminController {
 			, @RequestParam(defaultValue = "all") String searchOption
 			, @RequestParam(defaultValue = "") String keyword
 			, Model model) {
-		log.info("Welcome MemberList! " + curPage + " : " 
+		log.info("Welcome tutorList! " + curPage + " : " 
 			+ searchOption + " : " + keyword);
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 
@@ -252,9 +254,9 @@ public class AdminController {
 		return "admin/tutor/adminTutorList";
 	}
 	
-	@RequestMapping(value = "/admin/tutorlistOne.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/tutorListOne.do", method = RequestMethod.GET)
 	public String tutorListOne(int no, String searchOption, String keyword, Model model) {
-		log.info("call tutorlistOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+		log.info("call tutorListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
 		
 		Map<String, Object> map = adminService.memberTutorSelectOne(no);
 		
@@ -351,7 +353,7 @@ public class AdminController {
 					}
 				}
 				
-				return "redirect:./tutorlist.do";
+				return "redirect:./tutorList.do";
 			}
 	
 	//회원수정
@@ -361,7 +363,7 @@ public class AdminController {
 									,MultipartHttpServletRequest multipartHttpServletRequest
 									, Model model) throws ParseException {
 				
-		log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+		log.info("call tutorProUpdateCtr! {} :: {}" + memberListDto, fileIdx);
 		
 		
 			int resultNum = 0;
@@ -396,26 +398,26 @@ public class AdminController {
 			}
 		}
 		
-		return "redirect:./tutorlist.do";
+		return "redirect:./tutorList.do";
 	}
 	//회원 탈퇴
 		//회원삭제
-	@RequestMapping(value = "/admin/StudentdeleteCtr.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/studentDeleteCtr.do", method = RequestMethod.GET)
 	public String studentDeleteCtr(int no, Model model) {
 		
-		log.info("call memberDeleteCtr! " + no);
+		log.info("call studentDeleteCtr! " + no);
 		
 //			Map<String, Object> tempFileMap = null; 
 //			tempFileMap = memberService.fileSelectStoredFileName(no);
 		
 		adminService.studentDeleteOne(no);
 		
-		return "redirect:./studentlist.do";
+		return "redirect:./studentList.do";
 	}
-	@RequestMapping(value = "/admin/TutordeleteCtr.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/tutorDeleteCtr.do", method = RequestMethod.GET)
 	public String tutorDeleteCtr(int no, Model model) {
 		
-		log.info("call memberDeleteCtr! " + no);
+		log.info("call tutorDeleteCtr! " + no);
 		
 //			Map<String, Object> tempFileMap = null; 
 //			tempFileMap = memberService.fileSelectStoredFileName(no);
@@ -425,12 +427,12 @@ public class AdminController {
 		adminService.tutorEvaluationDeleteOne(no);
 		adminService.tutorMemberDeleteOne(no);
 		
-		return "redirect:./studentlist.do";
+		return "redirect:./titorList.do";
 	}
 
 	
 	//문의 리스트
-		@RequestMapping(value = "/admin/questionlist.do"
+		@RequestMapping(value = "/admin/questionList.do"
 				, method = {RequestMethod.GET, RequestMethod.POST})
 		public String QuestionList(@RequestParam(defaultValue = "1") 
 				int curPage
@@ -438,7 +440,7 @@ public class AdminController {
 				, @RequestParam(defaultValue = "all") String searchOption
 				, @RequestParam(defaultValue = "") String keyword
 				, Model model) {
-			log.info("Welcome MemberList! " + curPage + " : " 
+			log.info("Welcome questionList! " + curPage + " : " 
 				+ searchOption + " : " + keyword);
 			// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 			if("title".equals(searchOption)) {
@@ -503,9 +505,9 @@ public class AdminController {
 			return "admin/qna/adminQnAList";
 		}
 		
-		@RequestMapping(value = "/admin/questionlistOne.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/admin/questionListOne.do", method = RequestMethod.GET)
 		public String questionListOne(int no, String searchOption, String keyword, Model model) {
-			log.info("call memberListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
+			log.info("call questionListOne! - {} {}", no + "\n" + searchOption + "\n" + keyword);
 			
 			Map<String, Object> map = adminService.questionSelectOne(no);
 			
@@ -530,7 +532,7 @@ public class AdminController {
 			adminService.replyInsertOne(questionBoardDto, mulRequest);
 			adminService.replyCheck(questionBoardDto, mulRequest);
 			
-			return "redirect:/admin/questionlist.do";
+			return "redirect:/admin/questionList.do";
 		}
 
 }

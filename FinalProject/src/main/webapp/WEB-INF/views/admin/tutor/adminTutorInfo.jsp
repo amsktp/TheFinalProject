@@ -54,7 +54,7 @@
 		font-weight: bold;
 	}
 	
-	#tutor {
+	.tutor {
 		float: right;
 	}
 	
@@ -197,7 +197,14 @@ td {
 
 #tutorIntroduceBoxDiv {
 	margin-bottom: 20px;
+	display: inline-block;
+	
 }
+
+#tutor {
+	color: gray;
+}
+
 
 
 input:focus {outline:none;}
@@ -217,6 +224,10 @@ textarea:focus {outline:none;}
 		
 		var age = (toDay.getFullYear()) - birthDay;
 		$('#age').val(age);
+		
+	
+		
+		$('#tutorIntroduceBox').val($('#tutorHiddenIntroduce').val().trim());
 	});
 	
 	function pageMoveListFnc(){
@@ -225,12 +236,10 @@ textarea:focus {outline:none;}
 		var noObj = $('#no');
 		var keywordObj = $('#keyword');
 		var searchOptionObj = $('#searchOption');
-		
-
-		
+	
 		var url = '';
 		
-		url += './tutorlist.do?';
+		url += './tutorList.do?';
 		url += 'no=' + noObj.val();
 		url += '&keyword=' + keywordObj.val();
 		url += ''
@@ -243,11 +252,15 @@ textarea:focus {outline:none;}
 	function studentProfileFnc() {
 		$('#studentProfileDiv').css('display','');
 		$('#tutorProfileDiv').css('display','none');
+		$('.tutor').css('color','gray');
+		$('.student').css('color','black');
 	}
 	
 	function tutorProfileFnc() {
 		$('#studentProfileDiv').css('display','none');
 		$('#tutorProfileDiv').css('display','');
+		$('.tutor').css('color','black');
+		$('.student').css('color','gray');
 	}
 	
 
@@ -275,8 +288,8 @@ textarea:focus {outline:none;}
 				<form action='./tutorUpdate.do' method='get'>
 				<div style="font-size: 35px; font-weight: bold;">
 				
-					<span id='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
-					<span id='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
+					<span class='student' onclick="studentProfileFnc()">회원 관리(학생)</span>
+					<span class='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
 				</div>	
 				<div id='lineDiv'>
 				</div>
@@ -335,8 +348,8 @@ textarea:focus {outline:none;}
 				<form action='./tutorProUpdate.do' method='get'>
 					
 					<div style="font-size: 35px; font-weight: bold;">
-						<span id='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
-						<span id='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
+						<span class='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
+						<span class='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
 					</div>	
 					
 					<div id='lineDiv'>
@@ -378,9 +391,9 @@ textarea:focus {outline:none;}
 				</div>
 				
 				<div id="tutorIntroduceBoxDiv">
-					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText" disabled="disabled">
-					${memberListDto.tutorText}</textarea>
+					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"  disabled="disabled"></textarea>
 				</div>
+				<input type="hidden" id='tutorHiddenIntroduce'  value="${memberListDto.tutorText}">
 				
 						<div>
 							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
