@@ -22,14 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
-import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 
 @Controller
 public class AuthController {
 
-	private static final Logger log = 
-		LoggerFactory.getLogger(AuthController.class);
+	private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 	
 	@Autowired
 	private AuthService authService;
@@ -62,9 +60,6 @@ public class AuthController {
 		} else {
 			viewUrl = "redirect:/loginError.do";
 		}
-		
-		
-		
 		
 		return viewUrl;
 	}
