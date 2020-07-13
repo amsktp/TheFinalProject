@@ -42,7 +42,7 @@
 							
 //							강사 시작하면 바뀌는 부분 좀더 설정해야함
 							$.ajax({
-								url: "/englishvillage/changeTutorStatusCheck.do",
+								url: "/englishvillage/tutor/changeTutorStatusCheck.do",
 								type: "POST",
 								data: "memberNo=" + $("#sessionNo").val() + "&statusCheck=" + $('#statusCheck').val(),
 								success: function(data) {
@@ -89,7 +89,7 @@
 										,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 							
 								$.ajax({
-									url: "/englishvillage/addStudyHistoryCtr.do",
+									url: "/englishvillage/tutor/addStudyHistoryCtr.do",
 									type: "POST",
 									data: 'tutorNo=' + $('#tutorNoNum').val() + "&studentNo=" + $('#studentNoNum').val() 
 									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val()
