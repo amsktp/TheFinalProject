@@ -66,7 +66,7 @@
 		
 		var url = '';
 		
-		url += './studentlistOne.do?';
+		url += './studentListOne.do?';
 		url += 'no=' + memberNoObj.html();
 // 		url += '&curPage=' + curPageObj.val();
 		url += '&keyword=' + keywordObj.val();
@@ -96,7 +96,7 @@
 		
 		<div id='studentTable' style="margin-top: 200px; float: left;" >
 	
-		<form id='searchingForm' action="./studentlist.do" method="post">
+		<form id='searchingForm' action="./studentList.do" method="post">
 		
 			<select id='searchOption' name="searchOption" >
 				<c:choose>
@@ -127,7 +127,6 @@
 			<input type="submit" value="검색">
 			
 		</form>
-	
 		<table class="table table-hover">
 			<tr class="success">
 				<th style="text-align: center; font-weight: bold;">회원번호</th>
@@ -183,7 +182,7 @@
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 			
-	    <form action="/englishvillage/admin/studentlist.do" id="pagingForm" method="get">
+	    <form action="/englishvillage/admin/studentList.do" id="pagingForm" method="get">
 	       <input type="hidden" id="curPage" name="curPage" 
 	            value="${pagingMap.memberPaging.curPage}">
 	       <input type="hidden" name="searchOption" value="${searchMap.searchOption}">

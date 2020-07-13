@@ -27,11 +27,6 @@
 		location.href = url;
 	}
 	
-	function pageMoveDeleteFnc(no){
-		var url = "./deleteCtr.do?no=" + no;
-		location.href = url;
-	}
-	
 	function pageMoveBeforeFnc(no) {
 		var url = "./questionlist.do?no=" + no;
 		location.href = url;
@@ -75,25 +70,51 @@
 	<h1>회원정보 수정</h1>
 	
 	<form action='./replyAddCtr.do' method='post' enctype="multipart/form-data" style="margin-top: 200px;">
-		글번호: <input type='text' name='idx' value='${questionBoardDto.idx}'>
-		<br>
-		작성일: <input type='text' name='boardCreateDate' value='<fmt:formatDate value="${questionBoardDto.boardCreateDate}" pattern="yyyy-MM-dd"/> '>
-		
-		<br>
-		회원 번호: <input type='text' name='no' value='${questionBoardDto.no}'>
-		<br>
-		회원 등급: <input type='text' name='grade' value='${questionBoardDto.grade}'>
-		<br>
-		회원 이름: <input type='text' name='name' value='${questionBoardDto.name}'>
-		<br>
-		이메일: <input type='text' name='email' value='${questionBoardDto.email}'>
-		<br>
-		글제목: <input type='text' name='title' value='${questionBoardDto.title}'>
-		<br>
-		내용: <input type='text' name='content' value='${questionBoardDto.content}'>
-		<br>	
-		답 글 : <input type='text' name='reply' value='${questionBoardDto.reply}'>
-		<br>
+		<div>
+			<span>글번호:</span> 
+			<input type='text' name='idx' value='${questionBoardDto.idx}'>
+			<br>
+		</div>
+		<div>
+			<span>작성일:</span> 
+			<input type='text' name='boardCreateDate' value='<fmt:formatDate value="${questionBoardDto.boardCreateDate}" pattern="yyyy-MM-dd"/> '>
+			<br>
+		</div>
+		<div>
+			<span>회원 번호:</span> 
+			<input type='text' name='no' value='${questionBoardDto.no}'>
+			<br> 
+		</div>
+		<div>
+			<span>회원 등급:</span> 
+			<input type='text' name='grade' value='${questionBoardDto.grade}'>
+			<br>
+		</div>
+		<div>
+			<span>회원 이름:</span> 
+			<input type='text' name='name' value='${questionBoardDto.name}'>
+			<br>
+		</div>
+		<div>
+			<span>이 메 일 :</span> 
+			<input type='text' name='email' value='${questionBoardDto.email}'>
+			<br>
+		</div>
+		<div>
+			<span>글 제 목 :</span> 
+			<input type='text' name='title' value='${questionBoardDto.title}'>
+			<br>
+		</div>
+		<div>
+			<span>내 용 :</span> 
+			<input type='text' name='content' value="${questionBoardDto.content}">
+			<br>	
+		</div>
+		<div>
+			<span>답 글 :</span> 
+			<input type='text' name='reply' value='${questionBoardDto.reply}'>
+			<br>
+		</div>
 
 		<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${questionBoardDto.no});'>	
 		<input type="submit" value="답변하기">

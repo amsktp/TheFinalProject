@@ -27,10 +27,6 @@
 		margin-top: 80px;
 	}
 	
-	span {
-		font-size: 30px;
-	}
-	
 	
 	
 	#btn > input {
@@ -194,6 +190,30 @@ td {
 	margin-bottom: 20px;
 }
 
+#student {
+	font-weight: bold;
+	font-size: 35px;
+	color: gray; 
+}
+
+#tutor{
+	float: right;
+	font-weight: bold;
+	font-size: 35px;
+}
+
+#btn > input {
+		width: 150px;
+		height: 50px;
+		float: right;
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		border-radius: 5px 5px/5px 5px;
+		font-size: 25px;
+		margin-left: 20px;
+	}
+
 
 input:focus {outline:none;}
 textarea:focus {outline:none;}
@@ -219,9 +239,11 @@ textarea:focus {outline:none;}
 			
 		});
 		
+		$('#tutorIntroduceBox').val($('#tutorHiddenIntroduce').val().trim());
 		
 		
 	});
+
 	
 	function pageMoveListFnc(){
 		var url = "./list.do";
@@ -229,12 +251,20 @@ textarea:focus {outline:none;}
 	}
 	
 	function pageMoveDeleteFnc(no){
-		var url = "./TutordeleteCtr.do?no=" + no;
-		location.href = url;
+		
+		var deleteCheck = confirm('정말 삭제하시겠습니까??');
+		
+		if(deleteCheck) {
+			alert("삭제 되었습니다.");
+		}else {
+			return false;
+		}
+		var url = "./tutordeleteCtr.do?no=" + no;
+		location.href = url;		
 	}
 	
 	function pageMoveBeforeFnc(no) {
-		var url = "./tutorlistOne.do?no=" + no;
+		var url = "./tutorListOne.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -294,8 +324,8 @@ textarea:focus {outline:none;}
 			
 			<div id='tutorProfileDiv'>
 				<form action='./tutorProUpdateCtr.do' method='post' enctype="multipart/form-data">
-					<span id='studentProfileSpan'>회원 관리(학생)</span>
-					<span id='tutorProfileSpan'>회원 관리(강사)</span>
+					<span id='student'>회원 관리(학생)</span>
+					<span id='tutor'>회원 관리(강사)</span>
 					<div id='lineDiv'>
 					</div>
 						<div id='allmanual'>
@@ -347,9 +377,9 @@ textarea:focus {outline:none;}
 				</div>
 				
 				<div id="tutorIntroduceBoxDiv">
-					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText">
-					${memberListDto.tutorText}</textarea>
+					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
 				</div>
+				<input type="hidden" id='tutorHiddenIntroduce' value="${memberListDto.tutorText}">
 				
 						<div>
 							<input type="hidden" id='no' name="no" value="${memberListDto.no}">

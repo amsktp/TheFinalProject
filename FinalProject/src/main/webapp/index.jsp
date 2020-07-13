@@ -34,15 +34,15 @@
 	}
 	
 	var adminMoveFnc = function() {
-		location.href = '/englishvillage/admin/studentlist.do'
+		location.href = '/englishvillage/admin/studentList.do'
 	}
 	
 	var adminMove1Fnc = function() {
-		location.href = '/englishvillage/admin/tutorlist.do'
+		location.href = '/englishvillage/admin/tutorList.do'
 	}
 	
 	var adminMove2Fnc = function() {
-		location.href = '/englishvillage/admin/questionlist.do'
+		location.href = '/englishvillage/admin/questionList.do'
 	}
 	
 </script>

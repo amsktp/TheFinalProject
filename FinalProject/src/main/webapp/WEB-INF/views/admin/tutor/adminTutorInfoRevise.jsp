@@ -9,11 +9,20 @@
 <style type="text/css">
 	#updateDiv {
 		float: left;
-		width: 700px;
-		height: 800px;
+		width: 610px;
+		height: 710px;
 		border: 1px solid black;
 		box-sizing: border-box;
 		margin-top: 200px;
+	}
+	
+	#lineDiv {
+		border-bottom: 1px solid #BDBDBD; 
+	}
+	
+	#memberProfileText {
+		font-size: 40px;
+		font-weight: bold;
 	}
 
 	.text {
@@ -32,6 +41,14 @@
 	
 	.inpText {
 		margin-left: 40px;
+		width: 300px;
+	}
+	
+	.inpBtn {
+		width: 60px;
+		height: 30px;
+		font-size: 20px;
+		font-weight: bold;
 	}
 	
 	#btn > input {
@@ -44,6 +61,11 @@
 		border-radius: 5px 5px/5px 5px;
 		font-size: 25px;
 		margin-left: 20px;
+	}
+	
+	#tutor {
+		float: right;
+		color: gray;
 	}
 </style>
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -94,7 +116,8 @@ function checkFinshFnc() {
 			
 			return false;
 		}
-
+		
+		if(($('#country').val() != 'KOREA')) {
 		
 			for (var i=0; i<$("#name").val().length; i++)  {
 				
@@ -125,13 +148,9 @@ function checkFinshFnc() {
 					
 			        return false;
 			    }
-			 
-			    
 			}
-
 		} 
-		
-		
+
 		if (true) {
 			$('#nameSpan').html('올바른 이름입니다.');
 			$('#nameSpan').css('color', '#74D36D');
@@ -151,8 +170,8 @@ function checkFinshFnc() {
 		var todayDate = date.getDate();
 		
 		var today = todayYear + '-' + todayMonth + '-' + todayDate;
-		
-		
+
+		cnt++;
 			if($('#birthDateChoose').val() > today) {
 				$('#dateSpan').html('현재 날짜보다 날짜가 커서 다시 수정해주시길 바랍니다.');
 				$('#dateSpan').css('color', '#FF4848');
@@ -166,9 +185,9 @@ function checkFinshFnc() {
 			
 			}
 			
-			cnt++;
 			return true;
 		}
+	
 	
 	function pageMoveListFnc(){
 		var url = "./list.do";
@@ -176,7 +195,14 @@ function checkFinshFnc() {
 	}
 	
 	function pageMoveDeleteFnc(no){
-		var url = "./StudentdeleteCtr.do?no=" + no;
+		
+		if(confirm('정말 삭제하시겠습니까??') == true) {
+			alert("삭제 되었습니다.");
+		}else {
+			return false;
+		}
+		alert();
+		var url = "./tutordeleteCtr.do?no=" + no;
 		location.href = url;
 	}
 	
@@ -229,12 +255,18 @@ function checkFinshFnc() {
 		</div>
 		
 		<div id='updateDiv'>
-			<form action='./tutorUpdateCtr.do' method='post' enctype="multipart/form-data">
+			<form action='./tutorUpdateCtr.do' method='post'
+			enctype="multipart/form-data">
+				<div style="font-size: 35px; font-weight: bold;">
+					<span id='student' onclick="studentProfileFnc()">회원 관리(학생)</span>
+					<span id='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
+				</div>	
+				<div id='lineDiv'></div>
 				<div id='textarea'>
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
 						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>
-						<input type="button" onclick="nameCompareFnc()" value="확인">
+						<input class='inpBtn' type="button" onclick="nameCompareFnc()" value="확인">
 						<span id='nameSpan'></span>
 						<br>
 					</div>
@@ -261,7 +293,7 @@ function checkFinshFnc() {
 						<span>생 년 월 일 :</span> 
 						<input class='inpText' id="birthDateChoose" type="date"  name="birthDate"
 							value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
-							<input type="button" onclick="dateCompareFnc()" value="확 인">
+							<input class='inpBtn' type="button" onclick="dateCompareFnc()" value="확 인">
 							<br>
 							<span id='dateSpan'></span>
 							<br>
