@@ -7,7 +7,7 @@ select * from member_grade;
 
 --MEMBER 테이블
 
-insert into member values(0, 'dd', 'dd', '디디', SYSDATE, SYSDATE, 'KOREA', 'M', '1996-10-04', 99999999, 'A');
+insert into member values(0, 'dd@dd.dd', 'dd', '디디', SYSDATE, SYSDATE, 'KOREA', 'M', '1996-10-04', 99999999, 'A');
 
 insert into member values(1,'chan@naver.com','test1','이찬양','2020-06-10','2020-06-20','KOREA','M','1998-05-02',0,'N');
 

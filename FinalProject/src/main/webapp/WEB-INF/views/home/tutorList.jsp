@@ -467,7 +467,6 @@ keyframes fly-cycle { 100% {
 		<jsp:include page="/WEB-INF/views/common/paging3.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap" />
 		</jsp:include>
-
 	</div>
 
 	<form action="./home.do#searchOptBox" id='pagingForm' method="get">

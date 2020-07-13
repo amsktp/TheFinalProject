@@ -130,6 +130,11 @@ public class TutorController {
 		
 		session.setAttribute("member", newSessionMemberDto);
 		
+		
+		TutorDto newSessionTutorDto = tutorService.getTutorInfo(memberNo);
+		
+		session.setAttribute("tutor", tutorDto);
+		
 		if(insertResult == 0) {
 			log.warn("튜터 레지스터가 실패했습니다.");
 		} else {

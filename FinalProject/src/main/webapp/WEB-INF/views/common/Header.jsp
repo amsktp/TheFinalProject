@@ -116,7 +116,7 @@ float: right;
         	<c:when test="${member.memberGrade eq 'Y'}">
 				<div id="navbar" class="navbar-collapse collapse">
 	              <ul id="naviUl" class="nav navbar-nav">
-	                 <li class="liLeft"><a href="/tutor/home.do#tutorList">튜터목록</a></li>
+	                 <li class="liLeft"><a href="/englishvillage/tutor/home.do#tutorList">튜터목록</a></li>
 	                 <li>
 	                	 <a id="changeStatusBtn" href="#">
 	                		 강의준비
