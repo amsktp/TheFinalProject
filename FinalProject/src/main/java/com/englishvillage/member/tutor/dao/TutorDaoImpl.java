@@ -194,17 +194,25 @@ public class TutorDaoImpl implements TutorDao {
 
 	}
 
+	@Override
 	public int addStudyHistory(TutorCommentDto tutorCommentDto) {
 		// TODO Auto-generated method stub
 
 		return sqlSession.insert(namespace + "addStudyHistory", tutorCommentDto);
 	}
 
-		@Override
-		public List<QuestionBoardDto> tutorBoardList(int start, int end) {
-			// TODO Auto-generated method stub
-			return sqlSession.selectList(namespace + "tutorBoardList");
-		}
+	@Override
+	public List<QuestionBoardDto> tutorBoardList(int start, int end, int no) {
+		// TODO Auto-generated method stub
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("no", no);
+
+		
+		return sqlSession.selectList(namespace + "tutorBoardList", map);
+	}
 
 	
 	@Override

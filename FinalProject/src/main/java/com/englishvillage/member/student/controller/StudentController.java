@@ -279,19 +279,23 @@ public class StudentController {
 	}
 
 	// 고재민 작업분 (수강권 구매)
-	@RequestMapping(value = "/buyPoint.do", method=RequestMethod.GET)
+	@RequestMapping(value = "/student/buyPoint.do", method=RequestMethod.GET)
 	public String buyPoint(Locale locale, HttpSession session, Model model) {
 		log.info("@@@@@@@buyPoint!!!@@@@@@@@@");
-
+		
 		return "/member/student/info/buyPoint";
 	}
 	
 	// 고재민 작업분 (수강권 구매Ctr)
-	@RequestMapping(value = "/buyPointCtr.do", method=RequestMethod.POST)
-	public String buyPointCtr(Locale locale, HttpSession session, Model model) {
+	@RequestMapping(value = "/student/buyPointCtr.do", method=RequestMethod.POST)
+	public String buyPointCtr(Locale locale, HttpSession session, Model model, int price) {
 		log.info("@@@@@@@buyPointCtr!!!@@@@@@@@@");
-
-		return "redirect:/student/myInfo.do";
+		
+		MemberDto memberDto = (MemberDto) session.getAttribute("member");
+		int no = memberDto.getMemberNo();		
+		int a = studentService.buyPoint(price, no);
+		
+		return "redirect:/student/myPage.do";
 	}
 	
 	

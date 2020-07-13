@@ -18,19 +18,15 @@
 <script type="text/javascript">
 
 	var loginMoveFnc = function(){
-		location.href = '/englishvillage/login.do';
-	}
-	
-	var myPageMoveFnc = function() {
-		location.href = '/englishvillage/myPage.do'
+		location.href = '/englishvillage/auth/login.do';
 	}
 	
 	var tutorListMoveFnc = function() {
-		location.href = '/englishvillage/home.do'
+		location.href = '/englishvillage/tutor/home.do'
 	}
 	
 	var tutorIntroduceMoveFnc = function() {
-		location.href = '/englishvillage/tutorIntroduce.do'
+		location.href = '/englishvillage/tutor/tutorIntroduce.do'
 	}
 	
 	var adminMoveFnc = function() {
@@ -57,10 +53,6 @@
 	
 	<div onclick="mainMoveFnc();" >
 		메인페이지
-	</div>
-	
-	<div onclick="myPageMoveFnc();" >
-		마이페이지
 	</div>
 	
 	<div onclick="tutorListMoveFnc();" >

@@ -44,16 +44,16 @@
  
    </bean>
   
-<beans:bean id="sampleInterceptor"
-	class="com.englishvillage.util.AuthInterceptor" />
+<!-- <beans:bean id="sampleInterceptor" -->
+<!-- 	class="com.englishvillage.util.AuthInterceptor" /> -->
 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/auth/**"/>
-			<beans:ref bean="sampleInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/auth/**"/> -->
+<!-- 			<beans:ref bean="sampleInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
 
 
 </beans>

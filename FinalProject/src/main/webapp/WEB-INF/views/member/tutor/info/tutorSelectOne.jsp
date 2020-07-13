@@ -545,7 +545,8 @@ tr {
 
 				<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
 				<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
-
+				<input id="memberPoint" type="hidden" value="${member.memberPoint}">
+				
 				<input id="statusCheck" type="hidden" value="${tutorDto.statusCheck}">
 				
 			</div>

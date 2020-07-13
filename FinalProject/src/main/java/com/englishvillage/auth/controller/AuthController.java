@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 
 @Controller
@@ -38,14 +39,14 @@ public class AuthController {
 	@Autowired
 	private JavaMailSender mailSender;
 	  
-	@RequestMapping(value="/login.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/login.do", method=RequestMethod.GET)
 	public String login() {
 		log.info("*****Welcome Login!*****");
 		
 		return "auth/login";
 	}
 	
-	@RequestMapping(value="/loginCtr.do", method=RequestMethod.POST)
+	@RequestMapping(value="/auth/loginCtr.do", method=RequestMethod.POST)
 	public String loginCtr(String memberEmail, String memberPassword, HttpSession session, Model model) {
 		log.info("*****Welcome LoginCtr!*****" + memberEmail + "," + memberPassword);
 		
@@ -56,38 +57,44 @@ public class AuthController {
 			session.setAttribute("member", memberDto);
 			TutorDto tutorDto = tutorService.getTutorInfo(memberDto.getMemberNo());
 			session.setAttribute("tutor", tutorDto);
-			viewUrl = "redirect:/home.do";
+			
+			if(memberDto.getMemberGrade() == "A") {
+				viewUrl = "redirect:/admin/studentList.do";
+			} else {
+				viewUrl = "redirect:/tutor/home.do";
+			}
+			
 		} else {
-			viewUrl = "redirect:/loginError.do";
+			viewUrl = "redirect:/auth/loginError.do";
 		}
 		
 		return viewUrl;
 	}
 
-	@RequestMapping(value="loginError.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/loginError.do", method=RequestMethod.GET)
 	public String loginError(Model model){
 		log.info("*****Welcome loginError!*****");
 		
 		return "auth/loginError";
 	}
 	
-	@RequestMapping(value="logout.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session, Model model){
 		log.info("*****Welcome Logout!*****");
 		
 		session.invalidate();
 		
-		return "redirect:/login.do";
+		return "redirect:/auth/login.do";
 	}
 	
-	@RequestMapping(value="commonRegister.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/commonRegister.do", method=RequestMethod.GET)
 	public String commonRegister(Model model) {
 		log.info("*****Welcome Register!*****");
 		
 		return "auth/commonRegister";
 	}
 	 
-	@RequestMapping(value="commonRegisterCtr.do", method={RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value="/auth/commonRegisterCtr.do", method={RequestMethod.POST, RequestMethod.GET})
 	public String commonRegisterCtr(MemberDto memberDto, String birthDate, Model model) throws ParseException {
 		log.info("*****commonRegister_ctr!*****"+ memberDto); 
 		
@@ -100,17 +107,17 @@ public class AuthController {
 		
 		try {
 			authService.memberInsertOne(memberDto);
-			viewUrl = "redirect:/commonRegisterComplete.do";
+			viewUrl = "redirect:/auth/commonRegisterComplete.do";
 		} catch (Exception e) {
 			// TODO: handle exception
 			
-			viewUrl = "redirect:/commonRegisterError.do";
+			viewUrl = "redirect:/auth/commonRegisterError.do";
 		}
 
 		return viewUrl;
 	} 
 	
-	@RequestMapping(value="commonRegisterError.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/commonRegisterError.do", method=RequestMethod.GET)
 	public String commonRegisterError(Model model) {
 		log.info("*****commonRegisterError!*****"); 
 		
@@ -125,14 +132,14 @@ public class AuthController {
 		return "auth/commonRegisterComplete";
 	} 
 	
-	@RequestMapping(value="/findPassword.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/findPassword.do", method=RequestMethod.GET)
 	public String findPassword() {
 		log.info("*****Welcome findPassword!*****");
 		
 		return "auth/findPassword";
 	} 
 	
-	@RequestMapping(value="/findPasswordCtr.do", method=RequestMethod.POST)
+	@RequestMapping(value="/auth/findPasswordCtr.do", method=RequestMethod.POST)
 	public String findPasswordCtr(String memberName, String memberEmail, 
 			String memberBirthDate, HttpSession session, Model model) throws Exception {
 		log.info("*****Welcome findPasswordCtr!*****");
@@ -143,22 +150,22 @@ public class AuthController {
 		
 		session.setAttribute("memberDto", memberDto);
 		if(memberDto != null) {
-			viewUrl = "redirect:/authSendMailFindPwdCtr.do";
+			viewUrl = "redirect:/auth/authSendMailFindPwdCtr.do";
 			
 		} else {
-			viewUrl = "redirect:/findPasswordError.do";
+			viewUrl = "redirect:/auth/findPasswordError.do";
 		}
 		return viewUrl;
 	} 
 	
-	@RequestMapping(value="/findPasswordError.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/findPasswordError.do", method=RequestMethod.GET)
 	public String findPasswordError(Model model) {
 		log.info("*****Welcome findPasswordError!*****");
 		
 		return "auth/findPasswordError";
 	} 
 	
-	@RequestMapping(value="/findPasswordComplete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auth/findPasswordComplete.do", method=RequestMethod.GET)
 	public String findPasswordComplete( Model model, HttpSession session) {
 		log.info("*****Welcome findPasswordComplete!*****");
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberDto");
@@ -171,7 +178,7 @@ public class AuthController {
 	} 
 	
 	// mailSending 인증번호 발송 코드
-	  @RequestMapping(value = "/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
+	  @RequestMapping(value = "/auth/authSendMailVerifyNumCtr.do", method=RequestMethod.POST)
 	  public String verifyNumMailSending(HttpServletRequest request, String memberEmail, int verifyNum
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
@@ -203,7 +210,7 @@ public class AuthController {
 	  }
 	
 	// mailSending 비밀번호 발송 코드
-	@RequestMapping(value = "/authSendMailFindPwdCtr.do", method= {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/auth/authSendMailFindPwdCtr.do", method= {RequestMethod.POST, RequestMethod.GET})
 	public String findPwdMailSending(HttpSession session
 			  ,@RequestParam(defaultValue = "") String title
 			  ,@RequestParam(defaultValue ="") String content) {
@@ -230,12 +237,12 @@ public class AuthController {
 	      System.out.println(e);
 	    }
 	   
-	    return "redirect:/findPasswordComplete.do";
+	    return "redirect:/auth/findPasswordComplete.do";
 	  }
 	
 //	이메일 중복 체크
 	@ResponseBody
-	@RequestMapping(value="/emailCheck.do", method=RequestMethod.POST)
+	@RequestMapping(value="/auth/emailCheck.do", method=RequestMethod.POST)
 	public int emailCheck(MemberDto memberDto) throws Exception {
 		
 		int result = authService.emailCheck(memberDto);

@@ -33,6 +33,8 @@ public interface StudentService {
 
 	public Map<String, Object> QuestionSelect(int no, int idx);
 
+	public int buyPoint(int price, int no);
+
 
 //	public void memberDeleteOne(String userEmail);
 

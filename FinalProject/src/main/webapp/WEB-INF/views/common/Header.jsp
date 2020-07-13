@@ -24,7 +24,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		$.ajax({
-			url: "/englishvillage/changeTutorStatusCheck.do",
+			url: "/englishvillage/tutor/changeTutorStatusCheck.do",
 			type: "POST",
 			data: "memberNo=" + $("#sessionNo").val() + "&statusCheck=" + $('#statusCheck').val(),
 			success: function(data) {
@@ -108,7 +108,7 @@ float: right;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand active" href="/englishvillage/home.do">English Village</a>
+          <a class="navbar-brand active" href="/englishvillage/tutor/home.do">English Village</a>
         </div>
         
         
@@ -116,7 +116,7 @@ float: right;
         	<c:when test="${member.memberGrade eq 'Y'}">
 				<div id="navbar" class="navbar-collapse collapse">
 	              <ul id="naviUl" class="nav navbar-nav">
-	                 <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
+	                 <li class="liLeft"><a href="/tutor/home.do#tutorList">튜터목록</a></li>
 	                 <li>
 	                	 <a id="changeStatusBtn" href="#">
 	                		 강의준비
@@ -137,8 +137,8 @@ float: right;
 	                       <li><a href="tutorPrivateInfo.do">회원정보 수정</a></li>
 	                       <li><a href="#">보유 포인트 : ${member.memberPoint}</a></li>
 	                       <li class="divider"></li>
-	                       <li><a href="myQNA.do">문의내역</a></li>
-	                       <li><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+	                       <li><a href="tutorQnABoard.do">문의내역</a></li>
+	                       <li><a href="<%=request.getContextPath()%>/auth/logout.do">로그아웃</a></li>
 	                    </ul>
 	                 </li>
 	              </ul>
@@ -148,9 +148,9 @@ float: right;
         	<c:otherwise>
         		<div id="navbar" class="navbar-collapse collapse">
 		           <ul id="naviUl" class="nav navbar-nav">
-		              <li class="liLeft"><a href="home.do#tutorList">튜터목록</a></li>
-		              <li class="liLeft"><a href="tutorRegister.do">튜터신청</a></li>
-		              <li class="liLeft"><a href="buyPoint.do">수강권</a></li>
+		              <li class="liLeft"><a href="/englishvillage/tutor/home.do#tutorList">튜터목록</a></li>
+		              <li class="liLeft"><a href="/englishvillage/tutor/tutorRegister.do">튜터신청</a></li>
+		              <li class="liLeft"><a href="/englishvillage/student/buyPoint.do">수강권</a></li>
 		              <li class="dropdown" style="float: right;">
 		                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${member.memberName} 회원님 <span class="caret"></span></a>
 		                 <ul class="dropdown-menu" role="menu">
@@ -162,7 +162,7 @@ float: right;
 		                    <li class="liLeft"><a href="/englishvillage/student/studyList.do">수강내역</a></li>
 		                    <li class="liLeft"><a href="/englishvillage/student/questionList.do">문의내역</a></li>
 		                    <li class="divider" style="clear: both;"></li>
-		                    <li class="liLeft"><a href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+		                    <li class="liLeft"><a href="<%=request.getContextPath()%>/auth/logout.do">로그아웃</a></li>
 		               </ul>
 		             </li>
 		           </ul>

@@ -238,6 +238,12 @@
 		IDX = #{idx}
 	</update>
 
+	<update id="buyPoint" parameterType="map">
+		UPDATE MEMBER
+		SET
+		MEMBER_POINT = MEMBER_POINT + #{price}
+		WHERE MEMBER_NO = #{no}
+	</update>
 
 </mapper>
 

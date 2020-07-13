@@ -135,7 +135,8 @@
 					</tr>
 				</table>
 				<input class="payBtn" type="submit" value="결제하기">
-				<input id="originalPoint" type="hidden" value="${member.memberPoint}">
+				<input id="originalPoint" type="hidden" name="price" value="${member.memberPoint}">
+				<input id="originalPoint" type="hidden" name="price" value="${member.memberPoint}">
 			</div>
 		</form>
 	</div>

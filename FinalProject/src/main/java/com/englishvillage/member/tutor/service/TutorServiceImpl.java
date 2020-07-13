@@ -192,10 +192,10 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
-	public List<QuestionBoardDto> tutorBoardList(int start, int end) {
+	public List<QuestionBoardDto> tutorBoardList(int start, int end, int no) {
 		// TODO Auto-generated method stub
 		List<QuestionBoardDto> tutorList = 
-				tutorDao.tutorBoardList(start, end);
+				tutorDao.tutorBoardList(start, end, no);
 		return tutorList;
 	}
 	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest) {

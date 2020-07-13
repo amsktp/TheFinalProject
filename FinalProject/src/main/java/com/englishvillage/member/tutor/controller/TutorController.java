@@ -44,7 +44,7 @@ public class TutorController {
 	@Autowired
 	private StudentService studentService;
 	
-	@RequestMapping(value = "/home.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/tutor/home.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") 
 						int curPage
 						, @RequestParam(defaultValue = "0") int no
@@ -98,14 +98,14 @@ public class TutorController {
 		return "home/tutorList";
 	}
 	
-	@RequestMapping(value = "/tutorRegister.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorRegister.do", method = RequestMethod.GET)
 	public String tutorRegister(Model model) {
 		
 		log.info("튜터등록 입니다. GET");
 		return "member/tutor/info/tutorRegister";
 	}
 
-	@RequestMapping(value = "/tutorRegisterCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorRegisterCtr.do", method = RequestMethod.POST)
 	public String tutorRegisterCtr(HttpSession session, TutorDto tutorDto, Model model, MultipartHttpServletRequest mulRequest) {
 		log.info("튜터등록 입니다. POST");
 
@@ -142,10 +142,10 @@ public class TutorController {
 			log.info("튜터 GRADE 변경 성공!");
 		}
 
-		return "redirect:./home.do";
+		return "redirect:/tutor/home.do";
 	}
 
-	@RequestMapping(value = "/tutorSelectOne.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/tutor/tutorSelectOne.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request, HttpSession session) {
 		
 		
@@ -180,7 +180,7 @@ public class TutorController {
 	}
 	
 	
-	@RequestMapping(value = "/tutorMainPage.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorMainPage.do", method = RequestMethod.GET)
 	public String tutorMainPage(HttpSession session, Model model) {
 		log.info("tutorMainPage 입니다. GET");
 		
@@ -198,7 +198,7 @@ public class TutorController {
 		return "member/tutor/info/tutorMainPage";
 	}
 	
-	@RequestMapping(value = "/tutorClassRoom.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorClassRoom.do", method = RequestMethod.GET)
 	public String tutorClassRoom(HttpSession session, Model model) {
 		log.info("tutorClassRoom 입니다. GET");
 		
@@ -213,7 +213,7 @@ public class TutorController {
 		return "member/tutor/info/tutorClassRoom";
 	}
 	
-	@RequestMapping(value = "/tutorInfoRevise.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorInfoRevise.do", method = RequestMethod.GET)
 	public String tutorInfoRevise(HttpSession session, Model model) {
 		log.info("tutorInfoRevise 입니다. GET");
 		
@@ -232,7 +232,7 @@ public class TutorController {
 		return "member/tutor/info/tutorInfoRevise";
 	}
 	
-	@RequestMapping(value = "/tutorPrivateInfo.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorPrivateInfo.do", method = RequestMethod.GET)
 	public String tutorPrivateInfo(HttpSession session, Model model) {
 		log.info("tutorInfoRevise 입니다. GET");
 		
@@ -251,7 +251,7 @@ public class TutorController {
 	}
 	
 	
-	@RequestMapping(value = "/tutorPrivateInfoCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorPrivateInfoCtr.do", method = RequestMethod.POST)
 	public String tutorPrivateInfo(TutorDto tutorDto, HttpSession session, Model model) {
 		log.info("tutorPrivateInfoCtr 입니다. POST");
 		
@@ -266,10 +266,10 @@ public class TutorController {
 		session.removeAttribute("member");
 		session.setAttribute("member", memberDto);
 		
-		return "redirect:tutorPrivateInfo.do";
+		return "redirect:/tutor/tutorPrivateInfo.do";
 	}
 	
-	@RequestMapping(value = "/tutorCheckPassword.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorCheckPassword.do", method = RequestMethod.GET)
 	public String tutorCheckPassword(HttpSession session, Model model) {
 		log.info("tutorCheckPassword 입니다. GET");
 		
@@ -284,7 +284,7 @@ public class TutorController {
 		return "member/tutor/info/tutorCheckPassword";
 	}
 	
-	@RequestMapping(value = "/tutorIntroduce.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorIntroduce.do", method = RequestMethod.GET)
 	public String tutorIntroduce(HttpSession session, Model model) {
 		log.info("tutorIntroduce 입니다. GET");
 		
@@ -302,7 +302,7 @@ public class TutorController {
 		return "member/tutor/info/tutorIntroduce";
 	}
 	
-	@RequestMapping(value = "/tutorIntroduceRevise.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorIntroduceRevise.do", method = RequestMethod.GET)
 	public String tutorIntroduceRevise(HttpSession session, Model model) {
 		log.info("tutorIntroduceRevise 입니다. GET");
 		
@@ -320,7 +320,7 @@ public class TutorController {
 		return "member/tutor/info/tutorIntroduceRevise";
 	}
 	
-	@RequestMapping(value = "/tutorIntroduceReviseCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorIntroduceReviseCtr.do", method = RequestMethod.POST)
 	public String tutorIntroduceRevise(TutorDto tutorDto, HttpSession session, Model model) {
 		log.info("tutorIntroduceReviseCtr 입니다. POST");
 						
@@ -332,10 +332,10 @@ public class TutorController {
 			System.out.println("튜터 업데이트 성공");
 		}
 		
-		return "redirect:/tutorIntroduce.do";
+		return "redirect:/tutor/tutorIntroduce.do";
 	}
 	
-	@RequestMapping(value = "/tutorWithdraw.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/tutor/tutorWithdraw.do", method = RequestMethod.GET)
 	public String tutorWithdraw(HttpSession session, Model model) {
 		log.info("tutorIntroduceRevise 입니다. GET");
 		
@@ -350,7 +350,7 @@ public class TutorController {
 		return "member/tutor/info/tutorWithdraw";
 	}
 	
-	@RequestMapping(value = "/tutorWithdrawCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorWithdrawCtr.do", method = RequestMethod.POST)
 	public String tutorWithdrawCtr(HttpSession session, Model model) {
 		log.info("tutorWithdrawCtr 입니다. POST");
 
@@ -364,10 +364,10 @@ public class TutorController {
 		session.removeAttribute("member");
 		session.invalidate();
 		
-		return "redirect:/login.do";
+		return "redirect:/auth/login.do";
 	}
 
-	@RequestMapping(value = "/writeCommentCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/writeCommentCtr.do", method = RequestMethod.POST)
 	public String writeCommentCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
 		
@@ -379,7 +379,7 @@ public class TutorController {
 //		return "redirect:./tutorSelectOne.do?tutorNo=" + tutorCommentDto.getTutorNo();
 		return "forward:./tutorSelectOne.do";
 	}
-	@RequestMapping(value = "/tutorCommentRemoveCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorCommentRemoveCtr.do", method = RequestMethod.POST)
 	public String tutorCommentRemoveCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
 		
@@ -390,7 +390,7 @@ public class TutorController {
 	}
 	
 	
-	@RequestMapping(value = "/tutorCommentModifyCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/tutorCommentModifyCtr.do", method = RequestMethod.POST)
 	public String tutorCommentModifyCtr(TutorCommentDto tutorCommentDto, HttpSession session, Model model, HttpServletRequest request) {
 		log.info("writeCommentCtr.do 입니다. POST");
 
@@ -400,23 +400,21 @@ public class TutorController {
 	}
 	
 	
-	@RequestMapping(value = "/tutorQnABoard.do"
+	@RequestMapping(value = "/tutor/tutorQnABoard.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String tutorBoardList(HttpSession session, @RequestParam(defaultValue = "1") 
 		int curPage, 
-		@RequestParam(defaultValue = "0") 
-		int no, 
+		@RequestParam(defaultValue = "0") int no, 
 		Model model) {
+		
 		log.info("Welcome tutorBoardList! " + curPage + " : ???? ");
 		
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
 		
-		int memberNo = sessionTutorDto.getMemberNo();
-		
-		TutorDto tutorDto = tutorService.getTutorInfo(memberNo);
-		
-		model.addAttribute("tutorDto", tutorDto);
-		
+		no = sessionTutorDto.getMemberNo();
+		System.out.println(no);
+		TutorDto tutorDto = tutorService.getTutorInfo(no);
+
 		// 회원 토탈카운트 -> 보드 토탈카운트
 		int totalCount = 
 			tutorService.tutorSelectTotalCount(
@@ -439,20 +437,23 @@ public class TutorController {
 
 //		튜터보드리스트
 		List<QuestionBoardDto> tutorBoardList = 
-				tutorService.tutorBoardList(start, end);
+				tutorService.tutorBoardList(start, end, no);
 		
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("tutorPaging", tutorPaging);
 
+		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorBoardList", tutorBoardList);
 		model.addAttribute("pagingMap", pagingMap);
 		
 		return "member/tutor/qna/tutorQnABoard";
 	}
+	
+	
 	@ResponseBody
-	@RequestMapping(value = "/changeTutorStatusCheck.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/changeTutorStatusCheck.do", method = RequestMethod.POST)
 	public int changeTutorStatusCheck(TutorDto tutorDto, HttpSession session) {
 		log.info("changeTutorStatusCheck.do 입니다. POST");
 		
@@ -466,7 +467,7 @@ public class TutorController {
 		return resultNum;
 	}
 	
-	@RequestMapping(value = "/addStudyHistoryCtr.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/tutor/addStudyHistoryCtr.do", method = RequestMethod.POST)
 	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck, int price) {
 		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
 		

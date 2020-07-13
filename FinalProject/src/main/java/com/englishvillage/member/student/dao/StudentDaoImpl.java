@@ -137,4 +137,15 @@ public class StudentDaoImpl implements StudentDao{
 		return sqlSession.insert(namespace + "QuestionAdd", questionBoardDto);
 	}
 
+	@Override
+	public int buyPoint(int price, int no) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("price", price);
+		paramMap.put("no", no);
+		
+		return sqlSession.update(namespace + "buyPoint", paramMap);
+	}
+
 }

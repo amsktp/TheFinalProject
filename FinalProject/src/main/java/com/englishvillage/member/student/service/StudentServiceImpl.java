@@ -145,4 +145,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 
+	@Override
+	public int buyPoint(int price, int no) {
+		// TODO Auto-generated method stub
+		return studentDao.buyPoint(price, no);
+	}
+
+
 }

@@ -21,7 +21,7 @@ function checkFnc() {
 	if(pwd == pwdCheck) {
 		location.href = "tutorInfoRevise.do";
 	}else {
-		alert('오답');
+		alert('비밀번호가 틀렸습니다');
 	}
 }
 </script>

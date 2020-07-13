@@ -133,6 +133,15 @@
         }
         
         function send(){
+        	if($('#tutorPrice').val() > $('#memberPoint').val()){
+        		
+        		alert("포인트가 부족합니다.");
+        		
+        		return false;
+        	}
+        	
+        	
+        	
             var text=$('#tutorNoNum').val() + "," + $('#studentNoNum').val() + "," + "C" + ',' + "B";
             alert("강의를 신청했습니다. 잠시만 기다려주세요");
             ws.send(text);

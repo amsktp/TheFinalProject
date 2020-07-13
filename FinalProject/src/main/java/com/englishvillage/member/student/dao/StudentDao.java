@@ -32,6 +32,8 @@ public interface StudentDao {
 
 	public List<QuestionBoardDto> studySelectList(int no, int start, int end);
 
+	public int buyPoint(int price, int no);
+
 	}
 
 

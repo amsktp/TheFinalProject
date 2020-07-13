@@ -110,7 +110,7 @@
 		</div>
 		<!-- 이메일, 비밀번호 입력란  -->
 		<div id="secondBox">
-			<form action="/englishvillage/loginCtr.do" method="post" onsubmit=" return loginBtn();">
+			<form action="/englishvillage/auth/loginCtr.do" method="post" onsubmit=" return loginBtn();">
 				<div>
 					<div>
 						<span>이메일</span>

@@ -52,7 +52,7 @@ public interface TutorService {
 
 	public int tutorSelectCurPage(int no);
 
-	public List<QuestionBoardDto> tutorBoardList(int start, int end);
+	public List<QuestionBoardDto> tutorBoardList(int start, int end, int no);
 	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest);
 
 	public TutorCommentDto getStudentTutorComment(int studentNo, int tutorNo);
