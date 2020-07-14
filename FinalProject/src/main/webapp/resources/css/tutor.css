@@ -194,5 +194,34 @@ td {
 	float: right;	
 	margin-right: 120px;
 }
+#boardWriteBtn{
+	margin-top: 20px;
+	float: right;	
+	font-size: 20px;
+	border-radius: 10px;
+	background-color: black;
+	color: white;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+}
+#boardTitleWrite{
+	width: 500px;
+	height: 30px;
+}
+#boardContentsWrite{
+	width: 500px;
+	height: 400px;
+	margin-top: 20px;
+}
+#leftTitle{
+	width: 70px;
+	border: 1px solid black;
+	float: left;
+	margin-top: 20px;
+}
+.leftContents{
+	width: 70px;
+}
 
 

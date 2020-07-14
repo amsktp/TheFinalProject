@@ -22,7 +22,7 @@ $(document).ready(function(){
 	
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9" style="margin-top: 40px; margin-bottom: 100px;">
+		<div class="col-md-9" style="margin-top: 40px; margin-bottom: 70px;">
 			<div id="pageName">
 					문의 내역
 			</div>
@@ -71,8 +71,11 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<form action="tutorQnAWrite.do" method="get">
+				<input id="boardWriteBtn" type="submit" value="문의글 쓰기">
+			</form>
 		</div>
-		<jsp:include page="/WEB-INF/views/common/paging3.jsp">
+		<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	</div>

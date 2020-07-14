@@ -268,7 +268,6 @@
 	<select id="tutorBoardList" parameterType="int" 
 	resultMap="questionListResultMap">
 	
-		
 		SELECT T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
 		FROM QUESTION_BOARD Q JOIN MEMBER T 
 		ON Q.MEMBER_NO = T.MEMBER_NO
@@ -350,6 +349,14 @@
 	<insert id="addStudyHistory" parameterType="com.englishvillage.member.tutor.model.TutorCommentDto">
 	
 		<!-- 수업시작했을때 학생번호 튜터번호 학생이름 날짜를 평가테이블에 추가 -->
+		
+		    insert into evaluation
+		    value(IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE)
+		    values(EVALUATION_IDX_SEQ.nextval, #{tutorNo}, #{studentNo}, null, null, 'N', #{studentName}, null, SYSDATE)
+		
+	</insert>
+	
+	<insert id="boardWrite" parameterType="com.englishvillage.member.admin.model.QuestionBoardDto">
 		
 		    insert into evaluation
 		    value(IDX, TUTOR_NO, STUDENT_NO, SCORE, EVALUATE_CONTENT, EVALUATE_CHECK, STUDENT_NAME, EVALUATE_CREATE_DATE, STUDY_DATE)

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css"
-	href="/englishvillage/resources/css/tutor.css?ver=1.7">
+	href="/englishvillage/resources/css/tutor.css?ver=1.2">
 <link rel="stylesheet" type="text/css"
 	href="/englishvillage/resources/css/student.css?ver=1.4">
 	

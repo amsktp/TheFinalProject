@@ -242,6 +242,13 @@ public class TutorServiceImpl implements TutorService{
 		return tutorDao.addPoint(memberNo, price);
 	}
 
+	@Override
+	public int boardWrite(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.boardWrite(tutorDto);
+	}
+
+
 	
 	
 }

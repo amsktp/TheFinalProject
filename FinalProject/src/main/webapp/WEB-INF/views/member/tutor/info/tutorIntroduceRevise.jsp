@@ -28,6 +28,7 @@ $(document).ready(function(){
 		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">튜터소개수정</div>
+				<form action="tutorIntroduce.do" method="post">
 				<div id="profileImages">
 					사진
 				</div>

@@ -61,4 +61,7 @@ public interface TutorService {
 
 	public int addPoint(int memberNo, int price);
 
+	public int boardWrite(TutorDto tutorDto);
+
+
 }

@@ -130,11 +130,6 @@ public class TutorController {
 		
 		session.setAttribute("member", newSessionMemberDto);
 		
-		
-		TutorDto newSessionTutorDto = tutorService.getTutorInfo(memberNo);
-		
-		session.setAttribute("tutor", tutorDto);
-		
 		if(insertResult == 0) {
 			log.warn("튜터 레지스터가 실패했습니다.");
 		} else {
@@ -500,6 +495,43 @@ public class TutorController {
 		
 		return "member/tutor/info/tutorPrivateInfo";
 	}
+	
+	@RequestMapping(value = "/tutor/tutorQnAWrite.do", method = RequestMethod.GET)
+	public String tutorQnAWrite(HttpSession session, Model model) {
+		log.info("tutorQnAWrite 입니다. GET");
+						
+		
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+		
+		int no = sessionTutorDto.getMemberNo();
+		
+		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		
+		model.addAttribute("tutorDto", tutorDto);
+
+		return "member/tutor/qna/tutorQnAWrite";
+	}
+	
+	@RequestMapping(value = "/tutor/tutorQnAWriteCtr.do", method = RequestMethod.POST)
+	public String tutorQnAWriteCtr(HttpSession session, Model model) {
+		log.info("tutorQnAWrite 입니다. GET");
+						
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+		
+		int no = sessionTutorDto.getMemberNo();
+		
+		TutorDto tutorDto = tutorService.getTutorInfo(no);
+
+		int tutorDtoInsert = tutorService.boardWrite(tutorDto);
+		
+		model.addAttribute("tutorDto", tutorDto);
+		model.addAttribute("tutorDtoInsert", tutorDtoInsert);
+
+		return "rediect:/tutorQnABoard.do";
+	}
+	
+	
+
 	
 	
 }

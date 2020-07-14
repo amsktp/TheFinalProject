@@ -259,4 +259,11 @@ public class TutorDaoImpl implements TutorDao {
 		return sqlSession.update(namespace + "addPount", map);
 	}
 
+	@Override
+	public int boardWrite(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + "boardWrite", tutorDto);
+	}
+
+
 }
