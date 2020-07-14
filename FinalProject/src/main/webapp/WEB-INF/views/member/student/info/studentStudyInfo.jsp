@@ -32,40 +32,50 @@
 			<div id="pageName">수강내역</div>
 
 			<table class="table table-hover textCenter tableFont">
+
+				<colgroup>
+					<col width="10%">
+					<col width="35%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+
 				<tr class="success">
 					<th class='textCenter'>번호</th>
 					<th class='textCenter'>강의제목</th>
 					<th class='textCenter'>튜터이름</th>
-					<th class='textCenter'>가격</th>
 					<th class='textCenter'>수강일</th>
+					<th class='textCenter'>포인트</th>
 
 
 				</tr>
 				<c:choose>
-<c:when test="${not empty studyList}">
-				<c:forEach var="studyDto" items="${studyList}">
-					<tr>
-						<td><div id="idxVal" class="td_status">${studyDto.idx}</div></td>
-						<td class="textLeft"><div class="td_status">
-									${studyDto.studyName} 
-							</div></td>
+					<c:when test="${not empty studyList}">
+						<c:forEach var="studyDto" items="${studyList}">
+							<tr>
+								<td style="vertical-align: middle;"><div id="idxVal" class="td_status">${studyDto.idx}</div></td>
+								<td style="vertical-align: middle;" class="textLeft"><div class="td_status">
+										${studyDto.studyName}</div></td>
 
-						<td><div class="td_status">${studyDto.tutorName}</div></td>
+								<td style="vertical-align: middle;"><div class="td_status">${studyDto.tutorName}</div></td>
 
+								<td><div class="td_status">
+										<fmt:formatDate value="${studyDto.studyDate}"
+											pattern="yyyy-MM-dd hh:mm:ss" />
+									</div></td>
 
-						<td>
-							<div class="td_status">${studyDto.price}</div>
-						</td>
+								<td style="vertical-align: middle;">
+									<div class="td_status">- ${studyDto.price}</div>
+								</td>
 
-						<td><div class="td_status">
-								<fmt:formatDate value="${studyDto.studyDate}" pattern="yyyy-MM-dd a hh:mm" /> 
-							</div></td>
-				</c:forEach>
-</c:when>
-<c:otherwise>
-<td colspan="5"><div class="td_status">수강내역이 존재하지 않습니다.</div></td>
-</c:otherwise>
-</c:choose>
+								
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<td colspan="5"><div class="td_status">수강내역이 존재하지 않습니다.</div></td>
+					</c:otherwise>
+				</c:choose>
 
 			</table>
 			<jsp:include page="/WEB-INF/views/common/paging2.jsp">

@@ -13,14 +13,11 @@
 
 	});
 
-	
-	function moveButPointFnc(){
-		
+	function moveButPointFnc() {
+
 		location.href = "/englishvillage/student/buyPoint.do";
-		
-		
+
 	}
-	
 </script>
 
 
@@ -35,19 +32,21 @@
 		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">마이 페이지</div>
-			<div id="mainLeft">
-				<h1 class="infoFont" onclick="myInfoMoveFnc();">내 정보</h1>
-				<p>이름 : ${member.memberName}</p>
-				<p>email : ${member.memberEmail}</p>
-				<p></p>
-			</div>
-			<div id="mainRight">
-				<h1 class="infoFont">보유 포인트</h1>
-				<p>${member.memberPoint}포인트</p>
+			<div class="container">
+				<div class="col-md-4">
+					<h1 class="infoFont" onclick="myInfoMoveFnc();">내 정보</h1>
+					<p>이름 : ${member.memberName}</p>
+					<p>email : ${member.memberEmail}</p>
+					<p></p>
+				</div>
+				<div class="col-md-4">
+					<h1 class="infoFont">보유 포인트</h1>
+					<p>${member.memberPoint}포인트</p>
 
-				<input class="blackBtn" type="button" value="충전하기" onclick="moveButPointFnc();">
+					<input class="blackBtn" type="button" value="충전하기"
+						onclick="moveButPointFnc();">
+				</div>
 			</div>
-
 		</div>
 
 	</div>

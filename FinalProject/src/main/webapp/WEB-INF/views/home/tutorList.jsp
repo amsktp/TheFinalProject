@@ -100,7 +100,7 @@ dl, ul, ol, menu, li {
 }
 
 .tutorImg {
-	width: 337px;
+	width: 340px;
 	height: 200px;
 }
 
@@ -112,10 +112,6 @@ dl, ul, ol, menu, li {
 .studyInfo {
 	width: 275px;
 	padding-left: 10px;
-}
-
-.tutorName {
-	
 }
 
 .studyTitle {
