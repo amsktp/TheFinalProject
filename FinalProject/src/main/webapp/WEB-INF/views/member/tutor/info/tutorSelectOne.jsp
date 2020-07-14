@@ -477,10 +477,8 @@ tr {
 		<div class="tutorInfoBox">
 
 
-			<div>
 				<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }"
 					frameborder="0" allowfullscreen></iframe>
-			</div>
 
 			<div>
 				<div id="onLineCheckDiv">
