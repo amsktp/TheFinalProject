@@ -210,10 +210,14 @@ td {
 	
 }
 
-#tutor {
+.tutor {
 	color: gray;
+	cursor: pointer;
 }
 
+.student {
+	cursor: pointer;
+}
 
 
 
