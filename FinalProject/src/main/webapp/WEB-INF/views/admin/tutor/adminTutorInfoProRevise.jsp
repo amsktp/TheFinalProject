@@ -245,11 +245,43 @@ textarea:focus {outline:none;}
 			
 		});
 		
-		$('#tutorIntroduceBox').val($('#tutorHiddenIntroduce').val().trim());
-		
 		
 	});
+	
+	function checkFnc() {
+	
+		
+		if($('#priceInput').val() == '') {
+			alert('가격을 입력해 주십시오.');
+			return false;
+		}else if($('#titleInput').val() == '') {
+			alert('강의 제목을 입력해 주십시오.');
+			return false;
+		}else if($('#urlInput').val() == '') {
+			alert('URL을 입력해 주십시오');
+			return false;
+		}else if($('#tutorIntroduceBox').val() == '') {
+			alert('소개글을 입력해 주십시오');
+			return false;
+		}else {
+			for (var i=0; i<$("#priceInput").val().length; i++)  {
+				
+				var chk = $("#priceInput").val().substring(i,i+1);
+				
+				if(chk.match(/[a-z]|[A-Z]|[가-힣]|[ㄱ-ㅎ]|[ㅏ-ㅣ]/)){
+			    	alert('제대로된 가격을 입력해주세요')
+	
+			        return false;
+			    }		
+			}
+				
+		}
+		
+		
+		
+	}
 
+	
 	
 	function pageMoveListFnc(){
 		var url = "./list.do";
@@ -309,7 +341,8 @@ textarea:focus {outline:none;}
 	   //       document.querySelector("div#image_container").appendChild(img); 
 	      }; 
 	      
-	      reader.readAsDataURL(event.target.files[0]); }
+	      reader.readAsDataURL(event.target.files[0]); 
+	     }
 	
 </script>
 
@@ -329,14 +362,14 @@ textarea:focus {outline:none;}
 		<div class="tutorProfileDiv" id='studentProfileDiv'>
 				
 				<div id='tutorProfileDiv'>
-					<form action='./tutorProUpdateCtr.do' method='post' enctype="multipart/form-data">
+					<form action='./tutorProUpdateCtr.do' method='post' enctype="multipart/form-data" onsubmit="return checkFnc();">
 						<span id='student'>회원 관리(학생)</span>
 						<span id='tutor'>회원 관리(강사)</span>
 						<div id='lineDiv'>
 						</div>
 							<div id='allmanual'>
 								<div id="photoAndInfoDiv" >
-					
+
 						<div id="inputPhotoDiv" class="clearfix">
 						    <div id='preview'>
 						    <input type="hidden" name="original_File_Name" value="${memberListDto.original_File_Name}">
@@ -362,20 +395,20 @@ textarea:focus {outline:none;}
 								</tr>
 								<tr>
 									<td>나이:</td>
-									<td><input type="text" value="" id='age' disabled="disabled"><br></td>
+									<td><input type="text" value="" id='age' readonly="readonly"><br></td>
 								</tr>
 								<tr>
 									<td>수업료:</td>
-									<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}"> 원 / 40분</td>
+									<td><input id='priceInput' type="text"  name="price" value="${memberListDto.price}"> 원 / 40분</td>
 								</tr>
 								<tr>
 									<td>강의제목:</td>
-									<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}"></td>
+									<td><input id='titleInput' type="text"  name="tutorTitle" value="${memberListDto.tutorTitle}"></td>
 								</tr>
 								
 								<tr>
 									<td>URL:</td>
-									<td><input id='titleInput' type="text" name="url" value="${memberListDto.url}"></td>
+									<td><input id='urlInput' type="text"  name="url" value="${memberListDto.url}"></td>
 								</tr>
 							</table>
 						</div>
@@ -383,9 +416,9 @@ textarea:focus {outline:none;}
 					</div>
 					
 					<div id="tutorIntroduceBoxDiv">
-						<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
+						<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText">${memberListDto.tutorText}</textarea>
 					</div>
-					<input type="hidden" id='tutorHiddenIntroduce' value="${memberListDto.tutorText}">
+					
 					
 							<div>
 								<input type="hidden" id='no' name="no" value="${memberListDto.no}">
@@ -403,9 +436,6 @@ textarea:focus {outline:none;}
 				</div>
 	</div>
 
-
-	
-<%-- 	<jsp:include page="/WEB-INF/views/Tail.jsp" /> --%>
 </body>
 
 </html>

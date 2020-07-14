@@ -207,7 +207,7 @@
 		LEFT OUTER JOIN QUESTION_BOARD Q ON
 		M.MEMBER_NO = q.member_no
 		LEFT OUTER JOIN question_board_comment C ON
-		Q.IDX = C.IDX
+		Q.IDX = C.BOARD_NO
 		WHERE M.MEMBER_NO = #{no}
         AND Q.IDX = #{idx}
 	</select>

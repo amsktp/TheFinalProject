@@ -216,7 +216,7 @@ function checkFinshFnc() {
 	}
 	
 	function pageMoveBeforeFnc(no) {
-		var url = "./tutorlistOne.do?no=" + no;
+		var url = "./tutorListOne.do?no=" + no;
 		location.href = url;
 	}
 	

@@ -52,7 +52,12 @@
 			$('#reply').attr('readonly', 'readonly');
 		}
 	});
-	
+	function replyChkFnc() {
+		if($('#reply').val() == '') {
+			alert('답글을 달아주십시오');
+			return false;
+		}
+	}
 	function pageMoveBeforeFnc(no) {
 		var url = "./questionList.do?no=" + no;
 		location.href = url;
@@ -95,7 +100,7 @@
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 		<div id='qnaTable' style="margin-top: 200px; float: left; border: 1px solid black; width: 1000px;" >
-			<form action='./replyAddCtr.do' method='post' enctype="multipart/form-data">
+			<form action='./replyAddCtr.do' method='post' enctype="multipart/form-data" onsubmit="return replyChkFnc()">
 				<div style="width: 600px; height: 30px; border-bottom: 1px solid #BDBDBD; margin: auto; margin-top: 20px;">
 					<div style="float: left;">
 						<span>글번호:</span> 

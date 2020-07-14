@@ -385,15 +385,19 @@ textarea:focus {outline:none;}
 							</tr>
 							<tr>
 								<td>나이:</td>
-								<td><input type="text" value="" id='age' disabled="disabled"><br></td>
+								<td><input type="text" value="" id='age' readonly="readonly"><br></td>
 							</tr>
 							<tr>
 								<td>수업료:</td>
-								<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}" disabled="disabled"> 원 / 40분</td>
+								<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}" readonly="readonly"> 원 / 40분</td>
 							</tr>
 							<tr>
 								<td>강의제목:</td>
-								<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}" disabled="disabled"></td>
+								<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td>URL:</td>
+								<td><input id='titleInput' type="text" name="url" value="${memberListDto.url}" readonly="readonly"></td>
 							</tr>
 						</table>
 					</div>
