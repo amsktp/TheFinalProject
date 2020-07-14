@@ -2,10 +2,10 @@ package com.englishvillage.util;
 
 import java.io.Serializable;
 
-public class PagingYJ implements Serializable{
+public class mainPaging implements Serializable{
 
 	// 페이지당 게시물수
-	public static final int PAGE_SCALE = 5;
+	public static final int PAGE_SCALE = 10;
 	
 	// 화면당 페이지 수
 	public static final int BLOCK_SCALE = 5;
@@ -28,7 +28,7 @@ public class PagingYJ implements Serializable{
 	private int blockEnd;	// 블록의 끝번호
 	
 	// 생성자
-	public PagingYJ(int count, int curPage) {
+	public mainPaging(int count, int curPage) {
 		this.curBlock = 1;
 		this.curPage = curPage;
 		setTotPage(count);

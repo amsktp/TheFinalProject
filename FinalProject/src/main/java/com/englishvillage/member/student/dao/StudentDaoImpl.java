@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.englishvillage.auth.model.MemberDto;
-import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
+import com.englishvillage.member.student.model.QuestionBoardDto;
 
 
 @Repository
@@ -78,10 +78,18 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public int studentQuestionCount(int no) {
+	public int studentQuestionCount(int no, String searchOption, String keyword) {
 		// TODO Auto-generated method stub
 		System.out.println("다오의 넘버"+no);
-		return sqlSession.selectOne(namespace + "studentQuestionCount", no);
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("searchOption", searchOption);
+		paramMap.put("keyword", keyword);
+		paramMap.put("no", no);
+		
+		return sqlSession.selectOne(namespace + "studentQuestionCount", paramMap);
+		
 	}
 
 	@Override

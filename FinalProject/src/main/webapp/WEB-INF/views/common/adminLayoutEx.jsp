@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 <link rel="stylesheet" type="text/css"
 	href="/englishvillage/resources/css/student.css?ver=1.4">
-	<link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 <script type="text/javascript">
 var loginMoveFnc = function(){
 	location.href = '/englishvillage/login.do';
