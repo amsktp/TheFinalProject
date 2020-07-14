@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
@@ -158,7 +159,8 @@ public class AdminController {
 			System.out.println(memberListDto.getMember_name());
 			System.out.println(memberListDto.getMember_email());
 			System.out.println(memberListDto.getGender());
-
+			
+			
 			
 			try {
 				// 설명하지 
@@ -171,11 +173,11 @@ public class AdminController {
 			}
 			
 			if (resultNum != 0) {
-				MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+				MemberDto sessionMemberDto = (MemberDto)session.getAttribute("member");
 				
-				if (sessionMemberListDto != null) {
+				if (sessionMemberDto != null) {
 					
-					if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+					if (sessionMemberDto.getMemberNo() == memberListDto.getNo()) {
 						MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getMember_name()
 								,memberListDto.getMember_email(),memberListDto.getPassword(), memberListDto.getModifiedDate()
 								,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
@@ -322,6 +324,8 @@ public class AdminController {
 				
 				log.info("call memberUpdateCtr! {} :: {}" + memberListDto, fileIdx);
 				
+			
+				
 				int resultNum = 0;
 				
 				try {
@@ -336,11 +340,11 @@ public class AdminController {
 				}
 				
 				if (resultNum != 0) {
-					MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+					MemberDto sessionMemberDto = (MemberDto)session.getAttribute("member");
 					
-					if (sessionMemberListDto != null) {
+					if (sessionMemberDto != null) {
 						
-						if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+						if (sessionMemberDto.getMemberNo() == memberListDto.getNo()) {
 							MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getMember_name()
 									,memberListDto.getMember_email(),memberListDto.getPassword(), memberListDto.getModifiedDate()
 									,memberListDto.getBirthDate(),memberListDto.getCountry(),memberListDto.getGender());
@@ -380,11 +384,11 @@ public class AdminController {
 		}
 		
 		if (resultNum != 0) {
-			MemberListDto sessionMemberListDto = (MemberListDto)session.getAttribute("member");
+			MemberDto sessionMemberDto = (MemberDto)session.getAttribute("member");
 			
-			if (sessionMemberListDto != null) {
+			if (sessionMemberDto != null) {
 				
-				if (sessionMemberListDto.getNo() == memberListDto.getNo()) {
+				if (sessionMemberDto.getMemberNo() == memberListDto.getNo()) {
 					MemberListDto newMemberListDto = new MemberListDto(memberListDto.getNo(),memberListDto.getUrl(),
 							memberListDto.getPrice(), memberListDto.getTutorTitle(), memberListDto.getTutorText());
 					
