@@ -19,14 +19,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         Object handler) throws Exception {
         
     	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
-    	System.out.println();
         HttpSession session = request.getSession();
         
         if(session.getAttribute("member") == null) {
@@ -34,7 +26,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             logger.info("current user is not logined");
             
             // 로그인하지 않은 사용자일 경우 로그인 페이지로 이동
-            response.sendRedirect("./login.do");
+            response.sendRedirect("/englishvillage/auth/login.do");
             return false;
         }
         
