@@ -93,7 +93,7 @@
    		<result column="MEMBER_NO" property="no"/>   
    		<result column="MEMBER_NAME" property="name"/>   
       	<result column="TITLE" property="title"/>   
-      	<result column="CONTENT" property="content"/>   
+      	<result column="CONTENT" property="content"/>
       	<result column="BOARD_CREATE_DATE" property="boardCreateDate"/>   
       	<result column="BOARD_MODIFY_DATE" property="boardModDate"/>   
       	<result column="ANSWER_STATUS" property="answerStatus"/>   

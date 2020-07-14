@@ -447,13 +447,7 @@ public class AdminController {
 			log.info("Welcome questionList! " + curPage + " : " 
 				+ searchOption + " : " + keyword);
 			// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
-			if("title".equals(searchOption)) {
-				searchOption = "TITLE";
-			}
 			
-			if("context".equals(searchOption)) {
-				searchOption = "content";
-			}
 		
 			
 			// 페이징을 위한 전체 회원목록 갯수
@@ -480,13 +474,7 @@ public class AdminController {
 					, start, end);
 
 			// 화면의 form의 이름을 맞추기 위한 작업
-			if("title".equals(searchOption)) {
-				searchOption = "title";
-			}
 			
-			if("content".equals(searchOption)) {
-				searchOption = "context";
-			}
 			
 			// 검색
 			HashMap<String, Object> searchMap 
