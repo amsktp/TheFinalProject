@@ -496,6 +496,24 @@
 	</select>
 	
 	
+	<select id="tutorBoardCurPage" parameterType ="map"
+		resultType="Integer">
+		
+        SELECT floor((RNUM-1)/5)+1
+        FROM (
+            select ROWNUM RNUM, b.IDX, B.MEMBER_NO, B.MEMBER_NAME, B.TITLE, B.BOARD_CREATE_DATE, B.ANSWER_STATUS, B.CONTENT 
+            from (
+                SELECT Q.IDX, T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
+                FROM QUESTION_BOARD Q JOIN MEMBER T 
+                ON Q.MEMBER_NO = T.MEMBER_NO
+                WHERE Q.MEMBER_NO = #{no}
+                ORDER BY Q.BOARD_CREATE_DATE DESC
+                ) B
+            )pb
+        
+        WHERE pb.idx = #{idx}
+        
+	</select>
 	
 	
 </mapper>

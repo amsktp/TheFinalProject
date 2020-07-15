@@ -26,6 +26,7 @@ function listOnePageFnc(obj, idx) {
 
 	url += './tutorQnARead.do?';
 	url += 'idx=' + idx;
+	url += '&curPage=' + $('#curPage').val();
 
 	location.href = url;
 }
@@ -61,7 +62,7 @@ function listOnePageFnc(obj, idx) {
 							<tr>
 								<td>
 									<a href='#' onclick="listOnePageFnc(this, ${tutorBoard.idx});">
-										${tutorBoard.title}${tutorBoard.idx}
+										${tutorBoard.title}
 									</a>
 								</td>
 								<td>

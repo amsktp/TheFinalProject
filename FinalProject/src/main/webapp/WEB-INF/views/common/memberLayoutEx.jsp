@@ -5,9 +5,9 @@
 <c:choose>
 	<c:when test="${member.memberGrade eq 'Y'}">
 		<link rel="stylesheet" type="text/css"
-			href="/englishvillage/resources/css/student.css?ver=1.4">
+			href="/englishvillage/resources/css/student.css?ver=1.5">
 			<link rel="stylesheet" type="text/css"
-			href="/englishvillage/resources/css/tutor.css?ver=1.4">
+			href="/englishvillage/resources/css/tutor.css?ver=1.5">
 	</c:when>
 
 	<c:when test="${member.memberGrade eq 'N'}">

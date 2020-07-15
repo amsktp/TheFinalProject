@@ -57,30 +57,26 @@ function setThumbnailFnc(event) {
 				</div>
 				<div id="profileAll" style="margin-top: 50px;">
 					<div class="profileInfoContents" >
-						이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;름 : ${member.memberName}<br/>
+						이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 : ${member.memberName}<br/>
 					</div>
 					<div class="profileInfoContents" >
-						국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;적 : ${member.memberCountry}<br/>
+						국&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 : ${member.memberCountry}<br/>
 					</div>
 					<div class="profileInfoContents" >
-						나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;이 : ${tutorDto.age}<br/>
+						나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 : ${tutorDto.age}<br/>
 					</div>
 					<div class="profileInfoContents" >
-						평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;점 : ${tutorDto.score}<br/>
+						평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점 : ${tutorDto.score}<br/>
 					</div>
 					<div>
-						수 &nbsp;&nbsp;업 &nbsp;료 : 
+						수 &nbsp;&nbsp;업 &nbsp;료 :
 						<input class="profileInfoContents" 
 						style="width: 200px;" type="text" 
 						value="${tutorDto.price}" name="price">
 						시간/회<br/>
 					</div>
 					<div>
-						U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp;: 
+						U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp;:
 						<input class="profileInfoContents" style="width: 200px;"
 						type="text" value="${tutorDto.youtubeUrl}" 
 						name="youtubeUrl"><br/>

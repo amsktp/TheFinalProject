@@ -32,7 +32,7 @@ $(document).ready(function(){
 			</div>
 			<div id="profileAll" style="margin-top: 50px; border-style: none;">
 				<div class="profileInfoContents">
-					이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;름: 
+					이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 : 
 					${tutorDto.memberName}
 				</div>
 				<div class="profileInfoContents">
@@ -55,10 +55,10 @@ $(document).ready(function(){
 					시간/회
 				</div>
 				<div class="profileInfoContents">
-					U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp; : ${tutorDto.youtubeUrl}
+					U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp;: ${tutorDto.youtubeUrl}
 				</div>
 				<div class="profileInfoContents">
-					강의&nbsp; 제목 : : ${tutorDto.studyName}
+					강의&nbsp; 제목 : ${tutorDto.studyName}
 				</div>
 			</div>
 			<div>

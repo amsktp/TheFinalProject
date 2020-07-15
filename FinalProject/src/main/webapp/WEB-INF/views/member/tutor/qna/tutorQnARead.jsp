@@ -38,8 +38,6 @@
 
 			<div id="pageName">내 문의</div>
 
-<!-- 				<form action="./questionRevise.do" method="post"> -->
-
 					<table id='qnaTable' class="table table-bordered">
 					
 						<tr>
@@ -82,15 +80,17 @@
 					</table>
 
 					<c:if test="${questionBoardDto.answerStatus == 'N'}">
-							<!-- 이렇게 해줘야 레알 히든임 -->
-							<input class="btn btn-success" type="button" value="수정하기" onclick="moveFnc('./tutorQnARevise.do?idx=${questionBoardDto.boardNo}')">
-						</c:if>
-
-					 <input	id="backListBtn" class="btn btn-default" type="button" value="목록" onclick="moveFnc('./tutorQnABoard.do?idx=${questionBoardDto.boardNo}')"> 
-<!-- 				</form> -->
+							<input class="btn btn-success" type="button" 
+								value="수정하기" onclick="moveFnc('./tutorQnARevise.do?idx=${questionBoardDto.boardNo}')">
+					</c:if>
+					<input id="backListBtn" class="btn btn-default" type="button" 
+						value="목록" onclick="moveFnc('./tutorQnABoard.do?idx=${questionBoardDto.boardNo}&curPage=${curPage}')"> 
 		</div>
 
 	</div>
+
+	<input id="curPage" type="hidden" name="curPage" value="${curPage}">
+	<input id="idx" type="hidden" name="curPage" value="${curPage}">
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

@@ -434,8 +434,8 @@ public class TutorController {
 	
 	@RequestMapping(value = "/tutor/tutorQnABoard.do"
 			, method = {RequestMethod.GET, RequestMethod.POST})
-	public String tutorBoardList(HttpSession session, @RequestParam(defaultValue = "1") 
-		int curPage, 
+	public String tutorBoardList(HttpSession session,
+		@RequestParam(defaultValue = "1") int curPage, 
 		@RequestParam(defaultValue = "0") int idx, 
 		Model model) {
 		
@@ -458,8 +458,14 @@ public class TutorController {
 				= tutorService.tutorBoardCurPage(no, idx);
 		}
 		
-//		
-//		System.out.println("????????: " + curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		System.out.println(curPage);
+		//		System.out.println("????????: " + curPage);
 		
 		PagingYJ tutorPaging = new PagingYJ(totalCount, curPage);
 		int start = tutorPaging.getPageBegin();
@@ -527,7 +533,8 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/tutor/tutorQnAWrite.do", method = RequestMethod.GET)
-	public String tutorQnAWrite(HttpSession session, Model model) {
+	public String tutorQnAWrite(HttpSession session, Model model
+			, @RequestParam(defaultValue = "1") int curPage) {
 		log.info("tutorQnAWrite 입니다. GET");
 						
 		
@@ -543,7 +550,8 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/tutor/tutorQnAWriteCtr.do", method = RequestMethod.POST)
-	public String tutorQnAWriteCtr(HttpSession session, Model model, QuestionBoardDto questionBoardDto) {
+	public String tutorQnAWriteCtr(HttpSession session, Model model, QuestionBoardDto questionBoardDto
+			, @RequestParam(defaultValue = "1") int curPage) {
 		log.info("tutorQnAWrite 입니다. GET");
 						
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
@@ -563,7 +571,9 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/tutor/tutorQnARead.do", method = RequestMethod.GET)
-	public String tutorQnARead(HttpSession session, Model model, int idx) {
+	public String tutorQnARead(HttpSession session, Model model, int idx
+			, @RequestParam(defaultValue = "1") int curPage) {
+		
 		log.info("tutorQnARead 입니다. GET");
 						
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
@@ -576,6 +586,7 @@ public class TutorController {
 		model.addAttribute("questionBoardDto", questionBoardDto);
 		model.addAttribute("tutorDto", tutorDto);
 		
+		model.addAttribute("curPage",curPage);
 		return "member/tutor/qna/tutorQnARead";
 	}
 	
@@ -583,11 +594,18 @@ public class TutorController {
 	
 	
 	@RequestMapping(value = "/tutor/tutorQnARevise.do", method = RequestMethod.GET)
-	public String tutorQnARevise(HttpSession session, Model model, int idx) {
+	public String tutorQnARevise(HttpSession session, Model model, int idx
+			, @RequestParam(defaultValue = "1") int curPage) {
 		log.info("tutorQnARevise 입니다. GET");
 		
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+
+		int no = sessionTutorDto.getMemberNo();
+
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		QuestionBoardDto questionBoardDto = tutorService.boardSelectOne(idx);
 		
+		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("questionBoardDto", questionBoardDto);
 		
 		return "member/tutor/qna/tutorQnARevise";
