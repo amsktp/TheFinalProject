@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.auth.model.MemberDto;
@@ -113,7 +115,7 @@ public class TutorServiceImpl implements TutorService{
 		return tutorDtoList;
 	}
 
-	@Override
+	@Override 
 	public int tutorSelectCurPage(String countrySearch, int ageSearch, String genderSearch, String keyword,
 			int no) {
 		// TODO Auto-generated method stub
@@ -180,15 +182,9 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
-	public int tutorSelectTotalCount() {
+	public int tutorBoardCurPage(int no, int idx) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int tutorSelectCurPage(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tutorDao.tutorBoardCurPage(no, idx);
 	}
 
 	@Override
@@ -243,12 +239,73 @@ public class TutorServiceImpl implements TutorService{
 	}
 
 	@Override
-	public int boardWrite(TutorDto tutorDto) {
+	public int boardWrite(QuestionBoardDto questionBoardDto) {
 		// TODO Auto-generated method stub
-		return tutorDao.boardWrite(tutorDto);
+		return tutorDao.boardWrite(questionBoardDto);
 	}
 
+	@Override
+	public QuestionBoardDto boardSelectOne(int idx) {
+		// TODO Auto-generated method stub
+		return tutorDao.boardSelectOne(idx);
+	}
 
-	
+	@Override
+	public int questionRevise(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		return tutorDao.questionRevise(questionBoardDto);
+	}
+
+	@Override
+	public int TutorProfileUpdateOne(TutorDto tutorDto, MultipartHttpServletRequest multipartHttpServletRequest,
+			int fileIdx) {
+		// TODO Auto-generated method stub
+		int resultNum = 0;
+		try {
+
+			int no = tutorDto.getMemberNo();
+//			if문을 위한것(2번째 if문)
+
+			MemberListDto memberFileSave = tutorDao.fileSelectStoreFileName(no);
+			MultipartFile file = multipartHttpServletRequest.getFile("profilePicture");
+			int idx = memberFileSave.getIdx();
+			System.out.println(file.isEmpty());
+
+			if (file.isEmpty() == false) {
+				// for문을 위한것
+				List<Map<String, Object>> list = fileUtils.parseInsertFileTutorInfo(no, multipartHttpServletRequest);
+				System.out.println(list);
+
+				// 오로지 하나만 관리 수정
+				if (list.isEmpty() == false) {
+					for (Map<String, Object> map : list) {
+						tutorDao.insertFile(map);
+					}
+					if (memberFileSave != null) {
+						tutorDao.fileDelete(idx);
+						fileUtils.parseUpdateFileInfo(memberFileSave);
+					}
+				} else if (fileIdx == -1) {
+					if (memberFileSave != null) {
+						tutorDao.fileDelete(idx);
+						fileUtils.parseUpdateFileInfo(memberFileSave);
+					}
+				}
+			}
+
+			// 부모를 바꾸기 전에 자식을 바꾸는 형태(참조무결성 제약조건을 생각해야 하는 부분이다)
+
+			resultNum = tutorDao.TutorProfileUpdateOne(tutorDto);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			System.out.println("오류");
+		}
+
+		return resultNum;
+
+	}
+
 	
 }

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
@@ -260,10 +261,52 @@ public class TutorDaoImpl implements TutorDao {
 	}
 
 	@Override
-	public int boardWrite(TutorDto tutorDto) {
+	public int boardWrite(QuestionBoardDto questionBoardDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace + "boardWrite", tutorDto);
+		
+		return sqlSession.insert(namespace + "boardWrite", questionBoardDto);
 	}
 
+	@Override
+	public QuestionBoardDto boardSelectOne(int idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "boardSelectOne", idx);
+	}
 
+	@Override
+	public int questionRevise(QuestionBoardDto questionBoardDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "questionRevise", questionBoardDto);
+	}
+
+	@Override
+	public MemberListDto fileSelectStoreFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "fileSelectStoreFileName", no);
+	}
+
+	@Override
+	public void fileDelete(int idx) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace + "fileDelete",idx);
+	}
+
+	@Override
+	public int TutorProfileUpdateOne(TutorDto tutorDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "TutorProfileUpdateOne", tutorDto);
+	}
+
+	@Override
+	public int tutorBoardCurPage(int no, int idx) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("no", no);
+		paramMap.put("idx", idx);
+		
+		return sqlSession.selectOne(namespace + "tutorBoardCurPage", paramMap);
+		
+		
+	}
 }

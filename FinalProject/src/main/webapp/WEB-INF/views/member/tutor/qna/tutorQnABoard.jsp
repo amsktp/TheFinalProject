@@ -12,8 +12,23 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(5).addClass('on');
+    $('.layoutUl').children().eq(4).addClass('on');
 });
+
+function listOnePageFnc(obj, idx) {
+	var aTagObj = $(obj);
+
+	var url = '';
+	var memberNoObj = '';
+
+	memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
+			.children();
+
+	url += './tutorQnARead.do?';
+	url += 'idx=' + idx;
+
+	location.href = url;
+}
 </script>
 </head>
 
@@ -45,8 +60,8 @@ $(document).ready(function(){
 						<c:forEach var="tutorBoard" items="${tutorBoardList}">
 							<tr>
 								<td>
-									<a href='#' onclick="listOnePageFnc(this, event);">
-										${tutorBoard.title}
+									<a href='#' onclick="listOnePageFnc(this, ${tutorBoard.idx});">
+										${tutorBoard.title}${tutorBoard.idx}
 									</a>
 								</td>
 								<td>
@@ -72,7 +87,7 @@ $(document).ready(function(){
 				</c:choose>
 			</table>
 			<form action="tutorQnAWrite.do" method="get">
-				<input id="boardWriteBtn" type="submit" value="문의글 쓰기">
+				<input id="boardWriteBtn" class="btn btn-success btn-lg" type="submit" value="문의글 쓰기">
 			</form>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/paging2.jsp">

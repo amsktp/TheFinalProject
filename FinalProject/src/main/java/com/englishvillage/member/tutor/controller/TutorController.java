@@ -1,5 +1,6 @@
 package com.englishvillage.member.tutor.controller;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.auth.service.AuthService;
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.service.StudentService;
@@ -188,7 +190,7 @@ public class TutorController {
 		
 		int no = sessionTutorDto.getMemberNo();
 		
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		TutorDto tutorDtoBodard = tutorService.boardSelect(no);
 		
@@ -221,7 +223,7 @@ public class TutorController {
 
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		TutorDto tutorDtoGrade = tutorService.getTutorGrade(no);
 		
@@ -240,7 +242,7 @@ public class TutorController {
 
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		TutorDto tutorDtoGrade = tutorService.getTutorGrade(no);
 		
@@ -252,7 +254,7 @@ public class TutorController {
 	
 	
 	@RequestMapping(value = "/tutor/tutorPrivateInfoCtr.do", method = RequestMethod.POST)
-	public String tutorPrivateInfo(TutorDto tutorDto, HttpSession session, Model model) {
+	public String tutorPrivateInfoCtr(TutorDto tutorDto, HttpSession session, Model model) {
 		log.info("tutorPrivateInfoCtr 입니다. POST");
 		
 		tutorService.updatePwd(tutorDto);
@@ -277,7 +279,7 @@ public class TutorController {
 		
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 				
 		model.addAttribute("tutorDto", tutorDto);
 				
@@ -292,12 +294,9 @@ public class TutorController {
 
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
-		
-		TutorDto tutorDtoGrade = tutorService.getTutorGrade(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		model.addAttribute("tutorDto", tutorDto);
-		model.addAttribute("tutorDtoGrade", tutorDtoGrade);
 		
 		return "member/tutor/info/tutorIntroduce";
 	}
@@ -310,20 +309,53 @@ public class TutorController {
 
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto getTutorDtoGrade = tutorService.getTutorGrade(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
-		TutorDto getTutorDtoInfo = tutorService.getTutorInfo(no);
+		model.addAttribute("tutorDto", tutorDto);
 		
-		model.addAttribute("getTutorDtoGrade", getTutorDtoGrade);
-		model.addAttribute("getTutorDtoInfo", getTutorDtoInfo);
-
 		return "member/tutor/info/tutorIntroduceRevise";
 	}
 	
 	@RequestMapping(value = "/tutor/tutorIntroduceReviseCtr.do", method = RequestMethod.POST)
-	public String tutorIntroduceRevise(TutorDto tutorDto, HttpSession session, Model model) {
+	public String tutorIntroduceRevise(TutorDto tutorDto, HttpSession session, Model model
+			,@RequestParam(value="fileIdx", defaultValue = "-1") int fileIdx
+			,MultipartHttpServletRequest multipartHttpServletRequest)throws ParseException {
 		log.info("tutorIntroduceReviseCtr 입니다. POST");
 						
+		int resultNum = 0;
+		
+		try {
+			// 설명하지 
+
+			resultNum = tutorService.TutorProfileUpdateOne(tutorDto
+					, multipartHttpServletRequest, fileIdx);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("updateone에 예외처리되나");
+			e.printStackTrace();
+		}
+		
+		if (resultNum != 0) {
+			MemberDto sessionMemberDto = (MemberDto)session.getAttribute("member");
+			
+			if (sessionMemberDto != null) {
+				
+				if (sessionMemberDto.getMemberNo() == tutorDto.getMemberNo()) {
+					
+					TutorDto tempTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
+					MemberDto newSessionMemberDto = authService.memberExist(tempTutorDto.getMemberEmail(), tempTutorDto.getMemberPassword());
+					
+					System.out.println("여기오나?");
+					
+					session.removeAttribute("member");
+					
+					session.setAttribute("member", newSessionMemberDto);
+				}
+				
+			}
+		}
+
 		int result = tutorService.updateTutor(tutorDto);
 		
 		if(result == 0) {
@@ -343,7 +375,7 @@ public class TutorController {
 
 		int no = sessionTutorDto.getMemberNo();
 
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		model.addAttribute("tutorDto", tutorDto);
 		
@@ -404,16 +436,16 @@ public class TutorController {
 			, method = {RequestMethod.GET, RequestMethod.POST})
 	public String tutorBoardList(HttpSession session, @RequestParam(defaultValue = "1") 
 		int curPage, 
-		@RequestParam(defaultValue = "0") int no, 
+		@RequestParam(defaultValue = "0") int idx, 
 		Model model) {
 		
 		log.info("Welcome tutorBoardList! " + curPage + " : ???? ");
 		
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
 		
-		no = sessionTutorDto.getMemberNo();
+		int no = sessionTutorDto.getMemberNo();
 		System.out.println(no);
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 
 		// 회원 토탈카운트 -> 보드 토탈카운트
 		int totalCount = 
@@ -423,9 +455,9 @@ public class TutorController {
 		
 		// 이전 페이지로 회원의 번호가 명확하게 나온 경우
 		// 자신의 curPage 찾는 로직 ->보드쪽으로 IDX 주면서
-		if(no != 0) {
+		if(idx != 0) {
 			curPage 
-				= tutorService.tutorSelectCurPage(no);
+				= tutorService.tutorBoardCurPage(no, idx);
 		}
 		
 //		
@@ -505,7 +537,7 @@ public class TutorController {
 		
 		int no = sessionTutorDto.getMemberNo();
 		
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 		
 		model.addAttribute("tutorDto", tutorDto);
 
@@ -513,22 +545,76 @@ public class TutorController {
 	}
 	
 	@RequestMapping(value = "/tutor/tutorQnAWriteCtr.do", method = RequestMethod.POST)
-	public String tutorQnAWriteCtr(HttpSession session, Model model) {
+	public String tutorQnAWriteCtr(HttpSession session, Model model, QuestionBoardDto questionBoardDto) {
 		log.info("tutorQnAWrite 입니다. GET");
 						
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
 		
 		int no = sessionTutorDto.getMemberNo();
-		
-		TutorDto tutorDto = tutorService.getTutorInfo(no);
 
-		int tutorDtoInsert = tutorService.boardWrite(tutorDto);
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
+		questionBoardDto.setNo(no);
+		questionBoardDto.setName(tutorDto.getMemberName());
+
+		int tutorDtoInsert = tutorService.boardWrite(questionBoardDto);
 		
 		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorDtoInsert", tutorDtoInsert);
 
-		return "rediect:/tutorQnABoard.do";
+		return "redirect:/tutor/tutorQnABoard.do";
 	}
+	
+	@RequestMapping(value = "/tutor/tutorQnARead.do", method = RequestMethod.GET)
+	public String tutorQnARead(HttpSession session, Model model, int idx) {
+		log.info("tutorQnARead 입니다. GET");
+						
+		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
+		
+		int no = sessionTutorDto.getMemberNo();
+		
+		TutorDto tutorDto = tutorService.getTutorIntroduce(no);		
+		
+		QuestionBoardDto questionBoardDto = tutorService.boardSelectOne(idx);
+		model.addAttribute("questionBoardDto", questionBoardDto);
+		model.addAttribute("tutorDto", tutorDto);
+		
+		return "member/tutor/qna/tutorQnARead";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/tutor/tutorQnARevise.do", method = RequestMethod.GET)
+	public String tutorQnARevise(HttpSession session, Model model, int idx) {
+		log.info("tutorQnARevise 입니다. GET");
+		
+		QuestionBoardDto questionBoardDto = tutorService.boardSelectOne(idx);
+		
+		model.addAttribute("questionBoardDto", questionBoardDto);
+		
+		return "member/tutor/qna/tutorQnARevise";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/tutor/tutorQnAReviseCtr.do", method = RequestMethod.POST)
+	public String tutorQnAReviseCtr(HttpSession session, Model model, QuestionBoardDto questionBoardDto) {
+		log.info("tutorQnARevise 입니다. GET");
+		
+		int resultNum = 0;
+		resultNum = tutorService.questionRevise(questionBoardDto);
+		int idx = questionBoardDto.getIdx();
+		System.out.println("완료 값" + resultNum);
+		System.out.println("업데이트 완료 DTO값" + questionBoardDto);
+
+//		return "redirect/student/questionSelect.do";
+//		return "./questionSelect.do?idx="+idx;
+		
+		return "redirect:/tutor/tutorQnARead.do?idx="+idx;
+	}
+	
+
 	
 	
 

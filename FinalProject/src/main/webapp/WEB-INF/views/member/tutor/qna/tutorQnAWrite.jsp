@@ -24,12 +24,7 @@ td {
 
 		$('#title').focus();
 		$('.layoutUl').children().eq(4).addClass('on');
-		// 		$('#okBtn').on('click', function(){
-		// 			alert("문의글 작성이 완료되었습니다");
-		// 	      	$('form').attr('action', 'QuestionAddCtr.do');
-
-		// 	    });
-
+		
 		$('input[type=submit]').click(function() {
 
 			if ($('#title').val() == "") {
@@ -43,7 +38,7 @@ td {
 			} else if ($('#title').val() && $('#content').val() != "") {
 
 				alert("문의글 작성이 완료되었습니다!");
-				$('form').attr('action', './questionAddCtr.do');
+				$('form').attr('action', './tutorQnAWriteCtr.do');
 			}
 
 		})
@@ -89,11 +84,9 @@ td {
 
 				</table>
 
-				<input id="okBtn" class="btn btn-success" type="submit" value="작성완료">
+				<input id="okayBtn" class="btn btn-success" type="submit" value="작성완료">
 				<input id="cancelBtn" class="btn btn-default" type="button"
-					value="취소" onclick="questionListMoveFnc()">
-
-
+					value="취소" onclick="location.href='tutorQnABoard.do'">
 			</form>
 		</div>
 	</div>

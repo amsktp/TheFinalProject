@@ -48,10 +48,6 @@ public interface TutorService {
 
 	public int addStudyHistory(TutorCommentDto tutorCommentDto);
 
-	public int tutorSelectTotalCount();
-
-	public int tutorSelectCurPage(int no);
-
 	public List<QuestionBoardDto> tutorBoardList(int start, int end, int no);
 	public int tutorAddProfile(TutorDto tutorDto, MultipartHttpServletRequest mulRequest);
 
@@ -61,7 +57,16 @@ public interface TutorService {
 
 	public int addPoint(int memberNo, int price);
 
-	public int boardWrite(TutorDto tutorDto);
+	public int boardWrite(QuestionBoardDto questionBoardDto);
+
+	public QuestionBoardDto boardSelectOne(int idx);
+
+	public int questionRevise(QuestionBoardDto questionBoardDto);
+
+	public int TutorProfileUpdateOne(TutorDto tutorDto, MultipartHttpServletRequest multipartHttpServletRequest,
+			int fileIdx);
+
+	public int tutorBoardCurPage(int no, int idx);
 
 
 }
