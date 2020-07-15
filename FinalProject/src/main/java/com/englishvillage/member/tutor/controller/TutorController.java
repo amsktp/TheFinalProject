@@ -489,6 +489,7 @@ public class TutorController {
 		
 		int resultNum = tutorService.changeTutorStatus(tutorDto);
 		
+		
 		TutorDto newSesssionTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
 		
 		session.removeAttribute("tutor");
@@ -510,8 +511,15 @@ public class TutorController {
 
 		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
 
-		tutorService.addPoint(tutorCommentDto.getTutorNo(), price);
 		tutorService.addPoint(tutorCommentDto.getStudentNo(), 0 - price);
+		
+		Map<String, Object> studentMap = studentService.SelectOne(tutorCommentDto.getStudentNo());
+		
+		MemberDto newSessionMemberDto = authService.memberExist(((MemberFileDto) studentMap.get(memberFileDto)).getMemberEmail(), ((MemberFileDto) studentMap.get(memberFileDto)).getMemberPassword());
+		
+		session.removeAttribute("member");
+		
+		session.setAttribute("member", newSessionMemberDto);
 		
 		if(resultNum == 0) {
 			System.out.println("에드 히스토리 실패");
@@ -519,13 +527,29 @@ public class TutorController {
 			System.out.println("에드 히스토리 성공");
 		}
 		
-		TutorDto tutorDto = new TutorDto();
-		tutorDto.setMemberNo(tutorCommentDto.getTutorNo());
-		tutorDto.setStatusCheck(statusCheck);
 		
 		return "member/tutor/info/tutorPrivateInfo";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/tutor/earnMoney.do", method = RequestMethod.POST)
+	public int earnMoney(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck, int price) {
+		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
+		
+		
+		int resultNum = tutorService.addPoint(tutorCommentDto.getTutorNo(), price);
+
+		TutorDto tutorDto = tutorService.getTutorInfo(tutorCommentDto.getTutorNo());
+		
+		MemberDto newSessionMemberDto = authService.memberExist(tutorDto.getMemberEmail(), tutorDto.getMemberPassword());
+		
+		session.removeAttribute("member");
+		
+		session.setAttribute("member", newSessionMemberDto);
+		
+		
+		return resultNum;
+	}
 	@RequestMapping(value = "/tutor/tutorQnAWrite.do", method = RequestMethod.GET)
 	public String tutorQnAWrite(HttpSession session, Model model) {
 		log.info("tutorQnAWrite 입니다. GET");
@@ -614,8 +638,6 @@ public class TutorController {
 	
 
 	
-	
-
 	
 	
 }
