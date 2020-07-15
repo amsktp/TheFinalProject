@@ -140,17 +140,16 @@
 		
 		$('#requestNumBtn').click(function() {
 			
-			alert($('#memberEmail').val() + '로 인증번호를 전송하였습니다.');
 			
 			$.ajax({
-			      url : "/englishvillage/authSendMailVerifyNumCtr.do",
+			      url : "/englishvillage/auth/authSendMailVerifyNumCtr.do",
 			      type : "POST",
 			      data : "memberEmail=" + $('#memberEmail').val() + "&verifyNum=" + $('#sendVerifyNum').val(),
 			      success : function(data) {
 			    	  
 		          console.log("1 = 이메일 o / 0 = 이메일 x : "+ data);                     
+ 				alert($('#memberEmail').val() + '로 인증번호를 전송하였습니다.');
 
-		          alert('이메일을 전송하였습니다. 확인해보세요');
 
 			      }, error : function() {
 			               console.log("실패");
