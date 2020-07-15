@@ -34,7 +34,7 @@ $(document).ready(function(){
 						$('#statusCheck').val('N');
 					} else {
 						$('#statusSwitch').text('on');
-						$('#statusSwitch').css('color', 'blue');
+						$('#statusSwitch').css('color', 'green');
 						$('#statusCheck').val('Y');
 					}
 				if(data >= 1){

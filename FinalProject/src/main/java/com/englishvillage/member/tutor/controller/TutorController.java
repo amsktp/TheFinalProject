@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +29,7 @@ import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
 import com.englishvillage.member.tutor.service.TutorService;
 import com.englishvillage.util.PagingYJ;
+import com.englishvillage.util.mainPaging;
 
 @Controller
 public class TutorController {
@@ -73,7 +73,7 @@ public class TutorController {
 				= tutorService.tutorSelectCurPage(countrySearch, ageSearch, genderSearch, keyword, no);
 		}
 		
-		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+		mainPaging memberPaging = new mainPaging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
