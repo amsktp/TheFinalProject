@@ -449,7 +449,11 @@ tr {
 						<span>On-Line</span>
 						<c:choose>
 							<c:when test="${tutorDto.statusCheck eq 'Y'}">
+<<<<<<< HEAD
 								<span style="color: green">●</span>
+=======
+								<span style="color: blue">●</span>
+>>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 							</c:when>
 							<c:otherwise>
 								<span style="color: red">●</span>
@@ -614,7 +618,11 @@ tr {
 										<div class="commentScore clearfix">
 											<div>
 												<c:forEach begin="1" end="${tutorCommentDto.score}">
+<<<<<<< HEAD
 													<span style="color: #ff8b13;">★</span>
+=======
+													<span style="color: blue;">★</span>
+>>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 												</c:forEach>
 												<c:forEach begin="${tutorCommentDto.score}" end="4">
 													<span style="color: grey;">★</span>
