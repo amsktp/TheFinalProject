@@ -464,6 +464,7 @@ public class TutorController {
 		
 		int resultNum = tutorService.changeTutorStatus(tutorDto);
 		
+		
 		TutorDto newSesssionTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
 		
 		session.removeAttribute("tutor");
