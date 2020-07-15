@@ -93,22 +93,25 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public int questionSelectCurPage(int no, int idx) {
+	public int questionSelectCurPage(int no, int idx, String searchOption, String keyword) {
 		// TODO Auto-generated method stub
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("no", no);
 		paramMap.put("idx", idx);
+		paramMap.put("searchOption", searchOption);
+		paramMap.put("keyword", keyword);
 			
-		return sqlSession.selectOne(namespace 
-				+ "memberSelectCurPage", paramMap);
+		return sqlSession.selectOne(namespace + "memberSelectCurPage", paramMap);
 	}
 
 	@Override
-	public List<QuestionBoardDto> questionSelectList(int no, int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(int no, String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("no", no);
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
 		

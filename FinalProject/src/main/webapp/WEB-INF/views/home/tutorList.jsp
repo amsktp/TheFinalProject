@@ -414,7 +414,6 @@ keyframes fly-cycle { 100% {
 					<div class="tutorInfoDiv clearfix">
 						<div class="img">
 							<div class="scale tutorImgDiv"
-							
 								onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 								<img alt="image not found" class='tutorImg'
 									src="<c:url value='/img/${tutorDto.storeFileName}'/>">

@@ -95,18 +95,18 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public int questionSelectCurPage(int no, int idx) {
+	public int questionSelectCurPage(int no, int idx, String searchOption, String keyword) {
 		// TODO Auto-generated method stub
-		return studentDao.questionSelectCurPage(no, idx);
+		return studentDao.questionSelectCurPage(no, idx, searchOption, keyword);
 	}
 
 
 	@Override
-	public List<QuestionBoardDto> questionSelectList(int no, int start, int end) {
+	public List<QuestionBoardDto> questionSelectList(int no, String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		
 		List<QuestionBoardDto> qusetionList = 
-				studentDao.questionSelectList(no, start, end);
+				studentDao.questionSelectList(no, searchOption, keyword, start, end);
 		
 		return qusetionList;
 	}

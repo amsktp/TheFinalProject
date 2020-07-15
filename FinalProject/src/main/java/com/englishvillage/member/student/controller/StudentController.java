@@ -172,13 +172,13 @@ public class StudentController {
 //	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 //			HttpSession session, Model model) 
-	
-	
-	@RequestMapping(value = "/student/questionList.do", method = {RequestMethod.GET, RequestMethod.POST})
+
+	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String TutorList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
-	@RequestParam(defaultValue = "all") String searchOption, @RequestParam(defaultValue = "") String keyword,
-					HttpSession session, Model model) {
+			@RequestParam(defaultValue = "all") String searchOption, @RequestParam(defaultValue = "") String keyword,
+			HttpSession session, Model model) {
 		log.info("Welcome QuestionList.do\"! {}");
+		System.out.println(searchOption);
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 		System.out.println("idx는 도대체 무슨값일까??" + idx);
 		// 페이징을 위한 전체 회원목록 갯수
@@ -187,26 +187,35 @@ public class StudentController {
 		int no = sessionMemberDto.getMemberNo();
 
 		totalCount = studentService.studentQuestionCount(no, searchOption, keyword);
+		System.out.println("totalCount" + totalCount);
 //				이전 페이지로 돌아갈때 값
 //				자신의 curPage 찾는 로직
 		if (idx != 0) {
-			curPage = studentService.questionSelectCurPage(no, idx);
+			curPage = studentService.questionSelectCurPage(no, idx, searchOption, keyword);
 		}
-
+		System.out.println("curPage" + curPage);
 		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		System.out.println("start" + start);
 		System.out.println("end" + end);
 
-		List<QuestionBoardDto> qusetionList = studentService.questionSelectList(no, start, end);
-//				// 페이징
+		List<QuestionBoardDto> qusetionList = studentService.questionSelectList(no, searchOption, keyword, start, end);
+		System.out.println("qusetionList" + qusetionList);
+
+			//검색
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("searchOption", searchOption);
+		searchMap.put("keyword", keyword);
+		
+			// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
 
 		model.addAttribute("qusetionList", qusetionList);
 		model.addAttribute("pagingMap", pagingMap);
+		model.addAttribute("searchMap", searchMap);
 
 		return "/member/student/qna/studentQnABoard";
 	}
@@ -233,16 +242,27 @@ public class StudentController {
 
 	// 문의 상세읽기
 	@RequestMapping(value = "/student/questionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String QuestionList(HttpSession session, int idx, Model model) {
-		log.info("Welcome QuestionSelect.do! " + idx);
-
+	public String QuestionList(HttpSession session, int idx, String searchOption, String keyword, Model model) {
+		log.info("Welcome QuestionSelect.do! {} " + idx);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		System.out.println(searchOption);
+		
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		int no = sessionMemberDto.getMemberNo();
 
 		// no값이 없이 설정하면 내 글이 아닌글도 읽어짐... 그래서 no넣었음
 		Map<String, Object> map = studentService.QuestionSelect(no, idx);
+		
 		QuestionBoardDto questionBoardDto = (QuestionBoardDto) map.get("QuestionBoardDto");
+		
 		model.addAttribute("questionBoardDto", questionBoardDto);
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("keyword", keyword);
 		System.out.println(questionBoardDto);
 
 		return "/member/student/qna/studentQnARead";

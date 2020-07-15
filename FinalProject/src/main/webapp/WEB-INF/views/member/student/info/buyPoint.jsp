@@ -57,7 +57,8 @@
 <script type="text/javascript">
 
 	$('document').ready(function() {
-		
+			$('.layoutUl').children().eq(1).addClass('on');
+
 		$('#priceNum').keyup(function() {
 			$('#pointNum').val($('#priceNum').val());
 			$('#buyPointPrice').val($('#priceNum').val());
@@ -153,6 +154,6 @@
 		
 </div>
 
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</body>
 </html>

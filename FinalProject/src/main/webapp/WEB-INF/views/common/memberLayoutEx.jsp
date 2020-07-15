@@ -159,7 +159,7 @@
 				class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top"
 				style="margin-top: 40px">
 				<ul class="nav bs-docs-sidenav layoutUl">
-					<li id="memberName">${member.memberName}회원님</li>
+					<li id="memberName">${member.memberName}님</li>
 					<li><a href="myPage.do">마이 페이지</a></li>
 					<li><a href="myInfo.do">내 정보</a></li>
 					<li><a href="studyList.do">수강내역</a></li>

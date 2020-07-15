@@ -19,9 +19,9 @@ public interface StudentService {
 
 	public int studentStudyCount(int no);
 
-	public int questionSelectCurPage(int no, int idx);
+	public int questionSelectCurPage(int no, int idx, String searchOption, String keyword);
 
-	public List<QuestionBoardDto> questionSelectList(int no, int start, int end);
+	public List<QuestionBoardDto> questionSelectList(int no, String searchOption, String keyword, int start, int end);
 
 	public int QuestionRevise(QuestionBoardDto questionBoardDto);
 

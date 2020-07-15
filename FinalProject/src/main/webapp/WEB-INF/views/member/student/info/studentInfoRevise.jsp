@@ -103,6 +103,6 @@ $(document).ready(function(){
 				<input class="btn btn-danger btn-lg" type='submit' value='회원탈퇴'>
 			</form>
 	</div>
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</body>
 </html>

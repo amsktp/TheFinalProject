@@ -20,10 +20,15 @@ $(document).ready(function(){
 
     	var password = $('input[type=password]').val();
         var passwordCheck = '${member.memberPassword}';
+        
         if(password == passwordCheck){
          location.href = "/englishvillage/student/update.do"
-            }else{
+            }else if(password == ""){
+            	alert("비밀번호를 입력해주세요.");
+            	return false;
+            }else {
             	alert("비밀번호가 일치하지 않습니다.");
+            	return false;
             }
     });
 });
@@ -51,7 +56,7 @@ margin-left: 68px;
 			<div id="pwdCheckBox" style="padding-top: 25px;">
 				<h3 style="font-weight: bold; text-align: center;">비밀번호를 입력해주세요</h3>
 
-				<input type="password" class="form-control pwdInputBox" value="${member.memberPassword}" maxlength="12">
+				<input type="password" class="form-control pwdInputBox" value="" maxlength="12">
 				<input class="btn btn-default btn-lg" type='button' value='뒤로가기' onClick="location.href='/englishvillage/student/myInfo.do'">
 				<input id="editBtn" class="btn btn-primary btn-lg" type='button' value='입력완료'> 
   
@@ -65,6 +70,6 @@ margin-left: 68px;
 
 
 
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</body>
 </html>
