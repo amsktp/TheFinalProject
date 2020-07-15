@@ -277,14 +277,21 @@
 				
 	</select>
 	
-	<select id="tutorBoardList" parameterType="int" 
+	<select id="tutorBoardList" parameterType="map" 
 	resultMap="questionListResultMap">
 	
-		SELECT Q.IDX, T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
-		FROM QUESTION_BOARD Q JOIN MEMBER T 
-		ON Q.MEMBER_NO = T.MEMBER_NO
-		WHERE Q.MEMBER_NO = #{no}
-		ORDER BY Q.BOARD_CREATE_DATE DESC
+        SELECT PB.RNUM, PB.IDX, PB.MEMBER_NO, PB.MEMBER_NAME, PB.TITLE, PB.BOARD_CREATE_DATE, PB.ANSWER_STATUS, PB.CONTENT 
+        FROM (
+            select ROWNUM RNUM, b.IDX, B.MEMBER_NO, B.MEMBER_NAME, B.TITLE, B.BOARD_CREATE_DATE, B.ANSWER_STATUS, B.CONTENT 
+            from (
+                SELECT Q.IDX, T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
+                FROM QUESTION_BOARD Q JOIN MEMBER T 
+                ON Q.MEMBER_NO = T.MEMBER_NO
+                WHERE Q.MEMBER_NO = #{no}
+                ORDER BY Q.BOARD_CREATE_DATE DESC
+                ) B
+            )pb
+        WHERE PB.RNUM BETWEEN #{start} AND #{end}
 		
 	</select>
 	
@@ -480,7 +487,13 @@
    </update>
 	
 	
-	
+	<select id="boardSelectTotalCount" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM QUESTION_BOARD Q JOIN MEMBER T 
+		ON Q.MEMBER_NO = T.MEMBER_NO
+		WHERE Q.MEMBER_NO = #{no}
+		ORDER BY Q.BOARD_CREATE_DATE DESC
+	</select>
 	
 	
 	

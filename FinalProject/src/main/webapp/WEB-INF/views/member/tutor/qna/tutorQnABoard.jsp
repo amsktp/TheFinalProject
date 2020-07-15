@@ -90,6 +90,12 @@ function listOnePageFnc(obj, idx) {
 				<input id="boardWriteBtn" class="btn btn-success btn-lg" type="submit" value="문의글 쓰기">
 			</form>
 		</div>
+		
+		<form id="pagingForm" action="tutorQnABoard.do" method="get">
+			<input type="hidden" id='curPage' name='curPage'
+				value="${pagingMap.memberPaging.curPage}">
+		</form>
+		
 		<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>

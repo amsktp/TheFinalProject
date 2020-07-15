@@ -17,14 +17,15 @@ textarea:focus {
 	outline: none;
 }
 
-#mainBox {
-padding: 200px;
-
+.contentBox {
+	margin-top: 80px;
 }
 
-#tutorYoutubeDiv {
-	width: 700px;
-	height: 400px;
+.tutorInfoBox {
+	padding: 10px;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+	border: 1px solid #F5F5F5;
 }
 
 #tutorInfoDiv {
@@ -39,13 +40,19 @@ padding: 200px;
 }
 
 .tutorImg {
-	width: 300px;
+	width: 100%;
 }
 
 #onLineCheckDiv {
 	width: 120px;
-	height: 40px;
-	padding: 8px;
+	height: 30px;
+	float: right;
+}
+
+.studyTitle {
+	font-size: 24px;
+	font-weight: 900;
+	margin-top: 10px;
 }
 
 #studyStartBtn {
@@ -54,10 +61,6 @@ padding: 200px;
 	height: 40px;
 	text-align: center;
 	padding: 8px;
-}
-
-.title {
-	
 }
 
 #nameTitle {
@@ -69,13 +72,15 @@ padding: 200px;
 }
 
 #tutorIntroduceDiv {
-	clear: left;
-	border: 1px solid black;
-	width: 1400px;
+	width: 100%;
 	height: 200px;
-	margin-bottom: 60px;
+	margin-top: 20px;
+	margin-bottom: 30px;
 	border-radius: 20px;
 	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 0 6px 10px 10px rgba(3, 0, 0, 0.1);
+	border: 1px solid white;
 }
 
 tr {
@@ -97,11 +102,6 @@ tr {
 	border-radius: 20px;
 }
 
-#studyTitle {
-	clear: left;
-	margin-top: 10px;
-}
-
 #studyTitleStr {
 	font-weight: bold;
 	font-size: 16px;
@@ -109,35 +109,24 @@ tr {
 	padding-left: 20px;
 }
 
-#studyTitle {
-	
+/* #commentList { */
+/* 	width: 1140px; */
+/* } */
+#studentName {
+	width: 250px;
+	vertical-align: middle;
+	font-size: 25px;
 }
 
-#commentList {
-	width: 1400px;
+#thSize {
+	width: 150px;
+	font-size: 20px;
 }
 
 .commentOne {
 	margin-bottom: 20px;
 	border: 1px solid black;
 	border-radius: 20px;
-}
-
-.commentUserName {
-	width: 300px;
-	height: 200px;
-	float: left;
-	font-size: 20px;
-	font-weight: bold;
-	padding-top: 80px;
-	text-align: center;
-	font-size: 20px;
-}
-
-.commentCreateDateAndContents {
-	width: 700px;
-	height: 200px;
-	float: left;
 }
 
 .commentCreateDate {
@@ -151,26 +140,6 @@ tr {
 	width: 700px;
 	height: 150px;
 	padding: 10px;
-}
-
-.commentScoreAndBtns {
-	width: 380px;
-	/* 나중에 500으로 수정  */
-	height: 200px;
-	float: left;
-}
-
-.commentScore {
-	width: 380px;
-	height: 130px;
-	padding-left: 70px;
-	padding-top: 40px;
-}
-
-.commentBtns {
-	width: 380px;
-	height: 70px;
-	padding: 13px;
 }
 
 .commentModified {
@@ -206,6 +175,7 @@ tr {
 	padding-top: 10px;
 	text-align: center;
 	float: right;
+	margin-left: 30px;
 }
 
 .commentDelete {
@@ -218,17 +188,20 @@ tr {
 }
 
 #writeCommentContents {
-	border: 1px solid green;
+	border: 1px solid black;
 	width: 700px;
 	height: 200px;
 	padding: 10px;
+	float: left;
+	border-radius: 10px;
 }
 
 #modifyCommentContentsDiv {
-	border: 1px solid green;
+	border: 1px solid black;
 	width: 700px;
 	height: 200px;
 	padding: 10px;
+	border-radius: 10px;
 }
 
 /* 댓글쓰기 */
@@ -257,7 +230,6 @@ tr {
 #scoreOne, #scoreTwo, #scoreThree, #scoreFour, #scoreFive {
 	float: left;
 	width: 5px;
-	height: 5px;
 	font-size: 25px;
 	margin-right: 25px;
 	color: grey;
@@ -268,7 +240,6 @@ tr {
 	#modifyScoreFive {
 	float: left;
 	width: 5px;
-	height: 5px;
 	font-size: 25px;
 	margin-right: 25px;
 	color: grey;
@@ -277,12 +248,6 @@ tr {
 
 #modifyCommentTitle {
 	font-weight: bold;
-	font-size: 25px;
-}
-
-#scoreAll {
-	width: 300px;
-	height: 5px;
 	font-size: 25px;
 }
 
@@ -313,16 +278,12 @@ tr {
 	color: #A3A7B8;
 	background-color: #EFEFEF;
 	border-color: #A8A8A8;
+	margin-right: 15px;
+	float: right;
+	width: 250px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-
-.tutorInfoBox {
-	padding: 16px;
-	width: 472px;
-	border-radius: 4px;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-	border: solid 1px #f5f5f5;
-}
-</style> 
+</style>
 
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -472,189 +433,216 @@ tr {
 <body>
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 
-	<div id="mainBox">
+	<div class="container bs-docs-container contentBox">
 
-		<div class="tutorInfoBox">
+		<!-- 강사 유투브 영상 -->
+		<div class="col-md-8">
+			<iframe width="100%" height="540px;" src="${tutorDto.youtubeUrl}"
+				frameborder="0" allowfullscreen></iframe>
+		</div>
 
+		<!-- 강사 정보  -->
+		<div class="col-md-4">
+			<div class="tutorInfoBox">
+				<div>
+					<div id="onLineCheckDiv" class="text-right">
+						<span>On-Line</span>
+						<c:choose>
+							<c:when test="${tutorDto.statusCheck eq 'Y'}">
+								<span style="color: blue">●</span>
+							</c:when>
+							<c:otherwise>
+								<span style="color: red">●</span>
+							</c:otherwise>
+						</c:choose>
+					</div>
 
-				<iframe width="700px" height="400px;" src="${tutorDto.youtubeUrl }"
-					frameborder="0" allowfullscreen></iframe>
+					<div class="tutorImgDiv">
+						<img alt="image not found" class="tutorImg"
+							src="<c:url value='/img/${tutorDto.storeFileName}'/>">
+					</div>
+					<!--강의 제목  -->
+					<div class="text-center">
+						<h3 class="studyTitle">${tutorDto.studyName}</h3>
+					</div>
 
-			<div>
-				<div id="onLineCheckDiv">
-					<span>On-Line</span>
-					<c:choose>
-						<c:when test="${tutorDto.statusCheck eq 'Y'}">
-							<span style="color: blue">●</span>
-						</c:when>
-						<c:otherwise>
-							<span style="color: red">●</span>
-						</c:otherwise>
-					</c:choose>
+					<div id="tutorInfoTableDiv">
+						<table id="tutorInfoTable" class="table table-bordered">
+
+							<tr>
+								<td id="nameTitle">이름</td>
+								<td id="nameTitleContent">${tutorDto.memberName}</td>
+							</tr>
+							<tr>
+								<td>국적</td>
+								<td>${tutorDto.memberCountry}</td>
+							</tr>
+							<tr>
+								<td>나이</td>
+								<td>${tutorDto.age}</td>
+							</tr>
+							<tr>
+								<td>평점</td>
+								<td><c:forEach begin="1" end="${tutorDto.score}">
+										<span style="color: blue;">★</span>
+									</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
+										<span style="color: grey;">★</span>
+									</c:forEach></td>
+							</tr>
+							<tr>
+								<td>수업료</td>
+								<td>${tutorDto.price}</td>
+							</tr>
+						</table>
+					</div>
+					<!-- 사진 -->
+
+					<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
+					<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
+					<input id="memberPoint" type="hidden" value="${member.memberPoint}">
+
+					<input id="statusCheck" type="hidden"
+						value="${tutorDto.statusCheck}">
 				</div>
-
-				<div id="studyTitle">
-					<span id="studyTitleStr">강의제목</span> <span id="studyTitle">${tutorDto.studyName}</span>
-				</div>
-				<div class="tutorImgDiv">
-					<img alt="image not found" class="tutorImg"
-						src="<c:url value='/img/${tutorDto.storeFileName}'/>">
-				</div>
-				<div id="tutorInfoTableDiv">
-					<table id="tutorInfoTable">
-
-						<tr>
-							<td id="nameTitle">이름</td>
-							<td id="nameTitleContent">${tutorDto.memberName}</td>
-						</tr>
-						<tr>
-							<td>국적</td>
-							<td>${tutorDto.memberCountry}</td>
-						</tr>
-						<tr>
-							<td>나이</td>
-							<td>${tutorDto.age}</td>
-						</tr>
-						<tr>
-							<td>평점</td>
-							<td><c:forEach begin="1" end="${tutorDto.score}">
-									<span style="color: blue;">★</span>
-								</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
-									<span style="color: grey;">★</span>
-								</c:forEach></td>
-						</tr>
-						<tr>
-							<td>수업료</td>
-							<td>${tutorDto.price}</td>
-						</tr>
-					</table>
-
-					<c:choose>
-						<c:when test="${tutorDto.statusCheck eq 'Y'}">
-							<div class="btn btn-primary" onclick="send();">수업시작</div>
-						</c:when>
-
-						<c:otherwise>
-							<div class="studyImpossibleBtn">수업시작</div>
-						</c:otherwise>
-					</c:choose>
-				</div>
-				<!-- 사진 -->
-
-				<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
-				<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
-				<input id="memberPoint" type="hidden" value="${member.memberPoint}">
-				
-				<input id="statusCheck" type="hidden" value="${tutorDto.statusCheck}">
-				
 			</div>
-
 		</div>
+	</div>
+	<!-- 강사정보 끝  -->
 
-
-		<!-- 소개글 -->
-		<div class="partTitle" style="clear: left;">강의 소개</div>
-		<div id="tutorIntroduceDiv">${tutorDto.tutorIntroduce}</div>
-
-
-		<!-- 댓글 -->
-
-		<!-- 댓글 입력부분 -->
-		<%-- 		<c:if test="${ }"> --%>
-		<!-- 		이미 입력했을경우 작성하는 폼이 안뜨게끔 -->
-
-		<div class="partTitle" style="clear: left;">
-			${tutorDto.evaluationCount}개의 후기</div>
-
-		<input id="memberGrade" type="hidden" value="${member.memberGrade}">
-		<input id="evaluateCheck" type="hidden"
-			value="${studentTutorCommentDtoList.evaluateCheck}">
-
-		<div id="commentWriteFormDiv">
-			<form id="commentWrite" action="writeCommentCtr.do" method="post"
-				onsubmit="return writeFormFnc();">
-				<div id="writeComment" class="clearfix">
-					<!-- 댓글 입력창 -->
-					<div class="commentUserName">${member.memberName}회원님</div>
-					<div class="commentCreateDateAndContents clearfix">
-						<div id="writeCommentContents">
-							<textarea id="commentContents" name="evaluateContent"
-								placeholder="댓글을 입력해주세요"></textarea>
-						</div>
-					</div>
-					<div class="commentScoreAndBtns">
-						<div class="commentScore clearfix">
-							<div class="scoreTitle">평 점</div>
-
-							<div id="scoreOne">★</div>
-							<div id="scoreTwo">★</div>
-							<div id="scoreThree">★</div>
-							<div id="scoreFour">★</div>
-							<div id="scoreFive">★</div>
-							<input id="scoreNum" type="hidden" name="score" value="">
-						</div>
-						<div class="commentBtns clearfix">
-							<!-- 버튼 -->
-							<input type="submit" id="commentWriteBtn" class="btn btn-primary"
-								value="작성하기">
-						</div>
-					</div>
-				</div>
-
-				<input type="hidden" name="studentName" value="${member.memberName}">
-				<input id="studentNoNum" type="hidden" name="studentNo"
-					value="${member.memberNo}"> <input type="hidden"
-					name="tutorNo" value="${tutorDto.memberNo}">
-
-			</form>
-		</div>
-
-
-
-
-
-
-
-
-
-		<!-- 댓글 확인 부분 -->
+	<!-- 소개글 -->
+	<div class="container" style="margin-top: 20px">
+		<span class="partTitle" style="clear: left;">강의 소개</span>
+		<!--수업시작 버튼 -->
 		<c:choose>
-			<c:when test="${not empty tutorCommentDtoList}">
-				<div id="commentList">
-					<!-- 댓글 입력창 -->
-					<c:forEach var="tutorCommentDto" items="${tutorCommentDtoList}">
+			<c:when test="${tutorDto.statusCheck eq 'Y'}">
+				<div class="btn btn-primary studyImpossibleBtn" onclick="send();">수업시작</div>
+			</c:when>
 
-						<div class="commentOne clearfix">
-							<div class="commentUserName">${tutorCommentDto.studentName}
-							</div>
-							<div class="commentCreateDateAndContents">
-								<div class="commentCreateDate">
-									<span style="margin-right: 20px;">작성 날짜</span>
-									<fmt:formatDate value="${tutorCommentDto.evaluateCreateDate}"
-										pattern="yyyy-MM-dd" />
+			<c:otherwise>
+				<div class="studyImpossibleBtn">수업시작</div>
+			</c:otherwise>
+		</c:choose>
+		<div id="tutorIntroduceDiv">${tutorDto.tutorIntroduce}</div>
+	</div>
 
-								</div>
-								<div class="commentContents">
-									${tutorCommentDto.evaluateContent}</div>
+	<!-- 댓글 -->
+
+	<!-- 댓글 입력부분 -->
+	<%-- 		<c:if test="${ }"> --%>
+	<!-- 		이미 입력했을경우 작성하는 폼이 안뜨게끔 -->
+
+	<input id="memberGrade" type="hidden" value="${member.memberGrade}">
+	<input id="evaluateCheck" type="hidden"
+		value="${studentTutorCommentDtoList.evaluateCheck}">
+
+	<div id="commentWriteFormDiv" class="container">
+		<form id="commentWrite" action="writeCommentCtr.do" method="post"
+			onsubmit="return writeFormFnc();">
+
+
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<!--회원이름  -->
+						<th rowspan="3" class="text-center"
+							style="vertical-align: middle;">${member.memberName}</th>
+						<!-- 회원평점 -->
+						<th id="thSize" class="text-center"
+							style="vertical-align: middle;">평점</th>
+
+						<td>
+							<!-- 별입력  -->
+							<div class="commentScore clearfix">
+								<div id="scoreOne">★</div>
+								<div id="scoreTwo">★</div>
+								<div id="scoreThree">★</div>
+								<div id="scoreFour">★</div>
+								<div id="scoreFive">★</div>
+								<input id="scoreNum" type="hidden" name="score" value="">
 							</div>
-							<div class="commentScoreAndBtns">
-								<div class="commentScore clearfix">
-									<div class="scoreTitle">평 점</div>
-									<div id="scoreAll">
-										<c:forEach begin="1" end="${tutorCommentDto.score}">
-											<span style="color: blue;">★</span>
-										</c:forEach>
-										<c:forEach begin="${tutorCommentDto.score}" end="4">
-											<span style="color: grey;">★</span>
-										</c:forEach>
+						</td>
+					</tr>
+
+					<tr>
+						<th id="thSize" class="text-center"
+							style="vertical-align: middle;">내용</th>
+						<td>
+							<div id="writeCommentContents">
+								<textarea id="commentContents" name="evaluateContent"
+									placeholder="댓글을 입력해주세요"></textarea>
+							</div>
+							<div class="commentBtns clearfix" style="margin-top: 163px">
+								<!-- 버튼 -->
+								<input type="submit" id="commentWriteBtn"
+									class="btn btn-primary" value="작성하기">
+							</div>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+			<input type="hidden" name="studentName" value="${member.memberName}">
+			<input id="studentNoNum" type="hidden" name="studentNo"
+				value="${member.memberNo}"> <input type="hidden"
+				name="tutorNo" value="${tutorDto.memberNo}">
+
+		</form>
+	</div>
+
+	<!-- 댓글 확인 부분 -->
+	<c:choose>
+		<c:when test="${not empty tutorCommentDtoList}">
+			<!-- 				<div id="commentList"> -->
+			<div class="container">
+
+				<div class="partTitle" style="clear: left;">
+					${tutorDto.evaluationCount}개의 후기</div>
+				<!-- 댓글 입력창 -->
+				<c:forEach var="tutorCommentDto" items="${tutorCommentDtoList}">
+
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<th id="studentName" rowspan="2" class="text-center"
+									style="vertical-align: middle;">${tutorCommentDto.studentName}</th>
+								<th id="thSize" class="text-center"
+									style="vertical-align: middle;">평점</th>
+								<td>
+									<div>
+										<div class="commentScore clearfix">
+											<div>
+												<c:forEach begin="1" end="${tutorCommentDto.score}">
+													<span style="color: blue;">★</span>
+												</c:forEach>
+												<c:forEach begin="${tutorCommentDto.score}" end="4">
+													<span style="color: grey;">★</span>
+												</c:forEach>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="commentBtns clearfix">
-									<!-- 버튼 -->
-									<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
+								</td>
+							</tr>
+
+							<tr>
+								<th id="thSize" class="text-center"
+									style="vertical-align: middle;">내용</th>
+								<td>
+									<div>${tutorCommentDto.evaluateContent}</div>
+									<div class="pull-right">
+										작성일 :
+										<fmt:formatDate value="${tutorCommentDto.evaluateCreateDate}"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+									</div>
+								</td>
+							</tr>
+
+							<!-- 수정버튼 등장 -->
+							<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
+								<tr>
+									<td colspan="3" style="border: 1px solid white;">
 										<form id="commentRemoveForm"
 											action="./tutorCommentRemoveCtr.do" method="post">
-
 
 											<input type="submit" id="commentModifyBtn"
 												class="commentDelete btn btn-primary" value="삭제하기">
@@ -666,68 +654,138 @@ tr {
 
 										<div id="modifyBtn" class="commentModified btn btn-primary">
 											수정하기</div>
-									</c:if>
-								</div>
-							</div>
+									</td>
+								</tr>
+							</c:if>
+						</tbody>
+					</table>
+
+					<!-- 댓글 수정부분  -->
+					<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
+						<div id="commentModifyFormDiv" class="container"
+							style="display: none;">
+							<form id="commentModifyForm" action="./tutorCommentModifyCtr.do"
+								method="post" onsubmit="return modifyFormFnc();">
+
+
+								<table class="table">
+									<tbody>
+										<tr>
+											<!--회원이름  -->
+											<th rowspan="3" class="text-center"
+												style="vertical-align: middle;">${studentTutorCommentDtoList.studentName}</th>
+											<!-- 회원 수정 평점 -->
+											<th id="thSize" class="text-center"
+												style="vertical-align: middle;">평점</th>
+
+											<td>
+												<!-- 별입력  -->
+												<div class="commentScore clearfix">
+													<div id="modifyScoreOne">★</div>
+													<div id="modifyScoreTwo">★</div>
+													<div id="modifyScoreThree">★</div>
+													<div id="modifyScoreFour">★</div>
+													<div id="modifyScoreFive">★</div>
+													<input id="modifyScoreNum" type="hidden" name="score"
+														value="">
+												</div>
+											</td>
+										</tr>
+
+										<tr>
+											<th id="thSize" class="text-center"
+												style="vertical-align: middle;">내용</th>
+											<td>
+												<div id="modifyCommentContentsDiv">
+													<textarea id="modifyCommentContents" name="evaluateContent"
+														placeholder="댓글을 입력해주세요">${studentTutorCommentDtoList.evaluateContent}</textarea>
+												</div>
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="3">
+												<div class="commentBtns clearfix">
+													<!-- 버튼 -->
+													<input type="button" id="commentModifyCancelBtn"
+														class="btn btn-primary" value="취소"> <input
+														type="submit" id="commentModifyBtn"
+														class="btn btn-primary" value="수정완료">
+												</div>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+								<input type="text" name="studentName"
+									value="${member.memberName}"> <input id="studentNoNum"
+									type="text" name="studentNo"
+									value="${studentTutorCommentDtoList.studentNo}"> <input
+									type="text" name="tutorNo"
+									value="${studentTutorCommentDtoList.tutorNo}">
+
+							</form>
+
+
+
+
+
+
+
+
+
+
+
+							<!-- 								<div id="modifyCommentTitle">댓글수정</div> -->
+							<!-- 								<div id="modifyComment" class="clearfix"> -->
+							<!-- 									댓글 입력창 -->
+							<%-- 									<div class="commentUserName">${studentTutorCommentDtoList.studentName} --%>
+							<!-- 									</div> -->
+							<!-- 									<div class="commentCreateDateAndContents clearfix"> -->
+							<!-- 										<div id="modifyCommentContentsDiv"> -->
+							<!-- 											<textarea id="modifyCommentContents" name="evaluateContent" -->
+							<%-- 												placeholder="댓글을 입력해주세요">${studentTutorCommentDtoList.evaluateContent}</textarea> --%>
+							<!-- 										</div> -->
+							<!-- 									</div> -->
+							<!-- 									<div> -->
+							<!-- 										<div class="commentScore clearfix"> -->
+							<!-- 											<div class="scoreTitle">평 점</div> -->
+
+							<!-- 											<div id="modifyScoreOne">★</div> -->
+							<!-- 											<div id="modifyScoreTwo">★</div> -->
+							<!-- 											<div id="modifyScoreThree">★</div> -->
+							<!-- 											<div id="modifyScoreFour">★</div> -->
+							<!-- 											<div id="modifyScoreFive">★</div> -->
+							<!-- 											<input id="modifyScoreNum" type="hidden" name="score" -->
+							<!-- 												value=""> -->
+							<!-- 										</div> -->
+							<!-- 										<div class="commentBtns clearfix"> -->
+							<!-- 											버튼 -->
+							<!-- 											<input type="submit" id="commentModifyBtn" -->
+							<!-- 												class="btn btn-primary" value="수정완료"> <input -->
+							<!-- 												type="button" id="commentModifyCancelBtn" -->
+							<!-- 												class="btn btn-primary" value="취소"> -->
+							<!-- 										</div> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+
+							<!-- 								<input type="text" name="studentName" -->
+							<%-- 									value="${member.memberName}"> <input id="studentNoNum" --%>
+							<!-- 									type="text" name="studentNo" -->
+							<%-- 									value="${studentTutorCommentDtoList.studentNo}"> <input --%>
+							<!-- 									type="text" name="tutorNo" -->
+							<%-- 									value="${studentTutorCommentDtoList.tutorNo}"> --%>
+
+							<!-- 							</form> -->
 						</div>
-
-						<c:if test="${tutorCommentDto.studentNo eq member.memberNo}">
-							<div id="commentModifyFormDiv" style="display: none;">
-								<form id="commentModifyForm" action="./tutorCommentModifyCtr.do"
-									method="post" onsubmit="return modifyFormFnc();">
-									<div id="modifyCommentTitle">댓글수정</div>
-									<div id="modifyComment" class="clearfix">
-										<!-- 댓글 입력창 -->
-										<div class="commentUserName">${studentTutorCommentDtoList.studentName}
-											회원님</div>
-										<div class="commentCreateDateAndContents clearfix">
-											<div id="modifyCommentContentsDiv">
-												<textarea id="modifyCommentContents" name="evaluateContent"
-													placeholder="댓글을 입력해주세요">${studentTutorCommentDtoList.evaluateContent}</textarea>
-											</div>
-										</div>
-										<div class="commentScoreAndBtns">
-											<div class="commentScore clearfix">
-												<div class="scoreTitle">평 점</div>
-
-												<div id="modifyScoreOne">★</div>
-												<div id="modifyScoreTwo">★</div>
-												<div id="modifyScoreThree">★</div>
-												<div id="modifyScoreFour">★</div>
-												<div id="modifyScoreFive">★</div>
-												<input id="modifyScoreNum" type="hidden" name="score"
-													value="">
-											</div>
-											<div class="commentBtns clearfix">
-												<!-- 버튼 -->
-												<input type="submit" id="commentModifyBtn"
-													class="btn btn-primary" value="수정완료"> <input
-													type="button" id="commentModifyCancelBtn"
-													class="btn btn-primary" value="취소">
-											</div>
-										</div>
-									</div>
-
-									<input type="text" name="studentName"
-										value="${member.memberName}"> <input id="studentNoNum"
-										type="text" name="studentNo"
-										value="${studentTutorCommentDtoList.studentNo}"> <input
-										type="text" name="tutorNo"
-										value="${studentTutorCommentDtoList.tutorNo}">
-
-								</form>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-			</c:when>
-			<c:when test="${empty tutorCommentDtoList}">
-				<div style="font-size: 40px; margin-top: 40px;">
-					아직 등록된 후기가 없습니다
-				</div>
-			</c:when>
-		</c:choose>
-		</div>
+					</c:if>
+				</c:forEach>
+			</div>
+		</c:when>
+		<c:when test="${empty tutorCommentDtoList}">
+			<div style="font-size: 40px; margin-top: 40px;">아직 등록된 후기가 없습니다</div>
+		</c:when>
+	</c:choose>
 </body>
 
 <script type="text/javascript"

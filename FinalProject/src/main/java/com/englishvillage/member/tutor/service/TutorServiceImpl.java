@@ -307,5 +307,11 @@ public class TutorServiceImpl implements TutorService{
 
 	}
 
+	@Override
+	public int boardSelectTotalCount(int no) {
+		// TODO Auto-generated method stub
+		return tutorDao.boardSelectTotalCount(no);
+	}
+
 	
 }

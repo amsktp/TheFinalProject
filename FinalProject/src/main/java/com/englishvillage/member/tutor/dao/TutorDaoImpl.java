@@ -211,7 +211,6 @@ public class TutorDaoImpl implements TutorDao {
 		map.put("end", end);
 		map.put("no", no);
 
-		
 		return sqlSession.selectList(namespace + "tutorBoardList", map);
 	}
 
@@ -306,7 +305,11 @@ public class TutorDaoImpl implements TutorDao {
 		paramMap.put("idx", idx);
 		
 		return sqlSession.selectOne(namespace + "tutorBoardCurPage", paramMap);
-		
-		
+	}
+
+	@Override
+	public int boardSelectTotalCount(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "boardSelectTotalCount", no);
 	}
 }

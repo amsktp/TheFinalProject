@@ -71,6 +71,8 @@ public interface TutorDao {
 
 	public int tutorBoardCurPage(int no, int idx);
 
+	public int boardSelectTotalCount(int no);
+
 
 }
 

@@ -85,7 +85,7 @@
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 		<div id='qnaTable' style="margin-top: 200px; float: left;" >
-		<form id='searchingForm' action="./questionListOne.do" method="post">
+		<form id='searchingForm' action="./questionList.do" method="post">
 		
 			<select id='searchOption' name="searchOption">
 				<c:choose>
@@ -95,13 +95,13 @@
 						<option value="context">내용</option>
 					</c:when>
 					
-					<c:when test="${searchMap.searchOption eq 'name'}">
+					<c:when test="${searchMap.searchOption eq 'title'}">
 						<option value="all">제목+내용</option>
 						<option value="title" selected="selected">제목</option>
 						<option value="context">내용</option>
 					</c:when>
 					
-					<c:when test="${searchMap.searchOption eq 'email'}">
+					<c:when test="${searchMap.searchOption eq 'context'}">
 						<option value="all">제목+내용</option>
 						<option value="title">제목</option>
 						<option value="context" selected="selected">내용</option>

@@ -68,5 +68,7 @@ public interface TutorService {
 
 	public int tutorBoardCurPage(int no, int idx);
 
+	public int boardSelectTotalCount(int no);
+
 
 }

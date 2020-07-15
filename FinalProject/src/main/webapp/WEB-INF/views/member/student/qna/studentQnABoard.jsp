@@ -74,8 +74,8 @@
 					<c:choose>
 						<c:when test="${questionDto.idx!=0}">
 							<tr>
-								<td><div id="idxVal" class="td_status">${questionDto.idx}</div></td>
-								<td class="textLeft"><div class="td_status">
+								<td style="vertical-align: middle;"><div id="idxVal" class="td_status">${questionDto.idx}</div></td>
+								<td class="textLeft" style="vertical-align: middle;"><div class="td_status">
 										<a href="#" onclick="QnAReadFnc(this);" style="color: black;">
 											${questionDto.title} </a>
 									</div></td>
@@ -83,10 +83,10 @@
 
 								<td><div class="td_status">
 										<fmt:formatDate value="${questionDto.boardCreateDate}"
-											pattern="yyyy-MM-dd" />
+											pattern="yyyy-MM-dd HH:mm:ss" />
 									</div></td>
 
-								<td>
+								<td style="vertical-align: middle;">
 									<div class="td_status">
 										<c:if test="${questionDto.answerStatus == 'Y'}">
 									답변완료

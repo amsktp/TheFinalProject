@@ -449,9 +449,7 @@ public class TutorController {
 
 		// 회원 토탈카운트 -> 보드 토탈카운트
 		int totalCount = 
-			tutorService.tutorSelectTotalCount(
-					
-		);
+			tutorService.boardSelectTotalCount(no);
 		
 		// 이전 페이지로 회원의 번호가 명확하게 나온 경우
 		// 자신의 curPage 찾는 로직 ->보드쪽으로 IDX 주면서
@@ -474,7 +472,7 @@ public class TutorController {
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
-		pagingMap.put("tutorPaging", tutorPaging);
+		pagingMap.put("memberPaging", tutorPaging);
 
 		model.addAttribute("tutorDto", tutorDto);
 		model.addAttribute("tutorBoardList", tutorBoardList);

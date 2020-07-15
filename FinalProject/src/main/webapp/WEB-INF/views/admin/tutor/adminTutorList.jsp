@@ -102,25 +102,25 @@
 			
 		<div id='tutorTable' style="margin-top: 200px; float: left;" >
 		<form id='searchingForm' action="./tutorList.do" method="post">
-		
+	
 			<select id='searchOption' name="searchOption">
 				<c:choose>
 					<c:when test="${searchMap.searchOption eq 'all' }">
 						<option value="all" selected="selected">이름+이메일</option>
-						<option value="name">이름</option>
-						<option value="email">이메일</option>
+						<option value="member_name">이름</option>
+						<option value="member_email">이메일</option>
 					</c:when>
 					
-					<c:when test="${searchMap.searchOption eq 'name'}">
+					<c:when test="${searchMap.searchOption eq 'member_name'}">
 						<option value="all">이름+이메일</option>
-						<option value="name" selected="selected">이름</option>
-						<option value="email">이메일</option>
+						<option value="member_name" selected="selected">이름</option>
+						<option value="member_email">이메일</option>
 					</c:when>
 					
-					<c:when test="${searchMap.searchOption eq 'email'}">
+					<c:when test="${searchMap.searchOption eq 'member_email'}">
 						<option value="all">이름+이메일</option>
-						<option value="name">이름</option>
-						<option value="email" selected="selected">이메일</option>
+						<option value="member_name">이름</option>
+						<option value="member_email" selected="selected">이메일</option>
 					</c:when>
 	
 				</c:choose>	
