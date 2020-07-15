@@ -180,7 +180,7 @@
 		}
 		
 		$.ajax({
-			url: "/englishvillage/emailCheck.do",
+			url: "/englishvillage/auth/emailCheck.do",
 			type: "POST",
 			data: "memberEmail=" + $("#memberEmail").val(),
 			success: function(data) {
