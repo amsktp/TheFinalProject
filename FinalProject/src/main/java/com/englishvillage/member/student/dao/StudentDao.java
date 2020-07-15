@@ -14,7 +14,7 @@ public interface StudentDao {
 
 	public int memberDeleteOne(int no);
 
-	public int studentQuestionCount(int no);
+	public int studentQuestionCount(int no, String searchOption, String keyword);
 
 	public int questionSelectCurPage(int no, int idx);
 

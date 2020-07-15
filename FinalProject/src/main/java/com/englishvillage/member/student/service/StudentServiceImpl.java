@@ -85,14 +85,14 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.studentStudyInfo(no);
 	}
 
+
 	@Override
-	public int studentQuestionCount(int no) {
+	public int studentQuestionCount(int no, String searchOption, String keyword) {
 		// TODO Auto-generated method stub
 		log.info("Welcome studentQuestionCount! {}", no);
 		System.out.println("dddddddddddddddddddddddddddddddddddd");
-		return studentDao.studentQuestionCount(no);
+		return studentDao.studentQuestionCount(no, searchOption, keyword);
 	}
-
 
 	@Override
 	public int questionSelectCurPage(int no, int idx) {
@@ -150,6 +150,7 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return studentDao.buyPoint(price, no);
 	}
+
 
 
 }

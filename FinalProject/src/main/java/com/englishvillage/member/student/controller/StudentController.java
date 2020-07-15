@@ -33,7 +33,7 @@ public class StudentController {
 
 	@Autowired
 	private AuthService authService;
-	
+
 	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET })
 	public String myPage(Locale locale, HttpSession session, Model model) {
 		log.info("call myPage! " + session.getAttribute("member"));
@@ -114,7 +114,6 @@ public class StudentController {
 		return "/member/student/info/studentWithdraw";
 	}
 
-
 	// 회원 삭제
 	@RequestMapping(value = "/student/deleteCtr.do", method = RequestMethod.POST)
 	public String memberDeleteCtr(HttpSession session, Model model) {
@@ -170,10 +169,16 @@ public class StudentController {
 	}
 
 	// 문의 리스트
-	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
-			HttpSession session, Model model) {
-		log.info("Welcome QuestionList.do\"! " + curPage);
+//	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
+//			HttpSession session, Model model) 
+	
+	
+	@RequestMapping(value = "/student/questionList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String TutorList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
+	@RequestParam(defaultValue = "all") String searchOption, @RequestParam(defaultValue = "") String keyword,
+					HttpSession session, Model model) {
+		log.info("Welcome QuestionList.do\"! {}");
 		// 화면의 form의 이름을 마바티스에 편하게 맞추기 위한 로직
 		System.out.println("idx는 도대체 무슨값일까??" + idx);
 		// 페이징을 위한 전체 회원목록 갯수
@@ -181,7 +186,7 @@ public class StudentController {
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		int no = sessionMemberDto.getMemberNo();
 
-		totalCount = studentService.studentQuestionCount(no);
+		totalCount = studentService.studentQuestionCount(no, searchOption, keyword);
 //				이전 페이지로 돌아갈때 값
 //				자신의 curPage 찾는 로직
 		if (idx != 0) {
@@ -230,7 +235,7 @@ public class StudentController {
 	@RequestMapping(value = "/student/questionSelect.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String QuestionList(HttpSession session, int idx, Model model) {
 		log.info("Welcome QuestionSelect.do! " + idx);
-		
+
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		int no = sessionMemberDto.getMemberNo();
 
@@ -258,11 +263,11 @@ public class StudentController {
 
 		return "/member/student/qna/studentQnARevise";
 	}
-	
+
 	// 문의 수정최종
 	@RequestMapping(value = "/student/questionReviseCtr.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String questionReviseCtr(QuestionBoardDto questionBoardDto, Model model) {
-				log.info("Welcome QuestionRevise.do! ");
+		log.info("Welcome QuestionRevise.do! ");
 		int resultNum = 0;
 		resultNum = studentService.QuestionRevise(questionBoardDto);
 		int idx = questionBoardDto.getIdx();
@@ -271,7 +276,7 @@ public class StudentController {
 
 //		return "redirect/student/questionSelect.do";
 //		return "./questionSelect.do?idx="+idx;
-		return "redirect:/student/questionSelect.do?idx="+idx;
+		return "redirect:/student/questionSelect.do?idx=" + idx;
 	}
 
 	// 테스트 페이지
@@ -283,31 +288,29 @@ public class StudentController {
 	}
 
 	// 고재민 작업분 (수강권 구매)
-	@RequestMapping(value = "/student/buyPoint.do", method=RequestMethod.GET)
+	@RequestMapping(value = "/student/buyPoint.do", method = RequestMethod.GET)
 	public String buyPoint(Locale locale, HttpSession session, Model model) {
 		log.info("@@@@@@@buyPoint!!!@@@@@@@@@");
-		
+
 		return "/member/student/info/buyPoint";
 	}
-	
+
 	// 고재민 작업분 (수강권 구매Ctr)
-	@RequestMapping(value = "/student/buyPointCtr.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/student/buyPointCtr.do", method = RequestMethod.POST)
 	public String buyPointCtr(Locale locale, HttpSession session, Model model, int price) {
 		log.info("@@@@@@@buyPointCtr!!!@@@@@@@@@");
-		
-		
+
 		MemberDto memberDto = (MemberDto) session.getAttribute("member");
-		int no = memberDto.getMemberNo();		
-		
+		int no = memberDto.getMemberNo();
+
 		studentService.buyPoint(price, no);
-		
+
 		MemberDto sessionMemberDto = authService.memberExist(memberDto.getMemberEmail(), memberDto.getMemberPassword());
-		
+
 		session.removeAttribute("member");
 		session.setAttribute("member", sessionMemberDto);
-		
+
 		return "redirect:/student/myPage.do";
 	}
-	
-	
+
 }

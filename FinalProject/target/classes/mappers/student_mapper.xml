@@ -21,6 +21,21 @@
 		</choose>
 	</sql>
 
+	<sql id="quetionSearch">
+		<choose>
+			<!-- 검색옵션이 전체 검색일 경우 -->
+			<when test="searchOption == 'all'">
+				where (TITLE LIKE '%'||#{keyword}||'%'
+				OR CONTENT LIKE '%'||#{keyword}||'%')
+			</when>
+
+			<!-- 전체 검색이 아닐 경우 -->
+			<otherwise>
+				WHERE ${searchOption} LIKE '%' || #{keyword} || '%'
+			</otherwise>
+		</choose>
+	</sql>
+
 	<resultMap
 		type="com.englishvillage.member.student.model.MemberFileDto"
 		id="memberResultMap">
@@ -124,12 +139,17 @@
 		WHERE MEMBER_NO = #{no}
 	</select>
 
-	<select id="studentQuestionCount" parameterType="int"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM QUESTION_BOARD
-		WHERE MEMBER_NO = #{no}
-	</select>
+<!-- 	<select id="studentQuestionCount" parameterType="int" -->
+<!-- 		resultType="int"> -->
+<!-- 		SELECT COUNT(*) -->
+<!-- 		FROM QUESTION_BOARD -->
+<!-- 		WHERE MEMBER_NO = #{no} -->
+		
+<!-- 		<include refid="quetionSearch"></include> -->
+		
+		
+		
+<!-- 	</select> -->
 
 	<select id="studySelectList" parameterType="map"
 		resultMap="questionListResultMap">
@@ -137,18 +157,22 @@
 		SELECT RNUM, IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE
 		FROM (SELECT
 		TUTOR_NO, MEMBER_NAME TUTOR_NAME, STUDY_NAME, PRICE
-		FROM MEMBER M LEFT
+		FROM
+		MEMBER M LEFT
 		JOIN TUTOR_INFO T
-		ON MEMBER_NO = TUTOR_NO) A JOIN (SELECT ROWNUM RNUM, IDX, TUTOR_NO, STUDY_DATE, EVALUATE_CHECK
-		FROM (SELECT IDX, TUTOR_NO, STUDY_DATE,	EVALUATE_CHECK
-		FROM MEMBER M JOIN EVALUATION E
+		ON MEMBER_NO = TUTOR_NO) A JOIN (SELECT
+		ROWNUM RNUM, IDX, TUTOR_NO, STUDY_DATE, EVALUATE_CHECK
+		FROM (SELECT
+		IDX, TUTOR_NO, STUDY_DATE, EVALUATE_CHECK
+		FROM MEMBER M JOIN EVALUATION
+		E
 		ON MEMBER_NO = STUDENT_NO
 		WHERE MEMBER_NO = ${no})
 		ORDER BY IDX DESC) B
 		ON A.TUTOR_NO = B.TUTOR_NO
 		WHERE RNUM
-        BETWEEN ${start} AND ${end}
-        ORDER BY IDX DESC
+		BETWEEN ${start} AND ${end}
+		ORDER BY IDX DESC
 	</select>
 
 	<select id="memberSelectCurPage" parameterType="map"
@@ -209,7 +233,7 @@
 		LEFT OUTER JOIN question_board_comment C ON
 		Q.IDX = C.BOARD_NO
 		WHERE M.MEMBER_NO = #{no}
-        AND Q.IDX = #{idx}
+		AND Q.IDX = #{idx}
 	</select>
 
 	<insert id="QuestionAdd" parameterType="QuestionBoardDto"

@@ -292,7 +292,7 @@ tr {
 	$(document).ready(
 			function() {
 				$('#scoreOne').click(function() {
-					$('#scoreOne').css('color', 'blue');
+					$('#scoreOne').css('color', '#ff8b13');
 					$('#scoreTwo').css('color', 'grey');
 					$('#scoreThree').css('color', 'grey');
 					$('#scoreFour').css('color', 'grey');
@@ -300,42 +300,42 @@ tr {
 					$('#scoreNum').val(1);
 				});
 				$('#scoreTwo').click(function() {
-					$('#scoreOne').css('color', 'blue');
-					$('#scoreTwo').css('color', 'blue');
+					$('#scoreOne').css('color', '#ff8b13');
+					$('#scoreTwo').css('color', '#ff8b13');
 					$('#scoreThree').css('color', 'grey');
 					$('#scoreFour').css('color', 'grey');
 					$('#scoreFive').css('color', 'grey');
 					$('#scoreNum').val(2);
 				});
 				$('#scoreThree').click(function() {
-					$('#scoreOne').css('color', 'blue');
-					$('#scoreTwo').css('color', 'blue');
-					$('#scoreThree').css('color', 'blue');
+					$('#scoreOne').css('color', '#ff8b13');
+					$('#scoreTwo').css('color', '#ff8b13');
+					$('#scoreThree').css('color', '#ff8b13');
 					$('#scoreFour').css('color', 'grey');
 					$('#scoreFive').css('color', 'grey');
 					$('#scoreNum').val(3);
 				});
 				$('#scoreFour').click(function() {
-					$('#scoreOne').css('color', 'blue');
-					$('#scoreTwo').css('color', 'blue');
-					$('#scoreThree').css('color', 'blue');
-					$('#scoreFour').css('color', 'blue');
+					$('#scoreOne').css('color', '#ff8b13');
+					$('#scoreTwo').css('color', '#ff8b13');
+					$('#scoreThree').css('color', '#ff8b13');
+					$('#scoreFour').css('color', '#ff8b13');
 					$('#scoreFive').css('color', 'grey');
 					$('#scoreNum').val(4);
 				});
 				$('#scoreFive').click(function() {
-					$('#scoreOne').css('color', 'blue');
-					$('#scoreTwo').css('color', 'blue');
-					$('#scoreThree').css('color', 'blue');
-					$('#scoreFour').css('color', 'blue');
-					$('#scoreFive').css('color', 'blue');
+					$('#scoreOne').css('color', '#ff8b13');
+					$('#scoreTwo').css('color', '#ff8b13');
+					$('#scoreThree').css('color', '#ff8b13');
+					$('#scoreFour').css('color', '#ff8b13');
+					$('#scoreFive').css('color', '#ff8b13');
 					$('#scoreNum').val(5);
 				});
 
 				/* 이하 수정 */
 
 				$('#modifyScoreOne').click(function() {
-					$('#modifyScoreOne').css('color', 'blue');
+					$('#modifyScoreOne').css('color', '#ff8b13');
 					$('#modifyScoreTwo').css('color', 'grey');
 					$('#modifyScoreThree').css('color', 'grey');
 					$('#modifyScoreFour').css('color', 'grey');
@@ -343,35 +343,35 @@ tr {
 					$('#modifyScoreNum').val(1);
 				});
 				$('#modifyScoreTwo').click(function() {
-					$('#modifyScoreOne').css('color', 'blue');
-					$('#modifyScoreTwo').css('color', 'blue');
+					$('#modifyScoreOne').css('color', '#ff8b13');
+					$('#modifyScoreTwo').css('color', '#ff8b13');
 					$('#modifyScoreThree').css('color', 'grey');
 					$('#modifyScoreFour').css('color', 'grey');
 					$('#modifyScoreFive').css('color', 'grey');
 					$('#modifyScoreNum').val(2);
 				});
 				$('#modifyScoreThree').click(function() {
-					$('#modifyScoreOne').css('color', 'blue');
-					$('#modifyScoreTwo').css('color', 'blue');
-					$('#modifyScoreThree').css('color', 'blue');
+					$('#modifyScoreOne').css('color', '#ff8b13');
+					$('#modifyScoreTwo').css('color', '#ff8b13');
+					$('#modifyScoreThree').css('color', '#ff8b13');
 					$('#modifyScoreFour').css('color', 'grey');
 					$('#modifyScoreFive').css('color', 'grey');
 					$('#modifyScoreNum').val(3);
 				});
 				$('#modifyScoreFour').click(function() {
-					$('#modifyScoreOne').css('color', 'blue');
-					$('#modifyScoreTwo').css('color', 'blue');
-					$('#modifyScoreThree').css('color', 'blue');
-					$('#modifyScoreFour').css('color', 'blue');
+					$('#modifyScoreOne').css('color', '#ff8b13');
+					$('#modifyScoreTwo').css('color', '#ff8b13');
+					$('#modifyScoreThree').css('color', '#ff8b13');
+					$('#modifyScoreFour').css('color', '#ff8b13');
 					$('#modifyScoreFive').css('color', 'grey');
 					$('#modifyScoreNum').val(4);
 				});
 				$('#modifyScoreFive').click(function() {
-					$('#modifyScoreOne').css('color', 'blue');
-					$('#modifyScoreTwo').css('color', 'blue');
-					$('#modifyScoreThree').css('color', 'blue');
-					$('#modifyScoreFour').css('color', 'blue');
-					$('#modifyScoreFive').css('color', 'blue');
+					$('#modifyScoreOne').css('color', '#ff8b13');
+					$('#modifyScoreTwo').css('color', '#ff8b13');
+					$('#modifyScoreThree').css('color', '#ff8b13');
+					$('#modifyScoreFour').css('color', '#ff8b13');
+					$('#modifyScoreFive').css('color', '#ff8b13');
 					$('#modifyScoreNum').val(5);
 				});
 
@@ -449,7 +449,11 @@ tr {
 						<span>On-Line</span>
 						<c:choose>
 							<c:when test="${tutorDto.statusCheck eq 'Y'}">
+<<<<<<< HEAD
+								<span style="color: green">●</span>
+=======
 								<span style="color: blue">●</span>
+>>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 							</c:when>
 							<c:otherwise>
 								<span style="color: red">●</span>
@@ -484,12 +488,13 @@ tr {
 							<tr>
 								<td>평점</td>
 								<td><c:forEach begin="1" end="${tutorDto.score}">
-										<span style="color: blue;">★</span>
+										<span style="color: #ff8b13;">★</span>
 									</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
 										<span style="color: grey;">★</span>
 									</c:forEach></td>
 							</tr>
 							<tr>
+							
 								<td>수업료</td>
 								<td>${tutorDto.price}</td>
 							</tr>
@@ -613,7 +618,11 @@ tr {
 										<div class="commentScore clearfix">
 											<div>
 												<c:forEach begin="1" end="${tutorCommentDto.score}">
+<<<<<<< HEAD
+													<span style="color: #ff8b13;">★</span>
+=======
 													<span style="color: blue;">★</span>
+>>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 												</c:forEach>
 												<c:forEach begin="${tutorCommentDto.score}" end="4">
 													<span style="color: grey;">★</span>
