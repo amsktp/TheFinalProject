@@ -13,6 +13,7 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	margin-top: 40px;
 }
 
 #studentProfileDiv {
@@ -44,6 +45,10 @@
 #memberProfileText {
 	font-size: 40px;
 	font-weight: bold;
+}
+
+#allmanual {
+	margin-left: 30px;
 }
 </style>
 <script type="text/javascript"

@@ -21,9 +21,13 @@
         left: 50%;
         transform: translate(-50%, -50%);
 	}
-	
-	
-	
+
+	#lineDiv {
+		border-bottom: 1px solid #BDBDBD; 
+	}
+	#btnDiv {
+		margin-top: 20px;
+	}
 	#btnDiv > input {
 		width: 150px;
 		height: 50px;
@@ -34,6 +38,11 @@
 		border-radius: 5px 5px/5px 5px;
 		font-size: 25px;
 		margin-left: 20px;
+	}
+	
+	#replyadd {
+		font-size: 40px;
+		font-weight: bold;
 	}
 	
 </style>
@@ -60,6 +69,8 @@
 		if($('#reply').val().trim() == '') {
 			alert('답글을 달아주십시오');
 			return false;
+		}else if($('#reply').val().trim().length() < 1 || $('#reply').val().trim().length() > 200) {
+			alert('200글자를 초과하셨습니다.');
 		}
 	}
 	function pageMoveBeforeFnc(no) {
@@ -97,13 +108,15 @@
 	
 	<div id='allDiv'>
 	
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3">
+			<div class="layoutText">
 				<span>문의 게시판</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
-		<div id='qnaTable' style="margin-top: 200px; float: left; border: 1px solid black; width: 1000px;" >
+		<div id='qnaTable'  class="col-md-6" >
+		<span id='replyadd'>답글 달기</span>
+		<div id='lineDiv'></div>
 			<form action='./replyAddCtr.do' method='post' enctype="multipart/form-data" onsubmit="return replyChkFnc()">
 				<div style="width: 600px; height: 30px; border-bottom: 1px solid #BDBDBD; margin: auto; margin-top: 20px;">
 					<div style="float: left;">

@@ -16,20 +16,20 @@
         transform: translate(-50%, -50%);
 	}
 	
-	#updateDiv {
-		float: left;
-		width: 610px;
-		height: 710px;
-		border: 1px solid black;
-		box-sizing: border-box;
-		margin-top: 200px;
-	}
+/* 	#updateDiv { */
+/* 		float: left; */
+/* 		width: 610px; */
+/* 		height: 710px; */
+/* 		border: 1px solid black; */
+/* 		box-sizing: border-box; */
+/* 		margin-top: 200px; */
+/* 	} */
 	
 	#lineDiv {
 		border-bottom: 1px solid #BDBDBD; 
 	}
 	
-	#memberProfileText {
+	.memberProfileText {
 		font-size: 40px;
 		font-weight: bold;
 	}
@@ -284,10 +284,10 @@ function checkFinshFnc() {
 
 	
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-	<div id="allDiv" class="col-md-3">
+	<div id="allDiv">
 	
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3">
+			<div class="layoutText">
 				<span>회원 관리(강사)</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
@@ -296,16 +296,15 @@ function checkFinshFnc() {
 		<div id='updateDiv' class="col-md-6">
 			<form action='./tutorUpdateCtr.do' method='post'
 			enctype="multipart/form-data" onsubmit="return checkFinshFnc()">
-				<div style="font-size: 35px; font-weight: bold;">
-					<span id='student' onclick="studentProfileFnc()">회원 관리(학생)</span>
-					<span id='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
-				</div>	
+				<span class='memberProfileText'>강사 정보</span>
+				<span class='memberProfileText' id='tutor'>강사 상세 정보</span>
 				<div id='lineDiv'></div>
 				<div id='textarea' style="margin-top: 20px;">
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명 :</span> 
 						<input class='inpText' id='name' type='text' name='member_name' value='${memberListDto.member_name}'>
-						<input class='inpBtn' type="button" onclick="nameCompareFnc()" value="확인">
+						<input class='inpBtn' type="button" onclick="nameCompareFnc()" value="확 인" style="float: right;">
+						<br>
 						<span id='nameSpan'></span>
 						<br>
 					</div>
@@ -324,7 +323,7 @@ function checkFinshFnc() {
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별 :</span>
 						<input type="hidden" id='genderChange' value='${memberListDto.gender}'>
-						<input type="radio" class='menCheck' name='gender' value="M">남자
+						<input type="radio" class='menCheck' name='gender' value="M" style="margin-left: 40px;">남자
 						<input type="radio" class='girlCheck' name='gender' value="F">여자
 						<span id='genderSpan'></span>	
 						<br>
@@ -333,7 +332,7 @@ function checkFinshFnc() {
 						<span>생 년 월 일 :</span> 
 						<input class='inpText' id="birthDateChoose" type="date"  name="birthDate"
 							value="<fmt:formatDate value='${memberListDto.birthDate}' pattern='yyyy-MM-dd'/>">
-							<input class='inpBtn' type="button" onclick="dateCompareFnc()" value="확 인">
+							<input class='inpBtn' type="button" onclick="dateCompareFnc()" value="확 인" style="float: right;">
 							<br>
 							<span id='dateSpan'></span>
 							<br>
@@ -341,8 +340,7 @@ function checkFinshFnc() {
 					
 					<div class='text'>
 						<span>국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 :</span>
-						<select name='country'>
-							
+						<select name='country' style="margin-left: 40px;">
 							
 							<option value="England"
 							<c:if test="${memberListDto.country eq 'England'}">selected</c:if>>England</option>
@@ -361,7 +359,7 @@ function checkFinshFnc() {
 				</div>
 				
 				<div id='btn'>
-					<input type='submit' value='수정하기'>
+					<input type='submit' id='adjust' value='수정하기'>
 					<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
 					<input type='button' value='뒤로가기' onclick='pageMoveBeforeFnc(${memberListDto.no});'>	
 				</div>
