@@ -16,11 +16,6 @@
 		text-align: center;;
 	}
 	
-	#errorImgDiv > img {
-		width: 50%;
-		height: 50%;
-	}
-	
 
 	#btnsDiv{
 	margin-left : 400px;
@@ -45,7 +40,7 @@
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="contentsDiv">
 		<div id="errorImgDiv">
-			<img src="/englishvillage/resources/imgs/404error.jpg" alt="Second slide">
+			<img src="/englishvillage/resources/imgs/500error.jpg" alt="Second slide">
 		</div>
 		<div id="btnsDiv">
 			<img src="/englishvillage/resources/imgs/mainMove.png" alt="Second slide" onclick="moveMainPageFnc()">

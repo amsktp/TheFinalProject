@@ -134,10 +134,8 @@
 		
 		var verifyNum = Math.floor(Math.random() * 9999);
 		
-
 		$('#sendVerifyNum').val(verifyNum);
-		
-		
+				
 		$('#requestNumBtn').click(function() {
 			
 			

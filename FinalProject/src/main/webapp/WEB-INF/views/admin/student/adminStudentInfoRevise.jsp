@@ -16,14 +16,14 @@
         transform: translate(-50%, -50%);
 	}
 	
-	#updateDiv {
-		float: left;
-		width: 610px;
-		height: 710px;
-		border: 1px solid black;
-		box-sizing: border-box;
-		margin-top: 100px;
-	}
+/* 	#updateDiv { */
+/* 		float: left; */
+/* 		width: 610px; */
+/* 		height: 710px; */
+/* 		border: 1px solid black; */
+/* 		box-sizing: border-box; */
+/* 		margin-top: 100px; */
+/* 	} */
 
 	#lineDiv {
 		border-bottom: 1px solid #BDBDBD; 
@@ -94,19 +94,20 @@
 			$('input[name="gender"]').val(['F']);
 		}
 		
-		
 	});
 	
 	function checkFinshFnc() {
 		
-		if(nameCompareFnc() == false || dateCompareFnc() == false) {
+		if(nameCompareFnc() == false || dateCompareFnc() == false || pwdChkFnc() == false) {
 			if(nameCompareFnc() == false) {
-				alert('이름이 유효하지 않습니다.')
+				alert('이름이 유효하지 않습니다.');
 			}else if(dateCompareFnc() == false) {
-				alert('날짜가 유효하지 않습니다.')
+				alert('날짜가 유효하지 않습니다.');
+			}else if(pwdChkFnc() == false) {
+				alert("비밀번호에 공백이 있거나 4자리 미만 또는 8자리 초과입니다.");
 			}
 			return false;
-		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true) {
+		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true && pwdChkFnc() == true) {
 			return true;
 		}
 		
@@ -116,7 +117,10 @@
 	//이름 유효성 검사
 	function nameCompareFnc() {
 		
-		if($("#name").val().length == 0) {
+		var nameObj = $("#name").val();
+		  var pattern = /\s/g;
+		
+		if(nameObj.length == 0) {
 			$('#nameSpan').html('이름을 정확히 입력해주세요');
 			$('#nameSpan').css('color', '#FF4848');
 			$('#nameSpan').css('font-size', '20px');
@@ -124,21 +128,28 @@
 			return false;
 		}
 		
-		if($('#country').val() == 'KOREA'){
-			for (var i=0; i<$("#name").val().length; i++)  { 
-			    var chk = $("#name").val().substring(i,i+1); 
+		if($('#country').val() == 'KOREA') {
+			if(nameObj.match(pattern) || nameObj.length > 4) {
+			    $('#nameSpan').html('이름이 올바르지 않습니다.');
+				$('#nameSpan').css('color', '#FF4848');
+				$('#nameSpan').css('font-size', '20px');
+			    return false;
+			  }
+			
+			for (var i=0; i<nameObj.length; i++)  { 
+			    var chk = nameObj.substring(i,i+1); 
 			    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
-					valCheckStr = false;
+					return false;
 			    }
 			    
-			    if ($("#name").val().length <= 1) {
+			    if (nameObj.length <= 1) {
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
-					valCheckStr = false;
+					return false;
 
 			    }
 
@@ -146,29 +157,24 @@
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
-					valCheckStr = false;
+					return false;
 			    }
-			    if($("#name").val() == " "){
+			    if(nameObj.trim() == ""){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
-					valCheckStr = false;
-			    }
-			    
-			    if($("#name").val() == "") {
-					$('#nameSpan').html('이름을 정확히 입력해주세요');
-					$('#nameSpan').css('color', '#FF4848');
-					$('#nameSpan').css('font-size', '20px');
 					
-					return false;
-				}
+					
+			        return false;
+			    }
+			   
 			}
 
 		} else {
 		
-			for (var i=0; i<$("#name").val().length; i++)  {
+			for (var i=0; i<nameObj.length; i++)  {
 				
-				var chk = $("#name").val().substring(i,i+1);
+				var chk = nameObj.substring(i,i+1);
 				
 				if(chk.match(/[0-9]|[가-힣]|[ㄱ-ㅎ]|[ㅏ-ㅣ]/)){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
@@ -178,16 +184,7 @@
 			        return false;
 			    }
 			 
-			    if($("#name").val() == " "){
-			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
-					$('#nameSpan').css('color', '#FF4848');
-					$('#nameSpan').css('font-size', '20px');
-					
-					
-			        return false;
-			    }
-			 
-			    if($("#name").val() == ""){
+			    if(nameObj.trim() == ""){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
@@ -210,7 +207,30 @@
 		
 		return true;
 	}
-	
+	//비밀번호 유효성검사
+	function pwdChkFnc() {
+		var passwordObj = $("#password").val();
+		  var pattern = /\s/g;
+		    
+		  if(passwordObj.match(pattern) || passwordObj.length < 4 || passwordObj > 8) {
+		    $('#passwordSpan').html('비밀번호가 올바르지 않습니다.');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+		    return false;
+		  }
+		
+		if(passwordObj.trim() == ""){
+	    	$('#passwordSpan').html('비밀번호를 입력해주세요');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+	        return false;
+	    }else {
+	    	$('#passwordSpan').html('유효한 날짜입니다.');
+			$('#passwordSpan').css('color', '#74D36D');
+			$('#passwordSpan').css('font-size', '20px');
+			return true;
+	    }
+	}
 	var cnt = 0;
 	//날짜 유효성 검사
 	function dateCompareFnc() {
@@ -296,14 +316,14 @@
 <%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
 	<div id="allDiv">
 	
-		<div id="menuDiv" style="float: left; margin-top: 100px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3">
+			<div class="layoutText">
 				<span>회원 관리(학생)</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 		
-		<div id='updateDiv'>
+		<div id='updateDiv' class="col-md-6">
 			<form action='./studentUpdateCtr.do' onsubmit="return checkFinshFnc()" method='post' enctype="multipart/form-data">
 				<span id='memberProfileText'>회원정보</span>
 				<div id='lineDiv'></div>
@@ -323,7 +343,8 @@
 						<br>
 					</div>
 					<div class='text' >
-						<span>비 밀 번 호 :</span> <input class='inpText' type='text' name='password' value='${memberListDto.password}'>
+						<span>비 밀 번 호 :</span> <input class='inpText' type='text' id='password' name='password' value='${memberListDto.password}'>
+						<br>
 						<span id='passwordSpan'></span>
 						<br>
 					</div>

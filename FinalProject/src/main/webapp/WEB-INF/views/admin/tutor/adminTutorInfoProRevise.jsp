@@ -181,6 +181,12 @@ td {
 	border-bottom: 1px solid black;
 }
 
+#urlInput {
+	width: 230px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
 #tutorIntroduceBox {
 	width: 550px;
 	height: 200px;
@@ -251,16 +257,16 @@ textarea:focus {outline:none;}
 	function checkFnc() {
 	
 		
-		if($('#priceInput').val() == '') {
+		if($('#priceInput').val().trim() == '') {
 			alert('가격을 입력해 주십시오.');
 			return false;
-		}else if($('#titleInput').val() == '') {
+		}else if($('#titleInput').val().trim() == '') {
 			alert('강의 제목을 입력해 주십시오.');
 			return false;
-		}else if($('#urlInput').val() == '') {
+		}else if($('#urlInput').val().trim() == '') {
 			alert('URL을 입력해 주십시오');
 			return false;
-		}else if($('#tutorIntroduceBox').val() == '') {
+		}else if($('#tutorIntroduceBox').val().trim() == '') {
 			alert('소개글을 입력해 주십시오');
 			return false;
 		}else {

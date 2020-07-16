@@ -50,9 +50,10 @@ textarea:focus {
 }
 
 .studyTitle {
-	font-size: 24px;
+	font-size: 15px;
 	font-weight: 900;
 	margin-top: 10px;
+	margin-left : 5px;
 }
 
 #studyStartBtn {
@@ -462,7 +463,7 @@ tr {
 							src="<c:url value='/img/${tutorDto.storeFileName}'/>">
 					</div>
 					<!--강의 제목  -->
-					<div class="text-center">
+					<div class="">
 						<h3 class="studyTitle">${tutorDto.studyName}</h3>
 					</div>
 

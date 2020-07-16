@@ -42,7 +42,7 @@
 
 .tutorInfoDiv {
 	border: 1px solid black;
-	width: 340px;
+	width: 300px;
 	height: 317px;
 	margin-top: 10px;
 	margin-right: auto;
@@ -51,12 +51,12 @@
 }
 
 .tutorImgDiv {
-	width: 340px;
+	width: 300px;
 	height: 200px;
 }
 
 .tutorImg{
-	width: 337px;
+	width: 298px;
 	height: 200px;
 }
 
@@ -429,10 +429,10 @@ textarea:focus {outline:none;}
 						<img class="tutorImg" id="tutorImg" src="/englishvillage/resources/imgs/viewPhotoStr.png">
 					</div>
 					<div class="studyTitle" id="studyTitleDiv">
-						차냥이와 함계하는 신나는 영어교실!
+						강의 제목 미리보기
 					</div>
 					<div class="price" id="priceDiv">
-						30,000원 / 40분
+						00,000원 / 40분
 					</div>
 					<div class="score">
 						★★★★★ (0)

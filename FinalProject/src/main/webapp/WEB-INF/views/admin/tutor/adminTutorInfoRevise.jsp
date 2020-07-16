@@ -97,18 +97,21 @@
 		}else if($('#genderChange').val() == "F"){
 			$('input[name="gender"]').val(['F']);
 		}
+		
 	});
 	
 function checkFinshFnc() {
 		
-		if(nameCompareFnc() == false || dateCompareFnc() == false) {
+		if(nameCompareFnc() == false || dateCompareFnc() == false || pwdChkFnc() == false) {
 			if(nameCompareFnc() == false) {
-				alert('이름이 유효하지 않습니다.')
+				alert('이름이 유효하지 않습니다.');
 			}else if(dateCompareFnc() == false) {
-				alert('날짜가 유효하지 않습니다.')
+				alert('날짜가 유효하지 않습니다.');
+			}else if(pwdChkFnc() == false) {
+				alert("비밀번호에 공백이 있거나 4자리 미만 또는 8자리 초과입니다.");
 			}
 			return false;
-		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true) {
+		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true && pwdChkFnc() == true) {
 			return true;
 		}
 		
@@ -140,7 +143,7 @@ function checkFinshFnc() {
 			        return false;
 			    }
 			 
-			    if($("#name").val() == " "){
+			    if($("#name").val().trim() == ""){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
@@ -168,6 +171,33 @@ function checkFinshFnc() {
 		
 		return true;
 	}
+	
+	//비밀번호 유효성검사
+	function pwdChkFnc() {
+		  var passwordObj = $("#password").val();
+		  var pattern = /\s/g;
+		    
+		  if(passwordObj.match(pattern) || passwordObj.length < 4 || passwordObj > 8) {
+		    $('#passwordSpan').html('비밀번호가 올바르지 않습니다.');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+		    return false;
+		  }
+		 
+		if(passwordObj.trim() == ""){
+	    	$('#passwordSpan').html('비밀번호를 입력해주세요');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+	        return false;
+	    }else {
+	    	$('#passwordSpan').html('완벽한 비밀번호입니다.');
+			$('#passwordSpan').css('color', '#74D36D');
+			$('#passwordSpan').css('font-size', '20px');
+			return true;
+	    }
+		
+		
+    }
 	
 	var cnt = 0;
 	//날짜 유효성 검사
@@ -254,7 +284,7 @@ function checkFinshFnc() {
 
 	
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-	<div id="allDiv">
+	<div id="allDiv" class="col-md-3">
 	
 		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
 			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
@@ -263,9 +293,9 @@ function checkFinshFnc() {
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 		
-		<div id='updateDiv'>
+		<div id='updateDiv' class="col-md-6">
 			<form action='./tutorUpdateCtr.do' method='post'
-			enctype="multipart/form-data">
+			enctype="multipart/form-data" onsubmit="return checkFinshFnc()">
 				<div style="font-size: 35px; font-weight: bold;">
 					<span id='student' onclick="studentProfileFnc()">회원 관리(학생)</span>
 					<span id='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
@@ -286,7 +316,8 @@ function checkFinshFnc() {
 						<br>
 					</div>
 					<div class='text' >
-						<span>비 밀 번 호 :</span> <input class='inpText' type='text' name='password' value='${memberListDto.password}'>
+						<span>비 밀 번 호 :</span> <input class='inpText' type='text' id='password' name='password' value='${memberListDto.password}'>
+						<br>
 						<span id='passwordSpan'></span>
 						<br>
 					</div>
