@@ -108,7 +108,7 @@ function checkFinshFnc() {
 			}else if(dateCompareFnc() == false) {
 				alert('날짜가 유효하지 않습니다.');
 			}else if(pwdChkFnc() == false) {
-				alert('비밀번호가 유효하지 않습니다.');
+				alert("비밀번호에 공백이 있거나 4자리 미만 또는 8자리 초과입니다.");
 			}
 			return false;
 		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true && pwdChkFnc() == true) {
@@ -174,18 +174,29 @@ function checkFinshFnc() {
 	
 	//비밀번호 유효성검사
 	function pwdChkFnc() {
-		if($("#password").val().trim() == ""){
+		  var passwordObj = $("#password").val();
+		  var pattern = /\s/g;
+		    
+		  if(passwordObj.match(pattern) || passwordObj.length < 4 || passwordObj > 8) {
+		    $('#passwordSpan').html('비밀번호가 올바르지 않습니다.');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+		    return false;
+		  }
+		 
+		if(passwordObj.trim() == ""){
 	    	$('#passwordSpan').html('비밀번호를 입력해주세요');
 			$('#passwordSpan').css('color', '#FF4848');
 			$('#passwordSpan').css('font-size', '20px');
 	        return false;
 	    }else {
-	    	
-	    	$('#passwordSpan').html(' 유효한 날짜입니다.');
+	    	$('#passwordSpan').html('완벽한 비밀번호입니다.');
 			$('#passwordSpan').css('color', '#74D36D');
 			$('#passwordSpan').css('font-size', '20px');
 			return true;
 	    }
+		
+		
     }
 	
 	var cnt = 0;

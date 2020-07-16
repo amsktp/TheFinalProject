@@ -297,7 +297,7 @@ textarea:focus {outline:none;}
 			</div>
 			
 			
-			<div class="col-md-6 tutorProfileDiv" id='studentProfileDiv'>
+			<div class="col-md-6" id='studentProfileDiv'>
 			
 				<form action='./tutorUpdate.do' method='get'>
 				<div style="font-size: 35px; font-weight: bold;">
@@ -358,7 +358,7 @@ textarea:focus {outline:none;}
 				</form>
 			</div>
 			
-			<div id='tutorProfileDiv' style="display: none;">
+			<div class='col-md-6' id='tutorProfileDiv' style="display: none;">
 				<form action='./tutorProUpdate.do' method='get'>
 					
 					<div style="font-size: 35px; font-weight: bold;">
