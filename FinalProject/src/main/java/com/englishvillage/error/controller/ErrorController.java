@@ -28,7 +28,7 @@ public class ErrorController {
 	
 	
 	@RequestMapping(value="/error/400.do", method=RequestMethod.GET)
-	public String error500Exeption() {
+	public String error400Exeption() {
 		log.info("*****Welcome Login!*****");
 		
 		return "error/error400Exeption";
