@@ -104,7 +104,7 @@
 			}else if(dateCompareFnc() == false) {
 				alert('날짜가 유효하지 않습니다.');
 			}else if(pwdChkFnc() == false) {
-				alert('비밀번호가 유효하지 않습니다.');
+				alert("비밀번호에 공백이 있거나 4자리 미만 또는 8자리 초과입니다.");
 			}
 			return false;
 		}else if(nameCompareFnc() == true &&  dateCompareFnc() == true && pwdChkFnc() == true) {
@@ -117,7 +117,10 @@
 	//이름 유효성 검사
 	function nameCompareFnc() {
 		
-		if($("#name").val().length == 0) {
+		var nameObj = $("#name").val();
+		  var pattern = /\s/g;
+		
+		if(nameObj.length == 0) {
 			$('#nameSpan').html('이름을 정확히 입력해주세요');
 			$('#nameSpan').css('color', '#FF4848');
 			$('#nameSpan').css('font-size', '20px');
@@ -126,8 +129,15 @@
 		}
 		
 		if($('#country').val() == 'KOREA') {
-			for (var i=0; i<$("#name").val().length; i++)  { 
-			    var chk = $("#name").val().substring(i,i+1); 
+			if(nameObj.match(pattern) || nameObj.length > 4) {
+			    $('#nameSpan').html('이름이 올바르지 않습니다.');
+				$('#nameSpan').css('color', '#FF4848');
+				$('#nameSpan').css('font-size', '20px');
+			    return false;
+			  }
+			
+			for (var i=0; i<nameObj.length; i++)  { 
+			    var chk = nameObj.substring(i,i+1); 
 			    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
@@ -135,7 +145,7 @@
 					return false;
 			    }
 			    
-			    if ($("#name").val().length <= 1) {
+			    if (nameObj.length <= 1) {
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
@@ -149,27 +159,22 @@
 					$('#nameSpan').css('font-size', '20px');
 					return false;
 			    }
-			    if($("#name").val() == " "){
+			    if(nameObj.trim() == ""){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
-					return false;
-			    }
-			    
-			    if($("#name").val() == "") {
-					$('#nameSpan').html('이름을 정확히 입력해주세요');
-					$('#nameSpan').css('color', '#FF4848');
-					$('#nameSpan').css('font-size', '20px');
 					
-					return false;
-				}
+					
+			        return false;
+			    }
+			   
 			}
 
 		} else {
 		
-			for (var i=0; i<$("#name").val().length; i++)  {
+			for (var i=0; i<nameObj.length; i++)  {
 				
-				var chk = $("#name").val().substring(i,i+1);
+				var chk = nameObj.substring(i,i+1);
 				
 				if(chk.match(/[0-9]|[가-힣]|[ㄱ-ㅎ]|[ㅏ-ㅣ]/)){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
@@ -179,7 +184,7 @@
 			        return false;
 			    }
 			 
-			    if($("#name").val().trim() == ""){
+			    if(nameObj.trim() == ""){
 			    	$('#nameSpan').html('이름을 정확히 입력해주세요');
 					$('#nameSpan').css('color', '#FF4848');
 					$('#nameSpan').css('font-size', '20px');
@@ -204,13 +209,23 @@
 	}
 	//비밀번호 유효성검사
 	function pwdChkFnc() {
-		if($("#password").val().trim() == ""){
+		var passwordObj = $("#password").val();
+		  var pattern = /\s/g;
+		    
+		  if(passwordObj.match(pattern) || passwordObj.length < 4 || passwordObj > 8) {
+		    $('#passwordSpan').html('비밀번호가 올바르지 않습니다.');
+			$('#passwordSpan').css('color', '#FF4848');
+			$('#passwordSpan').css('font-size', '20px');
+		    return false;
+		  }
+		
+		if(passwordObj.trim() == ""){
 	    	$('#passwordSpan').html('비밀번호를 입력해주세요');
 			$('#passwordSpan').css('color', '#FF4848');
 			$('#passwordSpan').css('font-size', '20px');
 	        return false;
 	    }else {
-	    	$('#passwordSpan').html(' 유효한 날짜입니다.');
+	    	$('#passwordSpan').html('유효한 날짜입니다.');
 			$('#passwordSpan').css('color', '#74D36D');
 			$('#passwordSpan').css('font-size', '20px');
 			return true;
