@@ -70,17 +70,17 @@
 			<span>비밀번호 찾기 완료</span>
 		</div>
 			<div  style="text-align: center;">
-				<span><span class="nameNemailBold">고재민</span>님의 
-					  <span class="nameNemailBold">letzkoh@gmail.com</span>로<br><br> 
-					  	비밀번호를 발송하였습니다.
-				</span><br><br>
-				<span>로그인 후 서비스를 이용하실 수 있습니다.</span><br>
+<!-- 				<span><span class="nameNemailBold">고재민</span>님의  -->
+<!-- 					  <span class="nameNemailBold">letzkoh@gmail.com</span>로<br><br>  -->
+<!-- 					  	비밀번호를 발송하였습니다. -->
+<!-- 				</span><br><br> -->
+<!-- 				<span>로그인 후 서비스를 이용하실 수 있습니다.</span><br> -->
 				
-<%-- 			<span><span class="nameNemailBold">${memberDto.memberName}</span>님의  --%>
-<%-- 				  <span class="nameNemailBold">${memberDto.memberEmail}</span>로<br> --%>
-<!-- 				  	비밀번호를 발송하였습니다. -->
-<!-- 			</span><br><br> -->
-<!-- 			<span>로그인 후 정상적으로 서비스를 이용하실 수 있습니다.</span><br> -->
+			<span><span class="nameNemailBold">${memberDto.memberName}</span>님의 
+				  <span class="nameNemailBold">${memberDto.memberEmail}</span>로<br>
+				  	비밀번호를 발송하였습니다.
+			</span><br><br>
+			<span>로그인 후 정상적으로 서비스를 이용하실 수 있습니다.</span><br>
 				
 				
 			</div>

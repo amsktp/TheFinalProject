@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.englishvillage.member.admin.model.MemberListDto;
+import com.englishvillage.member.tutor.model.TutorDto;
 
 @Component("fileUtils")
 public class FileUtils {
@@ -141,6 +142,26 @@ public class FileUtils {
 			= memberFileSave.getStore_File_Name();
 		
 		File file = new File(FILE_PATH + "/" + store_File_Name);
+		
+		if(file.exists()) {
+			file.delete();
+		}else {
+			System.out.println("파일이 존재하지 않습니다.");
+			throw new Exception();
+		}
+		
+		
+	}
+	
+	
+	public void parseUpdateFileTutorInfo(TutorDto tutorDto) 
+			throws Exception{
+		// TODO Auto-generated method stub
+		
+		String storeFileName 
+		= tutorDto.getStoreFileName();
+		
+		File file = new File(FILE_PATH + "/" + storeFileName);
 		
 		if(file.exists()) {
 			file.delete();

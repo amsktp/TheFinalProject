@@ -240,6 +240,10 @@
 		, FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE
 		, SA.EVALUATION_COUNT
 		, F.store_file_name
+		, M.MEMBER_GENDER
+		, M.MEMBER_BIRTH_DATE
+		, M.MEMBER_EMAIL
+		, M.MEMBER_POINT
 		FROM MEMBER M INNER JOIN TUTOR_INFO T
 		ON M.MEMBER_NO = T.TUTOR_NO
 		LEFT JOIN (SELECT TUTOR_NO, (NVL(AVG(SCORE),0)) SCORE_AVG, COUNT(SCORE) EVALUATION_COUNT
@@ -250,6 +254,14 @@
 		            FROM FILE_PROFILE_IMAGE) F
         ON T.TUTOR_NO = F.TUTOR_NO
         WHERE M.MEMBER_NO = #{tutorNo}
+        
+<!--         SELECT MEMBER_NO, MEMBER_NAME, MEMBER_POINT, PRICE, STUDY_NAME, TUTOR_INTRODUCE, -->
+<!-- 		MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_GENDER, MEMBER_BIRTH_DATE, -->
+<!-- 		FLOOR(TO_CHAR(SYSDATE -  M.MEMBER_BIRTH_DATE) / 365) + 1 AGE, YOUTUBE_URL, MEMBER_COUNTRY, -->
+<!-- 		M.MEMBER_GRADE, M.MEMBER_COUNTRY, T.STATUS_CHECK -->
+<!-- 		FROM MEMBER M, TUTOR_INFO T -->
+<!-- 		WHERE M.MEMBER_NO = T.TUTOR_NO  -->
+<!-- 		AND M.MEMBER_NO = #{no} -->
 				
 	</select>
 	
@@ -265,14 +277,21 @@
 				
 	</select>
 	
-	<select id="tutorBoardList" parameterType="int" 
+	<select id="tutorBoardList" parameterType="map" 
 	resultMap="questionListResultMap">
 	
-		
-		SELECT T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
-		FROM QUESTION_BOARD Q JOIN MEMBER T 
-		ON Q.MEMBER_NO = T.MEMBER_NO
-		WHERE Q.MEMBER_NO = #{no}
+        SELECT PB.RNUM, PB.IDX, PB.MEMBER_NO, PB.MEMBER_NAME, PB.TITLE, PB.BOARD_CREATE_DATE, PB.ANSWER_STATUS, PB.CONTENT 
+        FROM (
+            select ROWNUM RNUM, b.IDX, B.MEMBER_NO, B.MEMBER_NAME, B.TITLE, B.BOARD_CREATE_DATE, B.ANSWER_STATUS, B.CONTENT 
+            from (
+                SELECT Q.IDX, T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
+                FROM QUESTION_BOARD Q JOIN MEMBER T 
+                ON Q.MEMBER_NO = T.MEMBER_NO
+                WHERE Q.MEMBER_NO = #{no}
+                ORDER BY Q.BOARD_CREATE_DATE DESC
+                ) B
+            )pb
+        WHERE PB.RNUM BETWEEN #{start} AND #{end}
 		
 	</select>
 	
@@ -323,7 +342,7 @@
 	<update id="updateTutor" parameterType="com.englishvillage.member.tutor.model.TutorDto">
 	
 		UPDATE TUTOR_INFO
-		SET PRICE = #{price}, youtube_Url = #{youtubeUrl},  STUDY_NAME = #{studyName}
+		SET PRICE = #{price}, youtube_Url = #{youtubeUrl},  STUDY_NAME = #{studyName}, TUTOR_INTRODUCE = #{tutorIntroduce}
 		WHERE TUTOR_NO = #{memberNo}
 
 	</update>
@@ -356,6 +375,17 @@
 		    values(EVALUATION_IDX_SEQ.nextval, #{tutorNo}, #{studentNo}, null, null, 'N', #{studentName}, null, SYSDATE)
 		
 	</insert>
+	
+	<insert id="boardWrite" parameterType="com.englishvillage.member.admin.model.QuestionBoardDto">
+		
+		    INSERT INTO QUESTION_BOARD 
+            VALUE(IDX, MEMBER_NO, TITLE
+            		, CONTENT, BOARD_CREATE_DATE, BOARD_MODIFY_DATE
+            		, ANSWER_STATUS)
+            VALUES(QUESTION_BOARD_IDX_SEQ.NEXTVAL, #{no} ,#{title}
+            		, #{content}, SYSDATE, SYSDATE, 'N')
+            
+	</insert>
 
 	<insert id="insertFile" parameterType="map">
 	
@@ -381,9 +411,20 @@
 	        ORDER BY EVALUATE_CHECK DESC
 	    )
 	  <![CDATA[  WHERE ROWNUM <= 1  ]]>
-	    
-	    	
-          
+
+	</select>
+
+	<select id="boardSelectOne" parameterType="int"
+	resultMap="questionListResultMap">
+	
+		 SELECT Q.IDX BOARD_NO, Q.MEMBER_NO, Q.TITLE, Q.CONTENT, Q.BOARD_CREATE_DATE
+		 , Q.BOARD_MODIFY_DATE, Q.ANSWER_STATUS, C.IDX, C.COMMENT_CREATE_DATE
+		 , C.REPLY, C.ADMIN_NO
+		 
+		FROM QUESTION_BOARD Q LEFT JOIN QUESTION_BOARD_COMMENT C
+		ON Q.IDX = C.BOARD_NO
+		
+		WHERE Q.IDX = #{idx}
 	
 	</select>
 	
@@ -408,6 +449,73 @@
 		WHERE MEMBER_NO = #{memberNo}
 		
 	</update>
+	
+	<update id="questionRevise" parameterType="com.englishvillage.member.admin.model.QuestionBoardDto">
+
+		UPDATE QUESTION_BOARD
+		SET
+		TITLE = #{title},
+		CONTENT = #{content},
+		BOARD_MODIFY_DATE =
+		SYSDATE
+		WHERE
+		IDX = #{idx}
+		
+	</update>
+	
+	
+	
+	
+   <delete id="fileDelete" parameterType="int">
+   		DELETE FROM FILE_PROFILE_IMAGE
+		WHERE IDX = #{idx}
+   </delete>
+   
+   <select id="fileSelectStoreFileName" parameterType="int" resultType="com.englishvillage.member.admin.model.MemberListDto">
+   		SELECT IDX, STORE_FILE_NAME
+		FROM FILE_PROFILE_IMAGE
+		WHERE TUTOR_NO = #{memberNo}
+   </select>
+   
+	   <update id="TutorProfileUpdateOne" parameterType="com.englishvillage.member.admin.model.MemberListDto">
+      UPDATE TUTOR_INFO SET
+      		YOUTUBE_URL = #{youtubeUrl},
+      		PRICE = #{price},
+      		STUDY_NAME = #{title},
+      		TUTOR_INTRODUCE = #{tutorIntroduce}
+      WHERE TUTOR_NO = #{memberNo}
+   </update>
+	
+	
+	<select id="boardSelectTotalCount" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM QUESTION_BOARD Q JOIN MEMBER T 
+		ON Q.MEMBER_NO = T.MEMBER_NO
+		WHERE Q.MEMBER_NO = #{no}
+		ORDER BY Q.BOARD_CREATE_DATE DESC
+	</select>
+	
+	
+	<select id="tutorBoardCurPage" parameterType ="map"
+		resultType="Integer">
+		
+        SELECT floor((RNUM-1)/5)+1
+        FROM (
+            select ROWNUM RNUM, b.IDX, B.MEMBER_NO, B.MEMBER_NAME, B.TITLE, B.BOARD_CREATE_DATE, B.ANSWER_STATUS, B.CONTENT 
+            from (
+                SELECT Q.IDX, T.MEMBER_NO, T.MEMBER_NAME, Q.TITLE, Q.BOARD_CREATE_DATE, Q.ANSWER_STATUS, Q.CONTENT
+                FROM QUESTION_BOARD Q JOIN MEMBER T 
+                ON Q.MEMBER_NO = T.MEMBER_NO
+                WHERE Q.MEMBER_NO = #{no}
+                ORDER BY Q.BOARD_CREATE_DATE DESC
+                ) B
+            )pb
+        
+        WHERE pb.idx = #{idx}
+        
+	</select>
+	
+	
 </mapper>
 
 

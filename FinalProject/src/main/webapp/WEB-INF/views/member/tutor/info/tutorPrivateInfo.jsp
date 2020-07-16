@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 						
-					<input type="submit" value="수정하기" id="updateBtn" class="btn btn-primary btn-lg pull-right">	
+					<input type="submit" value="수정하기" id="updateBtn" class="btn btn-success btn-lg">	
 			</form>
 			
 		</div>
