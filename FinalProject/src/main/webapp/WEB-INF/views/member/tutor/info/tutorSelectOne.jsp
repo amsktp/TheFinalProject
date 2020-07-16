@@ -439,7 +439,7 @@ tr {
 		<!-- 강사 유투브 영상 -->
 		<div class="col-md-8">
 			<iframe width="100%" height="540px;" src="${tutorDto.youtubeUrl}"
-				frameborder="0" allowfullscreen></iframe>
+				frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
 		</div>
 
 		<!-- 강사 정보  -->

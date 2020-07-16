@@ -1,5 +1,6 @@
 package com.englishvillage.member.student.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -21,32 +22,52 @@ import com.englishvillage.auth.service.AuthService;
 import com.englishvillage.member.student.model.MemberFileDto;
 import com.englishvillage.member.student.model.QuestionBoardDto;
 import com.englishvillage.member.student.service.StudentService;
+import com.englishvillage.member.tutor.model.TutorDto;
+import com.englishvillage.member.tutor.service.TutorService;
 import com.englishvillage.util.PagingYJ;
 
 @Controller
 public class StudentController {
 
 	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
-
+	
+	@Autowired
+	private TutorService tutorService;
+	
 	@Autowired
 	private StudentService studentService;
-
+	
 	@Autowired
 	private AuthService authService;
 
-	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/student/myPage.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPage(Locale locale, HttpSession session, Model model) {
 		log.info("call myPage! " + session.getAttribute("member"));
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
-
-		System.out.println("일단 세션 만들기 성공" + sessionMemberDto);
+		// 학생
 		int no = sessionMemberDto.getMemberNo();
-
+		
 		Map<String, Object> map = studentService.SelectOne(no);
-		System.out.println("여긴 맵이야" + map);
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
-		System.out.println("넣을값" + memberFileDto);
+		
+		//강사소개
+		List<TutorDto> tutorDtoList = tutorService.getTutorList();
+		//랜덤으로 섞기
+		Collections.shuffle(tutorDtoList);
+		
+		//최근문의 
+		List<QuestionBoardDto> qusetionList = studentService.questionSelectList(no);
+		
+		//최근수강내역
+		List<QuestionBoardDto> studyList = studentService.studySelectList(no);
+		
 		model.addAttribute("memberFileDto", memberFileDto);
+		model.addAttribute("tutorDtoList", tutorDtoList);
+		model.addAttribute("qusetionList", qusetionList);
+		model.addAttribute("studyList", studyList);
+		
+		System.out.println("qusetionList"+qusetionList);
+		System.out.println("studyList"+studyList);
 		return "/member/student/info/studentMainPage";
 	}
 
@@ -161,7 +182,6 @@ public class StudentController {
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
-
 		model.addAttribute("studyList", studyList);
 		model.addAttribute("pagingMap", pagingMap);
 
@@ -169,10 +189,6 @@ public class StudentController {
 	}
 
 	// 문의 리스트
-//	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String QuestionList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
-//			HttpSession session, Model model) 
-
 	@RequestMapping(value = "/student/questionList.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String TutorList(@RequestParam(defaultValue = "1") int curPage, @RequestParam(defaultValue = "0") int idx,
 			@RequestParam(defaultValue = "all") String searchOption, @RequestParam(defaultValue = "") String keyword,
@@ -212,7 +228,6 @@ public class StudentController {
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
-
 		model.addAttribute("qusetionList", qusetionList);
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);

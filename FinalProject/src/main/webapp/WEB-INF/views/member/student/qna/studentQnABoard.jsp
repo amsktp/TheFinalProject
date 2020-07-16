@@ -68,13 +68,14 @@
 					<col width="20%">
 
 				</colgroup>
-				<tr class="success">
-					<th class="textCenter">문의 번호</th>
-					<th class="textCenter">내용</th>
-					<th class="textCenter">문의일</th>
-					<th class="textCenter">답변상태</th>
-				</tr>
-
+				<thead>
+					<tr class="success">
+						<th class="textCenter">문의번호</th>
+						<th class="textCenter">제목</th>
+						<th class="textCenter">문의일</th>
+						<th class="textCenter">상태</th>
+					</tr>
+				</thead>
 				<c:choose>
 					<c:when test="${not empty qusetionList}">
 						<c:forEach var="questionDto" items="${qusetionList}">
@@ -96,10 +97,10 @@
 								<td style="vertical-align: middle;">
 									<div class="td_status">
 										<c:if test="${questionDto.answerStatus == 'Y'}">
-									답변완료
+									처리완료
 								</c:if>
 										<c:if test="${questionDto.answerStatus == 'N'}">
-									답변대기중
+									처리중
 								</c:if>
 									</div>
 								</td>
@@ -115,12 +116,12 @@
 					</c:when>
 				</c:choose>
 			</table>
-			
-			
+
+
 			<input id="qna" class="btn btn-success" type="button" value="문의하기"
 				style="float: right;">
-			
-			<!-- 리스트가 없으면 페이징 출력안함 -->				
+
+			<!-- 리스트가 없으면 페이징 출력안함 -->
 			<c:if test="${not empty qusetionList}">
 				<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 					<jsp:param value="${pagingMap}" name="pagingMap" />
@@ -130,7 +131,7 @@
 						value="${pagingMap.memberPaging.curPage}">
 				</form>
 			</c:if>
-			
+
 			<!-- 검색창  -->
 			<div style="margin-top: 20px;">
 				<form id='searchingForm' class="form-inline"

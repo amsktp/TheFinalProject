@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		$('.layoutUl').children().eq(4).addClass('on');
 	});
 </script>
 
@@ -31,68 +31,72 @@
 </head>
 
 <body>
-<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
+	<header><jsp:include page="/WEB-INF/views/common/Header.jsp" /></header>
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
 		<div class="col-md-9" style="margin-top: 40px">
 
 			<div id="pageName">내 문의</div>
 
-<!-- 				<form action="./questionRevise.do" method="post"> -->
+			<!-- 				<form action="./questionRevise.do" method="post"> -->
 
-					<table id='qnaTable' class="table table-bordered">
-					
-						<tr>
-							<th class="textCenter" scope="row">문의번호</th>
-							<td class="textCenter"><div id="idxBox">${questionBoardDto.idx}</div></td>
-							<th class="textCenter" scope="row">문의일</th>
-							<td>
-								<div id='boardCreateDate'>
-									<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
-										pattern="yyyy-MM-dd a hh:mm:ss" />
-								</div>
-							</td>
-						</tr>
+			<table id='qnaTable' class="table table-bordered">
 
-						<tr>
-							<th class="textCenter" scope="row">제목</th>
-							<td colspan="3">
-								<div style="margin-left: 20px">${questionBoardDto.title}</div>
+				<tr>
+					<th class="textCenter" scope="row">문의번호</th>
+					<td class="textCenter"><div id="idxBox">${questionBoardDto.idx}</div></td>
+					<th class="textCenter" scope="row">문의일</th>
+					<td>
+						<div id='boardCreateDate'>
+							<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
+								pattern="yyyy-MM-dd a hh:mm:ss" />
+						</div>
+					</td>
+				</tr>
 
-							</td>
-						</tr>
-						<tr>
-							<th class="textCenter">내용</th>
-							<td colspan="3">
-								<div style="margin-left: 20px">${questionBoardDto.content}</div>
-							</td>
-						</tr>
-							<c:if test="${not empty questionBoardDto.reply}">
-								<tr>
-									<th class="textCenter">답변</th>
-									<td colspan="3">
-										<div id='reply' style="margin-left: 20px">${questionBoardDto.reply}</div>
-										<div style="margin-left: 20px; float: right;">
-											답변일 : <fmt:formatDate value="${questionBoardDto.commentCreateDate}"
-												pattern="yyyy-MM-dd a hh:mm:ss" />
-										</div>
-									</td>
-								</tr>
-							</c:if>
-					</table>
+				<tr>
+					<th class="textCenter" scope="row">제목</th>
+					<td colspan="3">
+						<div style="margin-left: 20px">${questionBoardDto.title}</div>
 
-						<c:if test="${empty questionBoardDto.reply}">
-							<!-- 이렇게 해줘야 레알 히든임 -->
-							<input class="btn btn-success" type="button" value="수정하기" onclick="moveFnc('./questionRevise.do?idx=${questionBoardDto.idx}')">
-						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th class="textCenter">내용</th>
+					<td colspan="3">
+						<div style="margin-left: 20px">${questionBoardDto.content}</div>
+					</td>
+				</tr>
+				<c:if test="${not empty questionBoardDto.reply}">
+					<tr>
+						<th class="textCenter">답변</th>
+						<td colspan="3">
+							<div id='reply' style="margin-left: 20px">${questionBoardDto.reply}</div>
+							<div style="margin-left: 20px; float: right;">
+								답변일 :
+								<fmt:formatDate value="${questionBoardDto.commentCreateDate}"
+									pattern="yyyy-MM-dd a hh:mm:ss" />
+							</div>
+						</td>
+					</tr>
+				</c:if>
+			</table>
 
-					 <input	id="backListBtn" class="btn btn-default" type="button" value="목록" onclick="moveFnc('./questionList.do?idx=${questionBoardDto.idx}&keyword=${keyword}&searchOption=${searchOption}')"> 
-<!-- 				</form> -->
+			<c:if test="${empty questionBoardDto.reply}">
+				<!-- 이렇게 해줘야 레알 히든임 -->
+				<input class="btn btn-success" type="button" value="수정하기"
+					onclick="moveFnc('./questionRevise.do?idx=${questionBoardDto.idx}')">
+			</c:if>
+
+			<input id="backListBtn" class="btn btn-default" type="button"
+				value="목록"
+				onclick="moveFnc('./questionList.do?idx=${questionBoardDto.idx}&keyword=${keyword}&searchOption=${searchOption}')">
+			<!-- 				</form> -->
 		</div>
 
 	</div>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </body>
 
