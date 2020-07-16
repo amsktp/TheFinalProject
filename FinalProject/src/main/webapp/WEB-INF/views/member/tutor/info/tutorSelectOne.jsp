@@ -734,7 +734,7 @@ tr {
 			</div>
 		</c:when>
 		<c:when test="${empty tutorCommentDtoList}">
-			<div style="font-size: 40px; margin-top: 40px;">아직 등록된 후기가 없습니다</div>
+			<div style="font-size: 40px; margin-top: 40px; width: 1300px; text-align: center; margin-bottom: 200px;">아직 등록된 후기가 없습니다</div>
 		</c:when>
 	</c:choose>
 </body>
