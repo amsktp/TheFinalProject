@@ -22,7 +22,7 @@ import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
 import com.englishvillage.util.Paging;
-import com.englishvillage.util.PagingYJ;
+import com.englishvillage.util.mainPaging;
 
 @Controller
 public class AdminController {
@@ -62,7 +62,7 @@ public class AdminController {
 		}
 		
 		
-		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+		mainPaging memberPaging = new mainPaging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -225,7 +225,7 @@ public class AdminController {
 		}
 		
 		
-		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+		mainPaging memberPaging = new mainPaging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -465,7 +465,7 @@ public class AdminController {
 			}
 			
 			
-			PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+			mainPaging memberPaging = new mainPaging(totalCount, curPage);
 			int start = memberPaging.getPageBegin();
 			int end = memberPaging.getPageEnd();
 			

@@ -38,6 +38,14 @@
 	#allDiv {
 		box-sizing: border-box;
 	}
+	
+	#keyword {
+		border: 1px solid black;
+	}
+	
+	select {
+		border: 1px solid black;
+	}
 </style>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
 <script type="text/javascript" src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -93,14 +101,14 @@
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="allDiv">
 	
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3">
+			<div class="layoutText">
 				<span>회원 관리(강사)</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 			
-		<div id='tutorTable' style="margin-top: 200px; float: left;" >
+		<div id='tutorTable' class="col-md-6">
 		<form id='searchingForm' action="./tutorList.do" method="post">
 	
 			<select id='searchOption' name="searchOption">
@@ -131,7 +139,7 @@
 			
 		</form>
 	
-		<table class="table table-hover">
+		<table class="table table-hover" style="margin-top: 20px;">
 			<tr class="success">
 				<th style="text-align: center; font-weight: bold;">회원번호</th>
 				<th style="text-align: center; font-weight: bold;">이름</th>

@@ -9,7 +9,7 @@
 <style type="text/css">
 
 	#allDiv {
-		width: 1500px;
+		width: 1600px;
 	    position: absolute; 
         top: 50%;
         left: 50%;
@@ -289,15 +289,15 @@ textarea:focus {outline:none;}
 	
 		<div id="allDiv">
 		
-			<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-				<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+			<div id="menuDiv" class="col-md-3 layoutText">
+				<div class="layoutText">
 					<span>회원 관리(강사)</span>
 				</div>
 				<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 			</div>
 			
 			
-			<div class="tutorProfileDiv" id='studentProfileDiv'>
+			<div class="col-md-6 tutorProfileDiv" id='studentProfileDiv'>
 			
 				<form action='./tutorUpdate.do' method='get'>
 				<div style="font-size: 35px; font-weight: bold;">
