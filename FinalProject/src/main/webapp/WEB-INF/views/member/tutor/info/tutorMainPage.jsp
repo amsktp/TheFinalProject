@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,17 +27,16 @@ $(document).ready(function(){
 				마이페이지
 			</div>
 			<div id="mainLeft" 
-			style="margin-top: 100px; margin-left: 80px; width: 300px;">
-				<h1 class="infoFont">보유 포인트</h1>
-				<p id="pointFont">${member.memberPoint} 포인트</p><br/>
-				<input class="chargeBtn" style="margin-left: 60px;" type="button" value="충전하기">
+			style="margin-top: 150px; margin-left: 80px; width: 300px;">
+					<h1 class="infoFont">보유 포인트</h1><br/>
+					<p id="pointFont">${member.memberPoint} 포인트</p><br/>
 			</div>
 			<div id="mainRight" class="infomationFont" style="width: 300px;">
 				<form action="tutorPrivateInfo.do">
 					<h3 class="myInfoFont">내 정보</h3><br/>
-					<p class="infomationContents">이름 : ${member.memberName}</p>
+					<h5 class="infomationContents">이름 : ${member.memberName}</h5>
 					<p class="infomationContents">email : ${member.memberEmail}</p><br/>
-					<input class="chargeBtn" type="submit"  value="내정보 확인">
+					<input class="btn btn-success" id="infoChargeBtn" type="submit"  value="내정보 확인">
 				</form> 
 			</div>	
 			<div id="mainRight" class="infomationFont" style="width: 300px;">
@@ -44,7 +44,7 @@ $(document).ready(function(){
 					<h3 class="myInfoFont">문의내역</h3><br/>
 					<h5 class="infomationContents">최근문의 내역</h5>
 					<p class="infomationContents">내용: ${tutorDtoBodard.title}</p><br/>
-					<input class="chargeBtn" type="submit"  value="문의내역 확인">
+					<input class="btn btn-success" id="qnaChargeBtn" type="submit"  value="문의내역 확인">
 				</form>
 			</div>
 		</div>

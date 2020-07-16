@@ -515,7 +515,7 @@ tr {
 		<span class="partTitle" style="clear: left;">강의 소개</span>
 		<!--수업시작 버튼 -->
 		<c:choose>
-			<c:when test="${tutorDto.statusCheck eq 'Y'}">
+			<c:when test="${tutorDto.statusCheck eq 'Y' && member.memberGrade eq 'N'}">
 				<div class="btn btn-primary studyImpossibleBtn" onclick="send();">수업시작</div>
 			</c:when>
 
@@ -727,57 +727,6 @@ tr {
 
 							</form>
 
-
-
-
-
-
-
-
-
-
-
-							<!-- 								<div id="modifyCommentTitle">댓글수정</div> -->
-							<!-- 								<div id="modifyComment" class="clearfix"> -->
-							<!-- 									댓글 입력창 -->
-							<%-- 									<div class="commentUserName">${studentTutorCommentDtoList.studentName} --%>
-							<!-- 									</div> -->
-							<!-- 									<div class="commentCreateDateAndContents clearfix"> -->
-							<!-- 										<div id="modifyCommentContentsDiv"> -->
-							<!-- 											<textarea id="modifyCommentContents" name="evaluateContent" -->
-							<%-- 												placeholder="댓글을 입력해주세요">${studentTutorCommentDtoList.evaluateContent}</textarea> --%>
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div> -->
-							<!-- 										<div class="commentScore clearfix"> -->
-							<!-- 											<div class="scoreTitle">평 점</div> -->
-
-							<!-- 											<div id="modifyScoreOne">★</div> -->
-							<!-- 											<div id="modifyScoreTwo">★</div> -->
-							<!-- 											<div id="modifyScoreThree">★</div> -->
-							<!-- 											<div id="modifyScoreFour">★</div> -->
-							<!-- 											<div id="modifyScoreFive">★</div> -->
-							<!-- 											<input id="modifyScoreNum" type="hidden" name="score" -->
-							<!-- 												value=""> -->
-							<!-- 										</div> -->
-							<!-- 										<div class="commentBtns clearfix"> -->
-							<!-- 											버튼 -->
-							<!-- 											<input type="submit" id="commentModifyBtn" -->
-							<!-- 												class="btn btn-primary" value="수정완료"> <input -->
-							<!-- 												type="button" id="commentModifyCancelBtn" -->
-							<!-- 												class="btn btn-primary" value="취소"> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 								</div> -->
-
-							<!-- 								<input type="text" name="studentName" -->
-							<%-- 									value="${member.memberName}"> <input id="studentNoNum" --%>
-							<!-- 									type="text" name="studentNo" -->
-							<%-- 									value="${studentTutorCommentDtoList.studentNo}"> <input --%>
-							<!-- 									type="text" name="tutorNo" -->
-							<%-- 									value="${studentTutorCommentDtoList.tutorNo}"> --%>
-
-							<!-- 							</form> -->
 						</div>
 					</c:if>
 				</c:forEach>

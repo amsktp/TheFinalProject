@@ -25,11 +25,14 @@ $(document).ready(function(){
 
 			<div id="pageName">튜터소개</div>
 			<div id="profileImages">
-				사진
+			    <div id='preview'>
+			        <img alt="image not found" id="previewImg"
+					src="<c:url value='/img/${tutorDto.storeFileName}'/>">
+		    	</div>
 			</div>
 			<div id="profileAll" style="margin-top: 50px; border-style: none;">
 				<div class="profileInfoContents">
-					이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;름: 
+					이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 : 
 					${tutorDto.memberName}
 				</div>
 				<div class="profileInfoContents">
@@ -41,7 +44,7 @@ $(document).ready(function(){
 					${tutorDto.age}
 				</div>
 				<div class="profileInfoContents">
-					평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점 : ${tutorDtoGrade.score}
+					평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점 : ${tutorDto.score}
 				</div>
 				<div class="profileInfoContents">
 					수 &nbsp;&nbsp;업 &nbsp;료 : ${tutorDto.price}
@@ -52,10 +55,10 @@ $(document).ready(function(){
 					시간/회
 				</div>
 				<div class="profileInfoContents">
-					U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp; : ${tutorDto.youtubeUrl}
+					U &nbsp;&nbsp;&nbsp;R &nbsp;&nbsp;&nbsp;L &nbsp;: ${tutorDto.youtubeUrl}
 				</div>
 				<div class="profileInfoContents">
-					강의&nbsp; 제목 : : ${tutorDto.studyName}
+					강의&nbsp; 제목 : ${tutorDto.studyName}
 				</div>
 			</div>
 			<div>
@@ -64,10 +67,10 @@ $(document).ready(function(){
 				</textarea>
 			</div>
 			<form action="tutorMainPage.do">
-				<button class="Btn">뒤로가기</button>
+				<button class="btn btn-success" id="backBtnMove">뒤로가기</button>
 			</form>
 			<form action="tutorIntroduceRevise.do">
-				<button class="Btn">수정하기</button>
+				<button class="btn btn-success" id="updateBtnMove">수정하기</button>
 			</form>
 			
 		</div>

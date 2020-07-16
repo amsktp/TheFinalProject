@@ -12,8 +12,24 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(5).addClass('on');
+    $('.layoutUl').children().eq(4).addClass('on');
 });
+
+function listOnePageFnc(obj, idx) {
+	var aTagObj = $(obj);
+
+	var url = '';
+	var memberNoObj = '';
+
+	memberNoObj = aTagObj.parent().parent().parent().children('td').eq(0)
+			.children();
+
+	url += './tutorQnARead.do?';
+	url += 'idx=' + idx;
+	url += '&curPage=' + $('#curPage').val();
+
+	location.href = url;
+}
 </script>
 </head>
 
@@ -22,7 +38,7 @@ $(document).ready(function(){
 	
 	<div class="container bs-docs-container contentBox">
 		<jsp:include page="/WEB-INF/views/common/memberLayoutEx.jsp" />
-		<div class="col-md-9" style="margin-top: 40px; margin-bottom: 100px;">
+		<div class="col-md-9" style="margin-top: 40px; margin-bottom: 70px;">
 			<div id="pageName">
 					문의 내역
 			</div>
@@ -45,7 +61,7 @@ $(document).ready(function(){
 						<c:forEach var="tutorBoard" items="${tutorBoardList}">
 							<tr>
 								<td>
-									<a href='#' onclick="listOnePageFnc(this, event);">
+									<a href='#' onclick="listOnePageFnc(this, ${tutorBoard.idx});">
 										${tutorBoard.title}
 									</a>
 								</td>
@@ -71,8 +87,17 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<form action="tutorQnAWrite.do" method="get">
+				<input id="boardWriteBtn" class="btn btn-success btn-lg" type="submit" value="문의글 쓰기">
+			</form>
 		</div>
-		<jsp:include page="/WEB-INF/views/common/paging3.jsp">
+		
+		<form id="pagingForm" action="tutorQnABoard.do" method="get">
+			<input type="hidden" id='curPage' name='curPage'
+				value="${pagingMap.memberPaging.curPage}">
+		</form>
+		
+		<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 	</div>

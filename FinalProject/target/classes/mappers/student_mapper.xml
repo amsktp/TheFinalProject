@@ -118,8 +118,8 @@
 	<update id="memberUpdateOne" parameterType="MemberDto">
 		UPDATE MEMBER
 		SET
-		MEMBER_PASSWORD = #{memberPassword},
 		MEMBER_MODIFY_DATE =
+		MEMBER_PASSWORD = #{memberPassword},
 		SYSDATE
 		WHERE
 		MEMBER_EMAIL = #{memberEmail}

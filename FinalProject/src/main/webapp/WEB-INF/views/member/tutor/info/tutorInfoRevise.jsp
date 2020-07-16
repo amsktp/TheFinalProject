@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,21 +13,24 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $('.layoutUl').children().eq(3).addClass('on');
-    
-    
-    
-    
+        
     $('#modifyPassword').submit(function() {
-    	
-//     	alert($('#pwdRevise').val());
-//     	alert($('#pwdReviseCheck').val());
-    	
     	
     	if($('#pwdRevise').val() == $('#pwdReviseCheck').val()) {
     		    		
     	}else{
     		alert('비밀번호와 비밀번호 확인이 일치하지않습니다');
     		return false;
+    	}
+    });
+    
+    $('#updateReviseBtn').on("click", function() {
+    	
+    	if($('#pwdRevise').val() == "" || $('#pwdReviseCheck').val() == "") {
+    		alert('비밀번호와 비밀번호 확인을 작성해주세요');
+    		return false;
+    		
+		  	}else{
     	}
     });
 });
@@ -65,14 +69,13 @@ $(document).ready(function(){
 						국적
 					</div>
 			</div>
-		<form id="modifyPassword" action="tutorPrivateInfoCtr.do" method="post">	
+		<form id="modifyPassword" action="./tutorPrivateInfoCtr.do" method="post">	
 			<div class="profileTitle">
 				<div class="profileContents">
 					<input type="text" disabled="disabled" value="${tutorDto.memberName}">
 				</div>
 				<div class="profileContents">
 					<input type="text" disabled="disabled" name="memberEmail" value="${tutorDto.memberEmail}">
-					
 				</div>
 				<div class="profileContents">
 					<input id="pwdRevise" type="password" value="" name="memberPassword">
@@ -94,15 +97,17 @@ $(document).ready(function(){
 				<input type="hidden" name="memberNo" value="${member.memberNo}"	>
 			</div>
 						
-			<button class="updateReviseBtn" style="margin-top: 160px;">
+			<button id="updateReviseBtn"
+				class="btn btn-success"
+				style="margin-top: 160px;">
 				수정하기
 			</button>
 		</form>
-			<button class="updateReviseBtn" 
+			<button class="btn btn-success" id="deleteReviseBtn"
 			onclick="location.href='tutorWithdraw.do'">
 				회원탈퇴
 			</button>
-			<button class="updateReviseBtn" 
+			<button class="btn btn-success" id="backReviseBtn"
 			onclick="location.href='tutorPrivateInfo.do'">
 				뒤로가기
 			</button>
