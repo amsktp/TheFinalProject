@@ -40,7 +40,7 @@
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="contentsDiv">
 		<div id="errorImgDiv">
-			<img src="/englishvillage/resources/imgs/404error.png" alt="Second slide">
+			<img src="/englishvillage/resources/imgs/500error.jpg" alt="Second slide">
 		</div>
 		<div id="btnsDiv">
 			<img src="/englishvillage/resources/imgs/mainMove.png" alt="Second slide" onclick="moveMainPageFnc()">
