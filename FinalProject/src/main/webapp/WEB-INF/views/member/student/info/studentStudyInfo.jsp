@@ -40,25 +40,30 @@
 					<col width="20%">
 					<col width="20%">
 				</colgroup>
+				<thead>
+					<tr class="success">
+						<th class='textCenter'>번호</th>
+						<th class='textCenter'>강의제목</th>
+						<th class='textCenter'>튜터이름</th>
+						<th class='textCenter'>수강일</th>
+						<th class='textCenter'>포인트</th>
+					</tr>
+				</thead>
 
-				<tr class="success">
-					<th class='textCenter'>번호</th>
-					<th class='textCenter'>강의제목</th>
-					<th class='textCenter'>튜터이름</th>
-					<th class='textCenter'>수강일</th>
-					<th class='textCenter'>포인트</th>
-
-
-				</tr>
 				<c:choose>
 					<c:when test="${not empty studyList}">
 						<c:forEach var="studyDto" items="${studyList}">
 							<tr>
-								<td style="vertical-align: middle;"><div id="idxVal" class="td_status">${studyDto.idx}</div></td>
-								<td style="vertical-align: middle;" class="textLeft"><div class="td_status">
-										${studyDto.studyName}</div></td>
+								<td style="vertical-align: middle;"><div id="idxVal"
+										class="td_status">${studyDto.rnum}</div></td>
+								<td style="vertical-align: middle;" class="textLeft"><div
+										class="td_status">${studyDto.studyName}</div></td>
 
-								<td style="vertical-align: middle;"><div class="td_status"><a href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}"> ${studyDto.tutorName}</a></div></td>
+								<td style="vertical-align: middle;"><div class="td_status">
+										<a
+											href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}">
+											${studyDto.tutorName}</a>
+									</div></td>
 
 								<td><div class="td_status">
 										<fmt:formatDate value="${studyDto.studyDate}"
@@ -68,26 +73,25 @@
 								<td style="vertical-align: middle;">
 									<div class="td_status">- ${studyDto.price}</div>
 								</td>
-
-								
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-					<tr>
-						<td colspan="5"><div class="td_status">수강내역이 존재하지 않습니다.</div></td>
-					<tr>
+						<tr>
+							<td colspan="5"><div class="td_status">수강내역이 존재하지
+									않습니다.</div></td>
+						<tr>
 					</c:otherwise>
 				</c:choose>
 
 			</table>
 			<c:if test="${not empty studyList}">
-			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
-				<jsp:param value="${pagingMap}" name="pagingMap" />
-			</jsp:include>
-			<form action="studyList.do" id="pagingForm" method="get">
-				<input type="hidden" id="curPage" name="curPage"
-					value="${pagingMap.memberPaging.curPage}">
-			</form>
+				<jsp:include page="/WEB-INF/views/common/paging2.jsp">
+					<jsp:param value="${pagingMap}" name="pagingMap" />
+				</jsp:include>
+				<form action="studyList.do" id="pagingForm" method="get">
+					<input type="hidden" id="curPage" name="curPage"
+						value="${pagingMap.memberPaging.curPage}">
+				</form>
 			</c:if>
 		</div>
 
@@ -95,6 +99,6 @@
 
 	</div>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

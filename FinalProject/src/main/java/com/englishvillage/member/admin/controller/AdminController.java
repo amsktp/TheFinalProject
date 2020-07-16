@@ -369,6 +369,12 @@ public class AdminController {
 									, Model model) throws ParseException {
 				
 		log.info("call tutorProUpdateCtr! {} :: {}" + memberListDto, fileIdx);
+		System.out.println("여기온다.");
+		System.out.println(memberListDto.getNo());
+		System.out.println(memberListDto.getUrl());
+		System.out.println(memberListDto.getPrice());
+		System.out.println(memberListDto.getTutorTitle());
+		System.out.println(memberListDto.getTutorText());
 		
 		
 			int resultNum = 0;

@@ -190,7 +190,10 @@ public class AdminServiceImpl implements AdminService {
 
 			MemberListDto memberFileSave = adminDao.fileSelectStoreFileName(no);
 			
+			System.out.println(memberFileSave);
+			
 			MultipartFile file = multipartHttpServletRequest.getFile("profilePicture");
+			System.out.println(file.isEmpty());
 			
 			int idx = memberFileSave.getIdx();
 			

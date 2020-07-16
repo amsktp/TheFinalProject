@@ -5,6 +5,7 @@ import java.util.Date;
 public class QuestionBoardDto {
 	
 	private int idx;
+	private int rnum;
 	private int no;
 	private String title;
 	private String content;
@@ -29,11 +30,12 @@ public class QuestionBoardDto {
 	}
 
 
-	public QuestionBoardDto(int idx, int no, String title, String content, Date boardCreateDate, Date boardModDate,
-			String answerStatus, String grade, String name, Date commentCreateDate, String reply, String studyName,
-			String tutorName, int tutorNo, int price, Date studyDate) {
+	public QuestionBoardDto(int idx, int rnum, int no, String title, String content, Date boardCreateDate,
+			Date boardModDate, String answerStatus, String grade, String name, Date commentCreateDate, String reply,
+			String studyName, String tutorName, int tutorNo, int price, Date studyDate) {
 		super();
 		this.idx = idx;
+		this.rnum = rnum;
 		this.no = no;
 		this.title = title;
 		this.content = content;
@@ -59,6 +61,16 @@ public class QuestionBoardDto {
 
 	public void setIdx(int idx) {
 		this.idx = idx;
+	}
+
+
+	public int getRnum() {
+		return rnum;
+	}
+
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 
@@ -214,13 +226,12 @@ public class QuestionBoardDto {
 
 	@Override
 	public String toString() {
-		return "QuestionBoardDto [idx=" + idx + ", no=" + no + ", title=" + title + ", content=" + content
-				+ ", boardCreateDate=" + boardCreateDate + ", boardModDate=" + boardModDate + ", answerStatus="
-				+ answerStatus + ", grade=" + grade + ", name=" + name + ", commentCreateDate=" + commentCreateDate
-				+ ", reply=" + reply + ", studyName=" + studyName + ", tutorName=" + tutorName + ", tutorNo=" + tutorNo
-				+ ", price=" + price + ", studyDate=" + studyDate + "]";
+		return "QuestionBoardDto [idx=" + idx + ", rnum=" + rnum + ", no=" + no + ", title=" + title + ", content="
+				+ content + ", boardCreateDate=" + boardCreateDate + ", boardModDate=" + boardModDate
+				+ ", answerStatus=" + answerStatus + ", grade=" + grade + ", name=" + name + ", commentCreateDate="
+				+ commentCreateDate + ", reply=" + reply + ", studyName=" + studyName + ", tutorName=" + tutorName
+				+ ", tutorNo=" + tutorNo + ", price=" + price + ", studyDate=" + studyDate + "]";
 	}
-
 
 
 }
