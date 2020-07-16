@@ -15,6 +15,11 @@
   </listener>
   
 <error-page>
+	<error-code>400</error-code>
+	<location>/error/400.do</location>
+</error-page>
+  
+<error-page>
 	<error-code>404</error-code>
 	<location>/error/404.do</location>
 </error-page>
