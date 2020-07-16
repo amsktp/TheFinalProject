@@ -58,11 +58,22 @@
 									 if(data == 0) {
 										alert("실패");
 									}
-									
 								}
-								
+							});
+
+							$.ajax({
+								url: "/englishvillage/tutor/earnMoney.do",
+								type: "POST",
+								data: 'tutorNo=' + $('#tutorNoNum').val() + '&price' + $('#tutorPrice').val(),
+								success: function(data) {
+									
+									if(data == 0) {
+										alert("실패");
+									}
+								}
 							});
 						
+							
 						} else if(con_test == false){
 							
 							var text=tutorAndStudentNo[1] + ","+tutorAndStudentNo[0] + ',' + 'T' + ',' + 'N';

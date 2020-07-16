@@ -401,9 +401,7 @@ keyframes fly-cycle { 100% {
 				placeholder="키워드를 입력해주세요"> <input class="btn btn-primary"
 				type="submit" value="검색">
 
-		</form>
 	</div>
-
 	<div id="tutorList">
 		<c:choose>
 			<c:when test="${empty tutorDtoList}">

@@ -9,6 +9,7 @@ th{
 	border-right: 1px solid #C4C3C3;
 	border-bottom: 1px solid #C4C3C3;
 	width: 200px;
+	background-color: #d0e9c6;
 }
 td {
 	border-bottom: 1px solid #C4C3C3;
@@ -26,7 +27,7 @@ td {
 }
 .infomationFont{
 	text-align: left;
-	margin-left: 30px;
+	margin-left: 10px;
 }
 .infomationContents{
 	text-align: left; 
@@ -37,16 +38,22 @@ td {
 	border-style: none;
 	text-align: left;	
 }
-.chargeBtn{
-	background-color: black;
-	color: white;
+#chargeBtn{
 	border-radius: 10px;
-	border-style: none;
+	margin-left: 40px;
+	padding: 10px 20px;
+}
+#infoChargeBtn{
+	border-radius: 10px;
+	margin-left: 40px;
+	padding: 10px 20px;
+}
+#qnaChargeBtn{
+	border-radius: 10px;
 	margin-left: 40px;
 	padding: 10px 20px;
 }
 #profileImages{
-	border: 1px solid black; 
 	width: 210px; 
 	height: 210px;
 	text-align: center;
@@ -71,12 +78,15 @@ td {
 	text-align: left;
 	
 }
-.Btn{
-	background-color: black;
+#updateBtnMove{
 	margin: 20px 20px;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	float: right;
+}
+#backBtnMove{
+	margin: 20px 20px;
 	width: 150px;
 	height: 50px;
 	font-size: 20px;
@@ -128,14 +138,14 @@ td {
 #PasswordCheck{
 	width: 280px;
 }
-.pwdCheckBtn{
-	background-color: black;
+#pwdCheckBtnBack{
 	margin: 20px 20px;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
 	width: 90px;
-	height: 25px;
+	font-size: 14px;
+}
+#pwdCheckBtnUpdate{
+	margin: 20px 20px;
+	width: 90px;
 	font-size: 14px;
 }
 #deleteBox{
@@ -146,12 +156,14 @@ td {
 	text-align: center;
 	border-radius: 20px;	
 }
-.deleteBtn{
-	background-color: black;
+#deleteBtnMember{
 	margin: 20px 20px;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+}
+#deleteBtnBack{
+	margin: 20px 20px;
 	width: 150px;
 	height: 50px;
 	font-size: 20px;
@@ -165,11 +177,7 @@ td {
 	font-size: 24px;
 }
 #updateBtn{
-	background-color: black;
 	margin: 300px 70px 20px;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
 	width: 150px;
 	height: 50px;
 	font-size: 20px;
@@ -182,17 +190,96 @@ td {
 #checkBox{
 	margin-top: 120px;
 }
-.updateReviseBtn{
+#updateReviseBtn{
 	margin-bottom: 20px;
-	background-color: black;
-	color: white;
 	border-radius: 10px;
-	border-style: none;
 	width: 150px;
 	height: 50px;
 	font-size: 20px;
 	float: right;	
 	margin-right: 120px;
 }
+#deleteReviseBtn{
+	margin-bottom: 20px;
+	border-radius: 10px;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	float: right;	
+	margin-right: 120px;
+}
+#backReviseBtn{
+	margin-bottom: 20px;
+	border-radius: 10px;
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	float: right;	
+	margin-right: 120px;
+}
+#boardWriteBtn{
+	margin-top: 20px;
+	float: right;	
+	font-size: 20px;
+}
+#boardTitleWrite{
+	width: 500px;
+	height: 30px;
+}
+#boardContentsWrite{
+	width: 500px;
+	height: 400px;
+	margin-top: 20px;
+}
+#leftTitle{
+	width: 70px;
+	border: 1px solid black;
+	float: left;
+	margin-top: 20px;
+}
+.leftContents{
+	width: 70px;
+}
+#content{
+	height: 400px;
+}
+#okayBtn{
+	float: right;
+}
+#cancelBtn{
+	float: right;
+	margin-right: 10px;
+}
+
+#preview {
+	width: 210px;
+	height: 210px;
+	float:left;
+	position:relative;
+	vertical-align: bottom;
+}
 
 
+#previewImg{
+	width:210px;
+	height: 210px;
+}
+
+#layoutImg{
+width: 150px;
+    height: 150px;
+    margin: 0px 52px;
+    margin-bottom: 20px;
+}
+
+#inputPhotoBtn{
+	position:relative;
+	top:-20px; 
+	right:-100px;
+}
+
+#selectPictureButton {
+	width: 30px;
+	height: 30px;
+	border-radius: 20px;
+}

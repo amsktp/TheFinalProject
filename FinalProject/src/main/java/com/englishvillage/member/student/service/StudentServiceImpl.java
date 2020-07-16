@@ -70,6 +70,16 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Override
+	public List<QuestionBoardDto> studySelectList(int no) {
+		// TODO Auto-generated method stub
+		List<QuestionBoardDto> studyList = 
+				studentDao.studySelectList(no);
+		
+		return studyList;
+
+	}
+
+	@Override
 	public List<QuestionBoardDto> studySelectList(int no, int start, int end) {
 		// TODO Auto-generated method stub
 		List<QuestionBoardDto> studyList = 
@@ -100,7 +110,15 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.questionSelectCurPage(no, idx, searchOption, keyword);
 	}
 
-
+	@Override
+	public List<QuestionBoardDto> questionSelectList(int no) {
+		// TODO Auto-generated method stub
+		List<QuestionBoardDto> qusetionList = 
+				studentDao.questionSelectList(no);
+		
+		return qusetionList;
+	}
+	
 	@Override
 	public List<QuestionBoardDto> questionSelectList(int no, String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
@@ -150,7 +168,5 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return studentDao.buyPoint(price, no);
 	}
-
-
 
 }

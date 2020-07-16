@@ -58,13 +58,25 @@ public class StudentDaoImpl implements StudentDao{
 	}
 	
 	@Override
+	public List<QuestionBoardDto> studySelectList(int no) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("no", no);
+		
+		List<QuestionBoardDto> studyList = 
+				sqlSession.selectList(namespace + "studyHistory", map);
+		
+		return studyList;
+	}
+	
+	@Override
 	public List<QuestionBoardDto> studySelectList(int no, int start, int end) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
 		map.put("no", no);
 		map.put("start", start);
 		map.put("end", end);
-		
+
 		List<QuestionBoardDto> studyList = 
 				sqlSession.selectList(namespace + "studySelectList", map);
 		
@@ -104,6 +116,19 @@ public class StudentDaoImpl implements StudentDao{
 		return sqlSession.selectOne(namespace + "memberSelectCurPage", paramMap);
 	}
 
+	@Override
+	public List<QuestionBoardDto> questionSelectList(int no) {
+		// TODO Auto-generated method stub
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("no", no);
+		
+		List<QuestionBoardDto> qusetionList = 
+				sqlSession.selectList(namespace + "questionHistory", map);
+		
+		return qusetionList;
+	}
+	
 	@Override
 	public List<QuestionBoardDto> questionSelectList(int no, String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub

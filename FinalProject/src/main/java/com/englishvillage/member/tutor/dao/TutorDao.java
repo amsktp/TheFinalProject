@@ -3,6 +3,7 @@ package com.englishvillage.member.tutor.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.tutor.model.TutorCommentDto;
 import com.englishvillage.member.tutor.model.TutorDto;
@@ -56,6 +57,22 @@ public interface TutorDao {
 
 	public int addPoint(int memberNo, int price);
 
-	
+	public int boardWrite(QuestionBoardDto questionBoardDto);
+
+	public QuestionBoardDto boardSelectOne(int idx);
+
+	public int questionRevise(QuestionBoardDto questionBoardDto);
+
+	public MemberListDto fileSelectStoreFileName(int no);
+
+	public void fileDelete(int idx);
+
+	public int TutorProfileUpdateOne(TutorDto tutorDto);
+
+	public int tutorBoardCurPage(int no, int idx);
+
+	public int boardSelectTotalCount(int no);
+
+
 }
 

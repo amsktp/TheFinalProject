@@ -122,7 +122,7 @@ float: right;
 	                		 강의준비
 	                		 <c:choose>
 	                		 	<c:when test="${tutor.statusCheck eq 'Y'}">
-	                		 		<span id="statusSwitch" style="color : blue">on</span>
+	                		 		<span id="statusSwitch" style="color : green">on</span>
 	                		 	</c:when>
 	                		 	<c:when test="${tutor.statusCheck eq 'N'}">
 	                		 		<span id="statusSwitch" style="color : red">off</span>

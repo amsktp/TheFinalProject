@@ -35,6 +35,10 @@ public interface StudentService {
 
 	public int buyPoint(int price, int no);
 
+	public List<QuestionBoardDto> questionSelectList(int no);
+
+	public List<QuestionBoardDto> studySelectList(int no);
+
 
 //	public void memberDeleteOne(String userEmail);
 
