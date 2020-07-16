@@ -277,9 +277,6 @@ textarea:focus {outline:none;}
 			}
 
 			$('#studyTitleDiv').text(studyTitleStr);
-				
-				
-			
 			
 		});
 		
