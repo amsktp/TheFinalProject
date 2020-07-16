@@ -243,8 +243,6 @@ keyframes fly-cycle { 100% {
 <body>
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
-
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
