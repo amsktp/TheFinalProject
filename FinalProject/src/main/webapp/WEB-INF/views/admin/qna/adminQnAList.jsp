@@ -26,11 +26,19 @@
 	}
 	
 	#allDiv {
-		width: 1500px;
+		width: 1600px;
 	    position: absolute; 
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+	}
+	
+	#keyword {
+		border: 1px solid black;
+	}
+	
+	select {
+		border: 1px solid black;
 	}
 </style>
 <link rel= "stylesheet" type="text/css" href="/englishvillage/resources/css/bootstrap.css?ver=1.2">
@@ -78,13 +86,13 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="allDiv">
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3">
+			<div class="layoutText">
 				<span>문의 게시판</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
-		<div id='qnaTable' style="margin-top: 200px; float: left;" >
+		<div id='qnaTable' class="col-md-6">
 		<form id='searchingForm' action="./questionList.do" method="post">
 		
 			<select id='searchOption' name="searchOption">
@@ -117,13 +125,13 @@
 			
 		</form>
 	
-		<table class="table table-hover" >
+		<table class="table table-hover" style="margin-top: 20px;" >
 			<tr class="success">
-				<th>글번호</th>
-				<th>글제목</th>
-				<th>등급</th>
-				<th>문의 등록일</th>
-				<th>답변 상태 확인</th>
+				<th style="text-align: center; font-weight: bold;">글번호</th>
+				<th style="text-align: center; font-weight: bold;">글제목</th>
+				<th style="text-align: center; font-weight: bold;">등급</th>
+				<th style="text-align: center; font-weight: bold;">문의 등록일</th>
+				<th style="text-align: center; font-weight: bold;">답변 상태 확인</th>
 			
 				
 			</tr>
@@ -136,7 +144,7 @@
 		
 		<c:forEach var="questionDto" items="${qusetionList}">
 			<tr>
-				<td>${questionDto.idx}</td>
+				<td style="text-align: center;">${questionDto.idx}</td>
 				<td>
 	
 					<a href="#" onclick="listOnePageFnc(this, event);" style="color: black;">

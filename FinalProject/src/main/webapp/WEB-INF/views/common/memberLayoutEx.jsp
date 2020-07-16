@@ -6,7 +6,7 @@
 	<c:when test="${member.memberGrade eq 'Y'}">
 		<link rel="stylesheet" type="text/css"
 			href="/englishvillage/resources/css/student.css?ver=1.5">
-			<link rel="stylesheet" type="text/css"
+		<link rel="stylesheet" type="text/css"
 			href="/englishvillage/resources/css/tutor.css?ver=1.5">
 	</c:when>
 
@@ -153,52 +153,57 @@
 </style>
 
 <div class="col-md-3" role="complementary">
-<c:choose>
-	<c:when test="${member.memberGrade eq 'N'}">
-		<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
-			<ul class="nav bs-docs-sidenav layoutUl">
-				<li id="memberName" >${member.memberName} 회원님</li>
-				<li><a href="myPage.do">마이 페이지</a></li>
-				<li><a href="myInfo.do">내 정보</a></li>
-				<li><a href="studyList.do">수강내역</a></li>
-				<li><a href="questionList.do">문의내역</a></li>
-			</ul>
-		</nav>
-	
-		<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
-	          <ul class="nav navbar-nav">
-	            <li><a href="myPage.do">마이 페이지</a></li>
-				<li><a href="myInfo.do">내 정보</a></li>
-				<li><a href="studyList.do">수강내역</a></li>
-				<li><a href="questionList.do">문의내역</a></li>
-	          </ul>
-        </nav>
-	
-	</c:when>
-	
-	<c:otherwise>
-		<nav id="mainBox" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" style="margin-top: 40px">
-	        <img alt="image not found" id="layoutImg" class="img-circle"
-			src="<c:url value='/img/${tutorDto.storeFileName}'/>">
-			<ul class="nav bs-docs-sidenav layoutUl">
-				<li id="memberName" >${member.memberName} 튜터님</li>
-				<li><a href="tutorMainPage.do">마이 페이지</a></li>
-				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
-				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
-				<li><a href="tutorQnABoard.do">문의내역</a></li>
-			</ul>
-		</nav>
-	
-		<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
-			
-	        <ul class="nav navbar-nav">
-	          	<li id="memberName" >${member.memberName} 튜터님</li>
-	            <li><a href="tutorMainPage.do">마이 페이지</a></li>
-				<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
-				<li><a href="tutorPrivateInfo.do">내 정보</a></li>
-				<li><a href="tutorQnABoard.do">문의내역</a></li>
-	        </ul>
-        </nav>
-	</c:otherwise>
-</c:choose>
+
+	<c:choose>
+		<c:when test="${member.memberGrade eq 'N'}">
+			<nav id="mainBox"
+				class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top"
+				style="margin-top: 40px">
+				<ul class="nav bs-docs-sidenav layoutUl">
+					<li id="memberName">${member.memberName}회원님</li>
+					<li><a href="myPage.do">마이 페이지</a></li>
+					<li><a href="myInfo.do">내 정보</a></li>
+					<li><a href="studyList.do">수강내역</a></li>
+					<li><a href="questionList.do">문의내역</a></li>
+				</ul>
+			</nav>
+
+			<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
+				<ul class="nav navbar-nav">
+					<li><a href="myPage.do">마이 페이지</a></li>
+					<li><a href="myInfo.do">내 정보</a></li>
+					<li><a href="studyList.do">수강내역</a></li>
+					<li><a href="questionList.do">문의내역</a></li>
+				</ul>
+			</nav>
+
+		</c:when>
+
+		<c:otherwise>
+			<nav id="mainBox"
+				class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top"
+				style="margin-top: 40px">
+				<img alt="image not found" id="layoutImg" class="img-circle"
+					src="<c:url value='/img/${tutorDto.storeFileName}'/>">
+				<ul class="nav bs-docs-sidenav layoutUl">
+					<li id="memberName">${member.memberName}튜터님</li>
+					<li><a href="tutorMainPage.do">마이 페이지</a></li>
+					<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
+					<li><a href="tutorPrivateInfo.do">내 정보</a></li>
+					<li><a href="tutorQnABoard.do">문의내역</a></li>
+				</ul>
+			</nav>
+
+			<nav class="bs-docs-sidebar visible-xs visible-sm affix-top">
+
+				<ul class="nav navbar-nav">
+					<li id="memberName">${member.memberName}튜터님</li>
+					<li><a href="tutorMainPage.do">마이 페이지</a></li>
+					<li><a href="tutorIntroduce.do">튜터 소개 정보</a></li>
+					<li><a href="tutorPrivateInfo.do">내 정보</a></li>
+					<li><a href="tutorQnABoard.do">문의내역</a></li>
+				</ul>
+			</nav>
+		</c:otherwise>
+	</c:choose>
 </div>

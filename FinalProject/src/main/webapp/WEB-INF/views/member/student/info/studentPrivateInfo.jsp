@@ -56,7 +56,7 @@
 					</tr>
 					<tr>
 						<th class='tCenter'><span>비밀번호</span></th>
-						<td><span>${memberFileDto.memberPassword}</span></td>
+						<td><span>**********</span></td>
 					</tr>
 					<tr>
 						<th class='tCenter'><span>성별</span></th>
@@ -86,6 +86,6 @@
 				<input type="button" value="수정하기" class="btn btn-primary btn-lg pull-right"
 					onClick="location.href='/englishvillage/student/studentCheck.do'">
 	</div>
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</body>
 </html>

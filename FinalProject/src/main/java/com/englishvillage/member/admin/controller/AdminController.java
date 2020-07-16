@@ -21,7 +21,12 @@ import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
+<<<<<<< HEAD
 import com.englishvillage.util.PagingYJ;
+=======
+import com.englishvillage.util.Paging;
+import com.englishvillage.util.mainPaging;
+>>>>>>> branch 'master' of https://github.com/amsktp/TheFinalProject.git
 
 @Controller
 public class AdminController {
@@ -61,7 +66,7 @@ public class AdminController {
 		}
 		
 		
-		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+		mainPaging memberPaging = new mainPaging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -224,7 +229,7 @@ public class AdminController {
 		}
 		
 		
-		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+		mainPaging memberPaging = new mainPaging(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
@@ -464,7 +469,7 @@ public class AdminController {
 			}
 			
 			
-			PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
+			mainPaging memberPaging = new mainPaging(totalCount, curPage);
 			int start = memberPaging.getPageBegin();
 			int end = memberPaging.getPageEnd();
 			

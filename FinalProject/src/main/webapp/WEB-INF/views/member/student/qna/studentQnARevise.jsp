@@ -79,7 +79,10 @@
 						<tr>
 							<th scope="row" class="textCenter" style="vertical-align: middle;">내용</th>
 							<td colspan="3">
-								<input type="text" class="form-control" id="content" name="content" maxlength="300" value="${questionBoardDto.content}">
+							<textarea class="form-control" id="content" name="content"  maxlength="300" rows="5" style="resize: none;">${questionBoardDto.content}</textarea>
+							
+							
+<%-- 								<input type="text" class="form-control" id="content" name="content" maxlength="300" value="${questionBoardDto.content}"> --%>
 							</td>
 						</tr>
 					</table>

@@ -99,6 +99,7 @@
 			property="commentCreateDate" javaType="java.util.Date" />
 		<result column="STUDY_NAME" property="studyName" />
 		<result column="TUTOR_NAME" property="tutorName" />
+		<result column="TUTOR_NO" property="tutorNo" />
 		<result column="PRICE" property="price" />
 		<result column="STUDY_DATE" property="studyDate"
 			javaType="java.util.Date" />
@@ -139,22 +140,18 @@
 		WHERE MEMBER_NO = #{no}
 	</select>
 
-<!-- 	<select id="studentQuestionCount" parameterType="int" -->
-<!-- 		resultType="int"> -->
-<!-- 		SELECT COUNT(*) -->
-<!-- 		FROM QUESTION_BOARD -->
-<!-- 		WHERE MEMBER_NO = #{no} -->
-		
-<!-- 		<include refid="quetionSearch"></include> -->
-		
-		
-		
-<!-- 	</select> -->
+	<select id="studentQuestionCount" parameterType="map"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM QUESTION_BOARD
+		<include refid="quetionSearch"></include>
+		AND MEMBER_NO = #{no}
+	</select>
 
 	<select id="studySelectList" parameterType="map"
 		resultMap="questionListResultMap">
 
-		SELECT RNUM, IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE
+		SELECT RNUM, IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE, B.TUTOR_NO TUTOR_NO
 		FROM (SELECT
 		TUTOR_NO, MEMBER_NAME TUTOR_NAME, STUDY_NAME, PRICE
 		FROM
@@ -177,20 +174,29 @@
 
 	<select id="memberSelectCurPage" parameterType="map"
 		resultType="int">
-		SELECT FLOOR((RNUM-1) / 10)+1 no
-		FROM ( SELECT ROWNUM RNUM,
-		MEMBER_NO,
-		IDX
-		FROM ( SELECT M.MEMBER_NO MEMBER_NO, Q.IDX IDX
-		FROM
-		MEMBER
-		M INNER
-		JOIN QUESTION_BOARD Q
-		ON M.MEMBER_NO = Q.MEMBER_NO
-		where
-		m.member_no = #{no}
-		ORDER BY IDX DESC) H)
-		where IDX = #{idx}
+		SELECT FLOOR((RNUM-1) / 5)+1 no
+		FROM ( SELECT ROWNUM RNUM, Q.IDX,
+		Q.MEMBER_NO,
+		Q.MEMBER_NAME, Q.TITLE, Q.CONTENT,
+		Q.BOARD_CREATE_DATE,
+		Q.BOARD_MODIFY_DATE,
+		Q.ANSWER_STATUS,Q.MEMBER_GRADE
+		FROM (SELECT
+		QUESTION_BOARD.IDX, QUESTION_BOARD.MEMBER_NO, MEMBER.MEMBER_NAME,
+		QUESTION_BOARD.TITLE,
+		QUESTION_BOARD.CONTENT,
+		QUESTION_BOARD.BOARD_CREATE_DATE, QUESTION_BOARD.BOARD_MODIFY_DATE,
+		QUESTION_BOARD.ANSWER_STATUS,
+		MEMBER.MEMBER_GRADE
+		FROM MEMBER LEFT OUTER
+		JOIN QUESTION_BOARD
+		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
+		<include refid="quetionSearch"></include>
+		AND MEMBER.MEMBER_NO = #{no}
+		ORDER BY IDX DESC) Q
+		) MQ
+
+		WHERE IDX = #{idx}
 	</select>
 
 	<select id="questionSelectList" parameterType="map"
@@ -217,11 +223,11 @@
 		FROM MEMBER LEFT OUTER
 		JOIN QUESTION_BOARD
 		ON QUESTION_BOARD.MEMBER_NO = MEMBER.MEMBER_NO
-		WHERE MEMBER.MEMBER_NO = #{no}
+		<include refid="quetionSearch"></include>
+		AND MEMBER.MEMBER_NO = #{no}
 		ORDER BY IDX DESC) Q
 		) MQ
-		WHERE MQ.RNUM
-		BETWEEN #{start} AND #{end}
+		WHERE MQ.RNUM BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="QuestionSelect" parameterType="map"

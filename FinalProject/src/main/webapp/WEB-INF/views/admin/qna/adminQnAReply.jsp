@@ -10,6 +10,10 @@
 <title>댓글 달기</title>
 
 <style type="text/css">
+
+	textarea {
+		border: 1px solid black;
+	}
 	#allDiv {
 		width: 1500px;
 	    position: absolute; 
@@ -53,7 +57,7 @@
 		}
 	});
 	function replyChkFnc() {
-		if($('#reply').val() == '') {
+		if($('#reply').val().trim() == '') {
 			alert('답글을 달아주십시오');
 			return false;
 		}
