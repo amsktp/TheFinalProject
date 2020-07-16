@@ -25,7 +25,7 @@ public class TutorDaoImpl implements TutorDao {
 	public List<TutorDto> getTutorList() {
 		// TODO Auto-generated method stub
 
-		List<TutorDto> tutorDtoList = sqlSession.selectList(namespace + "getTutorList");
+		List<TutorDto> tutorDtoList = sqlSession.selectList(namespace + "getTutorRankList");
 
 		return tutorDtoList;
 	}

@@ -116,6 +116,7 @@ dl, ul, ol, menu, li {
 
 .studyTitle {
 	cursor: pointer;
+	text-overflow: ellipsis;
 }
 
 .studyTitle:hover {
@@ -219,17 +220,29 @@ keyframes fly-cycle { 100% {
 	};
 	
 	$(document).ready(function() {
-		
-		
-	});
 	
-
+		/* 제목 입력 시 미리보기 반영 */
+		var titleMaxLenght = 27;
+		
+		for (var i = 0; i < 10; i++) {
+			
+			var studyTitleStr = $('.studyNameInput').eq(i).val();
+			
+			if(studyTitleStr.length > titleMaxLenght){
+				studyTitleStr = studyTitleStr.substring(0, titleMaxLenght) + '...';
+			}
+			
+			$('.studyNameInput').eq(i).parent().children(0).children(0).text(studyTitleStr);
+			
+		}
+			
+	});
+			
+	
 </script>
 <body>
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
-
-
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -422,11 +435,12 @@ keyframes fly-cycle { 100% {
 
 						<div class="detailInfo">
 							<div class="studyInfo">
-								<div class="studyTitle"
+								<div class="studyTitle"  
 									onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 									<h4>
 										<Strong>${tutorDto.studyName}</Strong>
 									</h4>
+									<input class="studyNameInput" type="hidden" value="${tutorDto.studyName}">
 								</div>
 								<div style="margin-left: 10px">
 									<div>

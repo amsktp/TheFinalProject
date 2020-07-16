@@ -17,6 +17,11 @@
 
 <script type="text/javascript">
 
+	window.onload = function () {
+		
+		location.href = '/englishvillage/tutor/home.do'
+	}
+
 	var loginMoveFnc = function(){
 		location.href = '/englishvillage/auth/login.do';
 	}
@@ -45,7 +50,6 @@
 
 
 <body>
-
 <div id="menuList">
 	<div onclick="loginMoveFnc();" >
 		로그인 버튼
