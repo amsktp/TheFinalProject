@@ -58,7 +58,7 @@
 								<td style="vertical-align: middle;" class="textLeft"><div class="td_status">
 										${studyDto.studyName}</div></td>
 
-								<td style="vertical-align: middle;"><div class="td_status">${studyDto.tutorName}</div></td>
+								<td style="vertical-align: middle;"><div class="td_status"><a href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}"> ${studyDto.tutorName}</a></div></td>
 
 								<td><div class="td_status">
 										<fmt:formatDate value="${studyDto.studyDate}"
@@ -73,11 +73,14 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
+					<tr>
 						<td colspan="5"><div class="td_status">수강내역이 존재하지 않습니다.</div></td>
+					<tr>
 					</c:otherwise>
 				</c:choose>
 
 			</table>
+			<c:if test="${not empty studyList}">
 			<jsp:include page="/WEB-INF/views/common/paging2.jsp">
 				<jsp:param value="${pagingMap}" name="pagingMap" />
 			</jsp:include>
@@ -85,12 +88,13 @@
 				<input type="hidden" id="curPage" name="curPage"
 					value="${pagingMap.memberPaging.curPage}">
 			</form>
+			</c:if>
 		</div>
 
 
 
 	</div>
 
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</body>
 </html>

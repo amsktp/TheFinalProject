@@ -86,7 +86,7 @@
 							<input class="btn btn-success" type="button" value="수정하기" onclick="moveFnc('./questionRevise.do?idx=${questionBoardDto.idx}')">
 						</c:if>
 
-					 <input	id="backListBtn" class="btn btn-default" type="button" value="목록" onclick="moveFnc('./questionList.do?idx=${questionBoardDto.idx}')"> 
+					 <input	id="backListBtn" class="btn btn-default" type="button" value="목록" onclick="moveFnc('./questionList.do?idx=${questionBoardDto.idx}&keyword=${keyword}&searchOption=${searchOption}')"> 
 <!-- 				</form> -->
 		</div>
 
