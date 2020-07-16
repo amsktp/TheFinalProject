@@ -21,7 +21,6 @@ import com.englishvillage.auth.model.MemberDto;
 import com.englishvillage.member.admin.model.MemberListDto;
 import com.englishvillage.member.admin.model.QuestionBoardDto;
 import com.englishvillage.member.admin.service.AdminService;
-import com.englishvillage.util.Paging;
 import com.englishvillage.util.PagingYJ;
 
 @Controller

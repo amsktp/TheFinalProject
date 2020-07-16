@@ -134,10 +134,8 @@
 		
 		var verifyNum = Math.floor(Math.random() * 9999);
 		
-
 		$('#sendVerifyNum').val(verifyNum);
-		
-		
+				
 		$('#requestNumBtn').click(function() {
 			
 			alert($('#memberEmail').val() + '로 인증번호를 전송하였습니다.');
@@ -180,7 +178,7 @@
 		}
 		
 		$.ajax({
-			url: "/englishvillage/emailCheck.do",
+			url: "/englishvillage/auth/emailCheck.do",
 			type: "POST",
 			data: "memberEmail=" + $("#memberEmail").val(),
 			success: function(data) {
