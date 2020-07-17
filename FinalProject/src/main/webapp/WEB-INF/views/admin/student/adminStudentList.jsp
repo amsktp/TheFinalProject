@@ -110,7 +110,7 @@
 	
 		<form id='searchingForm' action="./studentList.do" method="post">
 		
-			<select id='searchOption' name="searchOption" >
+			<select id='searchOption' name="searchOption" style="height: 33px;">
 				<c:choose>
 					<c:when test="${searchMap.searchOption eq 'all' }">
 						<option value="all" selected="selected">이름+이메일</option>
