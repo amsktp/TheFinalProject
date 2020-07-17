@@ -93,8 +93,8 @@ ul {
 
 .layoutUl li a:hover {
 	color: #d9edf7;
-	/*  	color: black; */
-	background-color: #008299;
+	color: black;
+	background-color: #778F44;
 	border-radius: 30px;
 	width: 160px;
 	height: 40px;
