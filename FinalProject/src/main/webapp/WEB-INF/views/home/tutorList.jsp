@@ -222,7 +222,7 @@ keyframes fly-cycle { 100% {
 	$(document).ready(function() {
 	
 		/* 제목 입력 시 미리보기 반영 */
-		var titleMaxLenght = 27;
+		var titleMaxLenght = 14;
 		
 		for (var i = 0; i < 10; i++) {
 			
