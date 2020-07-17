@@ -392,10 +392,6 @@ tr {
 
 					$('#commentModifyFormDiv').css("display", "");
 					$('#modifyCommentContents').focus();
-				
-				});
-
-			});
 
 	var removeCommentFnc = function() {
 
@@ -492,7 +488,7 @@ tr {
 									</c:forEach></td>
 							</tr>
 							<tr>
-							
+
 								<td>수업료</td>
 								<td>${tutorDto.price}</td>
 							</tr>
@@ -517,7 +513,8 @@ tr {
 		<span class="partTitle" style="clear: left;">강의 소개</span>
 		<!--수업시작 버튼 -->
 		<c:choose>
-			<c:when test="${tutorDto.statusCheck eq 'Y' && member.memberGrade eq 'N'}">
+			<c:when
+				test="${tutorDto.statusCheck eq 'Y' && member.memberGrade eq 'N'}">
 				<div class="btn btn-primary studyImpossibleBtn" onclick="send();">수업시작</div>
 			</c:when>
 

@@ -82,9 +82,10 @@ dl, ul, ol, menu, li {
 
 .tutorInfoDiv {
 	width: 340px;
-	height: 317px;
 	float: left;
 	margin: 10px;
+	    box-shadow: 0 8px 20px 0 rgba(0,0,0,.1);
+	    border-radius: 10px;
 }
 
 .tutorImgDiv {
@@ -110,8 +111,8 @@ dl, ul, ol, menu, li {
 }
 
 .studyInfo {
-	width: 275px;
-	padding-left: 10px;
+    width: 275px;
+    padding: 5px 0px 12px 15px;
 }
 
 .studyTitle {
@@ -135,7 +136,8 @@ dl, ul, ol, menu, li {
 
 .detailInfo {
 	display: flex;
-	margin-top: 10px;
+	border-radius: 0px 0px 10px 10px;
+	background-color: white;
 }
 
 .flagBox {
@@ -171,10 +173,9 @@ dl, ul, ol, menu, li {
 }
 
 .img {
-	border-radius: 20px;
+		border-radius: 10px 10px 0px 0px;
 	overflow: hidden
 } /* 부모를 벗어나지 않고 내부 이미지만 확대 */
-
 .bird {
 	background-image: url('bird.svg');
 	background-size: auto 100%;
@@ -206,7 +207,6 @@ keyframes fly-cycle { 100% {
 		width: 720px;
 	}
 }
-
 </style>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
@@ -240,7 +240,7 @@ keyframes fly-cycle { 100% {
 			
 	
 </script>
-<body>
+<body style="background-color: #f5f5f5;">
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -414,13 +414,12 @@ keyframes fly-cycle { 100% {
 				placeholder="키워드를 입력해주세요"> <input class="btn btn-primary"
 				type="submit" value="검색">
 
-		</form>
 	</div>
-
 	<div id="tutorList">
 		<c:choose>
 			<c:when test="${empty tutorDtoList}">
-				<div style="font-weight: bold; font-size: 25px;">조건에 만족하는 튜터가 없습니다! 다시 검색해주세요~</div>
+				<div style="font-weight: bold; font-size: 25px;">조건에 만족하는 튜터가
+					없습니다! 다시 검색해주세요~</div>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="tutorDto" items="${tutorDtoList}">
@@ -435,12 +434,13 @@ keyframes fly-cycle { 100% {
 
 						<div class="detailInfo">
 							<div class="studyInfo">
-								<div class="studyTitle"  
+								<div class="studyTitle"
 									onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
 									<h4>
 										<Strong>${tutorDto.studyName}</Strong>
 									</h4>
-									<input class="studyNameInput" type="hidden" value="${tutorDto.studyName}">
+									<input class="studyNameInput" type="hidden"
+										value="${tutorDto.studyName}">
 								</div>
 								<div style="margin-left: 10px">
 									<div>
@@ -452,7 +452,7 @@ keyframes fly-cycle { 100% {
 										<span class="price" id="priceDiv">30,000원 / 40분</span> <span
 											class="score"> <c:forEach begin="1"
 												end="${tutorDto.score}">
-												<span style="color: blue;">★</span>
+												<span style="color: #ff8b13;">★</span>
 											</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
 												<span style="color: grey;">★</span>
 											</c:forEach> (${tutorDto.evaluationCount})

@@ -50,11 +50,6 @@ public class StudentController {
 		Map<String, Object> map = studentService.SelectOne(no);
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
 		
-		//강사소개
-		List<TutorDto> tutorDtoList = tutorService.getTutorList();
-		//랜덤으로 섞기
-		Collections.shuffle(tutorDtoList);
-		
 		//최근문의 
 		List<QuestionBoardDto> qusetionList = studentService.questionSelectList(no);
 		
@@ -62,12 +57,9 @@ public class StudentController {
 		List<QuestionBoardDto> studyList = studentService.studySelectList(no);
 		
 		model.addAttribute("memberFileDto", memberFileDto);
-		model.addAttribute("tutorDtoList", tutorDtoList);
 		model.addAttribute("qusetionList", qusetionList);
 		model.addAttribute("studyList", studyList);
 		
-		System.out.println("qusetionList"+qusetionList);
-		System.out.println("studyList"+studyList);
 		return "/member/student/info/studentMainPage";
 	}
 
@@ -164,12 +156,11 @@ public class StudentController {
 		int no = sessionMemberDto.getMemberNo();
 
 		totalCount = studentService.studentStudyCount(no);
-
-//				이전 페이지로 돌아갈때 값
-//				자신의 curPage 찾는 로직
-//		if (idx != 0) {
-//			curPage = studentService.questionSelectCurPage(no, idx);
-//		}
+		
+		//강사소개
+		List<TutorDto> tutorDtoList = tutorService.getTutorList();
+		//랜덤으로 섞기
+		Collections.shuffle(tutorDtoList);
 
 		PagingYJ memberPaging = new PagingYJ(totalCount, curPage);
 		int start = memberPaging.getPageBegin();
@@ -183,6 +174,7 @@ public class StudentController {
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
 		model.addAttribute("studyList", studyList);
+		model.addAttribute("tutorDtoList", tutorDtoList);
 		model.addAttribute("pagingMap", pagingMap);
 
 		return "/member/student/info/studentStudyInfo";

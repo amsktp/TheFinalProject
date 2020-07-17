@@ -71,4 +71,5 @@ public interface TutorService {
 	public int boardSelectTotalCount(int no);
 
 
+
 }

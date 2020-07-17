@@ -69,7 +69,10 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<th class='tCenter'><span>비밀번호</span></th>
-<%-- 						<td><span><input type="text" name='memberPassword' value="${memberFileDto.memberPassword}"></span></td> --%>
+						<td><span class="form-group"><input type="password" class="form-control" name="memberPassword" placeholder="새로운 비밀번호" maxlength="12"></span></td>
+					</tr>
+					<tr>
+						<th class='tCenter'><span>비밀번호 확인</span></th>
 						<td><span class="form-group"><input type="password" class="form-control" name="memberPassword" placeholder="새로운 비밀번호" maxlength="12"></span></td>
 					</tr>
 					<tr>
