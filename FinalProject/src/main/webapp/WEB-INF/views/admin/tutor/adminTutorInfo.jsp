@@ -14,6 +14,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        margin-top: 40px;
 	}
 	
 	.tutorProfileDiv {
@@ -26,14 +27,6 @@
 		box-sizing: border-box;
 	}
 	
-	#tutorProfileDiv {
-		border: 1px solid black;
-		width: 600px;
-		height: 700px;
-		box-sizing: border-box;
-		float: left;
-		margin-top: 200px;
-	}
 	
 	#lineDiv {
 		border-bottom: 1px solid #BDBDBD; 
@@ -56,6 +49,7 @@
 		font-weight: bold;
 		border-radius: 5px 5px/5px 5px;
 		font-size: 25px;
+		margin-top: 15px;
 	}
 	
 	#memberProfileText {
@@ -170,8 +164,8 @@
 }
 
 #inputInfoDiv {
-	height: 200px;
-	width: 450px;
+	height: 250px;
+	width: 350px;
 	float: left;
 }
 
@@ -194,6 +188,12 @@ td {
 	border-bottom: 1px solid black;
 }
 
+#urlInput {
+	width: 230px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
 #tutorIntroduceBox {
 	width: 550px;
 	height: 200px;
@@ -201,7 +201,6 @@ td {
 	border-radius: 20px;
 	border: 1px solid #707070;
 	padding: 20px;
-	margin-left: 23px;
 }
 
 #tutorIntroduceBoxDiv {
@@ -217,6 +216,10 @@ td {
 
 .student {
 	cursor: pointer;
+}
+.allManual {
+	margin-left: 100px;
+	margin-top: 20px;
 }
 
 
@@ -302,12 +305,12 @@ textarea:focus {outline:none;}
 				<form action='./tutorUpdate.do' method='get'>
 				<div style="font-size: 35px; font-weight: bold;">
 				
-					<span class='student' onclick="studentProfileFnc()">회원 관리(학생)</span>
-					<span class='tutor' onclick="tutorProfileFnc()">회원 관리(강사)</span>
+					<span class='student' onclick="studentProfileFnc()">강사 정보</span>
+					<span class='tutor' onclick="tutorProfileFnc()">강사 상세 정보</span>
 				</div>	
 				<div id='lineDiv'>
 				</div>
-					<div id='allmanual'>
+					<div class='allManual' style="font-size: 20px; height: 500px;">
 					
 						<div class="manual">
 							<span>성 명:</span> 
@@ -362,49 +365,49 @@ textarea:focus {outline:none;}
 				<form action='./tutorProUpdate.do' method='get'>
 					
 					<div style="font-size: 35px; font-weight: bold;">
-						<span class='student' onclick="studentProfileFnc();">회원 관리(학생)</span>
-						<span class='tutor' onclick="tutorProfileFnc();">회원 관리(강사)</span>
+						<span class='student' onclick="studentProfileFnc();">강사 정보</span>
+						<span class='tutor' onclick="tutorProfileFnc();">강사 상세 정보</span>
 					</div>	
 					
 					<div id='lineDiv'>
 					</div>
-						<div id='allmanual'>
-							<div id="photoAndInfoDiv" >
-				
-					<div id="inputPhotoDiv" class="clearfix">
-					    <div id='preview'>
-					        <img alt="image not found" id="previewImg"
-						src="<c:url value='/img/${memberListDto.store_File_Name}'/>">
-					    </div>
-					</div>
-					<div id="inputInfoDiv" class="clearfix">
-						<table>
-							<tr id="firstTr">
-								<td id="firstTd">이름:</td>
-								<td>${memberListDto.member_name}</td>
-							</tr>
-							<tr>
-								<td>국적:</td>
-								<td>${memberListDto.country}</td>
-							</tr>
-							<tr>
-								<td>나이:</td>
-								<td><input type="text" value="" id='age' readonly="readonly"><br></td>
-							</tr>
-							<tr>
-								<td>수업료:</td>
-								<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}" readonly="readonly"> 원 / 40분</td>
-							</tr>
-							<tr>
-								<td>강의제목:</td>
-								<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<td>URL:</td>
-								<td><input id='titleInput' type="text" name="url" value="${memberListDto.url}" readonly="readonly"></td>
-							</tr>
-						</table>
-					</div>
+						<div class='allManual'>
+					<div id="photoAndInfoDiv">
+					
+						<div id="inputPhotoDiv" class="clearfix">
+						    <div id='preview'>
+						        <img alt="image not found" id="previewImg"
+							src="<c:url value='/img/${memberListDto.store_File_Name}'/>">
+						    </div>
+						</div>
+						<div id="inputInfoDiv" class="clearfix">
+							<table>
+								<tr id="firstTr">
+									<td id="firstTd">이름:</td>
+									<td>${memberListDto.member_name}</td>
+								</tr>
+								<tr>
+									<td>국적:</td>
+									<td>${memberListDto.country}</td>
+								</tr>
+								<tr>
+									<td>나이:</td>
+									<td><input type="text" value="" id='age' readonly="readonly"><br></td>
+								</tr>
+								<tr>
+									<td>수업료:</td>
+									<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}" readonly="readonly"> 원 / 40분</td>
+								</tr>
+								<tr>
+									<td>강의제목:</td>
+									<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}" readonly="readonly"></td>
+								</tr>
+								<tr>
+									<td>URL:</td>
+									<td><input id='urlInput' type="text" name="url" value="${memberListDto.url}" readonly="readonly"></td>
+								</tr>
+							</table>
+						</div>
 					   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
 				</div>
 				

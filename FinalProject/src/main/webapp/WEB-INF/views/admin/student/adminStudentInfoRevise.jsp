@@ -313,7 +313,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	
-<%-- 	???? : ${fileList[0].ORIGINAL_FILE_NAME} --%>
+
 	<div id="allDiv">
 	
 		<div id="menuDiv" class="col-md-3">
@@ -351,7 +351,7 @@
 					<div class='text'>
 						<span>성 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별 :</span>
 						<input type="hidden" id='genderChange' value='${memberListDto.gender}'>
-						<input type="radio" class='menCheck' name='gender' value="M">남자
+						<input type="radio" class='menCheck' name='gender' value="M" style="margin-left: 40px;">남자
 						<input type="radio" class='girlCheck' name='gender' value="F">여자
 						<span id='genderSpan'></span>	
 						<br>
@@ -368,7 +368,7 @@
 					
 					<div class='text'>
 						<span>국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;적 :</span>
-						<select name='country'>
+						<select name='country' style="margin-left: 40px;">
 							<option value="KOREA"
 							<c:if test="${memberListDto.country eq 'KOREA'}">selected</c:if>>KOREA</option>
 							<option value="England"

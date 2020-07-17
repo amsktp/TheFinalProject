@@ -268,7 +268,7 @@ ul {
 							<c:when test="${not empty studyList}">
 								<c:forEach var="studyDto" items="${studyList}">
 									<tr>
-										<td class="textCenter"><div id="idxVal" class="td_status">${studyDto.rnum}</div></td>
+										<td class="textCenter"><div class="td_status">${studyDto.rnum}</div></td>
 										<td style="vertical-align: middle;" class="textLeft"><div
 												class="td_status">${studyDto.studyName}</div></td>
 

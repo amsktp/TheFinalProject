@@ -70,7 +70,7 @@
 				</colgroup>
 				<thead>
 					<tr class="success">
-						<th class="textCenter">문의 번호</th>
+						<th class="textCenter">문의번호</th>
 						<th class="textCenter">제목</th>
 						<th class="textCenter">문의일</th>
 						<th class="textCenter">상태</th>

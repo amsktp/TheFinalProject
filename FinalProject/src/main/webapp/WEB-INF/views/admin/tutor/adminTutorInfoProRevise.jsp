@@ -8,21 +8,22 @@
 <title>회원정보 수정</title>
 <style type="text/css">
 	#allDiv {
-		width: 1500px;
+		width: 1600px;
 	    position: absolute; 
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        margin-top: 40px;
 	}
 	
-	#tutorProfileDiv {
+	.tutorProfileDiv {
 		border: 1px solid black;
 		width: 600px;
 		height: 700px;
-		box-sizing: border-box;
+		font-size: 20px;
 		margin-top: 200px;
 		float: left;
-		font-size: 15px;
+		box-sizing: border-box;
 	}
 	
 	#lineDiv {
@@ -157,8 +158,8 @@
 }
 
 #inputInfoDiv {
-	height: 200px;
-	width: 450px;
+	height: 250px;
+	width: 350px;
 	float: left;
 }
 
@@ -190,28 +191,27 @@ td {
 #tutorIntroduceBox {
 	width: 550px;
 	height: 200px;
-    resize: none;
+	resize: none;
 	border-radius: 20px;
 	border: 1px solid #707070;
-	padding-top: 20px;
-	margin-left: 23px;
-	text-align: left;
+	padding: 20px;
 }
 
 #tutorIntroduceBoxDiv {
 	margin-bottom: 20px;
 }
 
-#student {
+.student {
 	font-weight: bold;
 	font-size: 35px;
 	color: gray; 
 }
-
-#tutor{
-	float: right;
-	font-weight: bold;
-	font-size: 35px;
+.allManual {
+	margin-left: 100px;
+	margin-top: 20px;
+}
+.tutor {
+		float: right;
 }
 
 #btn > input {
@@ -358,37 +358,39 @@ textarea:focus {outline:none;}
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id='allDiv'>
-		<div id="menuDiv" style="float: left; margin-top: 200px; margin-right: 200px;">
-			<div style="margin-bottom: 70px; font-size: 50px; font-weight: bold;">
+		<div id="menuDiv" class="col-md-3 layoutText">
+			<div style="margin-bottom: 70px; font-size: 40px; font-weight: bold;">
 				<span>회원 관리(강사)</span>
 			</div>
 			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
 		</div>
 		
-		<div class="tutorProfileDiv" id='studentProfileDiv'>
+		<div class="col-md-6" id='studentProfileDiv'>
 				
 				<div id='tutorProfileDiv'>
 					<form action='./tutorProUpdateCtr.do' method='post' enctype="multipart/form-data" onsubmit="return checkFnc();">
-						<span id='student'>회원 관리(학생)</span>
-						<span id='tutor'>회원 관리(강사)</span>
-						<div id='lineDiv'>
-						</div>
-							<div id='allmanual'>
-								<div id="photoAndInfoDiv" >
-
+						<div style="font-size: 35px; font-weight: bold;">
+						<span class='student'>강사 정보</span>
+						<span class='tutor'>강사 상세 정보</span>
+					</div>	
+					
+					<div id='lineDiv'>
+					</div>
+						<div class='allManual'>
+					<div id="photoAndInfoDiv">
+					
 						<div id="inputPhotoDiv" class="clearfix">
 						    <div id='preview'>
 						    <input type="hidden" name="original_File_Name" value="${memberListDto.original_File_Name}">
 						    <input type="hidden" name="store_File_Name" value="${memberListDto.store_File_Name}">
-						        <img alt="image not found" id="previewImg" name="store_File_Name"
+						        <img alt="image not found" id="previewImg"
 							src="<c:url value='/img/${memberListDto.store_File_Name}'/>">
 						    </div>
 						    <div id="inputPhotoBtn">
 						    	<input type="file" id="uploadFile" name='profilePicture' class="hidden" onchange="setThumbnailFnc(event);"/>
 								<label id="fileSelectLabel" for="uploadFile"><img id="selectPictureButton" src="/englishvillage/resources/imgs/camera.jpg"></label>
 						    </div>
-	
-							</div>
+						</div>
 						<div id="inputInfoDiv" class="clearfix">
 							<table>
 								<tr id="firstTr">
@@ -405,33 +407,32 @@ textarea:focus {outline:none;}
 								</tr>
 								<tr>
 									<td>수업료:</td>
-									<td><input id='priceInput' type="text"  name="price" value="${memberListDto.price}"> 원 / 40분</td>
+									<td><input id='priceInput' type="text" name="price" value="${memberListDto.price}"> 원 / 40분</td>
 								</tr>
 								<tr>
 									<td>강의제목:</td>
-									<td><input id='titleInput' type="text"  name="tutorTitle" value="${memberListDto.tutorTitle}"></td>
+									<td><input id='titleInput' type="text" name="tutorTitle" value="${memberListDto.tutorTitle}"></td>
 								</tr>
-								
 								<tr>
 									<td>URL:</td>
-									<td><input id='urlInput' type="text"  name="url" value="${memberListDto.url}"></td>
+									<td><input id='urlInput' type="text" name="url" value="${memberListDto.url}"></td>
 								</tr>
 							</table>
 						</div>
-						   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
-					</div>
-					
-					<div id="tutorIntroduceBoxDiv">
-						<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText">${memberListDto.tutorText}</textarea>
-					</div>
-					
-					
-							<div>
-								<input type="hidden" id='no' name="no" value="${memberListDto.no}">
-								<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
-								<input type="hidden" id='keyword' name="keyword" value="${keyword}">
-							</div>
-							</div>
+					   <input type="hidden" value="${memberListDto.birthDate}" id='subAge'>
+				</div>
+				
+				<div id="tutorIntroduceBoxDiv">
+					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
+				</div>
+				<input type="hidden" id='tutorHiddenIntroduce'  value="${memberListDto.tutorText}">
+				
+						<div>
+							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
+							<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
+							<input type="hidden" id='keyword' name="keyword" value="${keyword}">
+						</div>
+						</div>
 							<div id='btn'>
 								<input type='submit' value='수정하기'>
 								<input type='button' value='회원탈퇴' onclick='pageMoveDeleteFnc(${memberListDto.no});'>
