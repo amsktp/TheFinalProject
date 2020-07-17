@@ -34,6 +34,7 @@ dl, ul, ol, menu, li {
 }
 
 #mainImg {
+
 	margin-bottom: 30px;
 	width: 100%;
 }
@@ -413,7 +414,7 @@ keyframes fly-cycle { 100% {
 			<input class="form-control" type="text" name="keyword"
 				placeholder="키워드를 입력해주세요"> <input class="btn btn-primary"
 				type="submit" value="검색">
-
+		</form>
 	</div>
 	<div id="tutorList">
 		<c:choose>
