@@ -186,7 +186,7 @@
 			<jsp:param value="${pagingMap}" name="pagingMap"/>
 		</jsp:include>
 			
-	    <form action="/englishvillage/admin/questionlist.do" id="pagingForm" method="get">
+	    <form action="/englishvillage/admin/questionList.do" id="pagingForm" method="get">
 	       <input type="hidden" id="curPage" name="curPage" 
 	            value="${pagingMap.memberPaging.curPage}">
 	       <input type="hidden" name="searchOption" value="${searchMap.searchOption}">

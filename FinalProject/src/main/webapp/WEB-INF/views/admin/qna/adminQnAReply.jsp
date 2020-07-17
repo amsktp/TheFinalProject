@@ -64,13 +64,25 @@
 		if($('#answerStatus').val() == 'Y') {
 			$('#reply').attr('readonly', 'readonly');
 		}
+		
+		$('#reply').keyup(function (e){
+		    var content = $(this).val();
+		    $('#counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅
+		    if (content.length > 200){
+		        alert("최대 200자까지 입력 가능합니다.");
+		        $(this).val(content.substring(0, 200));
+		        $('#counter').html("(200 / 최대 200자)");
+		    }
+		});
+		
 	});
+	
+	
 	function replyChkFnc() {
+		alert($('#reply').val().length);
 		if($('#reply').val().trim() == '') {
 			alert('답글을 달아주십시오');
 			return false;
-		}else if($('#reply').val().trim().length() < 1 || $('#reply').val().trim().length() > 200) {
-			alert('200글자를 초과하셨습니다.');
 		}
 	}
 	function pageMoveBeforeFnc(no) {
@@ -187,6 +199,9 @@
 					</div>
 					<div style="float:left; margin-left: 5px;">
 						<textarea rows="10" cols="30" id='reply' name='reply' style="margin-left: 31px; width: 500px; height: 80px; resize: none;">${questionBoardDto.reply}</textarea>
+						<br>
+						<span style="color:#aaa;" id="counter">(0 / 최대 200자)</span>
+
 					</div>
 					<input type="hidden" id='answerStatus' name='answerStatus' value="${questionBoardDto.answerStatus}">
 					<br>

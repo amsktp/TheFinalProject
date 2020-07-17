@@ -425,8 +425,7 @@ textarea:focus {outline:none;}
 				<div id="tutorIntroduceBoxDiv">
 					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
 				</div>
-				<input type="hidden" id='tutorHiddenIntroduce'  value="${memberListDto.tutorText}">
-				
+				<input type="hidden" id='tutorHiddenIntroduce' value="${memberListDto.tutorText}">
 						<div>
 							<input type="hidden" id='no' name="no" value="${memberListDto.no}">
 							<input type="hidden" id='searchOption' name="searchOption" value="${searchOption}">
@@ -441,7 +440,7 @@ textarea:focus {outline:none;}
 						</form>
 					</div>
 				</div>
-	</div>
+
 
 </body>
 
