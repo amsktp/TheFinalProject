@@ -391,7 +391,8 @@ tr {
 				$('#modifyBtn').click(function() {
 
 					$('#commentModifyFormDiv').css("display", "");
-
+					$('#modifyCommentContents').focus();
+				
 				});
 
 			});
@@ -646,7 +647,7 @@ tr {
 										<form id="commentRemoveForm"
 											action="./tutorCommentRemoveCtr.do" method="post">
 
-											<input type="submit" id="commentModifyBtn"
+											<input type="submit" id="commentDeleteBtn"
 												class="commentDelete btn btn-primary" value="삭제하기">
 											<input type="hidden" name="tutorNo"
 												value="${tutorCommentDto.tutorNo}"> <input
@@ -719,11 +720,11 @@ tr {
 
 									</tbody>
 								</table>
-								<input type="text" name="studentName"
+								<input type="hidden" name="studentName"
 									value="${member.memberName}"> <input id="studentNoNum"
-									type="text" name="studentNo"
+									type="hidden" name="studentNo"
 									value="${studentTutorCommentDtoList.studentNo}"> <input
-									type="text" name="tutorNo"
+									type="hidden" name="tutorNo"
 									value="${studentTutorCommentDtoList.tutorNo}">
 
 							</form>
@@ -734,7 +735,7 @@ tr {
 			</div>
 		</c:when>
 		<c:when test="${empty tutorCommentDtoList}">
-			<div style="font-size: 40px; margin-top: 40px; width: 1300px; text-align: center; margin-bottom: 200px;">아직 등록된 후기가 없습니다</div>
+			<div class="container" style="font-size: 40px; margin-top: 40px; width: 2000px; text-align: center; margin-bottom: 200px;">아직 등록된 후기가 없습니다</div>
 		</c:when>
 	</c:choose>
 </body>
