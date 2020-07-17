@@ -12,7 +12,7 @@
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.layoutUl').children().eq(2).addClass('on');
+    $('.layoutUl').children().eq(3).addClass('on');
 });
 
 function checkFnc() {
