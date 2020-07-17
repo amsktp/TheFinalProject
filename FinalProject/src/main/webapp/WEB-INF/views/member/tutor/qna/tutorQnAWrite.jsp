@@ -77,9 +77,9 @@ td {
 					</tr>
 					<tr>
 						<th scope="row" style="vertical-align: middle;">내용</th>
-						<td colspan="3"><input type="text" class="form-control"
+						<td colspan="3"><textarea class="form-control"
 							id="content" name="content" maxlength="300"
-							placeholder="내용을 입력하세요"></td>
+							placeholder="내용을 입력하세요"></textarea></td>
 					</tr>
 
 				</table>
