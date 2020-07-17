@@ -412,6 +412,8 @@ textarea:focus {outline:none;}
 				</div>
 				
 				<div id="tutorIntroduceBoxDiv">
+					<span>소개글 :</span>
+					<br>
 					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"  disabled="disabled"></textarea>
 				</div>
 				<input type="hidden" id='tutorHiddenIntroduce'  value="${memberListDto.tutorText}">

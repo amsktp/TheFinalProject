@@ -198,6 +198,7 @@ td {
 }
 
 #tutorIntroduceBoxDiv {
+	width:500px;
 	margin-bottom: 20px;
 }
 
@@ -434,6 +435,7 @@ textarea:focus {outline:none;}
 				</div>
 				
 				<div id="tutorIntroduceBoxDiv">
+					<span>소개글 :</span>
 					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
 					<br>
 					<span style="color:#aaa;" id="counter">(0 / 최대 200자)</span>
