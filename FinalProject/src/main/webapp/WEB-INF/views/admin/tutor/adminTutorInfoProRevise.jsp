@@ -248,9 +248,19 @@ textarea:focus {outline:none;}
 		$("a[id^='delete']").on("click", function(e) {
 			e.preventDefault();//태그가 작동할 수 없게도 만들수 있는 기술-여기서는 a태그의 default를 무시하고 나의 함수를 우선시 했다
 			deleteFileFnc($(this));
-			
 		});
 		
+		$('#tutorIntroduceBox').val($('#tutorHiddenIntroduce').val());
+		
+		$('#tutorIntroduceBox').keyup(function (e){
+		    var content = $(this).val();
+		    $('#counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅
+		    if (content.length > 200){
+		        alert("최대 200자까지 입력 가능합니다.");
+		        $(this).val(content.substring(0, 200));
+		        $('#counter').html("(200 / 최대 200자)");
+		    }
+		});
 		
 	});
 	
@@ -358,6 +368,7 @@ textarea:focus {outline:none;}
 
 	<jsp:include page="/WEB-INF/views/common/Header.jsp" />
 	<div id='allDiv'>
+	
 		<div id="menuDiv" class="col-md-3 layoutText">
 			<div style="margin-bottom: 70px; font-size: 40px; font-weight: bold;">
 				<span>회원 관리(강사)</span>
@@ -424,6 +435,8 @@ textarea:focus {outline:none;}
 				
 				<div id="tutorIntroduceBoxDiv">
 					<textarea id="tutorIntroduceBox" rows="10" cols="30" name="tutorText"></textarea>
+					<br>
+					<span style="color:#aaa;" id="counter">(0 / 최대 200자)</span>
 				</div>
 				<input type="hidden" id='tutorHiddenIntroduce' value="${memberListDto.tutorText}">
 						<div>
@@ -440,7 +453,7 @@ textarea:focus {outline:none;}
 						</form>
 					</div>
 				</div>
-
+			</div>
 
 </body>
 

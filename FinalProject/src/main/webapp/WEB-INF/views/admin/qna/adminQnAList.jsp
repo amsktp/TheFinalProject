@@ -95,7 +95,7 @@
 		<div id='qnaTable' class="col-md-6">
 		<form id='searchingForm' action="./questionList.do" method="post">
 		
-			<select id='searchOption' name="searchOption">
+			<select id='searchOption' name="searchOption" style="height: 33px;">
 				<c:choose>
 					<c:when test="${searchMap.searchOption eq 'all' }">
 						<option value="all" selected="selected">제목+내용</option>
