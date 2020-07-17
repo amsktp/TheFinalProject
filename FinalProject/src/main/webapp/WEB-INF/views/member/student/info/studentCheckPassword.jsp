@@ -17,7 +17,20 @@ $(document).ready(function(){
  	$('input[type=password]').focus();
  	
     $('#editBtn').click(function() {
-
+    	confirmPassword();
+    	
+    });
+    
+    $('input[type=password]').keydown(function (key) {
+    	 
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+        	confirmPassword();
+        }
+ 
+    });
+    
+    confirmPassword = function (){
+        //검색 찾는 로직 구현
     	var password = $('input[type=password]').val();
         var passwordCheck = '${member.memberPassword}';
         
@@ -30,7 +43,9 @@ $(document).ready(function(){
             	alert("비밀번호가 일치하지 않습니다.");
             	return false;
             }
-    });
+    };
+    
+    
 });
 
 
