@@ -56,7 +56,7 @@
 }
 
 .tutorImg{
-	width: 298px;
+	width: 296px;
 	height: 200px;
 }
 
