@@ -253,6 +253,8 @@ textarea:focus {outline:none;}
 		
 		$('#tutorIntroduceBox').val($('#tutorHiddenIntroduce').val());
 		
+		$('#counter').html("("+$('#tutorIntroduceBox').val().length+" / 최대 200자)");
+		
 		$('#tutorIntroduceBox').keyup(function (e){
 		    var content = $(this).val();
 		    $('#counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅

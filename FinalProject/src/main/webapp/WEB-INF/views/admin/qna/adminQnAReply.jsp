@@ -79,7 +79,6 @@
 	
 	
 	function replyChkFnc() {
-		alert($('#reply').val().length);
 		if($('#reply').val().trim() == '') {
 			alert('답글을 달아주십시오');
 			return false;
