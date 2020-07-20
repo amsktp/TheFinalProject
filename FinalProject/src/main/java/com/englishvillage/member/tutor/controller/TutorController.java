@@ -168,8 +168,8 @@ public class TutorController {
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
 		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
-		System.out.println(tutorCommentDtoList);
-		System.out.println(tutorCommentDtoList);
+		System.out.println(studentTutorCommentDtoList);
+		System.out.println(studentTutorCommentDtoList);
 		System.out.println(tutorCommentDtoList);
 		System.out.println(tutorCommentDtoList);
 		System.out.println(tutorCommentDtoList);

@@ -393,6 +393,9 @@ tr {
 					$('#commentModifyFormDiv').css("display", "");
 					$('#modifyCommentContents').focus();
 
+				});
+			});
+					
 	var removeCommentFnc = function() {
 
 		$('#commentRemoveForm').submit();
@@ -423,6 +426,7 @@ tr {
 		}
 
 	}
+	
 </script>
 
 
@@ -527,13 +531,8 @@ tr {
 
 	<!-- 댓글 -->
 
-	<!-- 댓글 입력부분 -->
-	<%-- 		<c:if test="${ }"> --%>
-	<!-- 		이미 입력했을경우 작성하는 폼이 안뜨게끔 -->
+	<c:if test="${member.memberGrade ne 'Y' && (studentTutorCommentDtoList.evaluateCheck eq 'N' || studentTutorCommentDtoList.evaluateCheck eq '')}">
 
-	<input id="memberGrade" type="hidden" value="${member.memberGrade}">
-	<input id="evaluateCheck" type="hidden"
-		value="${studentTutorCommentDtoList.evaluateCheck}">
 
 	<div id="commentWriteFormDiv" class="container">
 		<form id="commentWrite" action="writeCommentCtr.do" method="post"
@@ -589,7 +588,9 @@ tr {
 
 		</form>
 	</div>
-
+	
+	</c:if>
+	
 	<!-- 댓글 확인 부분 -->
 	<c:choose>
 		<c:when test="${not empty tutorCommentDtoList}">
