@@ -59,11 +59,11 @@
 					<table id='qnaReviceTable' class="table table-bordered">
 
 						<tr>
-							<th class="textCenter" scope="row">문의번호</th>
+							<th class="textCenter success" scope="row">문의번호</th>
 							<td><div class="textCenter">${questionBoardDto.idx}</div> 
 								<input id='idx' type="hidden" name='idx' value='${questionBoardDto.idx}'>
 							</td>
-							<th class="textCenter" scope="row">문의일</th>
+							<th class="textCenter success" scope="row">문의일</th>
 							<td><div id='boardCreateDate'>
 									<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
 										pattern="yyyy-MM-dd a hh:mm:ss" />
@@ -71,13 +71,13 @@
 						</tr>
 
 						<tr>
-							<th scope="row" class="textCenter" style="vertical-align: middle;">제목</th>
+							<th scope="row" class="textCenter success" style="vertical-align: middle;">제목</th>
 							<td colspan="3">
 								<input type="text" class="form-control" id="title" name="title" maxlength="30" value="${questionBoardDto.title}">
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" class="textCenter" style="vertical-align: middle;">내용</th>
+							<th scope="row" class="textCenter success" style="vertical-align: middle;">내용</th>
 							<td colspan="3">
 							<textarea class="form-control" id="content" name="content"  maxlength="300" rows="5" style="resize: none;">${questionBoardDto.content}</textarea>
 							

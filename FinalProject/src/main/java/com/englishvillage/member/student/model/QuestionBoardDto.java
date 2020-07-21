@@ -22,6 +22,7 @@ public class QuestionBoardDto {
 	private String tutorName;
 	private int tutorNo;
 	private int price;
+	private String evaluateCheck;
 	private Date studyDate;
 	
 	
@@ -32,7 +33,7 @@ public class QuestionBoardDto {
 
 	public QuestionBoardDto(int idx, int rnum, int no, String title, String content, Date boardCreateDate,
 			Date boardModDate, String answerStatus, String grade, String name, Date commentCreateDate, String reply,
-			String studyName, String tutorName, int tutorNo, int price, Date studyDate) {
+			String studyName, String tutorName, int tutorNo, int price, String evaluateCheck, Date studyDate) {
 		super();
 		this.idx = idx;
 		this.rnum = rnum;
@@ -50,6 +51,7 @@ public class QuestionBoardDto {
 		this.tutorName = tutorName;
 		this.tutorNo = tutorNo;
 		this.price = price;
+		this.evaluateCheck = evaluateCheck;
 		this.studyDate = studyDate;
 	}
 
@@ -214,6 +216,16 @@ public class QuestionBoardDto {
 	}
 
 
+	public String getEvaluateCheck() {
+		return evaluateCheck;
+	}
+
+
+	public void setEvaluateCheck(String evaluateCheck) {
+		this.evaluateCheck = evaluateCheck;
+	}
+
+
 	public Date getStudyDate() {
 		return studyDate;
 	}
@@ -230,8 +242,11 @@ public class QuestionBoardDto {
 				+ content + ", boardCreateDate=" + boardCreateDate + ", boardModDate=" + boardModDate
 				+ ", answerStatus=" + answerStatus + ", grade=" + grade + ", name=" + name + ", commentCreateDate="
 				+ commentCreateDate + ", reply=" + reply + ", studyName=" + studyName + ", tutorName=" + tutorName
-				+ ", tutorNo=" + tutorNo + ", price=" + price + ", studyDate=" + studyDate + "]";
+				+ ", tutorNo=" + tutorNo + ", price=" + price + ", evaluateCheck=" + evaluateCheck + ", studyDate="
+				+ studyDate + "]";
 	}
+
+
 
 
 }

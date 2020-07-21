@@ -103,6 +103,7 @@
 		<result column="TUTOR_NAME" property="tutorName" />
 		<result column="TUTOR_NO" property="tutorNo" />
 		<result column="PRICE" property="price" />
+		<result column="EVALUATE_CHECK" property="evaluateCheck" />
 		<result column="STUDY_DATE" property="studyDate"
 			javaType="java.util.Date" />
 	</resultMap>
@@ -154,7 +155,7 @@
 		resultMap="questionListResultMap">
 
 		SELECT RNUM RNUM, IDX, STUDY_NAME, TUTOR_NAME, PRICE, STUDY_DATE,
-		B.TUTOR_NO TUTOR_NO
+		B.TUTOR_NO TUTOR_NO, B.EVALUATE_CHECK
 		FROM (SELECT
 		TUTOR_NO, MEMBER_NAME TUTOR_NAME,
 		STUDY_NAME, PRICE
