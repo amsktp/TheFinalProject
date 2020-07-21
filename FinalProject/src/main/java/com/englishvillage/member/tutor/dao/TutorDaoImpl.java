@@ -153,11 +153,6 @@ public class TutorDaoImpl implements TutorDao {
 	@Override
 	public int removeComment(TutorCommentDto tutorCommentDto) {
 		// TODO Auto-generated method stub
-		System.out.println(tutorCommentDto.getEvaluateContent());
-		System.out.println(tutorCommentDto.getStudentNo());
-		System.out.println(tutorCommentDto.getTutorNo());
-		System.out.println(tutorCommentDto.getScore());
-		
 		return sqlSession.update(namespace + "removeComment", tutorCommentDto);
 	}
 
@@ -165,8 +160,6 @@ public class TutorDaoImpl implements TutorDao {
 	public int updateTutor(TutorDto tutorDto) {
 		// TODO Auto-generated method stub
 
-		System.out.println(tutorDto.getMemberNo());
-		System.out.println(tutorDto.getPrice());
 
 		return sqlSession.update(namespace + "updateTutor", tutorDto);
 	}
@@ -220,8 +213,6 @@ public class TutorDaoImpl implements TutorDao {
 		// TODO Auto-generated method stub
 		
 		int result = sqlSession.insert(namespace + "insertFile", map);
-
-		System.out.println(result);
 		
 		return;
 	}
@@ -240,11 +231,6 @@ public class TutorDaoImpl implements TutorDao {
 	public int changeTutorStatus(TutorDto tutorDto) {
 		// TODO Auto-generated method stub
 		
-		System.out.println(tutorDto);
-		System.out.println(tutorDto);
-		System.out.println(tutorDto);
-		System.out.println(tutorDto);
-		System.out.println(tutorDto);
 		return sqlSession.update(namespace + "changeTutorStatus", tutorDto);
 	}
 

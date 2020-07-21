@@ -36,9 +36,7 @@
 							ws.send(text);
 							text="";
 							
-							window.open("https://us04web.zoom.us/j/6083425750?pwd=K1BnaGE0N0VQc0RGNUZJa3FBdkpiUT09"
-									,"강의창"
-									,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+							
 							
 //							강사 시작하면 바뀌는 부분 좀더 설정해야함
 							$.ajax({
@@ -55,24 +53,35 @@
 											$('#statusSwitch').css('color', 'blue');
 											$('#statusCheck').val('Y');
 										}
+										
 									 if(data == 0) {
 										alert("실패");
 									}
+								},
+								error:function(){
+									alert("에러1");
 								}
 							});
 
 							$.ajax({
 								url: "/englishvillage/tutor/earnMoney.do",
 								type: "POST",
-								data: 'tutorNo=' + $('#tutorNoNum').val() + '&price' + $('#tutorPrice').val(),
+								data: 'tutorNo=' + $('#sessionNo').val() + '&price=' + $('#tutorPriceNum').val(),
 								success: function(data) {
 									
 									if(data == 0) {
 										alert("실패");
 									}
+								},
+								error:function(){
+									alert("에러2");
+									alert('tutorNo=' + $('#tutorNoNum').val() + '&price=' + $('#tutorPriceNum').val());
 								}
 							});
-						
+							
+						window.open("https://us04web.zoom.us/j/6083425750?pwd=K1BnaGE0N0VQc0RGNUZJa3FBdkpiUT09"
+								,"강의창"
+								,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 							
 						} else if(con_test == false){
 							
@@ -95,25 +104,26 @@
 								
 								alert('튜터가 강의를 수락했습니다');
 							
-								window.open("https://us04web.zoom.us/j/6083425750?pwd=K1BnaGE0N0VQc0RGNUZJa3FBdkpiUT09"
-										,"강의창"
-										,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-							
 								$.ajax({
 									url: "/englishvillage/tutor/addStudyHistoryCtr.do",
 									type: "POST",
 									data: 'tutorNo=' + $('#tutorNoNum').val() + "&studentNo=" + $('#studentNoNum').val() 
 									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val()
-									+ '&price' + $('#tutorPrice').val(),
+									+ '&price=' + $('#tutorPrice').val(),
 									success: function(data) {
-											
 										alert("성공");
-										
+									},
+									error:function(data){
+										alert("에러3");
+										alert('tutorNo=' + $('#tutorNoNum').val() + "&studentNo=" + $('#studentNoNum').val() 
+												+ '&studentName=' + $('#studentName').val() + '&price=' + $('#tutorPrice').val());
 									}
 									
 								});
 								
-								
+								window.open("https://us04web.zoom.us/j/6083425750?pwd=K1BnaGE0N0VQc0RGNUZJa3FBdkpiUT09"
+										,"강의창"
+										,"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 						
 							}
 							
@@ -144,7 +154,8 @@
         }
         
         function send(){
-        	if($('#tutorPrice').val() > $('#memberPoint').val()){
+        	
+        	if(Number($('#tutorPrice').val()) > Number($('#memberPoint').val())){
         		
         		alert("포인트가 부족합니다.");
         		

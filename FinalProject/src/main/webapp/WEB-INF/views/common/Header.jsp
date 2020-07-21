@@ -174,6 +174,8 @@ float: right;
       <input id="sessionNo" type="text" value="${member.memberNo}" style="display: none; height: 0px;">
       <input id="statusCheck" type="text" value="${tutor.statusCheck}" style="display: none; height: 0px;">
       <input id="alertStr" type="text" style="display: none; height: 0px;">
+      <input id="tutorPriceNum" type="text" value="${tutor.price}" style="display: none; height: 0px;">
+      
     </nav>
     
     

@@ -58,15 +58,9 @@ public class TutorController {
 		
 		log.info("home 입니다. GET");
 		
-		System.out.println("no" + no);
-		System.out.println("countrySearch" + countrySearch);
-		System.out.println("ageSearch" + ageSearch);
-		System.out.println("genderSearch" + genderSearch);
-		System.out.println("keyword" + keyword);
 		
 		int totalCount = tutorService.tutorSelectTotalCount(countrySearch, ageSearch, genderSearch, keyword);
 		
-		System.out.println("totalCount = " + totalCount);
 		
 		if(no != 0) {
 			curPage
@@ -77,9 +71,7 @@ public class TutorController {
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
 		
-		System.out.println("들어오나 1");
 		List<TutorDto> tutorDtoList = tutorService.getTutorList(countrySearch, ageSearch, genderSearch, keyword, start, end);
-		System.out.println("들어오나 2");
 		
 		HashMap<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("countrySearch", countrySearch);
@@ -87,7 +79,6 @@ public class TutorController {
 		searchMap.put("genderSearch", genderSearch);
 		searchMap.put("keyword", keyword);
 		
-		System.out.println("들어오나 3");
 		// 페이징
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
@@ -111,7 +102,6 @@ public class TutorController {
 	public String tutorRegisterCtr(HttpSession session, TutorDto tutorDto, Model model, MultipartHttpServletRequest mulRequest) {
 		log.info("튜터등록 입니다. POST");
 
-		System.out.println(tutorDto);
 		
 		MemberDto sessionMemberDto = (MemberDto)session.getAttribute("member");
 		int memberNo = sessionMemberDto.getMemberNo();
@@ -152,15 +142,12 @@ public class TutorController {
 	public String main(@RequestParam(defaultValue = "1") int tutorNo, Model model, HttpServletRequest request, HttpSession session) {
 		
 		
-		System.out.println(request.getAttribute("tutorNo"));
 		if(request.getAttribute("tutorNo") != null) {
 			tutorNo = (int)request.getAttribute("tutorNo");
 		}
 		
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		
-		System.out.println(tutorNo);
-		System.out.println(sessionMemberDto.getMemberNo());
 		
 		TutorCommentDto studentTutorCommentDtoList = tutorService.getStudentTutorComment(sessionMemberDto.getMemberNo(), tutorNo);
 		
@@ -168,11 +155,6 @@ public class TutorController {
 		TutorDto tutorDto = tutorService.getTutorIntroduce(tutorNo);
 		List<TutorCommentDto> tutorCommentDtoList = tutorService.getTutorComments(tutorNo);
 		
-		System.out.println(studentTutorCommentDtoList);
-		System.out.println(studentTutorCommentDtoList);
-		System.out.println(tutorCommentDtoList);
-		System.out.println(tutorCommentDtoList);
-		System.out.println(tutorCommentDtoList);
 		
 		model.addAttribute("tutorCommentDtoList", tutorCommentDtoList);
 		model.addAttribute("studentTutorCommentDtoList", studentTutorCommentDtoList);
@@ -333,7 +315,6 @@ public class TutorController {
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("updateone에 예외처리되나");
 			e.printStackTrace();
 		}
 		
@@ -346,8 +327,6 @@ public class TutorController {
 					
 					TutorDto tempTutorDto = tutorService.getTutorInfo(tutorDto.getMemberNo());
 					MemberDto newSessionMemberDto = authService.memberExist(tempTutorDto.getMemberEmail(), tempTutorDto.getMemberPassword());
-					
-					System.out.println("여기오나?");
 					
 					session.removeAttribute("member");
 					
@@ -445,7 +424,6 @@ public class TutorController {
 		MemberDto sessionTutorDto = (MemberDto) session.getAttribute("member");
 		
 		int no = sessionTutorDto.getMemberNo();
-		System.out.println(no);
 		TutorDto tutorDto = tutorService.getTutorIntroduce(no);
 
 		// 회원 토탈카운트 -> 보드 토탈카운트
@@ -459,14 +437,6 @@ public class TutorController {
 				= tutorService.tutorBoardCurPage(no, idx);
 		}
 		
-		System.out.println(curPage);
-		System.out.println(curPage);
-		System.out.println(curPage);
-		System.out.println(curPage);
-		System.out.println(curPage);
-		System.out.println(curPage);
-		System.out.println(curPage);
-		//		System.out.println("????????: " + curPage);
 		
 		PagingYJ tutorPaging = new PagingYJ(totalCount, curPage);
 		int start = tutorPaging.getPageBegin();
@@ -502,27 +472,34 @@ public class TutorController {
 		session.removeAttribute("tutor");
 		session.setAttribute("tutor", newSesssionTutorDto);
 		
+		System.out.println("changeTutorStatusCheck 끝");
+		
 		return resultNum;
 	}
 	
-	@RequestMapping(value = "/tutor/addStudyHistoryCtr.do", method = RequestMethod.POST)
-	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck, int price) {
+	@RequestMapping(value = "/tutor/addStudyHistoryCtr.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public String addStudyHistoryCtr(HttpSession session, Model model, TutorCommentDto tutorCommentDto, int price) {
 		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
-		
+		System.out.println(tutorCommentDto);
+		System.out.println(tutorCommentDto);
+		System.out.println(price);
+		System.out.println(price);
+		System.out.println(price);
 		
 		Map<String, Object> map = studentService.SelectOne(tutorCommentDto.getStudentNo());
 		
 		MemberFileDto memberFileDto = (MemberFileDto) map.get("MemberFileDto");
 		
 		tutorCommentDto.setStudentName(memberFileDto.getMemberName());
-
+		
 		int resultNum = tutorService.addStudyHistory(tutorCommentDto);
 
 		tutorService.addPoint(tutorCommentDto.getStudentNo(), 0 - price);
 		
 		Map<String, Object> studentMap = studentService.SelectOne(tutorCommentDto.getStudentNo());
+		MemberFileDto studentDto = (MemberFileDto) studentMap.get("MemberFileDto");
 		
-		MemberDto newSessionMemberDto = authService.memberExist(((MemberFileDto) studentMap.get(memberFileDto)).getMemberEmail(), ((MemberFileDto) studentMap.get(memberFileDto)).getMemberPassword());
+		MemberDto newSessionMemberDto = authService.memberExist(studentDto.getMemberEmail(), studentDto.getMemberPassword());
 		
 		session.removeAttribute("member");
 		
@@ -539,14 +516,20 @@ public class TutorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/tutor/earnMoney.do", method = RequestMethod.POST)
-	public int earnMoney(HttpSession session, Model model, TutorCommentDto tutorCommentDto, String statusCheck, int price) {
-		log.info("addStudyHistoryCtr 입니다. GET" + tutorCommentDto);
+	@RequestMapping(value = "/tutor/earnMoney.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public int earnMoney(HttpSession session, Model model, int tutorNo, String statusCheck, int price) {
+		log.info("addStudyHistoryCtr 입니다. GET" + tutorNo);
+		
+		System.out.println(price);
+		System.out.println(price);
+		System.out.println(price);
+		System.out.println(price);
+		System.out.println(price);
 		
 		
-		int resultNum = tutorService.addPoint(tutorCommentDto.getTutorNo(), price);
+		int resultNum = tutorService.addPoint(tutorNo, price);
 
-		TutorDto tutorDto = tutorService.getTutorInfo(tutorCommentDto.getTutorNo());
+		TutorDto tutorDto = tutorService.getTutorInfo(tutorNo);
 		
 		MemberDto newSessionMemberDto = authService.memberExist(tutorDto.getMemberEmail(), tutorDto.getMemberPassword());
 		
