@@ -123,7 +123,7 @@
 			<div class="layoutText">
 				<span>문의 게시판</span>
 			</div>
-			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" />
+			<jsp:include page="/WEB-INF/views/common/adminLayoutEx.jsp" /> 
 		</div>
 		<div id='qnaTable'  class="col-md-6" >
 		<span id='replyadd'>답글 달기</span>

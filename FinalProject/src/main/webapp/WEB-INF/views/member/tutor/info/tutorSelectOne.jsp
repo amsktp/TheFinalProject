@@ -113,7 +113,7 @@ tr {
 /* #commentList { */
 /* 	width: 1140px; */
 /* } */
-#studentName {
+#studentNameTh {
 	width: 250px;
 	vertical-align: middle;
 	font-size: 25px;
@@ -501,8 +501,8 @@ tr {
 					<!-- 사진 -->
 
 					<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
-					<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
-					<input id="memberPoint" type="hidden" value="${member.memberPoint}">
+					<input id="tutorPrice" type="text" value="${tutorDto.price}">
+					<input id="memberPoint" type="text" value="${member.memberPoint}">
 
 					<input id="statusCheck" type="hidden"
 						value="${tutorDto.statusCheck}">
@@ -605,7 +605,7 @@ tr {
 					<table class="table table-bordered">
 						<tbody>
 							<tr>
-								<th id="studentName" rowspan="2" class="text-center"
+								<th id="studentNameTh" rowspan="2" class="text-center"
 									style="vertical-align: middle;">${tutorCommentDto.studentName}</th>
 								<th id="thSize" class="text-center"
 									style="vertical-align: middle;">평점</th>
@@ -718,7 +718,7 @@ tr {
 
 									</tbody>
 								</table>
-								<input type="hidden" name="studentName"
+								<input id="studentName" type="hidden" name="studentName"
 									value="${member.memberName}"> <input id="studentNoNum"
 									type="hidden" name="studentNo"
 									value="${studentTutorCommentDtoList.studentNo}"> <input

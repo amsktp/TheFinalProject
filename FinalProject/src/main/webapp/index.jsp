@@ -49,35 +49,35 @@
 
 
 <body>
-<div id="menuList">
-	<div onclick="loginMoveFnc();" >
-		로그인 버튼
-	</div>
+<!-- <div id="menuList"> -->
+<!-- 	<div onclick="loginMoveFnc();" > -->
+<!-- 		로그인 버튼 -->
+<!-- 	</div> -->
 	
-	<div onclick="mainMoveFnc();" >
-		메인페이지
-	</div>
+<!-- 	<div onclick="mainMoveFnc();" > -->
+<!-- 		메인페이지 -->
+<!-- 	</div> -->
 	
-	<div onclick="tutorListMoveFnc();" >
-		튜터 목록
-	</div>
+<!-- 	<div onclick="tutorListMoveFnc();" > -->
+<!-- 		튜터 목록 -->
+<!-- 	</div> -->
 	
-	<div onclick="tutorIntroduceMoveFnc();" >
-		튜터 소개 페이지
-	</div>
+<!-- 	<div onclick="tutorIntroduceMoveFnc();" > -->
+<!-- 		튜터 소개 페이지 -->
+<!-- 	</div> -->
 	
-	<div onclick="adminMoveFnc();" >
-		관리자 학생 페이지
-	</div>
+<!-- 	<div onclick="adminMoveFnc();" > -->
+<!-- 		관리자 학생 페이지 -->
+<!-- 	</div> -->
 	
-	<div onclick="adminMove1Fnc();" >
-		관리자 튜터 페이지
-	</div>
+<!-- 	<div onclick="adminMove1Fnc();" > -->
+<!-- 		관리자 튜터 페이지 -->
+<!-- 	</div> -->
 	
-	<div onclick="adminMove2Fnc();" >
-		관리자 문의 페이지
-	</div>
-</div>
+<!-- 	<div onclick="adminMove2Fnc();" > -->
+<!-- 		관리자 문의 페이지 -->
+<!-- 	</div> -->
+<!-- </div> -->
 	
 </body>
 
