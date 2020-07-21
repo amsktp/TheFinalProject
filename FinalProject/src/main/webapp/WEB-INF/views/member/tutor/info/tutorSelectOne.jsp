@@ -501,8 +501,8 @@ tr {
 					<!-- 사진 -->
 
 					<input id="tutorNoNum" type="hidden" value="${tutorDto.memberNo}">
-					<input id="tutorPrice" type="text" value="${tutorDto.price}">
-					<input id="memberPoint" type="text" value="${member.memberPoint}">
+					<input id="tutorPrice" type="hidden" value="${tutorDto.price}">
+					<input id="memberPoint" type="hidden" value="${member.memberPoint}">
 
 					<input id="statusCheck" type="hidden"
 						value="${tutorDto.statusCheck}">
