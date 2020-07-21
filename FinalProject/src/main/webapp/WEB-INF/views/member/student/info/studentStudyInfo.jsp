@@ -20,28 +20,29 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.layoutUl').children().eq(3).addClass('on');
-		/* 슬라이드 쿼리 */
-		$("#slider").lightSlider({
-			mode : 'slide', // 이미지가 표시되는 형식 (fade / slide)
-			loop : true, // 무한반복 할 것인지
-			auto : true, // 자동 슬라이드
-			keyPress : true, // 키보드 탐색 허용
-			pager : true, // 페이지 표시
-			speed : 3000, // 슬라이드 되는 속도
-			pause : 5000
-		// 이미지가 머무는 시간
-		});
+	$(document).ready(
+			function() {
+				$('.layoutUl').children().eq(3).addClass('on');
 
-		function moveTutorIntroduceFnc(tutorNo) {
+				/* 제목 입력 시 미리보기 반영 */
+				var titleMaxLenght = 30;
 
-			location.href = '../tutor/tutorSelectOne.do?tutorNo=' + tutorNo;
+				for (var i = 0; i < 10; i++) {
 
-		}
-		;
+					var studyTitleStr = $('.studyNameInput').eq(i).val();
 
-	});
+					if (studyTitleStr.length > titleMaxLenght) {
+						studyTitleStr = studyTitleStr.substring(0,
+								titleMaxLenght)
+								+ '...';
+					}
+
+					$('.studyNameInput').eq(i).parent().children(0).text(
+							studyTitleStr);
+
+				}
+
+			});
 </script>
 <style type="text/css">
 ul {
@@ -146,6 +147,102 @@ ul {
 	border-radius: 20px;
 	overflow: hidden
 } /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+
+/* 메세지창 */
+.help-tip {
+/* 	position: absolute; */
+/* 	top: 18px; */
+/* 	right: 18px; */
+	text-align: center;
+	background-color: #BCDBEA;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	font-size: 14px;
+	line-height: 26px;
+	cursor: default;
+}
+
+.help-tip:before {
+	content: '?';
+	font-weight: bold;
+	color: #fff;
+}
+
+.help-tip:hover p {
+	display: block;
+	transform-origin: 100% 0%;
+	-webkit-animation: fadeIn 0.3s ease-in-out;
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+.help-tip p {
+	display: none;
+	text-align: left;
+	background-color: #1E2021;
+	padding: 20px;
+	width: 300px;
+	position: absolute;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	right: -4px;
+	color: #FFF;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.help-tip p:before {
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-bottom-color: #1E2021;
+	right: 10px;
+	top: -12px;
+}
+
+.help-tip p:after {
+	width: 100%;
+	height: 40px;
+	content: '';
+	position: absolute;
+	top: -40px;
+	left: 0;
+}
+
+@
+-webkit-keyframes fadeIn { 0% {
+	opacity: 0;
+	transform: scale(0.6);
+}
+
+100
+%
+{
+opacity
+:
+100%;
+transform
+:
+scale(
+1
+);
+}
+}
+@
+keyframes fadeIn { 0% {
+	opacity: 0;
+}
+100
+%
+{
+opacity
+:
+100%;
+}
+}
+​ /* 메세지창 끝 */
 </style>
 </head>
 
@@ -160,19 +257,25 @@ ul {
 			<table class="table table-hover textCenter tableFont">
 
 				<colgroup>
-					<col width="10%">
+					<col width="20%">
 					<col width="35%">
 					<col width="20%">
-					<col width="20%">
+					<col width="10%">
 					<col width="20%">
 				</colgroup>
 				<thead>
 					<tr class="success">
-						<th class='textCenter'>번호</th>
-						<th class='textCenter'>강의제목</th>
-						<th class='textCenter'>튜터이름</th>
 						<th class='textCenter'>수강일</th>
+						<th class='textCenter'>강의제목</th>
+						<th class='textCenter'>튜터</th>
 						<th class='textCenter'>포인트</th>
+						<th class='textCenter'>상태
+							<span class="help-tip">
+								<p>
+									마우스 오버시 알림메시지창이 뜹니다.<br>CSS로만 만들어졌습니다.
+								</p>
+							</span>
+						</th>
 					</tr>
 				</thead>
 
@@ -180,25 +283,42 @@ ul {
 					<c:when test="${not empty studyList}">
 						<c:forEach var="studyDto" items="${studyList}">
 							<tr>
-								<td style="vertical-align: middle;"><div id="idxVal"
-										class="td_status">${studyDto.rnum}</div></td>
+								<td><div class="td_status">
+										<fmt:formatDate value="${studyDto.studyDate}"
+											pattern="yyyy-MM-dd hh:mm:ss" />
+									</div></td>
 								<td style="vertical-align: middle;" class="textLeft"><div
-										class="td_status">${studyDto.studyName}</div></td>
+										class="td_status studyName">${studyDto.studyName}</div> <input
+									class="studyNameInput" type="hidden"
+									value="${studyDto.studyName}"></td>
 
 								<td style="vertical-align: middle;"><div class="td_status">
 										<a
 											href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}">
 											${studyDto.tutorName}</a>
 									</div></td>
-
-								<td><div class="td_status">
-										<fmt:formatDate value="${studyDto.studyDate}"
-											pattern="yyyy-MM-dd hh:mm:ss" />
-									</div></td>
-
 								<td style="vertical-align: middle;">
 									<div class="td_status">- ${studyDto.price}</div>
 								</td>
+								<c:choose>
+									<c:when test="${studyDto.evaluateCheck == 'Y'}">
+										<td style="vertical-align: middle;">
+											<div class="td_status">
+												<a class="btn btn-success"
+													href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}#evaluate">
+													후기확인</a>
+											</div>
+										</td>
+									</c:when>
+									<c:when test="${studyDto.evaluateCheck == 'N'}">
+										<td style="vertical-align: middle;"><div
+												class="td_status">
+												<a class="btn btn-danger"
+													href="/englishvillage/tutor/tutorSelectOne.do?tutorNo=${studyDto.tutorNo}#commentContents">
+													후기작성</a>
+											</div></td>
+									</c:when>
+								</c:choose>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -211,64 +331,12 @@ ul {
 
 			</table>
 
-
+			<!-- 수강내역이 없으면 튜터 추천  -->
 			<c:if test="${empty studyList}">
-				<!-- 강사소개 슬라이드 -->
-				<div class="slide-wrap">
-					<h1 class="animate__animated animate__bounce">최고의 선생님들을 만나보세요</h1>
-					<div class="slide-content">
-						<ul id="slider" class="slider">
-
-							<c:forEach var="tutorDto" items="${tutorDtoList}" begin="0"
-								end="5">
-								<li>
-									<div style="width: 100%">
-										<div class="img">
-											<div class="scale tutorImgDiv"
-												onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-												<img alt="image not found" class='tutorImg'
-													src="<c:url value='/img/${tutorDto.storeFileName}'/>">
-											</div>
-										</div>
-
-										<div class="detailInfo">
-											<div class="studyInfo">
-
-												<div class="flagBox">
-													<img class="flagIcon" title="${tutorDto.memberCountry}"
-														src="<c:url value='/resources/imgs/worldFlag/${tutorDto.memberCountry}.ico'/>">
-												</div>
-
-												<div class="studyInfo">
-													<div class="studyTitle"
-														onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-														<Strong>${tutorDto.studyName}</Strong>
-													</div>
-													<div class="tutorName"
-														onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-														<span>${tutorDto.memberName}</span>
-													</div>
-
-													<div>
-														<span class="score"> <c:forEach begin="1"
-																end="${tutorDto.score}">
-																<span style="color: #ff8b13;">★</span>
-															</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
-																<span style="color: grey;">★</span>
-															</c:forEach> (${tutorDto.evaluationCount})
-														</span>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-				</div>
-				<!-- 강사소개 슬라이드 끝-->
+				<img src="<c:url value='/resources/imgs/icon-medal-gold.png'/>"></img>
+				<span class="animate__animated animate__rubberBand"
+					style="font-size: 15px; font-weight: 500;">최고의 선생님들을 만나보세요!</span>
+				<jsp:include page="/WEB-INF/views/common/tutorIntro.jsp" />
 			</c:if>
 			<c:if test="${not empty studyList}">
 				<jsp:include page="/WEB-INF/views/common/paging2.jsp">

@@ -513,7 +513,7 @@ tr {
 	<!-- 강사정보 끝  -->
 
 	<!-- 소개글 -->
-	<div class="container" style="margin-top: 20px">
+	<div id="evaluate" class="container" style="margin-top: 20px">
 		<span class="partTitle" style="clear: left;">강의 소개</span>
 		<!--수업시작 버튼 -->
 		<c:choose>

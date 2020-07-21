@@ -72,20 +72,20 @@ td {
 					summary="문의하기">
 
 					<tr>
-						<th scope="row">이름</th>
+						<th class="success">이름</th>
 						<td><div>${member.memberName}</div> <input type="hidden"
 							name='no' value="${member.memberNo}">
 					</tr>
 
 					<tr>
-						<th scope="row" style="vertical-align: middle;">제목</th>
+						<th class="success" style="vertical-align: middle;">제목</th>
 						<td colspan="3"><input type="text" class="form-control"
 							id="title" name="title" maxlength="30" placeholder="제목을 입력하세요">
 						</td>
 					</tr>
 					<tr>
-						<th scope="row" style="vertical-align: middle;">내용</th>
-						<td colspan="3"> <textarea class="form-control"
+						<th class="success" style="vertical-align: middle;">내용</th>
+						<td colspan="3"> <textarea class="form-control success"
 								id="content" name="content" maxlength="300" rows="5"
 								style="resize: none;" placeholder="내용을 입력하세요"></textarea></td>
 					</tr>

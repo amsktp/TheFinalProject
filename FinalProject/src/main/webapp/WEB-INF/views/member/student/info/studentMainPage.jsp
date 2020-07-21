@@ -46,6 +46,9 @@
 
 
 <style type="text/css">
+a {
+	cursor: pointer;
+}
 </style>
 </head>
 
@@ -58,7 +61,7 @@
 			<div class="container">
 				<!-- 최근 문의 테이블 시작 -->
 				<div class="col-md-4">
-					<h4>최근문의 내역</h4>
+					<h4 style="font-weight: bold;"><a href="/englishvillage/student/questionList.do">최근문의 내역</a></h4>
 					<table class="table table-hover tableFontMain">
 						<colgroup>
 							<col width="10%">
@@ -68,7 +71,7 @@
 
 						</colgroup>
 						<thead>
-							<tr>
+							<tr class="success">
 								<th class="textCenter">번호</th>
 								<th class="textCenter">제목</th>
 								<th class="textCenter">날짜</th>
@@ -119,7 +122,7 @@
 
 				<!-- 최근 수강내역 -->
 				<div class="col-md-5">
-					<h4>최근수강 내역</h4>
+					<h4 style="font-weight: bold;"><a href="/englishvillage/student/studyList.do">최근수강 내역</a></h4>
 					<table class="table table-hover tableFontMain">
 
 						<colgroup>
@@ -129,7 +132,7 @@
 							<col width="20%">
 						</colgroup>
 						<thead>
-							<tr>
+							<tr class="success">
 								<th class='textCenter'>번호</th>
 								<th class='textCenter'>제목</th>
 								<th class='textCenter'>날짜</th>
@@ -158,8 +161,8 @@
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<tr>
-									<td colspan="4"><div class="td_status">수강내역이 존재하지
+								<tr>  
+									<td colspan="4"><div class="td_status textCenter">수강내역이 존재하지
 											않습니다.</div></td>
 								<tr>
 							</c:otherwise>
@@ -169,6 +172,11 @@
 				</div>
 			</div>
 			<!-- 최근수강내역 테이블 끝-->
+			<!-- 튜터 추천  -->
+			<img src="<c:url value='/resources/imgs/icon-medal-gold.png'/>"></img>
+			<span class="animate__animated animate__rubberBand"
+				style="font-size: 15px; font-weight: 500;">최고의 선생님들을 만나보세요!</span>
+			<jsp:include page="/WEB-INF/views/common/tutorIntro.jsp" />
 		</div>
 		<!-- 컨텐츠 박스 끝 -->
 	</div>

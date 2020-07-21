@@ -56,9 +56,15 @@ public class StudentController {
 		//최근수강내역
 		List<QuestionBoardDto> studyList = studentService.studySelectList(no);
 		
+		//강사소개
+		List<TutorDto> tutorDtoList = tutorService.getTutorList();
+		//랜덤으로 섞기
+		Collections.shuffle(tutorDtoList);
+		
 		model.addAttribute("memberFileDto", memberFileDto);
 		model.addAttribute("qusetionList", qusetionList);
 		model.addAttribute("studyList", studyList);
+		model.addAttribute("tutorDtoList", tutorDtoList);
 		
 		return "/member/student/info/studentMainPage";
 	}

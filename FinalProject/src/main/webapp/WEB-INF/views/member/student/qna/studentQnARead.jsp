@@ -43,9 +43,9 @@
 			<table id='qnaTable' class="table table-bordered">
 
 				<tr>
-					<th class="textCenter" scope="row">문의번호</th>
+					<th class="textCenter success" scope="row">문의번호</th>
 					<td class="textCenter"><div id="idxBox">${questionBoardDto.idx}</div></td>
-					<th class="textCenter" scope="row">문의일</th>
+					<th class="textCenter success" scope="row">문의일</th>
 					<td>
 						<div id='boardCreateDate'>
 							<fmt:formatDate value="${questionBoardDto.boardCreateDate}"
@@ -55,21 +55,21 @@
 				</tr>
 
 				<tr>
-					<th class="textCenter" scope="row">제목</th>
+					<th class="textCenter success" scope="row">제목</th>
 					<td colspan="3">
 						<div style="margin-left: 20px">${questionBoardDto.title}</div>
 
 					</td>
 				</tr>
 				<tr>
-					<th class="textCenter">내용</th>
+					<th class="textCenter success">내용</th>
 					<td colspan="3">
 						<div style="margin-left: 20px">${questionBoardDto.content}</div>
 					</td>
 				</tr>
 				<c:if test="${not empty questionBoardDto.reply}">
 					<tr>
-						<th class="textCenter">답변</th>
+						<th class="textCenter success">답변</th>
 						<td colspan="3">
 							<div id='reply' style="margin-left: 20px">${questionBoardDto.reply}</div>
 							<div style="margin-left: 20px; float: right;">
