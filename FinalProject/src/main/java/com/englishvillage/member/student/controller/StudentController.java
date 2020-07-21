@@ -116,9 +116,9 @@ public class StudentController {
 		int resultNum = 0;
 		MemberDto sessionMemberDto = (MemberDto) session.getAttribute("member");
 		sessionMemberDto.setMemberPassword(memberPassword);
-		System.out.println("업데이트 결과값" + resultNum);
 
 		resultNum = studentService.memberUpdateOne(sessionMemberDto);
+		System.out.println("업데이트 결과값" + resultNum);
 
 		return "redirect:/student/myInfo.do";
 
@@ -146,6 +146,7 @@ public class StudentController {
 
 		studentService.memberDeleteOne(no);
 
+		System.out.println("탈퇴 서비스 완료");
 		session.removeAttribute("member");
 		session.invalidate();
 
@@ -313,11 +314,11 @@ public class StudentController {
 	}
 
 	// 테스트 페이지
-	@RequestMapping(value = "test.do", method = RequestMethod.POST)
+	@RequestMapping(value = "test.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String test(QuestionBoardDto questionBoardDto, HttpSession session, Model model) {
 		log.info("Welcome test.do! " + questionBoardDto);
 
-		return "/home/student/qna/studentQnAWrite";
+		return "/member/student/info/delete";
 	}
 
 	// 고재민 작업분 (수강권 구매)

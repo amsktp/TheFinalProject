@@ -60,8 +60,10 @@ a {
 			<div id="pageName">마이 페이지</div>
 			<div class="container">
 				<!-- 최근 문의 테이블 시작 -->
-				<div class="col-md-4">
-					<h4 style="font-weight: bold;"><a href="/englishvillage/student/questionList.do">최근문의 내역</a></h4>
+				<div class="col-md-4 animate__animated animate__slideInUp">
+					<h4 style="font-weight: bold;">
+						<a href="/englishvillage/student/questionList.do">최근문의 내역</a>
+					</h4>
 					<table class="table table-hover tableFontMain">
 						<colgroup>
 							<col width="10%">
@@ -102,16 +104,14 @@ a {
 													pattern="yyyy-MM-dd" />
 											</div></td>
 
-										<td class="textCenter">
-											<div class="td_status">
-												<c:if test="${questionDto.answerStatus == 'Y'}">
-									처리완료
-								</c:if>
-												<c:if test="${questionDto.answerStatus == 'N'}">
-									처리중
-								</c:if>
-											</div>
-										</td>
+										<td class="textCenter"><c:if
+												test="${questionDto.answerStatus == 'Y'}">
+												<div class="td_status"
+													style="color: green; font-weight: 700">답변완료</div>
+											</c:if> <c:if test="${questionDto.answerStatus == 'N'}">
+												<div class="td_status"
+													style="color: #ff5b5b; font-weight: 700">답변대기중</div>
+											</c:if></td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -121,8 +121,10 @@ a {
 				<!-- 최근문의내역 테이블 끝-->
 
 				<!-- 최근 수강내역 -->
-				<div class="col-md-5">
-					<h4 style="font-weight: bold;"><a href="/englishvillage/student/studyList.do">최근수강 내역</a></h4>
+				<div class="col-md-5 animate__animated animate__slideInUp">
+					<h4 style="font-weight: bold;">
+						<a href="/englishvillage/student/studyList.do">최근수강 내역</a>
+					</h4>
 					<table class="table table-hover tableFontMain">
 
 						<colgroup>
@@ -161,9 +163,9 @@ a {
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<tr>  
-									<td colspan="4"><div class="td_status textCenter">수강내역이 존재하지
-											않습니다.</div></td>
+								<tr>
+									<td colspan="4"><div class="td_status textCenter">수강내역이
+											존재하지 않습니다.</div></td>
 								<tr>
 							</c:otherwise>
 						</c:choose>
@@ -173,14 +175,16 @@ a {
 			</div>
 			<!-- 최근수강내역 테이블 끝-->
 			<!-- 튜터 추천  -->
-			<img src="<c:url value='/resources/imgs/icon-medal-gold.png'/>"></img>
-			<span class="animate__animated animate__rubberBand"
-				style="font-size: 15px; font-weight: 500;">최고의 선생님들을 만나보세요!</span>
-			<jsp:include page="/WEB-INF/views/common/tutorIntro.jsp" />
+			<div class="slide-content animate__animated animate__slideInUp"
+				style="margin-top: 10px">
+				<img src="<c:url value='/resources/imgs/icon-medal-gold.png'/>"></img>
+				<span class="animate__animated animate__rubberBand"
+					style="font-size: 15px; font-weight: 500;">최고의 선생님들을 만나보세요!</span>
+				<jsp:include page="/WEB-INF/views/common/tutorIntro.jsp" />
+			</div>
 		</div>
 		<!-- 컨텐츠 박스 끝 -->
 	</div>
 	<!-- 메인박스 끝 -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

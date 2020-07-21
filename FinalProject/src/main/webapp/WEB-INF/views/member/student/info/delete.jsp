@@ -45,8 +45,8 @@
 			<h2 style="font-weight: bold; text-align: center;">로그인화면으로
 				돌아갑니다.</h2>
 
-			<input id="finalBtn" class="btn btn-success btn-lg" type='button'
-				value='확인' onClick="location.href='/englishvillage/login.do'">
+			<input id="finalBtn" class="btn btn-success btn-lg" style="margin: 34px 174px;" type='button'
+				value='확인' onClick="location.href='/englishvillage/auth/login.do'">
 		</div>
 
 

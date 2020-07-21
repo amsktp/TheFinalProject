@@ -39,9 +39,4 @@ public interface StudentService {
 
 	public List<QuestionBoardDto> studySelectList(int no);
 
-
-//	public void memberDeleteOne(String userEmail);
-
-
-
 }

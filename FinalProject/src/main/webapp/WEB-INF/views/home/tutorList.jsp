@@ -34,7 +34,6 @@ dl, ul, ol, menu, li {
 }
 
 #mainImg {
-
 	margin-bottom: 30px;
 	width: 100%;
 }
@@ -85,8 +84,8 @@ dl, ul, ol, menu, li {
 	width: 340px;
 	float: left;
 	margin: 10px;
-	    box-shadow: 0 8px 20px 0 rgba(0,0,0,.1);
-	    border-radius: 10px;
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .1);
+	border-radius: 10px;
 }
 
 .tutorImgDiv {
@@ -112,8 +111,8 @@ dl, ul, ol, menu, li {
 }
 
 .studyInfo {
-    width: 275px;
-    padding: 5px 0px 12px 15px;
+	width: 275px;
+	padding: 5px 0px 12px 15px;
 }
 
 .studyTitle {
@@ -174,23 +173,10 @@ dl, ul, ol, menu, li {
 }
 
 .img {
-		border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
 	overflow: hidden
 } /* 부모를 벗어나지 않고 내부 이미지만 확대 */
-.bird {
-	background-image: url('bird.svg');
-	background-size: auto 100%;
-	width: 88px;
-	height: 125px;
-	will-change: background-position;
-}
 
-@
-keyframes fly-cycle { 100% {
-	background-position: -900px 0;
-}
-
-}
 @media ( min-width : 1200px) {
 	#searchBox {
 		width: 720px;
@@ -211,6 +197,8 @@ keyframes fly-cycle { 100% {
 </style>
 <script type="text/javascript"
 	src="/englishvillage/resources/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 <script type="text/javascript">
 
 
@@ -236,7 +224,7 @@ keyframes fly-cycle { 100% {
 			$('.studyNameInput').eq(i).parent().children(0).children(0).text(studyTitleStr);
 			
 		}
-			
+				
 	});
 			
 	
@@ -252,7 +240,7 @@ keyframes fly-cycle { 100% {
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			<div class="item">
+			<div class="item active">
 				<img class="first-slide mainImg"
 					src="/englishvillage/resources/imgs/s.jpg" alt="First slide">
 				<div class="container">
@@ -266,7 +254,7 @@ keyframes fly-cycle { 100% {
 					</div>
 				</div>
 			</div>
-			<div class="item active">
+			<div class="item">
 				<img class="second-slide mainImg"
 					src="/englishvillage/resources/imgs/s1.jpg" alt="Second slide">
 				<div class="container">
@@ -424,7 +412,8 @@ keyframes fly-cycle { 100% {
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="tutorDto" items="${tutorDtoList}">
-					<div class="tutorInfoDiv clearfix">
+					<div
+						class="tutorInfoDiv clearfix animate__animated animate__fadeInDown">
 						<div class="img">
 							<div class="scale tutorImgDiv"
 								onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">

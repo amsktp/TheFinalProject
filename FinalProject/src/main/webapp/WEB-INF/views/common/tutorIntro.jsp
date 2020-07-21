@@ -23,15 +23,29 @@ $(document).ready(function() {
 		pause : 5000
 	// 이미지가 머무는 시간
 	});
+	
+	/* 제목 입력 시 미리보기 반영 */
+	var titleMaxLenght = 16;
 
-	function moveTutorIntroduceFnc(tutorNo) {
+	for (var i = 0; i < 10; i++) {
 
-		location.href = '../tutor/tutorSelectOne.do?tutorNo=' + tutorNo;
+		var studyTitleStr = $('.studyNameInput').eq(i).val();
+		if (studyTitleStr.length > titleMaxLenght) {
+			studyTitleStr = studyTitleStr.substring(0,
+					titleMaxLenght)
+					+ '...';
+		}
 
+		$('.studyNameInput').eq(i).parent().children(0).text(
+				studyTitleStr);
 	}
-	;
 
 });
+	function moveTutorIntroduceFnc(tutorNo) {
+
+		location.href = "/englishvillage/tutor/tutorSelectOne.do?tutorNo=" + tutorNo;
+
+	};
 </script>
 <style type="text/css">
 ul {
@@ -141,56 +155,56 @@ ul {
 
 <!-- 강사소개 슬라이드 -->
 <div class="slide-wrap">
-	<div class="slide-content animate__animated animate__slideInUp"
-		style="margin-top: 10px">
-		<ul id="slider" class="slider">
+	<ul id="slider" class="slider">
 
-			<c:forEach var="tutorDto" items="${tutorDtoList}" begin="0" end="5">
-				<li>
-					<div style="width: 100%">
-						<div class="img">
-							<div class="scale tutorImgDiv"
-								onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-								<img alt="image not found" class='tutorImg'
-									src="<c:url value='/img/${tutorDto.storeFileName}'/>">
-							</div>
-						</div>
-
-						<div class="detailInfo">
-							<div class="studyInfo">
-
-								<div class="flagBox">
-									<img class="flagIcon" title="${tutorDto.memberCountry}"
-										src="<c:url value='/resources/imgs/worldFlag/${tutorDto.memberCountry}.ico'/>">
-								</div>
-
-								<div class="studyInfo">
-									<div class="studyTitle"
-										onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-										<Strong>${tutorDto.studyName}</Strong>
-									</div>
-									<div class="tutorName"
-										onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
-										<span>${tutorDto.memberName}</span>
-									</div>
-
-									<div>
-										<span class="score"> <c:forEach begin="1"
-												end="${tutorDto.score}">
-												<span style="color: #ff8b13;">★</span>
-											</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
-												<span style="color: grey;">★</span>
-											</c:forEach> (${tutorDto.evaluationCount})
-										</span>
-									</div>
-								</div>
-
-							</div>
+		<c:forEach var="tutorDto" items="${tutorDtoList}" begin="0" end="5">
+			<li>
+				<div style="width: 100%">
+					<div class="img">
+						<div class="scale tutorImgDiv"
+							onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
+							<img alt="image not found" class='tutorImg'
+								src="<c:url value='/img/${tutorDto.storeFileName}'/>">
 						</div>
 					</div>
-				</li>
-			</c:forEach>
-		</ul>
-	</div>
+
+					<div class="detailInfo">
+						<div class="studyInfo">
+
+							<div class="flagBox">
+								<img class="flagIcon" title="${tutorDto.memberCountry}"
+									src="<c:url value='/resources/imgs/worldFlag/${tutorDto.memberCountry}.ico'/>">
+							</div>
+
+							<div class="studyInfo">
+								<div class="studyTitle"
+									onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
+									<Strong>${tutorDto.studyName}</Strong> <input
+										class="studyNameInput" type="hidden"
+										value="${tutorDto.studyName}">
+								</div>
+
+								<div class="tutorName"
+									onclick="moveTutorIntroduceFnc(${tutorDto.memberNo});">
+									<span>${tutorDto.memberName}</span>
+								</div>
+
+								<div>
+									<span class="score"> <c:forEach begin="1"
+											end="${tutorDto.score}">
+											<span style="color: #ff8b13;">★</span>
+										</c:forEach> <c:forEach begin="${tutorDto.score}" end="4">
+											<span style="color: grey;">★</span>
+										</c:forEach> (${tutorDto.evaluationCount})
+									</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
 </div>
 <!-- 강사소개 슬라이드 끝-->

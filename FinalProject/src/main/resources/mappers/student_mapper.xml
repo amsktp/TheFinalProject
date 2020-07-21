@@ -121,9 +121,8 @@
 	<update id="memberUpdateOne" parameterType="MemberDto">
 		UPDATE MEMBER
 		SET
-		MEMBER_MODIFY_DATE =
-		MEMBER_PASSWORD = #{memberPassword},
-		SYSDATE
+		MEMBER_MODIFY_DATE = SYSDATE,
+		MEMBER_PASSWORD = #{memberPassword}
 		WHERE
 		MEMBER_EMAIL = #{memberEmail}
 	</update>
@@ -131,7 +130,7 @@
 	<delete id="memberDeleteOne" parameterType="int">
 		DELETE FROM
 		MEMBER
-		WHERE MEMBER_NO = #{memberNo}
+		WHERE MEMBER_NO = #{no}
 	</delete>
 
 	<select id="studentStudyCount" parameterType="int"

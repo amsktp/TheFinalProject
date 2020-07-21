@@ -95,15 +95,14 @@
 									</div></td>
 
 								<td style="vertical-align: middle;">
-									<div class="td_status">
-										<c:if test="${questionDto.answerStatus == 'Y'}">
-									처리완료
-								</c:if>
-										<c:if test="${questionDto.answerStatus == 'N'}">
-									처리중
-								</c:if>
-									</div>
-								</td>
+									<c:if
+										test="${questionDto.answerStatus == 'Y'}">
+										<div class="td_status" style="color: green; font-weight: 700">
+											답변완료</div>
+									</c:if> <c:if test="${questionDto.answerStatus == 'N'}">
+										<div class="td_status"
+											style="color: #ff5b5b; font-weight: 700">답변대기중</div>
+									</c:if></td>
 							</tr>
 						</c:forEach>
 					</c:when>
