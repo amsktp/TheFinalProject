@@ -246,11 +246,6 @@ dl, ul, ol, menu, li {
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>영어 지금 시작하세요!</h1>
-						<p>Note: 어쩌구 저쩌구</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="commonRegister.do"
-								role="button">Sign up today</a>
-						</p>
 					</div>
 				</div>
 			</div>
@@ -260,11 +255,6 @@ dl, ul, ol, menu, li {
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>영어의 시대</h1>
-						<p>Note: 어쩌구 저쩌구</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="login.do" role="button">Learn
-								more</a>
-						</p>
 					</div>
 				</div>
 			</div>
@@ -274,11 +264,6 @@ dl, ul, ol, menu, li {
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>지금 당장 가입하세요!</h1>
-						<p>Note: 어쩌구 저쩌구</p>
-						<p>
-							<a class="btn btn-lg btn-primary" href="commonRegister.do"
-								role="button">Sign up today</a>
-						</p>
 					</div>
 				</div>
 			</div>

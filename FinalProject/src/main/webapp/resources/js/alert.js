@@ -111,7 +111,6 @@
 									+ '&studentName=' + $('#studentName').val() + '&statusCheck=' + $('#statusCheck').val()
 									+ '&price=' + $('#tutorPrice').val(),
 									success: function(data) {
-										alert("성공");
 									},
 									error:function(data){
 										alert("에러3");
