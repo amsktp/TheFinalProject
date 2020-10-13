@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.snaptag.data">
+	  
+	  <resultMap id="DATA_RESULT" type="com.snaptag.demon.data.vo.DataVO">
+		<result property="dataNumber"							column="DATA_NO"/>
+		<result property="dataUserNumber"						column="DATA_USER_NO"/>
+		<result property="dataName"								column="DATA_NM"/>
+		<result property="dataIsActive"							column="DATA_IS_ACTIVE"/>
+		<result property="dataRegDate"							column="DATA_REG_DT"/>
+		<result property="dataDescription"						column="DATA_DESCRIPTION"/>
+		<result property="dataScale"							column="DATA_SCALE"/>
+		<result property="dataStrength"							column="DATA_STRENGTH"/>
+		
+		<collection property="sequenceList"				ofType="com.snaptag.demon.data.vo.SeqVO" 
+					resultMap = "com.snaptag.demon.data.mapper.DataMapper.SEQ_RESULT"/>
+	 
+		
+	</resultMap>
+	
+	<resultMap id="SEQ_RESULT" type="com.snaptag.demon.data.vo.SeqVO">
+		<result property="sequenceNumber"						column="SEQ_NO"/>
+		<result property="sequenceDataNumber"					column="SEQ_DATA_NO"/>
+		<result property="sequenceSourceImageUrl"				column="SEQ_SRC_URL"/>
+		<result property="sequenceOutputImageUrl"				column="SEQ_OUTPUT_URL"/>
+		<result property="seqType"								column="SEQ_TP"/>
+		<result property="seqQrUrl"								column="SEQ_QR_URL"/>
+		<result property="seqDownloadUrl"						column="SEQ_DOWNLOAD_URL"/>
+		<result property="seqUpdateDate"						column="SEQ_UPDATE_DT"/>
+		
+	</resultMap>
+	
+	<update id="updateSeqDate" parameterType="int">
+		UPDATE SEQ_TB
+		SET
+			SEQ_UPDATE_DT = DEFAULT
+		WHERE
+			SEQ_NO = #{seq}
+	</update>
+	
+	<select id="selectSeq" parameterType="int" resultMap="SEQ_RESULT">
+		SELECT * FROM SEQ_TB WHERE SEQ_NO = #{seq}
+	
+	</select>
+	
+	<select id="selectUserData" parameterType="int" resultMap="DATA_RESULT">
+		SELECT * FROM DATA_TB
+		LEFT JOIN SEQ_TB ON SEQ_TB.SEQ_DATA_NO = DATA_TB.DATA_NO
+		LEFT JOIN HP_CONTENTS_TB ON HP_CONTENTS_TB.HP_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN IMG_CONTENTS_TB ON IMG_CONTENTS_TB.IMG_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN VIDEO_CONTENTS_TB ON VIDEO_CONTENTS_TB.VIDEO_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN DOC_CONTENTS_TB ON DOC_CONTENTS_TB.DOC_SEQ_NO = SEQ_TB.SEQ_NO
+		WHERE
+			DATA_TB.DATA_USER_NO = #{userNumber}
+		ORDER BY DATA_NO DESC;
+	</select>
+	
+	<select id="selectData" parameterType="int" resultMap="DATA_RESULT">
+		SELECT * FROM DATA_TB
+		LEFT JOIN SEQ_TB ON SEQ_TB.SEQ_DATA_NO = DATA_TB.DATA_NO
+		LEFT JOIN HP_CONTENTS_TB ON HP_CONTENTS_TB.HP_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN IMG_CONTENTS_TB ON IMG_CONTENTS_TB.IMG_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN VIDEO_CONTENTS_TB ON VIDEO_CONTENTS_TB.VIDEO_SEQ_NO = SEQ_TB.SEQ_NO
+		LEFT JOIN DOC_CONTENTS_TB ON DOC_CONTENTS_TB.DOC_SEQ_NO = SEQ_TB.SEQ_NO
+		WHERE
+			SEQ_TB.SEQ_NO = #{seq}
+		
+	</select>
+	
+	<update id="updateOutputURL" parameterType="com.snaptag.demon.data.vo.SeqVO">
+		UPDATE SEQ_TB
+		SET
+			SEQ_OUTPUT_URL = #{sequenceOutputImageUrl},
+			SEQ_DOWNLOAD_URL = #{seqDownloadUrl}
+		WHERE
+			SEQ_NO = #{sequenceNumber}
+	</update>
+	
+	
+	<select id="selectDataByIndex" parameterType="com.snaptag.demon.data.vo.DataVO" resultMap="DATA_RESULT">
+		SELECT * FROM DATA_TB
+		WHERE
+			DATA_NO = #{dataNumber}
+	</select>
+	
+	<insert id="insertData" parameterType="com.snaptag.demon.data.vo.DataVO">
+		INSERT INTO DATA_TB VALUES
+		(
+			0, #{dataUserNumber}, #{dataName}, DEFAULT, DEFAULT, #{dataDescription}, #{dataScale}, #{dataStrength}
+		)
+		<selectKey resultType="int" keyProperty="dataNumber" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertSequence" parameterType="com.snaptag.demon.data.vo.SeqVO">
+		INSERT INTO SEQ_TB VALUES
+		(
+			0, #{sequenceDataNumber}, #{seqType}, #{sequenceSourceImageUrl}, #{sequenceOutputImageUrl}, #{seqQrUrl}, #{seqDownloadUrl}, DEFAULT
+		)
+		<selectKey resultType="int" keyProperty="sequenceNumber" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	
+   
+</mapper>
+
+
+
+
