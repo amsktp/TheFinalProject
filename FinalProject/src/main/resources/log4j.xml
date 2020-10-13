@@ -11,7 +11,7 @@
     </appender>
     
     <!-- Application Loggers -->
-    <logger name="com.englishvillage" >
+    <logger name="com.snaptag" >
         <level value="debug" />
     </logger>
     
