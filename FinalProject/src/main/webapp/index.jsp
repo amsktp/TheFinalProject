@@ -18,66 +18,19 @@
 <script type="text/javascript">
 
 	window.onload = function () {
-		location.href = '/englishvillage/tutor/home.do'
+
+//		location.href = '/snaptag/admin/login';
+		
 	}
 
-	var loginMoveFnc = function(){
-		location.href = '/englishvillage/auth/login.do';
-	}
-	
-	var tutorListMoveFnc = function() {
-		location.href = '/englishvillage/tutor/home.do'
-	}
-	
-	var tutorIntroduceMoveFnc = function() {
-		location.href = '/englishvillage/tutor/tutorIntroduce.do'
-	}
-	
-	var adminMoveFnc = function() {
-		location.href = '/englishvillage/admin/studentList.do'
-	}
-	
-	var adminMove1Fnc = function() {
-		location.href = '/englishvillage/admin/tutorList.do'
-	}
-	
-	var adminMove2Fnc = function() {
-		location.href = '/englishvillage/admin/questionList.do'
-	}
-	
 </script>
 
 
 <body>
-<!-- <div id="menuList"> -->
-<!-- 	<div onclick="loginMoveFnc();" > -->
-<!-- 		로그인 버튼 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="mainMoveFnc();" > -->
-<!-- 		메인페이지 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="tutorListMoveFnc();" > -->
-<!-- 		튜터 목록 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="tutorIntroduceMoveFnc();" > -->
-<!-- 		튜터 소개 페이지 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="adminMoveFnc();" > -->
-<!-- 		관리자 학생 페이지 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="adminMove1Fnc();" > -->
-<!-- 		관리자 튜터 페이지 -->
-<!-- 	</div> -->
-	
-<!-- 	<div onclick="adminMove2Fnc();" > -->
-<!-- 		관리자 문의 페이지 -->
-<!-- 	</div> -->
-<!-- </div> -->
+
+<input type="button" onclick="location.href='/snaptag/admin/login.do'" value="login">
+<input type="button" onclick="location.href='/snaptag/admin/dataManagement.do'" value="dataInput">
+
 	
 </body>
 

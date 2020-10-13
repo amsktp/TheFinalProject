@@ -18,7 +18,15 @@
  		background-color: white;
 	}
 	
-	#secondBox {
+	#loginDiv{
+		width: auto;
+		height: auto;
+		text-align: center;
+		margin-bottom: 30px;
+	
+	}
+	
+	#contentsDiv {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -41,13 +49,13 @@
 		margin-bottom: 20px;		
 	}
 	
-	.emailPwdBox {
+	.inputIdPwd {
 		width: 300px;
 		height: 40px;
 		margin-bottom: 10px;
-		background-color: #E1E1E1;
-		border: none;
+		border: 1px solid black;
 		padding-left: 10px;
+	
 	}
 	
 	#loginBtn {
@@ -72,59 +80,55 @@
 	}
 </style>
 <script type="text/javascript">
-	function moveCommonRegister() {
-		location.href = "./commonRegister.do";
-	}
-	function moveFindPwd() {
-		location.href = "./findPassword.do";
-	}
-	
 
 	/* 로그인 유효성 */
 	function loginBtn(){
-		var memberEmailObj = document.getElementById('memberEmail');
-		var memberPwdObj = document.getElementById('memberPwd');
+		var memberIdObj = document.getElementById('memberId');
+		var memberPwdObj = document.getElementById('memberPassword');
 		
-		if(memberEmailObj.value.length == 0){		
+		if(memberIdObj.value.length == 0){		
 			alert("ID를 입력해주세요.");
 			return false;
 		} else if(memberPwdObj.value.length == 0){		
 			alert("패스워드를 입력해주세요.");
 			return false;
 		}
-		
 	}
-	
 	
 </script>
 
 </head>
-<body style="background-color: #EEEEEE;">
+<body>
 
-	<div id="mainBox">
-		<div id="titleBox">
-			<span>ENGLISH VILLAGE</span>
-		</div>
-		<div id="subTitleBox">
-			<span>로그인</span>
-		</div>
+	<div id="loginFormDiv">
+	
+		
 		<!-- 이메일, 비밀번호 입력란  -->
-		<div id="secondBox">
-			<form action="/englishvillage/auth/loginCtr.do" method="post" onsubmit=" return loginBtn();">
+		
+		<div id="contentsDiv">
+			
+			<form action="/snaptag/admin/loginCtr.do" method="post" onsubmit="return loginBtn();">
+				
+				<div id="loginDiv">
+					로그인
+				</div>
+				
 				<div>
 					<div>
 						<span>이메일</span>
 					</div>
+					
 					<div>
-						<input class="emailPwdBox" id="memberEmail" type="email"
-							name="memberEmail" placeholder="이메일을 입력하세요" value="smith@gmail.com">
+						<input class="inputIdPwd" id="memberId" type="text"
+							name="memberId" value="snaptag">
 					</div>
+					
 					<div>
 						<span>비밀번호</span>
 					</div>
 					<div style="margin-bottom: 20px;">
-						<input class="emailPwdBox" id="memberPwd" type="password" name="memberPassword" 
-							placeholder="비밀번호를 입력하세요" value="test1">
+						<input class="inputIdPwd" id="memberPassword" type="password" name="memberPassword" 
+						 value="Snaptag200911">
 					</div>
 				</div>
 				<!-- 로그인 버튼, 비밀번호찾기 버튼, 회원가입 버튼  -->
@@ -133,12 +137,7 @@
 						<input id="loginBtn" type="submit" value="로그인">
 					</div>
 				</div>
-				<div>
-					<div>
-						<input class="findPwdAndRegister" type="button" value="비밀번호 찾기" onclick="moveFindPwd();">
-						<input class="findPwdAndRegister" type="button" value="회원가입" onclick="moveCommonRegister();">
-					</div>
-				</div>
+
 			</form>
 		</div>
 	</div>
